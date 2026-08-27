@@ -97,6 +97,12 @@ open-personal-tracking Core must continue working if open-personal-tracking Netw
 - [Security](SECURITY.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 
+## Get involved
+
+Every week, the community reviews open issues together on Discord, 13:00-14:00.
+
+Everyone is welcome to join, whether you want to triage, pick up an issue, or just listen in: https://discord.gg/6CjFPH55Rv
+
 ## Project status
 
 Early-stage.
