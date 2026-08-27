@@ -42,7 +42,14 @@ Moderation actions involving maintainers should be reviewable by another maintai
 
 ## Scope
 
-This policy applies to official open-personal-tracking community spaces and project-related interactions.
+This policy applies to official open-personal-tracking community spaces and project-related interactions, including:
+
+- GitHub Issues, Discussions, and Pull Requests
+- the Discord server (https://discord.gg/6CjFPH55Rv)
+- the weekly community call
+- any other space where someone represents the project or its community
+
+Everyone participating in a GitHub Discussion or the weekly call is expected to have read and follow this Code of Conduct. Maintainers hosting the weekly call are responsible for enforcing it in real time.
 
 ## Reporting
 

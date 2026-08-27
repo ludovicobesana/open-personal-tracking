@@ -15,6 +15,8 @@ The community is not only an audience for the project. Contributors should be ab
 - Avoid governance that depends on private conversations.
 - Document decisions that affect users or contributors.
 
+`CODE_OF_CONDUCT.md` applies everywhere this community gathers, synchronous or not: GitHub Issues, Discussions, Pull Requests, Discord, and the weekly call.
+
 ## Where collaboration happens
 
 The preferred collaboration surfaces are:

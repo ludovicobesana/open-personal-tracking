@@ -20,6 +20,10 @@ Rotate or periodically reconsider the time if the community becomes internationa
 
 - Discord: https://discord.gg/6CjFPH55Rv
 
+## Code of Conduct
+
+The call is an official project space. `CODE_OF_CONDUCT.md` applies for its full duration, and the host is responsible for enforcing it in real time.
+
 ## Agenda template
 
 ```markdown
