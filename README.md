@@ -69,6 +69,7 @@ open-personal-tracking Core must continue working if open-personal-tracking Netw
 
 ## Documentation
 
+- [Why This Project Exists](WHY.md)
 - [Vision](VISION.md)
 - [Product Requirements](docs/PRODUCT_REQUIREMENTS.md)
 - [Architecture](docs/ARCHITECTURE.md)
