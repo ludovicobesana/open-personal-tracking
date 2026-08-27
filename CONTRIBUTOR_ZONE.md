@@ -4,6 +4,8 @@ Welcome to open-personal-tracking.
 
 You do not need to be a software developer to contribute.
 
+Real-time chat and the weekly community call (13:00-14:00) happen on Discord: https://discord.gg/6CjFPH55Rv
+
 ## I want to contribute code
 
 Start with:

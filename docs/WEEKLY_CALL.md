@@ -8,15 +8,17 @@ It is not a replacement for asynchronous decision-making.
 
 ## Cadence
 
-Once per week.
-
-Choose a stable day and time after early contributors have enough geographic distribution to make an informed choice.
+Once per week, 13:00-14:00 (UTC).
 
 Rotate or periodically reconsider the time if the community becomes international.
 
-## Suggested duration
+## Duration
 
-45 to 60 minutes.
+60 minutes.
+
+## Joining
+
+- Discord: https://discord.gg/6CjFPH55Rv
 
 ## Agenda template
 

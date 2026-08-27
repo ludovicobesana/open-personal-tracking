@@ -24,10 +24,13 @@ The preferred collaboration surfaces are:
 - Pull Requests for proposed changes
 - RFCs for significant architectural or product changes
 - Weekly community calls for synchronous triage and design discussion
+- Discord (https://discord.gg/6CjFPH55Rv) for real-time contributor chat
+
+Discord is for quick, informal conversation. It is not a place to make or record decisions; anything material still needs to land in an Issue, Discussion, or RFC.
 
 ## Weekly community call
 
-open-personal-tracking should hold one public issue and contributor call every week.
+open-personal-tracking should hold one public issue and contributor call every week, 13:00-14:00, on Discord (https://discord.gg/6CjFPH55Rv).
 
 Suggested agenda:
 
