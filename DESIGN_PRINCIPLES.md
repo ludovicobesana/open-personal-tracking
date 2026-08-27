@@ -1,5 +1,11 @@
 # Design Principles
 
+## Branding status
+
+Naming, logo, and visual identity work is in progress. `open-personal-tracking` remains a working name, and announcements about the final name, logo, and visual identity will follow once that work is ready to share.
+
+Until then, contributions should follow the principles below rather than assume a fixed visual identity.
+
 ## Product feeling
 
 The interface should feel:
