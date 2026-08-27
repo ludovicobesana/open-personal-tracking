@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question or start a discussion
+    url: https://github.com/ludovicobesana/open-personal-tracking/discussions
+    about: Use GitHub Discussions for open-ended ideas, questions, and conversation.
+  - name: Chat on Discord
+    url: https://discord.gg/6CjFPH55Rv
+    about: Real-time contributor chat, and where the weekly community call (13:00-14:00) is announced.
+  - name: Report a security vulnerability
+    url: https://github.com/ludovicobesana/open-personal-tracking/security/policy
+    about: Do not open a public issue for security vulnerabilities. See SECURITY.md.

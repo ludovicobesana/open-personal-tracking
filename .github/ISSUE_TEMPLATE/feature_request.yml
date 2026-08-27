@@ -1,0 +1,43 @@
+name: Feature request
+description: Propose bounded, actionable work
+labels: ["feature", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for bounded, actionable work. For broad or exploratory ideas, open a
+        [Discussion](https://github.com/ludovicobesana/open-personal-tracking/discussions) instead.
+
+        Read the [Code of Conduct](https://github.com/ludovicobesana/open-personal-tracking/blob/main/CODE_OF_CONDUCT.md) before participating.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: What problem does this solve, and for whom?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: rfc
+    attributes:
+      label: Does this affect a long-term project contract?
+      description: Backup formats, persistence, sync, auth, network protocols, public APIs, privacy, or governance need an RFC — see docs/RFC_PROCESS.md.
+      options:
+        - "No"
+        - "Yes — an RFC will be opened"
+        - "Not sure"
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context

@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible problem
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug.
+
+        Please read the [Code of Conduct](https://github.com/ludovicobesana/open-personal-tracking/blob/main/CODE_OF_CONDUCT.md) before participating.
+
+        If this is a security vulnerability, do not file it here — follow [SECURITY.md](https://github.com/ludovicobesana/open-personal-tracking/blob/main/SECURITY.md) instead.
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: What actually happens?
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Minimal steps to reproduce the problem.
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      placeholder: "Web / Android / iOS, OS version, browser or app version"
+    validations:
+      required: true
+  - type: dropdown
+    id: data-safety
+    attributes:
+      label: Does this risk data loss or corruption?
+      description: Data-loss issues receive the highest project priority.
+      options:
+        - "No"
+        - "Yes — describe it below"
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, recordings, or logs.
