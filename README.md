@@ -1,5 +1,12 @@
 # open-personal-tracking
 
+[![GitHub Discussions](https://img.shields.io/github/discussions/ludovicobesana/open-personal-tracking)](https://github.com/ludovicobesana/open-personal-tracking/discussions)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/6CjFPH55Rv)
+[![Contributing](https://img.shields.io/badge/Contributing-guide-blue)](CONTRIBUTING.md)
+[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-enforced-blueviolet)](CODE_OF_CONDUCT.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Good First Issues](https://img.shields.io/github/issues/ludovicobesana/open-personal-tracking/good%20first%20issue)](https://github.com/ludovicobesana/open-personal-tracking/labels/good%20first%20issue)
+[![GitHub Stars](https://img.shields.io/github/stars/ludovicobesana/open-personal-tracking?style=social)](https://github.com/ludovicobesana/open-personal-tracking)
 
 > **Working name:** `open-personal-tracking` is a temporary project name. The final product name is intentionally undecided.
 
