@@ -59,14 +59,19 @@ Read:
 
 ## I want to test
 
+Quality is everyone's responsibility, not only testers'. Get involved as early as possible, ideally while a feature or fix is still being discussed, not just after it is built.
+
 Useful work includes:
 
 - reproducing bugs
 - testing releases
 - migration testing
 - backup restore testing
-- accessibility testing
+- accessibility testing (screen readers, keyboard navigation, locales)
 - platform testing
+- reviewing pull requests for risk and edge cases before they are merged
+
+You do not need to write automated tests to contribute here. Technical skills make testing feedback sharper, and are welcomed, but critical thinking, attention to detail, and a good bug report are just as valuable.
 
 Read:
 
