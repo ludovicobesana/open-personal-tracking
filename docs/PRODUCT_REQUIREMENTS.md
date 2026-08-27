@@ -58,6 +58,20 @@ Initial or planned first-class categories:
 
 The system must also support user-defined custom categories.
 
+## Implementation ideas: third-party catalog attribution
+
+When a category is enriched by an external catalog, the UI should credit the source without implying an endorsement relationship. Example, for movies and TV:
+
+> Show and movie information and artwork come from TMDB and TheTVDB. That's their data about titles, not about you. This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+Equivalent attribution will be needed for other categories, using similarly named, freely accessible catalogs:
+
+- Books: Open Library — "Book information and covers come from Open Library. This product uses the Open Library API but is not endorsed or certified by Open Library or the Internet Archive."
+- Anime and Manga: AniList — "Anime and manga information and artwork come from AniList. This product uses the AniList API but is not endorsed or certified by AniList."
+- Manga (alternative source): MangaDex — "Manga information and cover art come from MangaDex. This product uses the MangaDex API but is not endorsed or certified by MangaDex."
+
+The exact wording, placement, and logo requirements must follow each provider's current attribution and API terms of use at integration time; the phrasing above is a starting point, not final legal text.
+
 ## Core user capabilities
 
 Users should be able to:
