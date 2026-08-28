@@ -63,6 +63,10 @@
   * { box-sizing: border-box; }
 
   html, body { height: auto; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 
   body {
     margin: 0;
@@ -562,7 +566,7 @@
       <h1>This is the last time <em>you lose it.</em></h1>
       <p class="lede">Trackers shut down. Accounts get deleted. Companies get acquired and quietly turned off. Every time, years of ratings, notes, and watch history disappear with them. Not here: your history lives on your device first, exports on demand, and needs no account to exist.</p>
       <div class="cta-row">
-        <a class="cta cta-primary" href="https://discord.gg/6CjFPH55Rv">Join the Discord &rarr;</a>
+        <a class="cta cta-primary" href="#waiting-list">Join the waiting list &rarr;</a>
         <a class="cta cta-ghost" href="https://github.com/ludovicobesana/open-personal-tracking">View the code</a>
       </div>
     </section>
@@ -627,7 +631,7 @@
       </a>
     </div>
 
-    <section class="copy newsletter measure">
+    <section class="copy newsletter measure" id="waiting-list">
       <p class="eyebrow">Not a contributor? Still welcome</p>
       <h2>Follow along without writing a line of code.</h2>
       <p class="muted">Join the waiting list by email, or drop into Discord to watch it get built in real time.</p>
