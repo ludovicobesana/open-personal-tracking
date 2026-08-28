@@ -458,13 +458,13 @@
   /* ---------- Newsletter ---------- */
 
   .newsletter {
-    text-align: center;
+    text-align: left;
   }
 
   .newsletter-form {
     display: flex;
     gap: 0.75rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     margin-top: 1.75rem;
   }
@@ -487,7 +487,6 @@
   .newsletter-form button {
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    border: none;
     cursor: pointer;
   }
 
@@ -674,7 +673,7 @@
         <input type="hidden" name="_subject" value="New waiting list signup, open-personal-tracking">
         <input type="hidden" name="_captcha" value="true">
         <input type="hidden" name="_template" value="table">
-        <button type="submit" class="cta cta-primary">Join the waiting list</button>
+        <button type="submit" class="cta cta-ghost">Join the waiting list</button>
       </form>
       <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
 
