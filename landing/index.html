@@ -838,6 +838,7 @@
   <script>
     (function () {
       var button = document.getElementById("backToTop");
+      var footer = document.querySelector("footer");
       if (!button) return;
 
       function update() {
@@ -846,6 +847,11 @@
         } else {
           button.classList.remove("visible");
         }
+
+        var footerTop = footer ? footer.getBoundingClientRect().top : window.innerHeight;
+        var footerOverlap = window.innerHeight - footerTop;
+        var bottomOffset = Math.max(1.25 * 16, footerOverlap + 1.25 * 16);
+        button.style.bottom = bottomOffset + "px";
       }
 
       window.addEventListener("scroll", update, { passive: true });
