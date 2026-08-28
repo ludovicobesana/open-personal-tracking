@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code of Conduct — open-personal-tracking</title>
+<meta name="description" content="The Code of Conduct for the open-personal-tracking community: GitHub, Discord, and the weekly call.">
+<link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #EDEEE4;
+    --surface: #E2E3D6;
+    --surface-2: #D7D8C9;
+    --ink: #181B16;
+    --muted: #5B5F52;
+    --brass: #8F6F2E;
+    --brass-strong: #6E561F;
+    --stamp: #8C3B32;
+    --hairline: rgba(24, 27, 22, 0.16);
+    --shadow: rgba(24, 27, 22, 0.18);
+
+    --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+    --font-body: "IBM Plex Sans", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --measure: 38rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151A;
+      --surface: #1B1F26;
+      --surface-2: #232832;
+      --ink: #ECE8DC;
+      --muted: #9AA0A6;
+      --brass: #D2AC5C;
+      --brass-strong: #F0C877;
+      --stamp: #C1594C;
+      --hairline: rgba(236, 232, 220, 0.16);
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #12151A;
+    --surface: #1B1F26;
+    --surface-2: #232832;
+    --ink: #ECE8DC;
+    --muted: #9AA0A6;
+    --brass: #D2AC5C;
+    --brass-strong: #F0C877;
+    --stamp: #C1594C;
+    --hairline: rgba(236, 232, 220, 0.16);
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+
+  .measure {
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
+
+  .hairline {
+    border: none;
+    border-top: 1px solid var(--hairline);
+    margin: 0;
+  }
+
+  /* ---------- Nav ---------- */
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4em;
+  }
+  .wordmark .dot { color: var(--brass); }
+
+  .nav-links {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .nav-links a { text-decoration: none; border-bottom: 1px solid transparent; }
+  .nav-links a:hover, .nav-links a:focus-visible { border-bottom-color: var(--brass); }
+
+  /* ---------- Document ---------- */
+
+  .doc-header {
+    padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .doc-header h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+  }
+
+  main {
+    padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 7vw, 5rem);
+  }
+
+  main h2 {
+    font-size: 1.3rem;
+    margin: 2.5rem 0 0.9rem;
+  }
+  main h2:first-of-type { margin-top: 0; }
+
+  main p { margin: 0 0 1rem; color: var(--ink); }
+
+  main ul {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+  }
+  main li { margin-bottom: 0.4rem; color: var(--ink); }
+
+  main .muted { color: var(--muted); }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  footer .links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--brass-strong); }
+</style>
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="nav">
+      <a class="wordmark" href="index.html">open<span class="dot">·</span>personal<span class="dot">·</span>tracking</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="https://discord.gg/6CjFPH55Rv">Discord</a>
+        <a href="https://github.com/ludovicobesana/open-personal-tracking">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="doc-header measure">
+      <p class="eyebrow">Community</p>
+      <h1>Code of Conduct</h1>
+    </section>
+
+    <hr class="hairline measure" style="margin-bottom: 1rem;">
+
+    <main class="measure">
+      <h2>Our standard</h2>
+      <p>open-personal-tracking aims to maintain a constructive technical community where people can disagree strongly about ideas without making participation hostile.</p>
+      <p>Expected behavior includes:</p>
+      <ul>
+        <li>respectful technical disagreement</li>
+        <li>useful criticism</li>
+        <li>giving contributors room to learn</li>
+        <li>acknowledging uncertainty</li>
+        <li>documenting reasoning</li>
+        <li>avoiding personal attacks</li>
+        <li>avoiding harassment</li>
+        <li>respecting boundaries</li>
+      </ul>
+
+      <h2>Unacceptable behavior</h2>
+      <p>Examples include:</p>
+      <ul>
+        <li>harassment</li>
+        <li>threats</li>
+        <li>targeted insults</li>
+        <li>discriminatory abuse</li>
+        <li>sustained bad-faith disruption</li>
+        <li>publishing private information without permission</li>
+        <li>sexual harassment</li>
+        <li>deliberately sabotaging community spaces</li>
+      </ul>
+
+      <h2>Enforcement</h2>
+      <p>Maintainers may:</p>
+      <ul>
+        <li>request behavior changes</li>
+        <li>remove content</li>
+        <li>restrict participation</li>
+        <li>temporarily suspend participation</li>
+        <li>permanently remove participants in severe cases</li>
+      </ul>
+      <p class="muted">Moderation actions involving maintainers should be reviewable by another maintainer whenever possible.</p>
+
+      <h2>Scope</h2>
+      <p>This policy applies to official open-personal-tracking community spaces and project-related interactions, including:</p>
+      <ul>
+        <li>GitHub Issues, Discussions, and Pull Requests</li>
+        <li>the <a href="https://discord.gg/6CjFPH55Rv">Discord server</a></li>
+        <li>the weekly community call</li>
+        <li>any other space where someone represents the project or its community</li>
+      </ul>
+      <p class="muted">Everyone participating in a GitHub Discussion or the weekly call is expected to have read and follow this Code of Conduct. Maintainers hosting the weekly call are responsible for enforcing it in real time.</p>
+
+      <h2>Reporting</h2>
+      <p>A private conduct-reporting channel should be established before the community grows beyond the initial maintainers.</p>
+      <p class="muted">Reports should be handled confidentially and with the minimum disclosure necessary for resolution.</p>
+    </main>
+
+    <footer>
+      <div class="fine">
+        Source of truth: <a href="https://github.com/ludovicobesana/open-personal-tracking/blob/main/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a>
+      </div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="https://discord.gg/6CjFPH55Rv">Discord</a>
+        <a href="https://github.com/ludovicobesana/open-personal-tracking">GitHub</a>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

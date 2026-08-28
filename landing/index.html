@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>open-personal-tracking</title>
+<meta name="description" content="A local-first, account-free tracker for movies, TV, books, anime, and more. Your history lives on your device, not on someone else's server.">
+<link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg">
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #EDEEE4;
+    --surface: #E2E3D6;
+    --surface-2: #D7D8C9;
+    --ink: #181B16;
+    --muted: #5B5F52;
+    --brass: #8F6F2E;
+    --brass-strong: #6E561F;
+    --stamp: #8C3B32;
+    --hairline: rgba(24, 27, 22, 0.16);
+    --shadow: rgba(24, 27, 22, 0.18);
+
+    --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+    --font-body: "IBM Plex Sans", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --measure: 38rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151A;
+      --surface: #1B1F26;
+      --surface-2: #232832;
+      --ink: #ECE8DC;
+      --muted: #9AA0A6;
+      --brass: #D2AC5C;
+      --brass-strong: #F0C877;
+      --stamp: #C1594C;
+      --hairline: rgba(236, 232, 220, 0.16);
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #12151A;
+    --surface: #1B1F26;
+    --surface-2: #232832;
+    --ink: #ECE8DC;
+    --muted: #9AA0A6;
+    --brass: #D2AC5C;
+    --brass-strong: #F0C877;
+    --stamp: #C1594C;
+    --hairline: rgba(236, 232, 220, 0.16);
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: auto; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  em { font-style: italic; color: var(--brass-strong); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+
+  .measure {
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
+
+  .hairline {
+    border: none;
+    border-top: 1px solid var(--hairline);
+    margin: 0;
+  }
+
+  /* ---------- Nav ---------- */
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4em;
+  }
+  .wordmark .dot { color: var(--brass); }
+
+  .nav-links {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .nav-links a { text-decoration: none; border-bottom: 1px solid transparent; }
+  .nav-links a:hover, .nav-links a:focus-visible { border-bottom-color: var(--brass); }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 4vw, 3rem) clamp(2.5rem, 5vw, 3.5rem);
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.05;
+    max-width: 18ch;
+    margin-inline: auto;
+  }
+
+  .hero .lede {
+    max-width: 34rem;
+    margin: 1.5rem auto 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2.25rem;
+  }
+
+  .cta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .cta:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+  .cta-primary {
+    background: var(--brass);
+    color: var(--bg);
+    font-weight: 500;
+    box-shadow: 0 1px 0 var(--brass-strong) inset;
+  }
+  .cta-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px -6px var(--shadow); }
+
+  .cta-ghost {
+    border: 1px solid var(--hairline);
+    color: var(--ink);
+  }
+  .cta-ghost:hover { border-color: var(--brass); color: var(--brass-strong); }
+
+  /* ---------- Shelf (wow band) ---------- */
+
+  .shelf {
+    position: relative;
+    padding: clamp(1.5rem, 4vw, 2.5rem) 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+
+  .shelf-track {
+    display: flex;
+    gap: 1.35rem;
+    width: max-content;
+    padding-inline: 1.35rem;
+    animation: drift 52s linear infinite;
+    perspective: 900px;
+  }
+  .shelf:hover .shelf-track,
+  .shelf-track:focus-within { animation-play-state: paused; }
+
+  @keyframes drift {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .cover {
+    --jacket: #8F6F2E;
+    flex: none;
+    width: 132px;
+    aspect-ratio: 2 / 3;
+    border-radius: 2px;
+    position: relative;
+    background:
+      linear-gradient(160deg, color-mix(in srgb, var(--jacket) 82%, white 0%) 0%, color-mix(in srgb, var(--jacket) 60%, black 22%) 100%);
+    box-shadow: 0 10px 22px -12px var(--shadow), 0 0 0 1px var(--hairline);
+    color: #F3EFE2;
+    padding: 0.85rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-style: preserve-3d;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+    cursor: default;
+  }
+  .cover:hover, .cover.is-active {
+    box-shadow: 0 22px 34px -16px var(--shadow), 0 0 0 1px var(--brass);
+  }
+
+  .cover.photo {
+    background-image:
+      linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0) 45%),
+      var(--photo);
+    background-size: cover;
+    background-position: center;
+    justify-content: flex-end;
+  }
+
+  .cover .kind {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .cover .title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .cover .meta {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    opacity: 0.72;
+    letter-spacing: 0.02em;
+  }
+
+  .cover.spine .title { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 1.05rem; }
+  .cover.spine { justify-content: space-between; align-items: center; flex-direction: row; padding-block: 1rem; }
+  .cover.spine .kind { writing-mode: vertical-rl; transform: rotate(180deg); }
+  .cover.spine .meta { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shelf-track { animation: none; }
+    .cover { transition: none; }
+  }
+
+  /* ---------- Editorial sections ---------- */
+
+  section.copy {
+    padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem);
+  }
+
+  section.copy h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-bottom: 1.1rem;
+  }
+
+  section.copy p { margin: 0 0 1.05rem; }
+  section.copy p:last-child { margin-bottom: 0; }
+  section.copy .muted { color: var(--muted); }
+
+  .why blockquote {
+    margin: 1.75rem 0;
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--brass);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+
+  /* ---------- Index cards (trust / events / sponsor) ---------- */
+
+  .cards {
+    padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4.5rem);
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 68rem;
+    margin-inline: auto;
+  }
+  @media (max-width: 860px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+
+  .index-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 2px;
+    padding: 1.75rem 1.5rem 1.5rem;
+  }
+  .index-card::before {
+    content: "";
+    position: absolute;
+    top: 0.85rem;
+    left: 0.85rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: 0 0 0 1px var(--hairline) inset;
+  }
+  .index-card h3 {
+    font-size: 1.15rem;
+    margin: 0.25rem 0 0.75rem;
+  }
+  .index-card p {
+    margin: 0 0 0.9rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .index-card .tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass-strong);
+  }
+  .index-card a.link {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--brass);
+    padding-bottom: 1px;
+  }
+  .index-card a.link:hover { color: var(--brass-strong); }
+
+  /* ---------- Team & Contributors ---------- */
+
+  .people-grid {
+    padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 4.5rem);
+    max-width: 56rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1.75rem 1.25rem;
+  }
+
+  .person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    gap: 0.6rem;
+  }
+
+  .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: var(--brass);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--bg);
+    box-shadow: 0 0 0 1px var(--hairline);
+  }
+
+  .person-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .person-role {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .person.slot .avatar {
+    background: none;
+    border: 1px dashed var(--hairline);
+    color: var(--muted);
+    font-size: 1.6rem;
+    font-weight: 300;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .person.slot .avatar::after {
+    content: "Become a contributor";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    background: var(--brass);
+    color: var(--bg);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .person.slot:hover .avatar,
+  .person.slot:focus-visible .avatar {
+    border-color: var(--brass);
+  }
+  .person.slot:hover .avatar::after,
+  .person.slot:focus-visible .avatar::after {
+    opacity: 1;
+  }
+
+  .person.slot .person-role { visibility: hidden; }
+
+  /* ---------- Newsletter ---------- */
+
+  .newsletter {
+    text-align: center;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+  }
+
+  .newsletter-form input[type="email"] {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 16rem;
+  }
+  .newsletter-form input[type="email"]:focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 1px;
+  }
+
+  .newsletter-form button {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .form-note {
+    min-height: 1.2rem;
+    margin: 0.85rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .form-note[data-state="error"] { color: var(--stamp); }
+  .form-note[data-state="ok"] { color: var(--brass-strong); }
+
+  .newsletter .or-discord {
+    display: inline-block;
+    margin-top: 1.5rem;
+  }
+
+  /* ---------- Star CTA ---------- */
+
+  .star-cta {
+    text-align: center;
+    padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.25rem, 4vw, 3rem);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    background: var(--surface);
+  }
+
+  .star-cta h2 { font-size: clamp(1.5rem, 2.8vw, 1.9rem); }
+
+  .star-cta p {
+    margin: 0.75rem auto 0;
+    max-width: 30rem;
+    color: var(--muted);
+  }
+
+  .star-cta .cta { margin-top: 1.75rem; }
+
+  .star-cta svg { width: 1rem; height: 1rem; fill: currentColor; }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  footer .links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--brass-strong); }
+  footer .fine { max-width: 30rem; }
+</style>
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="nav">
+      <a class="wordmark" href="#top">open<span class="dot">·</span>personal<span class="dot">·</span>tracking</a>
+      <nav class="nav-links">
+        <a href="https://discord.gg/6CjFPH55Rv">Discord</a>
+        <a href="https://github.com/ludovicobesana/open-personal-tracking">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <p class="eyebrow">A personal archive, not a subscription</p>
+      <h1>This is the last time <em>you lose it.</em></h1>
+      <p class="lede">Trackers shut down. Accounts get deleted. Companies get acquired and quietly turned off. Every time, years of ratings, notes, and watch history disappear with them. Not here: your history lives on your device first, exports on demand, and needs no account to exist.</p>
+      <div class="cta-row">
+        <a class="cta cta-primary" href="https://discord.gg/6CjFPH55Rv">Join the Discord &rarr;</a>
+        <a class="cta cta-ghost" href="https://github.com/ludovicobesana/open-personal-tracking">View the code</a>
+      </div>
+    </section>
+
+    <div class="shelf" aria-hidden="true">
+      <div class="shelf-track" id="shelfTrack"><!-- populated by script --></div>
+    </div>
+
+    <section class="copy why measure">
+      <p class="eyebrow">Why this exists</p>
+      <h2>Your history shouldn't need a company's permission to keep existing.</h2>
+      <p>Every media tracker you've loved runs on the same assumption: your watch history lives on their servers, behind their account system, for as long as their business decides to keep the lights on. When that business ends, so does your history, no matter how many years you put into it.</p>
+      <blockquote>The application may disappear. Your history must not.</blockquote>
+      <p class="muted">open-personal-tracking is local-first: no account required for the core app, full export in a documented format, always. Movies, TV, anime, books, manga, games, music, whatever you track, it's yours, on your device, before it's anyone else's.</p>
+    </section>
+
+    <section class="copy trust measure">
+      <p class="eyebrow">A project that's actually alive</p>
+      <h2>You won't be filing a PR into the void.</h2>
+      <p>Every week, the community reviews open issues together on Discord, 13:00-14:00 (Italy time). Pull requests get read and get a real answer, good or bad, not silence. Decisions get written down in the open instead of decided in a private channel you weren't in.</p>
+      <p class="muted">There's far more to build here than any one person can carry alone: providers, importers, storage, accessibility, design, translations, testing, docs. First contribution or hundredth, both matter, and there's room for whatever you want to bring to it.</p>
+    </section>
+
+    <section class="copy team">
+      <div class="measure">
+        <p class="eyebrow">Team &amp; contributors</p>
+        <h2>Open source, open roster.</h2>
+        <p class="muted">This project is built in the open, one contribution at a time, code, design, docs, testing, translations, whatever you bring. The roster below is still filling up, and there's a spot open for you.</p>
+      </div>
+    </section>
+
+    <div class="people-grid">
+      <a class="person" href="https://www.linkedin.com/in/ludovicobesana/" target="_blank" rel="noopener">
+        <span class="avatar" style="background-image:url('images/contributor/ludovico.png'); background-position: top center;"></span>
+        <span class="person-name">Ludovico Besana</span>
+        <span class="person-role">Founder &amp; maintainer</span>
+      </a>
+      <a class="person slot" href="https://github.com/ludovicobesana/open-personal-tracking/blob/main/CONTRIBUTING.md#contributing-to-open-personal-tracking">
+        <span class="avatar">+</span>
+        <span class="person-name">&nbsp;</span>
+        <span class="person-role">&nbsp;</span>
+      </a>
+      <a class="person slot" href="https://github.com/ludovicobesana/open-personal-tracking/blob/main/CONTRIBUTING.md#contributing-to-open-personal-tracking">
+        <span class="avatar">+</span>
+        <span class="person-name">&nbsp;</span>
+        <span class="person-role">&nbsp;</span>
+      </a>
+      <a class="person slot" href="https://github.com/ludovicobesana/open-personal-tracking/blob/main/CONTRIBUTING.md#contributing-to-open-personal-tracking">
+        <span class="avatar">+</span>
+        <span class="person-name">&nbsp;</span>
+        <span class="person-role">&nbsp;</span>
+      </a>
+      <a class="person slot" href="https://github.com/ludovicobesana/open-personal-tracking/blob/main/CONTRIBUTING.md#contributing-to-open-personal-tracking">
+        <span class="avatar">+</span>
+        <span class="person-name">&nbsp;</span>
+        <span class="person-role">&nbsp;</span>
+      </a>
+      <a class="person slot" href="https://github.com/ludovicobesana/open-personal-tracking/blob/main/CONTRIBUTING.md#contributing-to-open-personal-tracking">
+        <span class="avatar">+</span>
+        <span class="person-name">&nbsp;</span>
+        <span class="person-role">&nbsp;</span>
+      </a>
+    </div>
+
+    <section class="copy newsletter measure">
+      <p class="eyebrow">Not a contributor? Still welcome</p>
+      <h2>Follow along without writing a line of code.</h2>
+      <p class="muted">Join the waiting list by email, or drop into Discord to watch it get built in real time.</p>
+
+      <form class="newsletter-form" id="newsletterForm" action="https://formsubmit.co/info@ludovicobesana.com" method="POST" novalidate>
+        <input type="email" name="email" id="newsletterEmail" placeholder="you@example.com" aria-label="Email address" required>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_subject" value="New waiting list signup, open-personal-tracking">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <button type="submit" class="cta cta-primary">Join the waiting list</button>
+      </form>
+      <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+
+      <a class="cta cta-ghost or-discord" href="https://discord.gg/6CjFPH55Rv">or follow along on Discord &rarr;</a>
+    </section>
+
+    <div class="cards">
+      <div class="index-card">
+        <p class="tag">Community</p>
+        <h3>Weekly, on Discord</h3>
+        <p>Issue triage, roadmap talk, and open floor, every week, 13:00-14:00 (Italy time). Drop in to listen, triage, or bring an idea.</p>
+        <a class="link" href="https://discord.gg/6CjFPH55Rv">Join the call &rarr;</a>
+      </div>
+      <div class="index-card">
+        <p class="tag">In person</p>
+        <h3>Build days, city by city</h3>
+        <p>Local meetups are being planned where contributors work on the project together, in the same room. Want one where you live? Say so on Discord.</p>
+        <a class="link" href="https://discord.gg/6CjFPH55Rv">Propose a city &rarr;</a>
+      </div>
+      <div class="index-card">
+        <p class="tag">Sponsorship</p>
+        <h3>Fund the archive, not the ads</h3>
+        <p>Sponsorship keeps this project ad-free and keeps maintainer time going toward your pull requests instead of a sales funnel. Opening soon.</p>
+        <a class="link" href="https://github.com/sponsors/ludovicobesana" target="_blank" rel="noopener">Get in line &rarr;</a>
+      </div>
+    </div>
+
+    <section class="star-cta">
+      <p class="eyebrow">Before you go</p>
+      <h2>If this resonates, star it.</h2>
+      <p>It takes two seconds, and it's the easiest way to help someone else looking for a tracker like this actually find it.</p>
+      <a class="cta cta-primary" href="https://github.com/ludovicobesana/open-personal-tracking" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.16 6.6.74-4.9 4.6 1.28 6.6L12 17.3l-5.88 3.3 1.28-6.6-4.9-4.6 6.6-.74z"/></svg>
+        Star on GitHub
+      </a>
+    </section>
+
+    <footer>
+      <div class="fine">
+        open-personal-tracking is a working name. Posters and covers shown above are for illustration only and remain the property of their respective owners.
+      </div>
+      <div class="links">
+        <a href="https://discord.gg/6CjFPH55Rv">Discord</a>
+        <a href="https://github.com/ludovicobesana/open-personal-tracking">GitHub</a>
+        <a href="code-of-conduct.html">Code of Conduct</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var TITLES = [
+        { kind: "TV", image: "images/family-guy-poster.jpg" },
+        { kind: "Film", image: "images/spider-man-brand-new-day-poster.jpg" },
+        { kind: "Book", image: "images/eragon-book-cover.jpg" },
+        { kind: "Book", image: "images/harry-potter-sorcerers-stone-cover.jpg" },
+        { kind: "Film", image: "images/toy-story-5-poster.jpg" },
+        { kind: "Film", image: "images/the-odyssey-poster.jpg" },
+        { kind: "Book", image: "images/twilight-book-cover.jpg" },
+        { kind: "Anime", image: "images/bleach-thousand-year-blood-war-poster.jpg" }
+      ];
+
+      function buildCard(item) {
+        var el = document.createElement("div");
+        el.className = "cover photo";
+        el.style.setProperty("--photo", "url('" + item.image + "')");
+        el.innerHTML = '<span class="kind">' + item.kind + '</span>';
+        return el;
+      }
+
+      var track = document.getElementById("shelfTrack");
+      var deck = TITLES.concat(TITLES); // doubled for seamless loop
+      deck.forEach(function (item) { track.appendChild(buildCard(item)); });
+
+      var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+        var current = null;
+        track.addEventListener("pointermove", function (e) {
+          var el = e.target.closest(".cover");
+          if (!el) return;
+          if (current && current !== el) resetCard(current);
+          current = el;
+          var r = el.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width - 0.5;
+          var py = (e.clientY - r.top) / r.height - 0.5;
+          el.classList.add("is-active");
+          el.style.transform =
+            "translateY(-6px) scale(1.05) rotateX(" + (py * -10) + "deg) rotateY(" + (px * 14) + "deg)";
+        });
+        track.addEventListener("pointerleave", function () {
+          if (current) resetCard(current);
+          current = null;
+        }, true);
+      }
+
+      function resetCard(el) {
+        el.classList.remove("is-active");
+        el.style.transform = "";
+      }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      // Best-effort static blocklist of common disposable/temporary email domains.
+      // This is not a live verification service, just a first filter against obvious throwaway addresses.
+      var DISPOSABLE_DOMAINS = [
+        "mailinator.com", "guerrillamail.com", "guerrillamail.info", "guerrillamail.biz",
+        "guerrillamailblock.com", "sharklasers.com", "10minutemail.com", "10minutemail.net",
+        "temp-mail.org", "tempmail.com", "tempmail.net", "temp-mail.io", "tempr.email",
+        "yopmail.com", "yopmail.net", "throwawaymail.com", "throwam.com", "getnada.com",
+        "trashmail.com", "trashmail.net", "dispostable.com", "fakeinbox.com", "mailnesia.com",
+        "mintemail.com", "spamgourmet.com", "mytemp.email", "moakt.com", "emailondeck.com",
+        "maildrop.cc", "mohmal.com", "tempinbox.com", "jetable.org", "spam4.me", "trbvm.com",
+        "discard.email", "discardmail.com", "0-mail.com", "burnermail.io", "mailcatch.com",
+        "spambox.us", "tempmailaddress.com", "mailsac.com", "incognitomail.org", "mailtemp.info",
+        "emailfake.com", "fakemailgenerator.com", "crazymailing.com", "mail-temporaire.fr"
+      ];
+
+      var form = document.getElementById("newsletterForm");
+      var input = document.getElementById("newsletterEmail");
+      var note = document.getElementById("formNote");
+      if (!form || !input || !note) return;
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function setNote(message, state) {
+        note.textContent = message;
+        note.setAttribute("data-state", state || "");
+      }
+
+      form.addEventListener("submit", function (e) {
+        var value = input.value.trim();
+
+        if (!EMAIL_RE.test(value)) {
+          e.preventDefault();
+          setNote("That doesn't look like a valid email address.", "error");
+          input.focus();
+          return;
+        }
+
+        var domain = value.split("@")[1].toLowerCase();
+        if (DISPOSABLE_DOMAINS.indexOf(domain) !== -1) {
+          e.preventDefault();
+          setNote("Please use a real, non-disposable email address.", "error");
+          input.focus();
+          return;
+        }
+
+        setNote("Sending...", "");
+      });
+    })();
+  </script>
+</body>
+</html>
