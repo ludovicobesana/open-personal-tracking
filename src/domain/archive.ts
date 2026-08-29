@@ -88,6 +88,8 @@ export type CreateItemInput = {
   notes?: string[];
   tags?: string[];
   collections?: string[];
+  createdAt?: string;
+  updatedAt?: string;
   attributes?: Record<string, AttributeValue>;
   externalIds?: Record<string, string>;
   imageUrl?: string;
@@ -114,6 +116,8 @@ export const createItem = (input: CreateItemInput): Item => {
     notes: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     collections: z.array(z.string()).default([]),
+    createdAt: z.string().datetime().optional(),
+    updatedAt: z.string().datetime().optional(),
     attributes: z.record(z.string(), AttributeValueSchema).default({}),
     externalIds: z.record(z.string(), z.string()).default({}),
     imageUrl: z.string().url().optional(),
@@ -137,8 +141,8 @@ export const createItem = (input: CreateItemInput): Item => {
     notes: parsed.notes,
     tags: parsed.tags,
     collections: parsed.collections,
-    createdAt: now,
-    updatedAt: now,
+    createdAt: parsed.createdAt ?? now,
+    updatedAt: parsed.updatedAt ?? now,
     attributes: parsed.attributes,
     externalIds: parsed.externalIds,
     imageUrl: parsed.imageUrl,
