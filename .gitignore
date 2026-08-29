@@ -1,16 +1,67 @@
-# OS
+# OS files
 .DS_Store
 Thumbs.db
+Desktop.ini
 
-# Editors
+# Editors and local tooling
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
-# Env / secrets
+# Node / package manager
+node_modules/
+.npm/
+.pnpm-store/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build and TypeScript output
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Test and coverage artifacts
+coverage/
+*.lcov
+playwright-report/
+playwright/.cache/
+test-results/
+vitest-results/
+
+# Cache folders
+.cache/
+.parcel-cache/
+.tmp/
+tmp/
+temp/
+
+# Framework output caches
+.next/
+.nuxt/
+.vuepress/dist/
+
+# Environment and secrets
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.crt
+
+# Local app data and databases
+data/
+*.sqlite
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
 
 # Logs
+logs/
 *.log
