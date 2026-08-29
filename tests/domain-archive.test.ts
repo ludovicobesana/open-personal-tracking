@@ -7,7 +7,7 @@ import {
   migrateArchiveSnapshot,
   parseArchiveSnapshot,
   serializeArchiveSnapshot,
-} from '../src/domain/archive';
+} from '../src/domain/archive.js';
 
 describe('domain archive schema', () => {
   it('creates an empty archive snapshot with the current version', () => {
