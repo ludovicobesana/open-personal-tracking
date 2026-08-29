@@ -79,6 +79,70 @@ When a policy appears wrong, propose changing the policy.
 
 ---
 
+# Issue labels and triage workflow
+
+Issues are the main way contributors raise problems, propose changes, and request input. Labels help maintainers sort work without turning the repository into a private decision channel.
+
+The project uses a small, readable label set so contributors understand what happens after opening an issue.
+
+## Standard workflow
+
+1. A new issue is opened.
+2. It receives the `needs-triage` label while maintainers review the report.
+3. Maintainers confirm whether the issue is reproducible, in scope, duplicate, or needs more detail.
+4. The issue is then labeled with the most specific category available, such as `bug`, `enhancement`, `documentation`, `accessibility`, or `design`.
+5. Good contributors can then work on actionable items, often after a maintainer confirms the expectation and scope.
+
+The goal is not to block people, but to keep the backlog legible and prevent important issues from being lost in ambiguity.
+
+## Meaning of the labels
+
+- `needs-triage`: the issue has been opened but has not yet been reviewed or classified by maintainers.
+- `bug`: something is broken or behaving unexpectedly.
+- `enhancement`: a new feature, capability, or request for expansion.
+- `documentation`: a documentation gap, clarification, or improvement.
+- `design`: a visual or interaction problem related to UI, icons, branding, or design language.
+- `accessibility`: a barrier affecting keyboard use, screen-reader use, contrast, focus states, or general accessibility.
+- `question`: more information is needed before the issue can be meaningfully triaged.
+- `duplicate`: the issue already exists elsewhere or overlaps substantially with an existing report.
+- `good first issue`: a small, well-scoped task suited to new contributors.
+- `help wanted`: the issue requires additional attention or contribution and is suitable for community help.
+- `invalid`: the report does not match the project scope, is incomplete in a way that cannot be acted on, or is not credible as submitted.
+- `wontfix`: the project has decided not to pursue the request or fix.
+- `priority:critical`: the issue requires immediate attention because it blocks critical usage, causes loss of user trust, or creates a serious risk to the core project experience.
+- `priority:high`: the issue is important and should be addressed promptly, especially when it affects a primary workflow, causes a major regression, or creates a significant user-facing problem.
+- `priority:medium`: the issue is relevant and should be handled in the normal planning flow but is not urgent enough to pre-empt other work.
+- `priority:low`: the issue is valid but non-urgent and can wait for routine maintenance or a later milestone.
+- `security`: the issue involves a security concern, vulnerability, data exposure, unsafe handling of sensitive information, or a risk that requires confidential handling and careful review.
+
+## Triage principles
+
+- Labels should describe the issue, not the contributor.
+- Type labels and priority labels should be used together when needed: for example, a `bug` issue may also carry `priority:high`.
+- An issue should be triaged before it is considered accepted or rejected.
+- If the issue is broad, unclear, or exploratory, it may be moved to a Discussion or an RFC instead of being treated as a small implementation task.
+- `good first issue` should be reserved for tasks with clear acceptance criteria and a narrow scope.
+- `duplicate` should be used carefully and only when the overlap is clear.
+- `wontfix` should be used only when a decision has been made and is explained clearly.
+- `security` issues should be handled with appropriate care, including private follow-up when necessary, without exposing sensitive details in public threads.
+
+## RFC impact
+
+Some changes affect long-term product contracts or architecture. These are not ordinary feature requests and may require an RFC before implementation begins.
+
+Examples include:
+
+- backup format changes
+- persistence or storage model changes
+- sync or network protocol changes
+- privacy or governance expectations
+- API contract changes
+- changes that materially affect user data portability
+
+When an issue touches one of these areas, the project should say so clearly and route the work through the RFC process.
+
+---
+
 # Two kinds of contribution
 
 open-personal-tracking has two major contribution surfaces.
