@@ -12,7 +12,7 @@
 
 **What you track is yours.**
 
-open-personal-tracking is an open-source, local-first platform for tracking the things that become part of your life: movies, TV shows, books, manga, anime, games, music, podcasts, places, courses, collections, and custom categories.
+open-personal-tracking is an open-source, local-first platform for tracking the things that become part of your life: movies, series, books, manga, anime, games, music, podcasts, places, courses, collections, and custom categories.
 
 The core product must remain useful without an account, without a proprietary backend, and without a network connection.
 
@@ -43,6 +43,7 @@ Works locally and independently.
 
 - Universal tracking
 - Progress
+- Series, seasons, and episodes
 - Ratings
 - Notes
 - Tags
@@ -67,8 +68,13 @@ Optional shared infrastructure.
 
 open-personal-tracking Core must continue working if open-personal-tracking Network disappears.
 
+## Series tracking
+
+Series are tracked at episode level. A season is complete only when every episode in that season is marked as watched; the series progress is calculated from all completed episodes. Episode details remain part of the local archive alongside the parent series.
+
 ## Documentation
 
+- [Changelog](CHANGELOG.md)
 - [Why This Project Exists](WHY.md)
 - [Vision](VISION.md)
 - [Product Requirements](docs/PRODUCT_REQUIREMENTS.md)
@@ -86,6 +92,8 @@ open-personal-tracking Core must continue working if open-personal-tracking Netw
 - [Maintainers](MAINTAINERS.md)
 - [Roadmap](ROADMAP.md)
 - [Testing](TESTING.md)
+- [Competitive Analysis](docs/COMPETITIVE_ANALYSIS.md)
+- [Reference: TV Time Information Architecture](docs/reference/TVTIME_REFERENCE.md)
 - [Accessibility](ACCESSIBILITY.md)
 - [Localization](LOCALIZATION.md)
 - [Compatibility](COMPATIBILITY.md)
@@ -98,6 +106,31 @@ open-personal-tracking Core must continue working if open-personal-tracking Netw
 - [Security](SECURITY.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 
+## Getting started
+
+The repository currently contains two local development surfaces:
+
+- **Core domain package**: archive model, validation, migrations, and tests.
+- **Web app shell**: a Next.js interface for exploring the local-first tracking experience.
+
+### Core
+
+```bash
+npm install
+npm run build
+npm test
+```
+
+### Web app
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000), then navigate to `/app-shell` to use the current application preview. For a production check, run `npm run build` from the `web` directory.
+
 ## Get involved
 
 Every week, the community reviews open issues together on Discord, 13:00-14:00.
@@ -108,16 +141,10 @@ Everyone is welcome to join, whether you want to triage, pick up an issue, or ju
 
 Early-stage.
 
+The web app currently provides a local UI preview for the main tracking flows. The durable storage, backup/restore flow, and the optional network layer remain under active development; see the [Product Requirements](docs/PRODUCT_REQUIREMENTS.md) and [Roadmap](ROADMAP.md) for the planned scope.
+
 The first milestone is intentionally small: prove that a user can create data locally, close the app, reopen it, export everything, delete the local state, restore the backup, and recover the same information.
 
 ## License
 
-The project license must be selected publicly before the first stable release.
-
-Candidates:
-
-- Apache-2.0
-- MIT
-- AGPL-3.0
-
-The final choice should reflect the project's goals around reuse, forks, hosted derivatives, and ecosystem openness.
+This project is licensed under the [GNU Affero General Public License v3.0](LICENSE) (AGPL-3.0-or-later).

@@ -41,7 +41,7 @@ Social and aggregate features may exist, but they must not be required to use th
 Initial or planned first-class categories:
 
 - Movies
-- TV Shows
+- Series and TV Shows
 - Anime
 - Books
 - Manga
@@ -91,6 +91,7 @@ Users should be able to:
 - Export all data
 - Restore from backup
 - Use core features offline
+- Configure local preferences during onboarding
 
 ## Tracking states
 
@@ -103,6 +104,14 @@ Default states:
 - Dropped
 
 Individual category adapters may expose domain-specific labels while mapping to a generic internal model.
+
+## Local preferences and onboarding
+
+The first run should ask only for preferences that improve the personal experience without requiring an account: display name, language, tracked activity types, and optional favourite genres.
+
+These preferences are personal data. They must be stored locally, included in the archive format, and restored with a backup. They may guide local filtering and future optional catalog discovery, but must not be sent to a service by default.
+
+Onboarding must remain skippable, editable from Settings, accessible by keyboard, and useful even when the user chooses no preferences.
 
 ## Progress
 
@@ -118,6 +127,10 @@ Examples:
 - Game: elapsed hours or manual completion state
 
 The core model must not assume that progress is always episode-based.
+
+### Series, seasons, and episodes
+
+Series progress must be derived from episodes, not from an unrelated manual percentage. A season is completed only when every episode it contains is completed. Users must be able to open an episode and view its own metadata and tracking state without losing the context of the parent series and season.
 
 ## Personal notes vs public comments
 
@@ -163,6 +176,7 @@ The MVP should include:
 19. Responsive UI
 20. Offline operation
 21. Automated end-to-end test of backup recovery
+22. Local preferences and onboarding, persisted in the archive
 
 ## MVP acceptance scenario
 
