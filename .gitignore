@@ -65,3 +65,6 @@ data/
 # Logs
 logs/
 *.log
+
+# Local Claude Code instructions
+CLAUDE.local.md

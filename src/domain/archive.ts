@@ -5,6 +5,21 @@ export const CURRENT_SCHEMA_VERSION = 1 as const;
 export const StatusSchema = z.enum(['planned', 'in_progress', 'completed', 'paused', 'dropped']);
 export type ItemStatus = z.infer<typeof StatusSchema>;
 
+export const SupportedLocaleSchema = z.enum(['en', 'it']);
+export type SupportedLocale = z.infer<typeof SupportedLocaleSchema>;
+
+export const TrackingActivitySchema = z.enum(['movies', 'series', 'books', 'manga', 'anime', 'games', 'music', 'podcasts']);
+export type TrackingActivity = z.infer<typeof TrackingActivitySchema>;
+
+export const UserPreferencesSchema = z.object({
+  displayName: z.string().trim().max(80).default(''),
+  locale: SupportedLocaleSchema.default('en'),
+  activities: z.array(TrackingActivitySchema).default([]),
+  favoriteGenres: z.array(z.string().trim().min(1).max(48)).max(24).default([]),
+  onboardingCompleted: z.boolean().default(false),
+});
+export type UserPreferences = z.infer<typeof UserPreferencesSchema>;
+
 export const AttributeValueSchema = z.union([
   z.string(),
   z.number(),
@@ -65,6 +80,7 @@ export const ArchiveSnapshotSchema = z.object({
   items: z.array(ItemSchema),
   collections: z.array(CollectionSchema),
   history: z.array(HistoryEntrySchema),
+  preferences: UserPreferencesSchema.default({}),
 });
 export type ArchiveSnapshot = z.infer<typeof ArchiveSnapshotSchema>;
 
@@ -74,6 +90,7 @@ export const LegacyArchiveSchema = z.object({
   items: z.array(z.unknown()).optional(),
   collections: z.array(z.unknown()).optional(),
   history: z.array(z.unknown()).optional(),
+  preferences: z.unknown().optional(),
 });
 
 export type CreateItemInput = {
@@ -101,6 +118,7 @@ export const createEmptyArchive = (): ArchiveSnapshot => ({
   items: [],
   collections: [],
   history: [],
+  preferences: UserPreferencesSchema.parse({}),
 });
 
 export const createItem = (input: CreateItemInput): Item => {
@@ -228,6 +246,9 @@ const migrate_v0_to_v1 = (value: unknown): ArchiveSnapshot => {
           };
         })
       : [],
+    preferences: UserPreferencesSchema.safeParse(legacy.preferences).success
+      ? UserPreferencesSchema.parse(legacy.preferences)
+      : UserPreferencesSchema.parse({}),
   };
 };
 

@@ -17,6 +17,13 @@ describe('domain archive schema', () => {
     expect(archive.items).toEqual([]);
     expect(archive.collections).toEqual([]);
     expect(archive.history).toEqual([]);
+    expect(archive.preferences).toEqual({
+      displayName: '',
+      locale: 'en',
+      activities: [],
+      favoriteGenres: [],
+      onboardingCompleted: false,
+    });
   });
 
   it('creates a valid generic item', () => {
@@ -54,6 +61,27 @@ describe('domain archive schema', () => {
     });
 
     expect(archive.schemaVersion).toBe(CURRENT_SCHEMA_VERSION);
+    expect(archive.preferences.locale).toBe('en');
+  });
+
+  it('preserves user preferences in an archive snapshot', () => {
+    const archive = parseArchiveSnapshot({
+      schemaVersion: CURRENT_SCHEMA_VERSION,
+      exportedAt: new Date().toISOString(),
+      items: [],
+      collections: [],
+      history: [],
+      preferences: {
+        displayName: 'Ludovico',
+        locale: 'it',
+        activities: ['movies', 'books'],
+        favoriteGenres: ['Sci-fi'],
+        onboardingCompleted: true,
+      },
+    });
+
+    expect(archive.preferences.displayName).toBe('Ludovico');
+    expect(archive.preferences.activities).toEqual(['movies', 'books']);
   });
 
   it('migrates a legacy archive snapshot without losing data', () => {
