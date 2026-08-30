@@ -7,8 +7,11 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Good First Issues](https://img.shields.io/github/issues/ludovicobesana/open-personal-tracking/good%20first%20issue)](https://github.com/ludovicobesana/open-personal-tracking/labels/good%20first%20issue)
 [![GitHub Stars](https://img.shields.io/github/stars/ludovicobesana/open-personal-tracking?style=social)](https://github.com/ludovicobesana/open-personal-tracking)
+[![Vercel](https://img.shields.io/github/deployments/ludovicobesana/open-personal-tracking/production?label=vercel&logo=vercel&logoColor=white)](https://open-personal-tracking.vercel.app/)
 
 > **Working name:** `open-personal-tracking` is a temporary project name. The final product name is intentionally undecided.
+
+> **Live demo:** [open-personal-tracking.vercel.app](https://open-personal-tracking.vercel.app/) hosts a preview build of the web app shell. It is a demo for exploring the current UI/UX ideas, not a finished product — features, data persistence, and scope are still in active development.
 
 **What you track is yours.**
 
