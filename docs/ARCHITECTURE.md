@@ -18,6 +18,7 @@ Domain
 Repository Interfaces
 |
 +-- Local SQLite
++-- Browser IndexedDB archive store (web)
 +-- Backup / Export
 +-- Catalog Providers
 +-- Optional Network Adapter
@@ -87,6 +88,8 @@ Examples:
 React components and application screens.
 
 UI components must not access SQLite directly.
+
+The web adapter follows the same rule: UI components must not access IndexedDB directly. It stores the complete archive behind an application boundary; IndexedDB is not the backup format.
 
 ## Generic item model
 
