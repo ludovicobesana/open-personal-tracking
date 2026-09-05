@@ -60,6 +60,7 @@ describe('archive application', () => {
     const persistence = new MemoryArchivePersistence();
     const application = new ArchiveApplication(persistence);
     const archive = createEmptyArchive();
+    archive.exportedAt = '2020-01-01T00:00:00.000Z';
     archive.collections.push({
       id: 'favorites', name: 'Favorites', itemIds: ['dune'], createdAt: archive.exportedAt, updatedAt: archive.exportedAt,
     });
@@ -74,6 +75,7 @@ describe('archive application', () => {
     expect(withItem.collections[0].itemIds).toEqual(['dune']);
     expect(deleted.items).toEqual([]);
     expect(deleted.collections[0].itemIds).toEqual([]);
+    expect(deleted.collections[0].updatedAt).not.toBe(withPreferences.collections[0].updatedAt);
     expect(deleted.preferences.displayName).toBe('Ludovico');
     expect(deleted.history.at(-1)?.action).toBe('deleted');
   });
@@ -95,5 +97,19 @@ describe('archive application', () => {
     expect(archive.preferences).toMatchObject({ displayName: 'Ludovico', locale: 'it', onboardingCompleted: true });
     expect(values.has('open-personal-tracking.preferences.v1')).toBe(false);
     expect(persistence.snapshot?.preferences.displayName).toBe('Ludovico');
+  });
+
+  it('keeps legacy preferences when their archive migration cannot be saved', async () => {
+    const key = 'open-personal-tracking.preferences.v1';
+    const values = new Map<string, string>([[key, JSON.stringify({ displayName: 'Ludovico', onboardingCompleted: true })]]);
+    vi.stubGlobal('localStorage', {
+      getItem: (storageKey: string) => values.get(storageKey) ?? null,
+      removeItem: (storageKey: string) => values.delete(storageKey),
+    });
+    const persistence = new MemoryArchivePersistence();
+    persistence.save = async () => { throw new Error('Storage is unavailable'); };
+
+    await expect(loadLocalArchive(new ArchiveApplication(persistence))).rejects.toThrow('Storage is unavailable');
+    expect(values.has(key)).toBe(true);
   });
 });

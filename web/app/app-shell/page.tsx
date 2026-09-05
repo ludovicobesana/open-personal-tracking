@@ -172,6 +172,8 @@ export default function AppShellPage() {
   const [storageError, setStorageError] = useState<string | null>(null);
   const [operationError, setOperationError] = useState<string | null>(null);
   const application = useRef<ArchiveApplication | null>(null);
+  const preferenceSaveQueue = useRef<Promise<void>>(Promise.resolve());
+  const preferenceSaveRevision = useRef(0);
 
   useEffect(() => {
     let isCurrent = true;
@@ -200,16 +202,29 @@ export default function AppShellPage() {
     return usePlaceholder ? overlay : undefined;
   };
 
-  const savePreferences = async (next: UserPreferences) => {
-    if (!archive || !application.current) return;
+  const savePreferences = (next: UserPreferences): Promise<void> => {
+    if (!archive || !application.current) return Promise.resolve();
+    const archiveApplication = application.current;
     const previous = archive;
+    const revision = ++preferenceSaveRevision.current;
     setArchive({ ...archive, preferences: next });
-    try {
-      setArchive(await application.current.updatePreferences(archive, next));
-    } catch (error) {
-      setArchive(previous);
-      setOperationError(error instanceof Error ? error.message : 'Could not save your preferences');
-    }
+
+    const persist = async () => {
+      try {
+        const persisted = await archiveApplication.updatePreferences(archive, next);
+        if (revision === preferenceSaveRevision.current) {
+          setArchive(persisted);
+        }
+      } catch (error) {
+        if (revision === preferenceSaveRevision.current) {
+          setArchive(previous);
+          setOperationError(error instanceof Error ? error.message : 'Could not save your preferences');
+        }
+      }
+    };
+
+    preferenceSaveQueue.current = preferenceSaveQueue.current.then(persist, persist);
+    return preferenceSaveQueue.current;
   };
 
   useEffect(() => {

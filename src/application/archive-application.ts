@@ -115,14 +115,20 @@ export class ArchiveApplication {
       throw new Error(`Cannot delete missing item: ${itemId}`);
     }
 
+    const now = new Date().toISOString();
     const next = withHistory(
       {
         ...archive,
         items: archive.items.filter((entry) => entry.id !== itemId),
-        collections: archive.collections.map((collection) => ({
-          ...collection,
-          itemIds: collection.itemIds.filter((id) => id !== itemId),
-        })),
+        collections: archive.collections.map((collection) => {
+          if (!collection.itemIds.includes(itemId)) return collection;
+
+          return {
+            ...collection,
+            itemIds: collection.itemIds.filter((id) => id !== itemId),
+            updatedAt: now,
+          };
+        }),
       },
       itemId,
       'deleted',

@@ -19,18 +19,20 @@ export const loadLocalArchive = async (application: ArchiveApplication): Promise
     return archive;
   }
 
+  let preferences;
   try {
-    const preferences = UserPreferencesSchema.safeParse(JSON.parse(legacyValue));
-    if (!preferences.success) {
+    const parsed = UserPreferencesSchema.safeParse(JSON.parse(legacyValue));
+    if (!parsed.success) {
       globalThis.localStorage.removeItem(LEGACY_ONBOARDING_STORAGE_KEY);
       return archive;
     }
-
-    const migrated = await application.updatePreferences(archive, preferences.data);
-    globalThis.localStorage.removeItem(LEGACY_ONBOARDING_STORAGE_KEY);
-    return migrated;
+    preferences = parsed.data;
   } catch {
     globalThis.localStorage.removeItem(LEGACY_ONBOARDING_STORAGE_KEY);
     return archive;
   }
+
+  const migrated = await application.updatePreferences(archive, preferences);
+  globalThis.localStorage.removeItem(LEGACY_ONBOARDING_STORAGE_KEY);
+  return migrated;
 };
