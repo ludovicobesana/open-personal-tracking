@@ -16,6 +16,7 @@ export const UserPreferencesSchema = z.object({
   locale: SupportedLocaleSchema.default('en'),
   activities: z.array(TrackingActivitySchema).default([]),
   favoriteGenres: z.array(z.string().trim().min(1).max(48)).max(24).default([]),
+  placeholderCovers: z.boolean().default(true),
   onboardingCompleted: z.boolean().default(false),
 });
 export type UserPreferences = z.infer<typeof UserPreferencesSchema>;

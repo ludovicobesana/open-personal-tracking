@@ -11,6 +11,7 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 - Series tracking in the app shell, with season and episode views.
 - Episode-level completion: a season is complete only when all of its episodes are marked watched.
 - A reusable favicon configuration for the Next.js site and app shell.
+- Browser-local archive persistence for the app shell, including persisted items, preferences, progress, and history.
 
 ### Changed
 
@@ -21,6 +22,7 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 - Progress updates for books now update the displayed page count.
 - The recent-history timeline and episode presentation have clearer, responsive layouts.
+- Placeholder-cover choices now persist in the local archive; placeholders no longer show unrelated media artwork.
 
 ## 0.4.0 - 2026-08-30
 

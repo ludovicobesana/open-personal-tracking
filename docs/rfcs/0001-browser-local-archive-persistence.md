@@ -31,7 +31,7 @@ Users need their personal archive to survive reopening the browser without an ac
 
 ## Data model impact
 
-The portable `ArchiveSnapshot` remains the data contract. The IndexedDB record wraps it with an implementation-only key.
+The portable `ArchiveSnapshot` remains the data contract. The IndexedDB record wraps it with an implementation-only key. Local display preferences, including the default placeholder-cover setting, are stored in the snapshot preferences.
 
 ## Privacy impact
 

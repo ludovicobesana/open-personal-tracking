@@ -119,7 +119,7 @@ describe('browser archive storage', () => {
   it('persists the complete archive across store instances', async () => {
     const factory = new TestIndexedDbFactory();
     const archive = createEmptyArchive();
-    archive.preferences = { displayName: 'Ludo', locale: 'it', activities: ['books'], favoriteGenres: ['science fiction'], onboardingCompleted: true };
+    archive.preferences = { displayName: 'Ludo', locale: 'it', activities: ['books'], favoriteGenres: ['science fiction'], placeholderCovers: false, onboardingCompleted: true };
     archive.items.push(createItem({
       title: 'Dune',
       category: 'book',
