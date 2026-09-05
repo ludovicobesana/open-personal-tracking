@@ -22,6 +22,7 @@ describe('domain archive schema', () => {
       locale: 'en',
       activities: [],
       favoriteGenres: [],
+      placeholderCovers: true,
       onboardingCompleted: false,
     });
   });
@@ -76,12 +77,14 @@ describe('domain archive schema', () => {
         locale: 'it',
         activities: ['movies', 'books'],
         favoriteGenres: ['Sci-fi'],
+        placeholderCovers: false,
         onboardingCompleted: true,
       },
     });
 
     expect(archive.preferences.displayName).toBe('Ludovico');
     expect(archive.preferences.activities).toEqual(['movies', 'books']);
+    expect(archive.preferences.placeholderCovers).toBe(false);
   });
 
   it('migrates a legacy archive snapshot without losing data', () => {

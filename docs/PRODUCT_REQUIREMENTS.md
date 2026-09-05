@@ -107,7 +107,7 @@ Individual category adapters may expose domain-specific labels while mapping to 
 
 ## Local preferences and onboarding
 
-The first run should ask only for preferences that improve the personal experience without requiring an account: display name, language, tracked activity types, and optional favourite genres.
+The first run should ask only for preferences that improve the personal experience without requiring an account: display name, language, tracked activity types, optional favourite genres, and local display preferences such as placeholder covers.
 
 These preferences are personal data. They must be stored locally, included in the archive format, and restored with a backup. They may guide local filtering and future optional catalog discovery, but must not be sent to a service by default.
 

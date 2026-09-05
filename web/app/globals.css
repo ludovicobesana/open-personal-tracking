@@ -1833,8 +1833,11 @@ section.copy .muted {
 .switch {
   position: relative;
   display: inline-flex;
-  width: 46px;
+  flex: 0 0 48px;
+  box-sizing: border-box;
+  width: 48px;
   height: 28px;
+  overflow: hidden;
   background: var(--surface-strong);
   border: 1px solid var(--hairline);
   border-radius: 999px;
@@ -1852,19 +1855,24 @@ section.copy .muted {
 
 .switch i {
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--ink);
-  top: 4px;
-  left: 4px;
+  top: 3px;
+  left: 3px;
   transition: transform 0.2s ease;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
 .switch input:checked + i {
-  transform: translateX(18px);
+  transform: translateX(22px);
   background: var(--brass-strong);
+}
+
+.switch:has(input:focus-visible) {
+  outline: 2px solid var(--brass-strong);
+  outline-offset: 2px;
 }
 
 .list-stack {
@@ -1910,9 +1918,10 @@ section.copy .muted {
   top: 0;
   right: 0;
   bottom: 0;
-  width: min(22rem, 92vw);
+  width: min(42rem, 94vw);
   background: var(--bg);
   border-left: 1px solid var(--hairline);
+  box-shadow: -24px 0 64px -36px rgba(0, 0, 0, 0.82);
   transform: translateX(100%);
   transition: transform 0.25s ease;
   z-index: 31;
@@ -1926,7 +1935,7 @@ section.copy .muted {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 18px;
+  padding: 20px clamp(20px, 3vw, 32px);
   border-bottom: 1px solid var(--hairline);
 }
 
@@ -1946,19 +1955,43 @@ section.copy .muted {
 }
 
 .add-drawer-body {
-  padding: 18px;
+  padding: 24px clamp(20px, 3vw, 32px) 32px;
   overflow-y: auto;
   flex: 1;
   display: grid;
-  gap: 14px;
+  gap: 20px;
 }
 
 .add-drawer-foot {
-  padding: 14px 18px;
+  padding: 16px clamp(20px, 3vw, 32px) max(16px, env(safe-area-inset-bottom));
   border-top: 1px solid var(--hairline);
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.add-drawer .field-control {
+  min-height: 44px;
+  padding: 10px 12px;
+  line-height: 1.45;
+}
+
+.add-drawer textarea.field-control {
+  min-height: 104px;
+  resize: vertical;
+}
+
+.add-drawer .setting-row {
+  min-height: 56px;
+  padding: 12px 14px !important;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.add-drawer-foot .primary-btn,
+.add-drawer-foot .ghost-btn {
+  min-height: 42px;
 }
 
 .field-label {

@@ -12,20 +12,33 @@ import {
   UserRound,
   X,
 } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { createItem, type ItemStatus, UserPreferencesSchema, type UserPreferences } from '../../../src/domain/archive';
+import { createLocalArchiveApplication, loadLocalArchive } from '../../../src/application/local-archive-application';
+import type { ArchiveApplication } from '../../../src/application/archive-application';
+import { type ArchiveSnapshot, type Item, type ItemStatus, UserPreferencesSchema, type UserPreferences } from '../../../src/domain/archive';
+import { filterItems, getHistoryTimeline } from '../../../src/domain/search';
 
 type Episode = { number: number; title: string };
 type SeriesSeason = { number: number; title: string; episodes: Episode[] };
 type EpisodeSelection = { seasonNumber: number; episodeNumber: number };
+type ItemForm = {
+  title: string;
+  category: string;
+  status: string;
+  description: string;
+  rating: string;
+  notes: string;
+  tags: string;
+  collections: string;
+};
 type TrackedItem = {
-  id: number;
+  id: string;
   title: string;
   category: string;
   jacket: string;
   image: string;
-  usePlaceholderCover?: boolean;
+  usePlaceholderCover: boolean;
   creator: string;
   status: 'planned' | 'progress' | 'completed' | 'paused' | 'dropped';
   meta: string;
@@ -33,122 +46,9 @@ type TrackedItem = {
   value: number;
   description: string;
   tags: string[];
+  rating?: number;
   seasons?: SeriesSeason[];
 };
-
-const ITEMS: TrackedItem[] = [
-  {
-    id: 1,
-    title: 'Dune',
-    category: 'Book',
-    jacket: '#8F6F2E',
-    image: '/images/dune.jpg',
-    creator: 'Frank Herbert',
-    status: 'progress',
-    meta: '688 pages',
-    next: 'Page 468 of 688',
-    value: 68,
-    description:
-      'A noble family enters a ruthless struggle for control of a desert planet, where power, prophecy, and survival are inseparable.',
-    tags: ['Sci-fi', 'classic', 'desert epic'],
-  },
-  {
-    id: 2,
-    title: 'The Left Hand of Darkness',
-    category: 'Book',
-    jacket: '#4B5E5A',
-    image: '/images/the-left-hand-of-darkness.jpg',
-    creator: 'Ursula K. Le Guin',
-    status: 'completed',
-    meta: '5★ rating',
-    next: 'Finished',
-    value: 100,
-    description:
-      'A diplomat journeys to an alien world where identity, politics, and intimacy are reimagined in a stunningly quiet science-fiction classic.',
-    tags: ['classic', 'philosophical', 'essays'],
-  },
-  {
-    id: 3,
-    title: 'The Batman',
-    category: 'Film',
-    jacket: '#3A4650',
-    image: '/images/the-batman.jpg',
-    creator: 'Matt Reeves',
-    status: 'planned',
-    meta: '2h 57m',
-    next: 'Not started',
-    value: 0,
-    description:
-      'A darker, more intimate detective story succeeds as a grounded noir thriller with a razor-sharp sense of atmosphere.',
-    tags: ['noir', 'dark', 'crime'],
-  },
-  {
-    id: 4,
-    title: 'Stardew Valley',
-    category: 'Game',
-    jacket: '#4A5540',
-    image: '/images/Logo_of_Stardew_Valley.png',
-    creator: 'ConcernedApe',
-    status: 'paused',
-    meta: 'Season 2',
-    next: 'Paused at 52%',
-    value: 52,
-    description:
-      'A cozy life sim with farming, relationships, mining, and a steady rhythm that makes daily rituals feel meditative and rewarding.',
-    tags: ['cozy', 'farming', 'slow burn'],
-  },
-  {
-    id: 5,
-    title: 'One Piece',
-    category: 'Manga',
-    jacket: '#6E4A3E',
-    image: '/images/onepiece.jpg',
-    creator: 'Eiichiro Oda',
-    status: 'dropped',
-    meta: 'Ch. 340',
-    next: 'Dropped at ch. 340',
-    value: 30,
-    description:
-      'A long-form adventure full of huge ambitions, unforgettable characters, and an endless appetite for world-building.',
-    tags: ['adventure', 'longform', 'epic'],
-  },
-  {
-    id: 6,
-    title: 'The Bear',
-    category: 'Series',
-    jacket: '#6E4A3E',
-    image: '/images/the-bear.jpg',
-    creator: 'Christopher Storer',
-    status: 'progress',
-    meta: '3 seasons',
-    next: 'Season 1, episode 4',
-    value: 0,
-    description:
-      'A young chef returns to Chicago to run his family’s sandwich shop, where pressure, grief, and care collide in a very small kitchen.',
-    tags: ['drama', 'kitchen', 'character-driven'],
-    seasons: [
-      {
-        number: 1,
-        title: 'Season 1',
-        episodes: [
-          { number: 1, title: 'System' },
-          { number: 2, title: 'Hands' },
-          { number: 3, title: 'Brigade' },
-          { number: 4, title: 'Dogs' },
-        ],
-      },
-      {
-        number: 2,
-        title: 'Season 2',
-        episodes: [
-          { number: 1, title: 'Beef' },
-          { number: 2, title: 'Pasta' },
-          { number: 3, title: 'Sundae' },
-        ],
-      },
-    ],
-  },
-];
 
 const GROUPS = [
   { key: 'progress', label: 'Continuing' },
@@ -157,20 +57,7 @@ const GROUPS = [
   { key: 'archived', label: 'Archived' },
 ];
 
-const PLACEHOLDER_COVERS: Record<string, string> = {
-  Book: '/images/eragon-book-cover.jpg',
-  Film: '/images/the-odyssey-poster.jpg',
-  'TV Show': '/images/family-guy-poster.jpg',
-  Manga: '/images/the-odyssey-poster.jpg',
-  Anime: '/images/bleach-thousand-year-blood-war-poster.jpg',
-  Game: '/images/family-guy-poster.jpg',
-  Series: '/images/family-guy-poster.jpg',
-};
-
-const getCoverImage = (category: string, image?: string, usePlaceholderCover = true) => {
-  if (image && image.trim().length > 0) return image;
-  return usePlaceholderCover ? PLACEHOLDER_COVERS[category] ?? PLACEHOLDER_COVERS.Book : '';
-};
+const getCoverImage = (image?: string): string => image?.trim() ?? '';
 
 const STATUS_LABEL: Record<string, string> = {
   planned: 'Planned',
@@ -178,49 +65,6 @@ const STATUS_LABEL: Record<string, string> = {
   completed: 'Completed',
   paused: 'Paused',
   dropped: 'Dropped',
-};
-
-const normalizeStatus = (status: string): ItemStatus => {
-  if (status === 'progress') return 'in_progress';
-  return status as ItemStatus;
-};
-
-const domainSeedItems = ITEMS.map((item) =>
-  createItem({
-    id: String(item.id),
-    type: item.category.toLowerCase(),
-    title: item.title,
-    category: item.category,
-    description: item.description,
-    status: normalizeStatus(item.status),
-    progress: {
-      current: item.value,
-      target: 100,
-      unit: 'percent',
-    },
-    notes: [],
-    tags: item.tags,
-    collections: [],
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    attributes: {
-      creator: item.creator,
-      meta: item.meta,
-      next: item.next,
-      jacket: item.jacket,
-      image: item.image,
-      displayStatus: item.status,
-    },
-    externalIds: {},
-  })
-);
-
-const domainArchive = {
-  schemaVersion: 1,
-  exportedAt: new Date().toISOString(),
-  items: domainSeedItems,
-  collections: [],
-  history: [],
 };
 
 const NAV_LABEL: Record<string, string> = {
@@ -241,7 +85,6 @@ const MOBILE_NAV_ITEMS = [
   { key: 'settings', label: 'Settings', Icon: Settings },
 ] as const;
 
-const ONBOARDING_STORAGE_KEY = 'open-personal-tracking.preferences.v1';
 const ACTIVITY_OPTIONS = [
   { key: 'movies', label: 'Movies' }, { key: 'series', label: 'Series' }, { key: 'books', label: 'Books' }, { key: 'manga', label: 'Manga' },
   { key: 'anime', label: 'Anime' }, { key: 'games', label: 'Games' }, { key: 'music', label: 'Music' }, { key: 'podcasts', label: 'Podcasts' },
@@ -253,62 +96,135 @@ const CHANGELOG_URL = 'https://github.com/ludovicobesana/open-personal-tracking/
 const BUG_REPORT_URL = 'https://github.com/ludovicobesana/open-personal-tracking/issues/new?template=bug_report.md';
 
 const bucketOf = (status: string) => (status === 'paused' || status === 'dropped' ? 'archived' : status);
-const getPlaceholderCover = (category: string) => PLACEHOLDER_COVERS[category] ?? PLACEHOLDER_COVERS.Book;
 
 const getPageTarget = (item: TrackedItem) => {
-  if (item.category !== 'Book') return null;
-  return Number(item.meta.match(/(\d+)\s+pages/i)?.[1]) || null;
+  return item.category === 'Book' && item.meta.endsWith('pages') ? Number(item.meta.split(' ')[0]) || null : null;
 };
+
+const displayStatus = (status: ItemStatus): TrackedItem['status'] => status === 'in_progress' ? 'progress' : status;
+
+const stringAttribute = (item: Item, key: string): string | undefined => {
+  const value = item.attributes[key];
+  return typeof value === 'string' ? value : undefined;
+};
+
+const toTrackedItem = (item: Item, defaultPlaceholderCover: boolean): TrackedItem => {
+  const target = item.progress.target;
+  const value = target && target > 0 ? Math.min(100, (item.progress.current / target) * 100) : item.progress.current;
+  const status = displayStatus(item.status);
+
+  return {
+    id: item.id,
+    title: item.title,
+    category: item.category,
+    jacket: stringAttribute(item, 'jacket') ?? '#8F6F2E',
+    image: item.imageUrl ?? '',
+    usePlaceholderCover: typeof item.attributes.usePlaceholderCover === 'boolean'
+      ? item.attributes.usePlaceholderCover
+      : defaultPlaceholderCover,
+    creator: stringAttribute(item, 'creator') ?? '—',
+    status,
+    meta: stringAttribute(item, 'meta') ?? (target ? `${target} ${item.progress.unit}` : item.progress.unit),
+    next: stringAttribute(item, 'next') ?? (status === 'completed' ? 'Finished' : `${Math.round(value)}% complete`),
+    value,
+    description: item.description ?? '',
+    tags: item.tags,
+    rating: item.rating,
+  };
+};
+
+const noSelection: TrackedItem = {
+  id: '',
+  title: 'Select an item',
+  category: 'Library',
+  jacket: '#8F6F2E',
+  image: '',
+  usePlaceholderCover: false,
+  creator: '—',
+  status: 'planned',
+  meta: '—',
+  next: 'Choose an item from your library',
+  value: 0,
+  description: 'Select an item to see its details.',
+  tags: [],
+};
+
+const toArchiveStatus = (status: string): ItemStatus => status === 'progress' ? 'in_progress' : status as ItemStatus;
+const emptyItemForm = (): ItemForm => ({ title: '', category: 'Book', status: 'planned', description: '', rating: '', notes: '', tags: '', collections: '' });
+const listFromInput = (value: string): string[] => Array.from(new Set(value.split(',').map((entry) => entry.trim()).filter(Boolean)));
 
 export default function AppShellPage() {
   const [activeNav, setActiveNav] = useState('library');
   const [activeCategory, setActiveCategory] = useState('all');
   const [query, setQuery] = useState('');
-  const [emptyState, setEmptyState] = useState(false);
-  const [selectedId, setSelectedId] = useState(ITEMS[0].id);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [newItem, setNewItem] = useState({ title: '', category: 'Book', status: 'planned' });
-  const [newSeriesEpisodeCount, setNewSeriesEpisodeCount] = useState(8);
+  const [newItem, setNewItem] = useState<ItemForm>(emptyItemForm);
+  const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [themeMode, setThemeMode] = useState<'dark' | 'light' | 'auto'>('dark');
-  const [usePlaceholderCover, setUsePlaceholderCover] = useState(true);
+  const [newItemUsesPlaceholderCover, setNewItemUsesPlaceholderCover] = useState(true);
   const [detailView, setDetailView] = useState<'summary' | 'expanded'>('summary');
-  const [progressByItem, setProgressByItem] = useState<Record<number, number>>({});
-  const [completedEpisodesByItem, setCompletedEpisodesByItem] = useState<Record<number, Record<string, boolean>>>({
-    6: { '1-1': true, '1-2': true, '1-3': true },
-  });
+  const [completedEpisodesByItem, setCompletedEpisodesByItem] = useState<Record<string, Record<string, boolean>>>({});
   const [selectedEpisode, setSelectedEpisode] = useState<EpisodeSelection | null>(null);
-  const [preferences, setPreferences] = useState<UserPreferences>(() => UserPreferencesSchema.parse({}));
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState(0);
+  const [archive, setArchive] = useState<ArchiveSnapshot | null>(null);
+  const [storageError, setStorageError] = useState<string | null>(null);
+  const [operationError, setOperationError] = useState<string | null>(null);
+  const application = useRef<ArchiveApplication | null>(null);
+  const preferenceSaveQueue = useRef<Promise<void>>(Promise.resolve());
+  const preferenceSaveRevision = useRef(0);
 
   useEffect(() => {
-    if (domainArchive.items.length > 0) {
-      // Keep the app shell connected to the domain models even though the UI still renders
-      // a compact presentation layer around them.
-    }
+    let isCurrent = true;
+    const loadArchive = async () => {
+      try {
+        application.current = createLocalArchiveApplication();
+        const loaded = await loadLocalArchive(application.current);
+        if (!isCurrent) return;
+        setArchive(loaded);
+        setOnboardingOpen(!loaded.preferences.onboardingCompleted);
+      } catch (error) {
+        if (isCurrent) {
+          setStorageError(error instanceof Error ? error.message : 'Could not load your local archive');
+        }
+      }
+    };
+
+    void loadArchive();
+    return () => { isCurrent = false; };
   }, []);
 
-  const resolveImage = (image: string | undefined, category: string, usePlaceholder = true) => getCoverImage(category, image, usePlaceholder);
+  const preferences = archive?.preferences ?? UserPreferencesSchema.parse({});
+  const coverBackground = (image: string | undefined, usePlaceholder: boolean, overlay: string) => {
+    const cover = getCoverImage(image);
+    if (cover) return `${overlay}, url('${cover}')`;
+    return usePlaceholder ? overlay : undefined;
+  };
 
-  useEffect(() => {
-    const stored = window.localStorage.getItem(ONBOARDING_STORAGE_KEY);
-    let parsed: ReturnType<typeof UserPreferencesSchema.safeParse> | null = null;
-    try {
-      parsed = stored ? UserPreferencesSchema.safeParse(JSON.parse(stored)) : null;
-    } catch {
-      window.localStorage.removeItem(ONBOARDING_STORAGE_KEY);
-    }
-    if (parsed?.success) {
-      setPreferences(parsed.data);
-      setOnboardingOpen(!parsed.data.onboardingCompleted);
-    } else {
-      setOnboardingOpen(true);
-    }
-  }, []);
+  const savePreferences = (next: UserPreferences): Promise<void> => {
+    if (!archive || !application.current) return Promise.resolve();
+    const archiveApplication = application.current;
+    const previous = archive;
+    const revision = ++preferenceSaveRevision.current;
+    setArchive({ ...archive, preferences: next });
 
-  const savePreferences = (next: UserPreferences) => {
-    setPreferences(next);
-    window.localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(next));
+    const persist = async () => {
+      try {
+        const persisted = await archiveApplication.updatePreferences(archive, next);
+        if (revision === preferenceSaveRevision.current) {
+          setArchive(persisted);
+        }
+      } catch (error) {
+        if (revision === preferenceSaveRevision.current) {
+          setArchive(previous);
+          setOperationError(error instanceof Error ? error.message : 'Could not save your preferences');
+        }
+      }
+    };
+
+    preferenceSaveQueue.current = preferenceSaveQueue.current.then(persist, persist);
+    return preferenceSaveQueue.current;
   };
 
   useEffect(() => {
@@ -350,7 +266,7 @@ export default function AppShellPage() {
 
   const getItemProgress = (item: TrackedItem) => {
     if (item.category !== 'Series' || !item.seasons?.length) {
-      return progressByItem[item.id] ?? item.value;
+      return item.value;
     }
 
     const episodes = item.seasons.flatMap((season) => season.episodes.map((episode) => `${season.number}-${episode.number}`));
@@ -358,7 +274,13 @@ export default function AppShellPage() {
     return episodes.length > 0 ? (completed / episodes.length) * 100 : 0;
   };
 
-  const selectedItem = ITEMS.find((item) => item.id === selectedId) ?? ITEMS[0];
+  const items = useMemo(
+    () => archive?.items.map((item) => toTrackedItem(item, preferences.placeholderCovers)) ?? [],
+    [archive, preferences.placeholderCovers],
+  );
+  const selectedItem = items.find((item) => item.id === selectedId) ?? noSelection;
+  const selectedDomainItem = archive?.items.find((item) => item.id === selectedId) ?? null;
+  const hasSelectedItem = selectedDomainItem !== null;
   const selectedSeasons = selectedItem.category === 'Series' ? selectedItem.seasons ?? [] : [];
   const selectedEpisodes = selectedSeasons.flatMap((season) => season.episodes.map((episode) => ({ ...episode, seasonNumber: season.number })));
   const selectedEpisodeDetail = selectedEpisode
@@ -382,6 +304,10 @@ export default function AppShellPage() {
     : selectedItem.next;
 
   useEffect(() => {
+    setSelectedId((current) => items.some((item) => item.id === current) ? current : items[0]?.id ?? null);
+  }, [items]);
+
+  useEffect(() => {
     if (detailView !== 'expanded' && !selectedEpisode) return;
 
     const handleEscape = (event: KeyboardEvent) => {
@@ -398,14 +324,33 @@ export default function AppShellPage() {
   }, [detailView, selectedEpisode]);
 
   const handleEditSelected = () => {
-    const item = ITEMS.find((entry) => entry.id === selectedId) ?? ITEMS[0];
+    if (!hasSelectedItem) return;
     setNewItem({
-      title: item.title,
-      category: item.category,
-      status: item.status,
+      title: selectedItem.title,
+      category: selectedItem.category,
+      status: selectedItem.status,
+      description: selectedItem.description,
+      rating: selectedItem.rating?.toString() ?? '',
+      notes: selectedDomainItem?.notes.join('\n') ?? '',
+      tags: selectedItem.tags.join(', '),
+      collections: selectedDomainItem?.collections.join(', ') ?? '',
     });
+    setEditingItemId(selectedItem.id);
+    setNewItemUsesPlaceholderCover(selectedItem.usePlaceholderCover);
     setDetailView('summary');
     setDrawerOpen(true);
+  };
+
+  const openNewItemDrawer = () => {
+    setEditingItemId(null);
+    setNewItem(emptyItemForm());
+    setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
+    setDrawerOpen(true);
+  };
+
+  const closeItemDrawer = () => {
+    setDrawerOpen(false);
+    setEditingItemId(null);
   };
 
   const handleReportBug = () => {
@@ -414,11 +359,33 @@ export default function AppShellPage() {
     }
   };
 
-  const handleProgressChange = (value: number) => {
-    setProgressByItem((state) => ({
-      ...state,
-      [selectedItem.id]: value,
-    }));
+  const handleDeleteSelected = async () => {
+    if (!archive || !application.current || !selectedDomainItem) return;
+    if (!window.confirm(`Delete “${selectedDomainItem.title}” from your local archive? This cannot be undone without a backup.`)) {
+      return;
+    }
+
+    try {
+      setArchive(await application.current.deleteItem(archive, selectedDomainItem.id));
+      setDetailView('summary');
+      setSelectedId(null);
+    } catch (error) {
+      setOperationError(error instanceof Error ? error.message : 'Could not delete your item');
+    }
+  };
+
+  const handleProgressChange = async (value: number) => {
+    if (!archive || !application.current || !selectedDomainItem) return;
+    const target = selectedDomainItem.progress.target ?? 100;
+    try {
+      setArchive(await application.current.updateProgress(archive, selectedDomainItem.id, {
+        ...selectedDomainItem.progress,
+        current: (value / 100) * target,
+        target,
+      }));
+    } catch (error) {
+      setOperationError(error instanceof Error ? error.message : 'Could not update progress');
+    }
   };
 
   const toggleEpisodeCompletion = (seasonNumber: number, episodeNumber: number) => {
@@ -433,56 +400,70 @@ export default function AppShellPage() {
   };
 
   const visibleItems = useMemo(() => {
-    if (emptyState) return [];
-
-    return ITEMS.filter((item) => {
-      const matchesQuery = item.title.toLowerCase().includes(query.toLowerCase());
-      const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
-      return matchesQuery && matchesCategory;
-    });
-  }, [activeCategory, emptyState, query]);
+    if (!archive) return [];
+    return filterItems(archive.items, {
+      category: activeCategory === 'all' ? undefined : [activeCategory],
+      query,
+    }).map((item) => toTrackedItem(item, preferences.placeholderCovers));
+  }, [activeCategory, archive, preferences.placeholderCovers, query]);
 
   const upNextItems = visibleItems.filter((item) => item.status === 'progress');
+  const timeline = archive ? getHistoryTimeline(archive.history) : [];
   const isLibrary = activeNav === 'library';
 
-  const handleSaveDrawer = () => {
-    if (!newItem.title.trim()) return;
+  const handleSaveDrawer = async () => {
+    if (!archive || !application.current || !newItem.title.trim()) return;
+    const rating = newItem.rating.trim() ? Number(newItem.rating) : undefined;
+    if (rating !== undefined && (!Number.isFinite(rating) || rating < 0 || rating > 5)) {
+      setOperationError('Rating must be a number between 0 and 5');
+      return;
+    }
 
-    const seasons: SeriesSeason[] | undefined = newItem.category === 'Series'
-      ? [{
-        number: 1,
-        title: 'Season 1',
-        episodes: Array.from({ length: newSeriesEpisodeCount }, (_, index) => ({
-          number: index + 1,
-          title: `Episode ${index + 1}`,
-        })),
-      }]
-      : undefined;
-
-    const item: TrackedItem = {
-      id: Date.now(),
-      title: newItem.title.trim(),
-      category: newItem.category,
-      jacket: '#8F6F2E',
-      image: usePlaceholderCover ? getPlaceholderCover(newItem.category) : '',
-      usePlaceholderCover,
-      creator: 'You',
-      status: newItem.status as TrackedItem['status'],
-      meta: seasons ? '1 season' : 'Added just now',
-      next: seasons ? 'Season 1, episode 1' : STATUS_LABEL[newItem.status],
-      value: newItem.status === 'completed' ? 100 : 0,
-      description: 'Added manually from the app shell preview.',
-      tags: ['custom', 'tracked'],
-      seasons,
-    };
-
-    ITEMS.unshift(item);
-    setSelectedId(item.id);
-    setNewItem({ title: '', category: 'Book', status: 'planned' });
-    setNewSeriesEpisodeCount(8);
-    setDrawerOpen(false);
-    setEmptyState(false);
+    try {
+      const next = editingItemId
+        ? await application.current.updateItem(archive, editingItemId, {
+          title: newItem.title.trim(),
+          category: newItem.category,
+          type: newItem.category.toLowerCase(),
+          status: toArchiveStatus(newItem.status),
+          description: newItem.description.trim() || undefined,
+          rating,
+          notes: newItem.notes.split('\n').map((note) => note.trim()).filter(Boolean),
+          tags: listFromInput(newItem.tags),
+          collections: listFromInput(newItem.collections),
+          attributes: { ...selectedDomainItem?.attributes, usePlaceholderCover: newItemUsesPlaceholderCover },
+        })
+        : await application.current.createItem(archive, {
+          title: newItem.title.trim(),
+          category: newItem.category,
+          type: newItem.category.toLowerCase(),
+          status: toArchiveStatus(newItem.status),
+          progress: { current: newItem.status === 'completed' ? 100 : 0, target: 100, unit: 'percent' },
+          description: newItem.description.trim() || undefined,
+          rating,
+          notes: newItem.notes.split('\n').map((note) => note.trim()).filter(Boolean),
+          tags: listFromInput(newItem.tags),
+          collections: listFromInput(newItem.collections),
+          attributes: { usePlaceholderCover: newItemUsesPlaceholderCover },
+        });
+      const savedItem = editingItemId ?? next.items.at(-1)?.id ?? null;
+      setArchive(next);
+      setSelectedId(savedItem);
+      setNewItem(emptyItemForm());
+      setEditingItemId(null);
+      setDrawerOpen(false);
+    } catch (error) {
+      setOperationError(error instanceof Error ? error.message : 'Could not save your item');
+    }
   };
+
+  if (storageError) {
+    return <main className="screen-panel"><p className="empty-state" role="alert">Your local archive could not be opened: {storageError}</p></main>;
+  }
+
+  if (!archive) {
+    return <main className="screen-panel"><p className="empty-state" aria-live="polite">Loading your local archive…</p></main>;
+  }
 
   return (
     <div className="app-shell" aria-label="Open personal tracking application shell">
@@ -507,7 +488,7 @@ export default function AppShellPage() {
               <span className="nav-icon"><LibraryBig size={15} aria-hidden="true" /></span>
               Library
             </span>
-            <span className="pill">{ITEMS.length}</span>
+            <span className="pill">{items.length}</span>
           </button>
 
           <button type="button" className={`nav-item ${activeNav === 'discover' ? 'is-active' : ''}`} onClick={() => setActiveNav('discover')}>
@@ -527,7 +508,7 @@ export default function AppShellPage() {
               <span className="nav-icon"><FolderKanban size={15} aria-hidden="true" /></span>
               Collections
             </span>
-            <span className="pill">12</span>
+            <span className="pill">{archive.collections.length}</span>
           </button>
 
           <button
@@ -572,8 +553,8 @@ export default function AppShellPage() {
             <span>Local sync</span>
             <span className="status-dot" aria-label="Connected locally" />
           </div>
-          <strong>Archive safe</strong>
-          <div>Last backup: 14 minutes ago</div>
+          <strong>Local archive</strong>
+          <div>{items.length} items stored on this device</div>
         </div>
       </aside>
 
@@ -596,20 +577,14 @@ export default function AppShellPage() {
                 </button>
               )}
             </label>
-            <button className="primary-btn" type="button" onClick={() => setDrawerOpen(true)}>
+            <button className="primary-btn" type="button" onClick={openNewItemDrawer}>
               <Plus size={14} aria-hidden="true" />
               New item
             </button>
           </div>
         </header>
 
-        <div className="demo-controls">
-          <span className="tag-label">Demo control</span>
-          <label className="demo-toggle">
-            <input type="checkbox" checked={emptyState} onChange={() => setEmptyState((value) => !value)} />
-            Simulate empty state
-          </label>
-        </div>
+        {operationError && <p className="empty-state" role="alert">{operationError}</p>}
 
         {isLibrary ? (
           <div className="content" id="panelLibrary">
@@ -620,7 +595,7 @@ export default function AppShellPage() {
                     Your tracked items
                   </h2>
                   <span className="result-count" aria-live="polite">
-                    {visibleItems.length} of {ITEMS.length} shown
+                    {visibleItems.length} of {items.length} shown
                   </span>
                 </div>
 
@@ -659,19 +634,19 @@ export default function AppShellPage() {
               <div className="stats-grid" aria-label="Library summary measurements">
                 <div className="stat-card">
                   <span className="stat-label">Total</span>
-                  <div className="stat-value">{ITEMS.length}</div>
+                  <div className="stat-value">{items.length}</div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">In progress</span>
-                  <div className="stat-value">{ITEMS.filter((item) => item.status === 'progress').length}</div>
+                  <div className="stat-value">{items.filter((item) => item.status === 'progress').length}</div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">Completed</span>
-                  <div className="stat-value">{ITEMS.filter((item) => item.status === 'completed').length}</div>
+                  <div className="stat-value">{items.filter((item) => item.status === 'completed').length}</div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">Collections</span>
-                  <div className="stat-value">12</div>
+                  <div className="stat-value">{archive.collections.length}</div>
                 </div>
               </div>
 
@@ -683,7 +658,7 @@ export default function AppShellPage() {
                       <span
                         className="up-next-cover"
                         style={{
-                          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.28)), url('${resolveImage(item.image, item.category, item.usePlaceholderCover)}')`,
+                          backgroundImage: coverBackground(item.image, item.usePlaceholderCover, 'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.28))'),
                           backgroundColor: item.jacket,
                           backgroundSize: 'cover',
                           backgroundPosition: 'center',
@@ -699,7 +674,7 @@ export default function AppShellPage() {
                 </div>
               </div>
 
-              {emptyState ? (
+              {items.length === 0 ? (
                 <div className="empty-state">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
                     <rect x="4" y="3" width="16" height="18" rx="1.5" />
@@ -710,7 +685,7 @@ export default function AppShellPage() {
                     Add the first thing you're reading, watching, or playing. It stays on this device,
                     no account needed.
                   </p>
-                  <button type="button" className="primary-btn" onClick={() => setDrawerOpen(true)}>
+                  <button type="button" className="primary-btn" onClick={openNewItemDrawer}>
                     Add your first item
                   </button>
                 </div>
@@ -748,7 +723,7 @@ export default function AppShellPage() {
                               className="item-cover"
                               aria-hidden="true"
                               style={{
-                                backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.35)), url('${resolveImage(item.image, item.category, item.usePlaceholderCover)}')`,
+                                backgroundImage: coverBackground(item.image, item.usePlaceholderCover, 'linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.35))'),
                                 backgroundColor: item.jacket,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
@@ -791,11 +766,14 @@ export default function AppShellPage() {
               <div className="detail-header">
                 <strong>Details</strong>
                 <div className="detail-actions">
-                  <button type="button" className="mini-btn" onClick={() => setDetailView('expanded')}>
+                  <button type="button" className="mini-btn" onClick={() => setDetailView('expanded')} disabled={!hasSelectedItem}>
                     Open page
                   </button>
                   <button type="button" className="mini-btn" onClick={handleEditSelected}>
                     Edit
+                  </button>
+                  <button type="button" className="mini-btn" onClick={() => void handleDeleteSelected()} disabled={!hasSelectedItem}>
+                    Delete
                   </button>
                 </div>
               </div>
@@ -806,7 +784,7 @@ export default function AppShellPage() {
                     className="detail-cover"
                     aria-hidden="true"
                     style={{
-                      backgroundImage: `linear-gradient(180deg, rgba(24,27,22,0.08), rgba(24,27,22,0.4)), url('${resolveImage(selectedItem.image, selectedItem.category, selectedItem.usePlaceholderCover)}')`,
+                      backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(24,27,22,0.08), rgba(24,27,22,0.4))'),
                       backgroundColor: selectedItem.jacket,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
@@ -858,9 +836,9 @@ export default function AppShellPage() {
                         Attributes
                       </h3>
                       <div className="attribute-list" aria-label="Item attributes">
-                        <span className="attribute">Rating: 4.5★</span>
+                        <span className="attribute">Rating: {selectedItem.rating ?? 'Not rated'}{selectedItem.rating !== undefined ? '★' : ''}</span>
                         <span className="attribute">Status: {STATUS_LABEL[selectedItem.status]}</span>
-                        <span className="attribute">Format: hardcover</span>
+                        <span className="attribute">Format: {selectedItem.meta}</span>
                       </div>
                     </section>
 
@@ -869,9 +847,8 @@ export default function AppShellPage() {
                         Recent history
                       </h3>
                       <ul className="timeline" aria-label="Recent changes timeline">
-                        <li>Updated reading progress after chapter 18.</li>
-                        <li>Marked as “in progress” from backlog.</li>
-                        <li>Added tags: classic, science fiction, desert epic.</li>
+                        {timeline.filter((entry) => entry.itemId === selectedItem.id).slice(0, 3).map((entry) => <li key={entry.id}>{entry.summary}</li>)}
+                        {timeline.every((entry) => entry.itemId !== selectedItem.id) && <li>No changes recorded for this item yet.</li>}
                       </ul>
                     </section>
                 </>
@@ -895,18 +872,18 @@ export default function AppShellPage() {
                 <div className="screen-grid">
                   <div className="summary-card">
                     <span className="eyebrow">Total</span>
-                    <strong>12</strong>
-                    <span>Across books, films, and games</span>
+                    <strong>{archive.collections.length}</strong>
+                    <span>Saved in your local archive</span>
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Featured</span>
-                    <strong>4</strong>
-                    <span>Currently spotlighted on the home view</span>
+                    <strong>{archive.collections.filter((collection) => collection.itemIds.length > 0).length}</strong>
+                    <span>Containing tracked items</span>
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Ready</span>
-                    <strong>7</strong>
-                    <span>Collections with clear next action</span>
+                    <strong>{archive.collections.reduce((total, collection) => total + collection.itemIds.length, 0)}</strong>
+                    <span>Item references in total</span>
                   </div>
                 </div>
               </>
@@ -920,7 +897,7 @@ export default function AppShellPage() {
                     <h2>{preferences.displayName ? `Made for ${preferences.displayName}` : 'Make this library yours'}</h2>
                     <p>{preferences.activities.length ? `Start with ${preferences.activities.join(', ')} and refine what you want to track.` : 'Choose what you enjoy in Settings to make discovery useful.'}</p>
                   </div>
-                  <button className="primary-btn" type="button" onClick={() => setDrawerOpen(true)}><Plus size={14} aria-hidden="true" />Add to library</button>
+                  <button className="primary-btn" type="button" onClick={openNewItemDrawer}><Plus size={14} aria-hidden="true" />Add to library</button>
                 </div>
                 <div className="screen-grid discovery-grid">
                   <div className="summary-card"><span className="eyebrow">Watch next</span><strong>{upNextItems.length}</strong><span>Items ready to continue</span></div>
@@ -941,8 +918,8 @@ export default function AppShellPage() {
                   <button className="ghost-btn" type="button" onClick={() => setActiveNav('settings')}>Edit preferences</button>
                 </div>
                 <div className="screen-grid">
-                  <div className="summary-card"><span className="eyebrow">Tracked</span><strong>{ITEMS.length}</strong><span>Across your active categories</span></div>
-                  <div className="summary-card"><span className="eyebrow">Finished</span><strong>{ITEMS.filter((item) => item.status === 'completed').length}</strong><span>Saved in your history</span></div>
+                  <div className="summary-card"><span className="eyebrow">Tracked</span><strong>{items.length}</strong><span>Across your active categories</span></div>
+                  <div className="summary-card"><span className="eyebrow">Finished</span><strong>{items.filter((item) => item.status === 'completed').length}</strong><span>Saved in your history</span></div>
                   <div className="summary-card"><span className="eyebrow">Language</span><strong>{preferences.locale === 'it' ? 'IT' : 'EN'}</strong><span>Saved with your preferences</span></div>
                 </div>
               </>
@@ -964,10 +941,8 @@ export default function AppShellPage() {
                   <div className="content-card">
                     <span className="eyebrow">Timeline</span>
                     <ul className="timeline" aria-label="History timeline">
-                      <li>Updated “Dune” to 68% after reading chapters 14–18.</li>
-                      <li>Marked “The Batman” as planned after adding it to the watchlist.</li>
-                      <li>Imported three books from a CSV backup.</li>
-                      <li>Archived “Stardew Valley” after a two-month pause.</li>
+                      {timeline.map((entry) => <li key={entry.id}>{entry.summary}</li>)}
+                      {timeline.length === 0 && <li>No changes recorded yet.</li>}
                     </ul>
                   </div>
                   <div className="content-card">
@@ -975,14 +950,14 @@ export default function AppShellPage() {
                     <div className="list-stack">
                       <div className="mini-row">
                         <div>
-                          <strong>18 updates</strong>
+                          <strong>{timeline.length} updates</strong>
                           <br />
                           <small>This week</small>
                         </div>
                       </div>
                       <div className="mini-row">
                         <div>
-                          <strong>4 imports</strong>
+                          <strong>{timeline.filter((entry) => entry.action === 'imported').length} imports</strong>
                           <br />
                           <small>Last 30 days</small>
                         </div>
@@ -1008,8 +983,8 @@ export default function AppShellPage() {
                 <div className="screen-grid">
                   <div className="summary-card">
                     <span className="eyebrow">Last export</span>
-                    <strong>12 min</strong>
-                    <span>ago</span>
+                    <strong>—</strong>
+                    <span>No backup exported yet</span>
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Format</span>
@@ -1018,8 +993,8 @@ export default function AppShellPage() {
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Backup</span>
-                    <strong>3</strong>
-                    <span>local copies retained</span>
+                    <strong>Local</strong>
+                    <span>Export creates a copy you control</span>
                   </div>
                 </div>
               </>
@@ -1082,13 +1057,13 @@ export default function AppShellPage() {
                     <div>
                       <strong>Placeholder covers</strong>
                       <br />
-                      <small>Use category-appropriate artwork for new items</small>
+                      <small>Use a neutral cover when an item has no artwork</small>
                     </div>
                     <label className="switch">
                       <input
                         type="checkbox"
-                        checked={usePlaceholderCover}
-                        onChange={(event) => setUsePlaceholderCover(event.target.checked)}
+                        checked={preferences.placeholderCovers}
+                        onChange={(event) => void savePreferences({ ...preferences, placeholderCovers: event.target.checked })}
                       />
                       <i />
                     </label>
@@ -1167,7 +1142,7 @@ export default function AppShellPage() {
         ))}
       </nav>
 
-      {detailView === 'expanded' && (
+      {detailView === 'expanded' && hasSelectedItem && (
         <div className="detail-page-layer" role="presentation">
           <button className="detail-page-backdrop" type="button" aria-label="Close item detail" onClick={() => setDetailView('summary')} />
           <article className="detail-page" role="dialog" aria-modal="true" aria-labelledby="detailPageTitle">
@@ -1178,6 +1153,7 @@ export default function AppShellPage() {
               </div>
               <div className="detail-actions">
                 <button type="button" className="mini-btn" onClick={handleEditSelected}>Edit item</button>
+                <button type="button" className="mini-btn" onClick={() => void handleDeleteSelected()}>Delete item</button>
                 <button type="button" className="detail-page-close" aria-label="Close item detail" onClick={() => setDetailView('summary')}>
                   <X size={19} aria-hidden="true" />
                 </button>
@@ -1190,7 +1166,7 @@ export default function AppShellPage() {
                   className="detail-page-cover"
                   aria-hidden="true"
                   style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(24,27,22,0.05), rgba(24,27,22,0.46)), url('${resolveImage(selectedItem.image, selectedItem.category, selectedItem.usePlaceholderCover)}')`,
+                    backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(24,27,22,0.05), rgba(24,27,22,0.46))'),
                     backgroundColor: selectedItem.jacket,
                   }}
                 />
@@ -1268,7 +1244,7 @@ export default function AppShellPage() {
                                     key={episode.number}
                                     className={`episode-card ${isComplete ? 'is-complete' : ''}`}
                                     style={{
-                                      backgroundImage: `linear-gradient(180deg, rgba(10,12,15,0.05) 18%, rgba(10,12,15,0.85) 100%), url('${resolveImage(selectedItem.image, selectedItem.category, selectedItem.usePlaceholderCover)}')`,
+                                      backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(10,12,15,0.05) 18%, rgba(10,12,15,0.85) 100%)'),
                                     }}
                                   >
                                     <button type="button" className="episode-card-detail" aria-label={`Open ${season.title}, episode ${episode.number}, ${episode.title}`} onClick={() => setSelectedEpisode({ seasonNumber: season.number, episodeNumber: episode.number })}>
@@ -1293,9 +1269,9 @@ export default function AppShellPage() {
                 <section className="detail-page-card" aria-labelledby="detailPageAttributes">
                   <h3 id="detailPageAttributes" className="section-label">Attributes</h3>
                   <div className="attribute-list">
-                    <span className="attribute">Rating: 4.5★</span>
+                    <span className="attribute">Rating: {selectedItem.rating ?? 'Not rated'}{selectedItem.rating !== undefined ? '★' : ''}</span>
                     <span className="attribute">Status: {STATUS_LABEL[selectedItem.status]}</span>
-                    <span className="attribute">Progress target: 100%</span>
+                    <span className="attribute">Progress target: {selectedDomainItem?.progress.target ?? 'Not set'} {selectedDomainItem?.progress.target !== undefined ? selectedDomainItem.progress.unit : ''}</span>
                     <span className="attribute">Local only</span>
                   </div>
                 </section>
@@ -1312,10 +1288,8 @@ export default function AppShellPage() {
                 <section className="detail-page-card" aria-labelledby="detailPageHistory">
                   <h3 id="detailPageHistory" className="section-label">Recent history</h3>
                   <ul className="timeline">
-                    <li>Updated progress after chapter 18.</li>
-                    <li>Marked as “in progress” from backlog.</li>
-                    <li>Added tags: {selectedItem.tags.join(', ')}.</li>
-                    <li>Saved a local backup of the current archive state.</li>
+                    {timeline.filter((entry) => entry.itemId === selectedItem.id).slice(0, 4).map((entry) => <li key={entry.id}>{entry.summary}</li>)}
+                    {timeline.every((entry) => entry.itemId !== selectedItem.id) && <li>No changes recorded for this item yet.</li>}
                   </ul>
                 </section>
               </div>
@@ -1341,7 +1315,7 @@ export default function AppShellPage() {
               <div
                 className="episode-detail-image"
                 aria-hidden="true"
-                style={{ backgroundImage: `linear-gradient(180deg, rgba(10,12,15,0.06), rgba(10,12,15,0.7)), url('${resolveImage(selectedItem.image, selectedItem.category, selectedItem.usePlaceholderCover)}')` }}
+                style={{ backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(10,12,15,0.06), rgba(10,12,15,0.7))') }}
               />
               <div className="episode-detail-copy">
                 <span className="episode-detail-code">Season {selectedEpisodeDetail.season.number} · Episode {selectedEpisodeDetail.episode.number}</span>
@@ -1379,21 +1353,21 @@ export default function AppShellPage() {
             <div className="onboarding-progress" aria-label={`Step ${onboardingStep + 1} of 3`}>
               {[0, 1, 2].map((step) => <span key={step} className={step <= onboardingStep ? 'is-active' : ''} />)}
             </div>
-            {onboardingStep === 0 && <div className="onboarding-step"><span className="eyebrow">Your archive, your rules</span><h2 id="onboardingTitle">Start with the things that matter to you.</h2><p>No account required. These preferences stay on this device and are included in the archive model for export.</p><label className="onboarding-field">What should we call you?<input autoFocus value={preferences.displayName} onChange={(event) => setPreferences({ ...preferences, displayName: event.target.value })} onKeyDown={(event) => { if (event.key === 'Enter') { event.preventDefault(); setOnboardingStep(1); } }} placeholder="Your name" maxLength={80} /></label></div>}
-            {onboardingStep === 1 && <div className="onboarding-step"><span className="eyebrow">Choose your worlds</span><h2 id="onboardingTitle">What do you want to track?</h2><p>Choose every category you use. You can change this later.</p><div className="onboarding-option-grid">{ACTIVITY_OPTIONS.map((activity) => { const active = preferences.activities.includes(activity.key); return <button key={activity.key} type="button" className={`onboarding-option ${active ? 'is-selected' : ''}`} aria-pressed={active} onClick={() => setPreferences({ ...preferences, activities: active ? preferences.activities.filter((entry) => entry !== activity.key) : [...preferences.activities, activity.key] })}>{activity.label}</button>; })}</div></div>}
-            {onboardingStep === 2 && <div className="onboarding-step"><span className="eyebrow">Make discovery useful</span><h2 id="onboardingTitle">Pick a few favourite genres.</h2><p>They will guide local search filters and future optional catalog discovery.</p><div className="onboarding-option-grid genres">{GENRE_OPTIONS.map((genre) => { const active = preferences.favoriteGenres.includes(genre); return <button key={genre} type="button" className={`onboarding-option ${active ? 'is-selected' : ''}`} aria-pressed={active} onClick={() => setPreferences({ ...preferences, favoriteGenres: active ? preferences.favoriteGenres.filter((entry) => entry !== genre) : [...preferences.favoriteGenres, genre] })}>{genre}</button>; })}</div></div>}
-            <div className="onboarding-actions"><button type="button" className="ghost-btn" onClick={() => onboardingStep > 0 ? setOnboardingStep(onboardingStep - 1) : undefined}>{onboardingStep === 0 ? 'Local-first' : 'Back'}</button><button type="button" className="primary-btn" onClick={() => { if (onboardingStep < 2) { setOnboardingStep(onboardingStep + 1); } else { savePreferences({ ...preferences, onboardingCompleted: true }); setOnboardingOpen(false); } }}>{onboardingStep === 2 ? 'Open my archive' : 'Continue'}</button></div>
+            {onboardingStep === 0 && <div className="onboarding-step"><span className="eyebrow">Your archive, your rules</span><h2 id="onboardingTitle">Start with the things that matter to you.</h2><p>No account required. These preferences stay on this device and are included in the archive model for export.</p><label className="onboarding-field">What should we call you?<input autoFocus value={preferences.displayName} onChange={(event) => void savePreferences({ ...preferences, displayName: event.target.value })} onKeyDown={(event) => { if (event.key === 'Enter') { event.preventDefault(); setOnboardingStep(1); } }} placeholder="Your name" maxLength={80} /></label></div>}
+            {onboardingStep === 1 && <div className="onboarding-step"><span className="eyebrow">Choose your worlds</span><h2 id="onboardingTitle">What do you want to track?</h2><p>Choose every category you use. You can change this later.</p><div className="onboarding-option-grid">{ACTIVITY_OPTIONS.map((activity) => { const active = preferences.activities.includes(activity.key); return <button key={activity.key} type="button" className={`onboarding-option ${active ? 'is-selected' : ''}`} aria-pressed={active} onClick={() => void savePreferences({ ...preferences, activities: active ? preferences.activities.filter((entry) => entry !== activity.key) : [...preferences.activities, activity.key] })}>{activity.label}</button>; })}</div></div>}
+            {onboardingStep === 2 && <div className="onboarding-step"><span className="eyebrow">Make discovery useful</span><h2 id="onboardingTitle">Pick a few favourite genres.</h2><p>They will guide local search filters and future optional catalog discovery.</p><div className="onboarding-option-grid genres">{GENRE_OPTIONS.map((genre) => { const active = preferences.favoriteGenres.includes(genre); return <button key={genre} type="button" className={`onboarding-option ${active ? 'is-selected' : ''}`} aria-pressed={active} onClick={() => void savePreferences({ ...preferences, favoriteGenres: active ? preferences.favoriteGenres.filter((entry) => entry !== genre) : [...preferences.favoriteGenres, genre] })}>{genre}</button>; })}</div></div>}
+            <div className="onboarding-actions"><button type="button" className="ghost-btn" onClick={() => onboardingStep > 0 ? setOnboardingStep(onboardingStep - 1) : undefined}>{onboardingStep === 0 ? 'Local-first' : 'Back'}</button><button type="button" className="primary-btn" onClick={() => { if (onboardingStep < 2) { setOnboardingStep(onboardingStep + 1); } else { void savePreferences({ ...preferences, onboardingCompleted: true }); setOnboardingOpen(false); } }}>{onboardingStep === 2 ? 'Open my archive' : 'Continue'}</button></div>
           </section>
         </div>
       )}
 
       {drawerOpen && (
         <>
-          <div className="drawer-overlay is-open" onClick={() => setDrawerOpen(false)} />
+          <div className="drawer-overlay is-open" onClick={closeItemDrawer} />
           <aside className="add-drawer is-open" role="dialog" aria-modal="true" aria-labelledby="addDrawerTitle">
             <div className="add-drawer-head">
               <h3 id="addDrawerTitle">New item</h3>
-              <button className="add-drawer-close" type="button" onClick={() => setDrawerOpen(false)}>
+              <button className="add-drawer-close" type="button" onClick={closeItemDrawer}>
                 &times;
               </button>
             </div>
@@ -1432,23 +1406,76 @@ export default function AppShellPage() {
                 </select>
               </div>
 
-              {newItem.category === 'Series' && (
-                <div>
-                  <label className="field-label" htmlFor="fEpisodeCount">
-                    Episodes in season 1
-                  </label>
-                  <input
-                    className="field-control"
-                    id="fEpisodeCount"
-                    type="number"
-                    min={1}
-                    max={99}
-                    value={newSeriesEpisodeCount}
-                    onChange={(event) => setNewSeriesEpisodeCount(Math.max(1, Math.min(99, Number(event.target.value) || 1)))}
-                  />
-                  <small className="field-help">You can mark each episode complete from the series detail.</small>
-                </div>
-              )}
+              <div>
+                <label className="field-label" htmlFor="fDescription">
+                  Description
+                </label>
+                <textarea
+                  className="field-control"
+                  id="fDescription"
+                  value={newItem.description}
+                  onChange={(event) => setNewItem((state) => ({ ...state, description: event.target.value }))}
+                  placeholder="Your private description"
+                />
+              </div>
+
+              <div>
+                <label className="field-label" htmlFor="fRating">
+                  Rating
+                </label>
+                <input
+                  className="field-control"
+                  id="fRating"
+                  type="number"
+                  min="0"
+                  max="5"
+                  step="0.5"
+                  value={newItem.rating}
+                  onChange={(event) => setNewItem((state) => ({ ...state, rating: event.target.value }))}
+                  placeholder="0–5"
+                />
+              </div>
+
+              <div>
+                <label className="field-label" htmlFor="fTags">
+                  Tags
+                </label>
+                <input
+                  className="field-control"
+                  id="fTags"
+                  type="text"
+                  value={newItem.tags}
+                  onChange={(event) => setNewItem((state) => ({ ...state, tags: event.target.value }))}
+                  placeholder="e.g. science fiction, favourite"
+                />
+              </div>
+
+              <div>
+                <label className="field-label" htmlFor="fCollections">
+                  Collections
+                </label>
+                <input
+                  className="field-control"
+                  id="fCollections"
+                  type="text"
+                  value={newItem.collections}
+                  onChange={(event) => setNewItem((state) => ({ ...state, collections: event.target.value }))}
+                  placeholder="e.g. favourites, read later"
+                />
+              </div>
+
+              <div>
+                <label className="field-label" htmlFor="fNotes">
+                  Private notes
+                </label>
+                <textarea
+                  className="field-control"
+                  id="fNotes"
+                  value={newItem.notes}
+                  onChange={(event) => setNewItem((state) => ({ ...state, notes: event.target.value }))}
+                  placeholder="One note per line"
+                />
+              </div>
 
               <div>
                 <label className="field-label">Status</label>
@@ -1469,13 +1496,13 @@ export default function AppShellPage() {
               <label className="setting-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: 0 }}>
                 <div>
                   <strong style={{ display: 'block', fontSize: '0.9rem' }}>Add placeholder cover</strong>
-                  <small style={{ color: 'var(--muted)' }}>Uses a sensible image for this category</small>
+                  <small style={{ color: 'var(--muted)' }}>Uses a neutral cover, never artwork from another item</small>
                 </div>
                 <label className="switch" style={{ marginLeft: 'auto' }}>
                   <input
                     type="checkbox"
-                    checked={usePlaceholderCover}
-                    onChange={(event) => setUsePlaceholderCover(event.target.checked)}
+                    checked={newItemUsesPlaceholderCover}
+                    onChange={(event) => setNewItemUsesPlaceholderCover(event.target.checked)}
                   />
                   <i />
                 </label>
@@ -1487,7 +1514,7 @@ export default function AppShellPage() {
             </div>
 
             <div className="add-drawer-foot">
-              <button className="ghost-btn" type="button" onClick={() => setDrawerOpen(false)}>
+              <button className="ghost-btn" type="button" onClick={closeItemDrawer}>
                 Cancel
               </button>
               <button className="primary-btn" type="button" onClick={handleSaveDrawer}>
