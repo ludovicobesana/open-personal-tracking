@@ -1097,7 +1097,7 @@ export default function AppShellPage() {
                     </div>
                     <button type="button" className="mini-btn" onClick={handleReportBug}>
                       Report
-                    </button>
+                    </button> 
                   </div>
                   <div className="setting-card app-about-card">
                     <span className="eyebrow">About this app</span>
