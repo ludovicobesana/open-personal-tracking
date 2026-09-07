@@ -16,7 +16,24 @@ export interface ArchivePersistence {
   clear(): Promise<void>;
 }
 
-export type ItemUpdate = Partial<Pick<Item, 'category' | 'description' | 'externalIds' | 'imageUrl' | 'notes' | 'progress' | 'rating' | 'status' | 'tags' | 'title' | 'type' | 'attributes' | 'collections'>>;
+export type ItemUpdate = Partial<
+  Pick<
+    Item,
+    | 'category'
+    | 'description'
+    | 'externalIds'
+    | 'imageUrl'
+    | 'notes'
+    | 'progress'
+    | 'rating'
+    | 'status'
+    | 'tags'
+    | 'title'
+    | 'type'
+    | 'attributes'
+    | 'collections'
+  >
+>;
 
 const withHistory = (
   archive: ArchiveSnapshot,
@@ -25,7 +42,10 @@ const withHistory = (
   summary: string,
 ): ArchiveSnapshot => ({
   ...archive,
-  history: [...archive.history, createHistoryEntry({ itemId, action, summary })],
+  history: [
+    ...archive.history,
+    createHistoryEntry({ itemId, action, summary }),
+  ],
 });
 
 const updateTimestamp = (archive: ArchiveSnapshot): ArchiveSnapshot => ({
@@ -33,10 +53,15 @@ const updateTimestamp = (archive: ArchiveSnapshot): ArchiveSnapshot => ({
   exportedAt: new Date().toISOString(),
 });
 
-const syncCollectionReferences = (archive: ArchiveSnapshot, nextItem: Item): ArchiveSnapshot => {
+const syncCollectionReferences = (
+  archive: ArchiveSnapshot,
+  nextItem: Item,
+): ArchiveSnapshot => {
   const now = new Date().toISOString();
   const collectionIds = new Set(nextItem.collections);
-  const knownIds = new Set(archive.collections.map((collection) => collection.id));
+  const knownIds = new Set(
+    archive.collections.map((collection) => collection.id),
+  );
   const existing = archive.collections.map((collection) => {
     const hadItem = collection.itemIds.includes(nextItem.id);
     const shouldContainItem = collectionIds.has(collection.id);
@@ -52,7 +77,13 @@ const syncCollectionReferences = (archive: ArchiveSnapshot, nextItem: Item): Arc
   });
   const missing = nextItem.collections
     .filter((id) => !knownIds.has(id))
-    .map((id) => ({ id, name: id, itemIds: [nextItem.id], createdAt: now, updatedAt: now }));
+    .map((id) => ({
+      id,
+      name: id,
+      itemIds: [nextItem.id],
+      createdAt: now,
+      updatedAt: now,
+    }));
 
   return { ...archive, collections: [...existing, ...missing] };
 };
@@ -65,10 +96,16 @@ export class ArchiveApplication {
     return (await this.persistence.load()) ?? createEmptyArchive();
   }
 
-  async createItem(archive: ArchiveSnapshot, input: CreateItemInput): Promise<ArchiveSnapshot> {
+  async createItem(
+    archive: ArchiveSnapshot,
+    input: CreateItemInput,
+  ): Promise<ArchiveSnapshot> {
     const item = createItem(input);
     const next = withHistory(
-      syncCollectionReferences({ ...archive, items: [...archive.items, item] }, item),
+      syncCollectionReferences(
+        { ...archive, items: [...archive.items, item] },
+        item,
+      ),
       item.id,
       'created',
       `Added ${item.title}`,
@@ -77,7 +114,11 @@ export class ArchiveApplication {
     return this.persist(next);
   }
 
-  async updateItem(archive: ArchiveSnapshot, itemId: string, update: ItemUpdate): Promise<ArchiveSnapshot> {
+  async updateItem(
+    archive: ArchiveSnapshot,
+    itemId: string,
+    update: ItemUpdate,
+  ): Promise<ArchiveSnapshot> {
     const current = archive.items.find((item) => item.id === itemId);
     if (!current) {
       throw new Error(`Cannot update missing item: ${itemId}`);
@@ -90,26 +131,49 @@ export class ArchiveApplication {
       createdAt: current.createdAt,
       updatedAt: new Date().toISOString(),
     });
-    const action = updated.status === 'completed' && current.status !== 'completed' ? 'completed' : 'updated';
+    const action =
+      updated.status === 'completed' && current.status !== 'completed'
+        ? 'completed'
+        : 'updated';
     const next = withHistory(
-      syncCollectionReferences({ ...archive, items: archive.items.map((item) => item.id === itemId ? updated : item) }, updated),
+      syncCollectionReferences(
+        {
+          ...archive,
+          items: archive.items.map((item) =>
+            item.id === itemId ? updated : item,
+          ),
+        },
+        updated,
+      ),
       itemId,
       action,
-      action === 'completed' ? `Completed ${updated.title}` : `Updated ${updated.title}`,
+      action === 'completed'
+        ? `Completed ${updated.title}`
+        : `Updated ${updated.title}`,
     );
 
     return this.persist(next);
   }
 
-  async updateProgress(archive: ArchiveSnapshot, itemId: string, progress: Progress): Promise<ArchiveSnapshot> {
+  async updateProgress(
+    archive: ArchiveSnapshot,
+    itemId: string,
+    progress: Progress,
+  ): Promise<ArchiveSnapshot> {
     return this.updateItem(archive, itemId, { progress });
   }
 
-  async updatePreferences(archive: ArchiveSnapshot, preferences: UserPreferences): Promise<ArchiveSnapshot> {
+  async updatePreferences(
+    archive: ArchiveSnapshot,
+    preferences: UserPreferences,
+  ): Promise<ArchiveSnapshot> {
     return this.persist({ ...archive, preferences });
   }
 
-  async deleteItem(archive: ArchiveSnapshot, itemId: string): Promise<ArchiveSnapshot> {
+  async deleteItem(
+    archive: ArchiveSnapshot,
+    itemId: string,
+  ): Promise<ArchiveSnapshot> {
     const item = archive.items.find((entry) => entry.id === itemId);
     if (!item) {
       throw new Error(`Cannot delete missing item: ${itemId}`);

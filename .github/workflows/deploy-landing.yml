@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "landing/**"
-      - ".github/workflows/deploy-landing.yml"
+      - 'landing/**'
+      - '.github/workflows/deploy-landing.yml'
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
       - name: Upload landing/ as Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "landing"
+          path: 'landing'
 
       - name: Deploy to GitHub Pages
         id: deployment

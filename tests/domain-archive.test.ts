@@ -108,11 +108,15 @@ describe('domain archive schema', () => {
           updatedAt: '2024-01-01T00:00:00.000Z',
         },
       ],
-      collections: [
-        { id: 'col-1', name: 'Favorites', itemIds: ['item-1'] },
-      ],
+      collections: [{ id: 'col-1', name: 'Favorites', itemIds: ['item-1'] }],
       history: [
-        { id: 'hist-1', itemId: 'item-1', action: 'completed', timestamp: '2024-01-01T00:00:00.000Z', summary: 'Finished Dune' },
+        {
+          id: 'hist-1',
+          itemId: 'item-1',
+          action: 'completed',
+          timestamp: '2024-01-01T00:00:00.000Z',
+          summary: 'Finished Dune',
+        },
       ],
     };
 
@@ -131,7 +135,7 @@ describe('domain archive schema', () => {
         items: [],
         collections: [],
         history: [],
-      })
+      }),
     ).toThrow();
   });
 

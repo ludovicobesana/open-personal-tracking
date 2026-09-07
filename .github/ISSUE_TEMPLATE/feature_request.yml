@@ -1,6 +1,6 @@
 name: Feature request
 description: Propose bounded, actionable work
-labels: ["feature", "needs-triage"]
+labels: ['feature', 'needs-triage']
 body:
   - type: markdown
     attributes:
@@ -32,9 +32,9 @@ body:
       label: Does this affect a long-term project contract?
       description: Backup formats, persistence, sync, auth, network protocols, public APIs, privacy, or governance need an RFC — see docs/RFC_PROCESS.md.
       options:
-        - "No"
-        - "Yes — an RFC will be opened"
-        - "Not sure"
+        - 'No'
+        - 'Yes — an RFC will be opened'
+        - 'Not sure'
     validations:
       required: true
   - type: textarea

@@ -20,15 +20,26 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/images/favicon/favicon.svg', type: 'image/svg+xml' },
-      { url: '/images/favicon/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+      {
+        url: '/images/favicon/favicon-96x96.png',
+        type: 'image/png',
+        sizes: '96x96',
+      },
     ],
     shortcut: '/images/favicon/favicon.ico',
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${ibmSans.variable} ${ibmMono.variable}`}>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${ibmSans.variable} ${ibmMono.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

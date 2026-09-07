@@ -17,7 +17,9 @@ const sanitizeForStorage = <T>(value: T): T => {
   if (value !== null && typeof value === 'object') {
     const entries = Object.entries(value as Record<string, unknown>)
       .filter(([, nestedValue]) => nestedValue !== undefined)
-      .map(([key, nestedValue]) => [key, sanitizeForStorage(nestedValue)] as const);
+      .map(
+        ([key, nestedValue]) => [key, sanitizeForStorage(nestedValue)] as const,
+      );
 
     return Object.fromEntries(entries) as T;
   }
@@ -37,10 +39,16 @@ export const saveArchiveSnapshot = async (
   normalized.exportedAt = new Date().toISOString();
 
   await ensureParentDirectory(filePath);
-  await writeFile(filePath, serializeArchiveSnapshot(sanitizeForStorage(normalized)), 'utf8');
+  await writeFile(
+    filePath,
+    serializeArchiveSnapshot(sanitizeForStorage(normalized)),
+    'utf8',
+  );
 };
 
-export const loadArchiveSnapshot = async (filePath: string): Promise<ArchiveSnapshot> => {
+export const loadArchiveSnapshot = async (
+  filePath: string,
+): Promise<ArchiveSnapshot> => {
   const raw = await readFile(filePath, 'utf8');
   const parsed = JSON.parse(raw) as unknown;
 
@@ -54,7 +62,9 @@ export const exportArchiveBackup = async (
   await saveArchiveSnapshot(snapshot, filePath);
 };
 
-export const restoreArchiveBackup = async (filePath: string): Promise<ArchiveSnapshot> => {
+export const restoreArchiveBackup = async (
+  filePath: string,
+): Promise<ArchiveSnapshot> => {
   return loadArchiveSnapshot(filePath);
 };
 

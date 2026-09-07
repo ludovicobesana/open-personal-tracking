@@ -26,6 +26,7 @@ App summary: a local-first, user-owned tracker for personal items (books, films,
     attributes: Record<string, AttributeValue>;
   }
   ```
+
 - Named exports only, no default exports (`export function importItems(...)`, not `export default`).
 - Business rules live in `src/domain/**` as pure functions. No `fetch`, `fs`, DB clients, or UI framework imports there.
 - Persistence code (`src/storage/**`) only serializes/deserializes; it must not contain business rules (e.g. no "mark as finished if progress === 100" logic in a repository class — that belongs in `domain`).
