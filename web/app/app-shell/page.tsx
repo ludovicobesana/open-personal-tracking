@@ -423,9 +423,7 @@ export default function AppShellPage() {
 
   useEffect(() => {
     setSelectedId((current) =>
-      items.some((item) => item.id === current)
-        ? current
-        : (items[0]?.id ?? null),
+      items.some((item) => item.id === current) ? current : null,
     );
   }, [items]);
 
@@ -826,7 +824,10 @@ export default function AppShellPage() {
         )}
 
         {isLibrary ? (
-          <div className="content" id="panelLibrary">
+          <div
+            className={`content ${hasSelectedItem ? '' : 'content--without-details'}`}
+            id="panelLibrary"
+          >
             <section
               className="library-panel"
               aria-labelledby="library-panel-title"
@@ -1057,7 +1058,11 @@ export default function AppShellPage() {
               )}
             </section>
 
-            <aside className="detail-panel" aria-label="Selected item details">
+            <aside
+              className="detail-panel"
+              aria-label="Selected item details"
+              hidden={!hasSelectedItem}
+            >
               <div className="detail-header">
                 <strong>Details</strong>
                 <div className="detail-actions">

@@ -931,6 +931,10 @@ section.copy .muted {
   flex: 1;
 }
 
+.content--without-details {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .library-panel,
 .detail-panel {
   background: var(--surface);
@@ -1327,6 +1331,10 @@ section.copy .muted {
   min-width: 0;
   overflow: hidden;
   min-height: 720px;
+}
+
+.detail-panel[hidden] {
+  display: none;
 }
 
 .detail-header {
