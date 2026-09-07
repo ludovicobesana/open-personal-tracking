@@ -1117,10 +1117,10 @@ export default function AppShellPage() {
                 <div>
                   <span className="eyebrow">Import</span>
                   <h2>Bring your archive in</h2>
-                  <p>Import CSV, JSON, or a previous export backup.</p>
+                  <p>Data import functionality is currently under development (Coming Soon).</p>
                 </div>
-                <button className="primary-btn" type="button">
-                  Select file
+                <button className="primary-btn" type="button" disabled>
+                  Select file (Coming Soon)
                 </button>
               </div>
             )}
