@@ -2,6 +2,9 @@
   "name": "open-personal-tracking-core",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.22.1"
+  },
   "scripts": {
     "build": "tsc --noEmit",
     "lint": "eslint src tests --max-warnings=0",
