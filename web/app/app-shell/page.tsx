@@ -14,9 +14,18 @@ import {
 } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { createLocalArchiveApplication, loadLocalArchive } from '../../../src/application/local-archive-application';
+import {
+  createLocalArchiveApplication,
+  loadLocalArchive,
+} from '../../../src/application/local-archive-application';
 import type { ArchiveApplication } from '../../../src/application/archive-application';
-import { type ArchiveSnapshot, type Item, type ItemStatus, UserPreferencesSchema, type UserPreferences } from '../../../src/domain/archive';
+import {
+  type ArchiveSnapshot,
+  type Item,
+  type ItemStatus,
+  UserPreferencesSchema,
+  type UserPreferences,
+} from '../../../src/domain/archive';
 import { filterItems, getHistoryTimeline } from '../../../src/domain/search';
 
 type Episode = { number: number; title: string };
@@ -86,31 +95,59 @@ const MOBILE_NAV_ITEMS = [
 ] as const;
 
 const ACTIVITY_OPTIONS = [
-  { key: 'movies', label: 'Movies' }, { key: 'series', label: 'Series' }, { key: 'books', label: 'Books' }, { key: 'manga', label: 'Manga' },
-  { key: 'anime', label: 'Anime' }, { key: 'games', label: 'Games' }, { key: 'music', label: 'Music' }, { key: 'podcasts', label: 'Podcasts' },
+  { key: 'movies', label: 'Movies' },
+  { key: 'series', label: 'Series' },
+  { key: 'books', label: 'Books' },
+  { key: 'manga', label: 'Manga' },
+  { key: 'anime', label: 'Anime' },
+  { key: 'games', label: 'Games' },
+  { key: 'music', label: 'Music' },
+  { key: 'podcasts', label: 'Podcasts' },
 ] as const;
-const GENRE_OPTIONS = ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Sci-fi'];
+const GENRE_OPTIONS = [
+  'Action',
+  'Comedy',
+  'Drama',
+  'Fantasy',
+  'Horror',
+  'Mystery',
+  'Romance',
+  'Sci-fi',
+];
 
-const ROADMAP_URL = 'https://github.com/ludovicobesana/open-personal-tracking/blob/main/ROADMAP.md';
-const CHANGELOG_URL = 'https://github.com/ludovicobesana/open-personal-tracking/blob/main/CHANGELOG.md';
-const BUG_REPORT_URL = 'https://github.com/ludovicobesana/open-personal-tracking/issues/new?template=bug_report.md';
+const ROADMAP_URL =
+  'https://github.com/ludovicobesana/open-personal-tracking/blob/main/ROADMAP.md';
+const CHANGELOG_URL =
+  'https://github.com/ludovicobesana/open-personal-tracking/blob/main/CHANGELOG.md';
+const BUG_REPORT_URL =
+  'https://github.com/ludovicobesana/open-personal-tracking/issues/new?template=bug_report.md';
 
-const bucketOf = (status: string) => (status === 'paused' || status === 'dropped' ? 'archived' : status);
+const bucketOf = (status: string) =>
+  status === 'paused' || status === 'dropped' ? 'archived' : status;
 
 const getPageTarget = (item: TrackedItem) => {
-  return item.category === 'Book' && item.meta.endsWith('pages') ? Number(item.meta.split(' ')[0]) || null : null;
+  return item.category === 'Book' && item.meta.endsWith('pages')
+    ? Number(item.meta.split(' ')[0]) || null
+    : null;
 };
 
-const displayStatus = (status: ItemStatus): TrackedItem['status'] => status === 'in_progress' ? 'progress' : status;
+const displayStatus = (status: ItemStatus): TrackedItem['status'] =>
+  status === 'in_progress' ? 'progress' : status;
 
 const stringAttribute = (item: Item, key: string): string | undefined => {
   const value = item.attributes[key];
   return typeof value === 'string' ? value : undefined;
 };
 
-const toTrackedItem = (item: Item, defaultPlaceholderCover: boolean): TrackedItem => {
+const toTrackedItem = (
+  item: Item,
+  defaultPlaceholderCover: boolean,
+): TrackedItem => {
   const target = item.progress.target;
-  const value = target && target > 0 ? Math.min(100, (item.progress.current / target) * 100) : item.progress.current;
+  const value =
+    target && target > 0
+      ? Math.min(100, (item.progress.current / target) * 100)
+      : item.progress.current;
   const status = displayStatus(item.status);
 
   return {
@@ -119,13 +156,18 @@ const toTrackedItem = (item: Item, defaultPlaceholderCover: boolean): TrackedIte
     category: item.category,
     jacket: stringAttribute(item, 'jacket') ?? '#8F6F2E',
     image: item.imageUrl ?? '',
-    usePlaceholderCover: typeof item.attributes.usePlaceholderCover === 'boolean'
-      ? item.attributes.usePlaceholderCover
-      : defaultPlaceholderCover,
+    usePlaceholderCover:
+      typeof item.attributes.usePlaceholderCover === 'boolean'
+        ? item.attributes.usePlaceholderCover
+        : defaultPlaceholderCover,
     creator: stringAttribute(item, 'creator') ?? '—',
     status,
-    meta: stringAttribute(item, 'meta') ?? (target ? `${target} ${item.progress.unit}` : item.progress.unit),
-    next: stringAttribute(item, 'next') ?? (status === 'completed' ? 'Finished' : `${Math.round(value)}% complete`),
+    meta:
+      stringAttribute(item, 'meta') ??
+      (target ? `${target} ${item.progress.unit}` : item.progress.unit),
+    next:
+      stringAttribute(item, 'next') ??
+      (status === 'completed' ? 'Finished' : `${Math.round(value)}% complete`),
     value,
     description: item.description ?? '',
     tags: item.tags,
@@ -149,9 +191,27 @@ const noSelection: TrackedItem = {
   tags: [],
 };
 
-const toArchiveStatus = (status: string): ItemStatus => status === 'progress' ? 'in_progress' : status as ItemStatus;
-const emptyItemForm = (): ItemForm => ({ title: '', category: 'Book', status: 'planned', description: '', rating: '', notes: '', tags: '', collections: '' });
-const listFromInput = (value: string): string[] => Array.from(new Set(value.split(',').map((entry) => entry.trim()).filter(Boolean)));
+const toArchiveStatus = (status: string): ItemStatus =>
+  status === 'progress' ? 'in_progress' : (status as ItemStatus);
+const emptyItemForm = (): ItemForm => ({
+  title: '',
+  category: 'Book',
+  status: 'planned',
+  description: '',
+  rating: '',
+  notes: '',
+  tags: '',
+  collections: '',
+});
+const listFromInput = (value: string): string[] =>
+  Array.from(
+    new Set(
+      value
+        .split(',')
+        .map((entry) => entry.trim())
+        .filter(Boolean),
+    ),
+  );
 
 export default function AppShellPage() {
   const [activeNav, setActiveNav] = useState('library');
@@ -162,10 +222,16 @@ export default function AppShellPage() {
   const [newItem, setNewItem] = useState<ItemForm>(emptyItemForm);
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [themeMode, setThemeMode] = useState<'dark' | 'light' | 'auto'>('dark');
-  const [newItemUsesPlaceholderCover, setNewItemUsesPlaceholderCover] = useState(true);
-  const [detailView, setDetailView] = useState<'summary' | 'expanded'>('summary');
-  const [completedEpisodesByItem, setCompletedEpisodesByItem] = useState<Record<string, Record<string, boolean>>>({});
-  const [selectedEpisode, setSelectedEpisode] = useState<EpisodeSelection | null>(null);
+  const [newItemUsesPlaceholderCover, setNewItemUsesPlaceholderCover] =
+    useState(true);
+  const [detailView, setDetailView] = useState<'summary' | 'expanded'>(
+    'summary',
+  );
+  const [completedEpisodesByItem, setCompletedEpisodesByItem] = useState<
+    Record<string, Record<string, boolean>>
+  >({});
+  const [selectedEpisode, setSelectedEpisode] =
+    useState<EpisodeSelection | null>(null);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [onboardingStep, setOnboardingStep] = useState(0);
   const [archive, setArchive] = useState<ArchiveSnapshot | null>(null);
@@ -186,17 +252,27 @@ export default function AppShellPage() {
         setOnboardingOpen(!loaded.preferences.onboardingCompleted);
       } catch (error) {
         if (isCurrent) {
-          setStorageError(error instanceof Error ? error.message : 'Could not load your local archive');
+          setStorageError(
+            error instanceof Error
+              ? error.message
+              : 'Could not load your local archive',
+          );
         }
       }
     };
 
     void loadArchive();
-    return () => { isCurrent = false; };
+    return () => {
+      isCurrent = false;
+    };
   }, []);
 
   const preferences = archive?.preferences ?? UserPreferencesSchema.parse({});
-  const coverBackground = (image: string | undefined, usePlaceholder: boolean, overlay: string) => {
+  const coverBackground = (
+    image: string | undefined,
+    usePlaceholder: boolean,
+    overlay: string,
+  ) => {
     const cover = getCoverImage(image);
     if (cover) return `${overlay}, url('${cover}')`;
     return usePlaceholder ? overlay : undefined;
@@ -211,19 +287,29 @@ export default function AppShellPage() {
 
     const persist = async () => {
       try {
-        const persisted = await archiveApplication.updatePreferences(archive, next);
+        const persisted = await archiveApplication.updatePreferences(
+          archive,
+          next,
+        );
         if (revision === preferenceSaveRevision.current) {
           setArchive(persisted);
         }
       } catch (error) {
         if (revision === preferenceSaveRevision.current) {
           setArchive(previous);
-          setOperationError(error instanceof Error ? error.message : 'Could not save your preferences');
+          setOperationError(
+            error instanceof Error
+              ? error.message
+              : 'Could not save your preferences',
+          );
         }
       }
     };
 
-    preferenceSaveQueue.current = preferenceSaveQueue.current.then(persist, persist);
+    preferenceSaveQueue.current = preferenceSaveQueue.current.then(
+      persist,
+      persist,
+    );
     return preferenceSaveQueue.current;
   };
 
@@ -231,18 +317,26 @@ export default function AppShellPage() {
     const root = document.documentElement;
     const applyTheme = (mode: 'dark' | 'light' | 'auto') => {
       const normalizedMode = mode || 'dark';
-      const actualTheme = normalizedMode === 'auto'
-        ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-        : normalizedMode;
+      const actualTheme =
+        normalizedMode === 'auto'
+          ? window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'light'
+            : 'dark'
+          : normalizedMode;
 
       root.setAttribute('data-theme', actualTheme);
       document.querySelectorAll('[data-theme-option]').forEach((button) => {
-        button.classList.toggle('is-active', button.getAttribute('data-theme-option') === normalizedMode);
+        button.classList.toggle(
+          'is-active',
+          button.getAttribute('data-theme-option') === normalizedMode,
+        );
       });
     };
 
     applyTheme(themeMode);
-    const colorSchemeMatcher = window.matchMedia('(prefers-color-scheme: light)');
+    const colorSchemeMatcher = window.matchMedia(
+      '(prefers-color-scheme: light)',
+    );
     const handleChange = () => {
       if (themeMode === 'auto') {
         applyTheme('auto');
@@ -269,28 +363,52 @@ export default function AppShellPage() {
       return item.value;
     }
 
-    const episodes = item.seasons.flatMap((season) => season.episodes.map((episode) => `${season.number}-${episode.number}`));
-    const completed = episodes.filter((key) => completedEpisodesByItem[item.id]?.[key]).length;
+    const episodes = item.seasons.flatMap((season) =>
+      season.episodes.map((episode) => `${season.number}-${episode.number}`),
+    );
+    const completed = episodes.filter(
+      (key) => completedEpisodesByItem[item.id]?.[key],
+    ).length;
     return episodes.length > 0 ? (completed / episodes.length) * 100 : 0;
   };
 
   const items = useMemo(
-    () => archive?.items.map((item) => toTrackedItem(item, preferences.placeholderCovers)) ?? [],
+    () =>
+      archive?.items.map((item) =>
+        toTrackedItem(item, preferences.placeholderCovers),
+      ) ?? [],
     [archive, preferences.placeholderCovers],
   );
-  const selectedItem = items.find((item) => item.id === selectedId) ?? noSelection;
-  const selectedDomainItem = archive?.items.find((item) => item.id === selectedId) ?? null;
+  const selectedItem =
+    items.find((item) => item.id === selectedId) ?? noSelection;
+  const selectedDomainItem =
+    archive?.items.find((item) => item.id === selectedId) ?? null;
   const hasSelectedItem = selectedDomainItem !== null;
-  const selectedSeasons = selectedItem.category === 'Series' ? selectedItem.seasons ?? [] : [];
-  const selectedEpisodes = selectedSeasons.flatMap((season) => season.episodes.map((episode) => ({ ...episode, seasonNumber: season.number })));
+  const selectedSeasons =
+    selectedItem.category === 'Series' ? (selectedItem.seasons ?? []) : [];
+  const selectedEpisodes = selectedSeasons.flatMap((season) =>
+    season.episodes.map((episode) => ({
+      ...episode,
+      seasonNumber: season.number,
+    })),
+  );
   const selectedEpisodeDetail = selectedEpisode
     ? (() => {
-      const season = selectedSeasons.find((entry) => entry.number === selectedEpisode.seasonNumber);
-      const episode = season?.episodes.find((entry) => entry.number === selectedEpisode.episodeNumber);
-      return season && episode ? { season, episode } : null;
-    })()
+        const season = selectedSeasons.find(
+          (entry) => entry.number === selectedEpisode.seasonNumber,
+        );
+        const episode = season?.episodes.find(
+          (entry) => entry.number === selectedEpisode.episodeNumber,
+        );
+        return season && episode ? { season, episode } : null;
+      })()
     : null;
-  const selectedCompletedEpisodes = selectedEpisodes.filter((episode) => completedEpisodesByItem[selectedItem.id]?.[`${episode.seasonNumber}-${episode.number}`]).length;
+  const selectedCompletedEpisodes = selectedEpisodes.filter(
+    (episode) =>
+      completedEpisodesByItem[selectedItem.id]?.[
+        `${episode.seasonNumber}-${episode.number}`
+      ],
+  ).length;
   const selectedProgress = getItemProgress(selectedItem);
   const selectedProgressPercent = Math.round(selectedProgress);
   const selectedPageTarget = getPageTarget(selectedItem);
@@ -301,10 +419,14 @@ export default function AppShellPage() {
     ? `Page ${selectedPageCurrent} of ${selectedPageTarget}`
     : selectedEpisodes.length > 0
       ? `${selectedCompletedEpisodes} of ${selectedEpisodes.length} episodes completed`
-    : selectedItem.next;
+      : selectedItem.next;
 
   useEffect(() => {
-    setSelectedId((current) => items.some((item) => item.id === current) ? current : items[0]?.id ?? null);
+    setSelectedId((current) =>
+      items.some((item) => item.id === current)
+        ? current
+        : (items[0]?.id ?? null),
+    );
   }, [items]);
 
   useEffect(() => {
@@ -361,16 +483,24 @@ export default function AppShellPage() {
 
   const handleDeleteSelected = async () => {
     if (!archive || !application.current || !selectedDomainItem) return;
-    if (!window.confirm(`Delete “${selectedDomainItem.title}” from your local archive? This cannot be undone without a backup.`)) {
+    if (
+      !window.confirm(
+        `Delete “${selectedDomainItem.title}” from your local archive? This cannot be undone without a backup.`,
+      )
+    ) {
       return;
     }
 
     try {
-      setArchive(await application.current.deleteItem(archive, selectedDomainItem.id));
+      setArchive(
+        await application.current.deleteItem(archive, selectedDomainItem.id),
+      );
       setDetailView('summary');
       setSelectedId(null);
     } catch (error) {
-      setOperationError(error instanceof Error ? error.message : 'Could not delete your item');
+      setOperationError(
+        error instanceof Error ? error.message : 'Could not delete your item',
+      );
     }
   };
 
@@ -378,17 +508,28 @@ export default function AppShellPage() {
     if (!archive || !application.current || !selectedDomainItem) return;
     const target = selectedDomainItem.progress.target ?? 100;
     try {
-      setArchive(await application.current.updateProgress(archive, selectedDomainItem.id, {
-        ...selectedDomainItem.progress,
-        current: (value / 100) * target,
-        target,
-      }));
+      setArchive(
+        await application.current.updateProgress(
+          archive,
+          selectedDomainItem.id,
+          {
+            ...selectedDomainItem.progress,
+            current: (value / 100) * target,
+            target,
+          },
+        ),
+      );
     } catch (error) {
-      setOperationError(error instanceof Error ? error.message : 'Could not update progress');
+      setOperationError(
+        error instanceof Error ? error.message : 'Could not update progress',
+      );
     }
   };
 
-  const toggleEpisodeCompletion = (seasonNumber: number, episodeNumber: number) => {
+  const toggleEpisodeCompletion = (
+    seasonNumber: number,
+    episodeNumber: number,
+  ) => {
     const key = `${seasonNumber}-${episodeNumber}`;
     setCompletedEpisodesByItem((state) => ({
       ...state,
@@ -414,7 +555,10 @@ export default function AppShellPage() {
   const handleSaveDrawer = async () => {
     if (!archive || !application.current || !newItem.title.trim()) return;
     const rating = newItem.rating.trim() ? Number(newItem.rating) : undefined;
-    if (rating !== undefined && (!Number.isFinite(rating) || rating < 0 || rating > 5)) {
+    if (
+      rating !== undefined &&
+      (!Number.isFinite(rating) || rating < 0 || rating > 5)
+    ) {
       setOperationError('Rating must be a number between 0 and 5');
       return;
     }
@@ -422,30 +566,43 @@ export default function AppShellPage() {
     try {
       const next = editingItemId
         ? await application.current.updateItem(archive, editingItemId, {
-          title: newItem.title.trim(),
-          category: newItem.category,
-          type: newItem.category.toLowerCase(),
-          status: toArchiveStatus(newItem.status),
-          description: newItem.description.trim() || undefined,
-          rating,
-          notes: newItem.notes.split('\n').map((note) => note.trim()).filter(Boolean),
-          tags: listFromInput(newItem.tags),
-          collections: listFromInput(newItem.collections),
-          attributes: { ...selectedDomainItem?.attributes, usePlaceholderCover: newItemUsesPlaceholderCover },
-        })
+            title: newItem.title.trim(),
+            category: newItem.category,
+            type: newItem.category.toLowerCase(),
+            status: toArchiveStatus(newItem.status),
+            description: newItem.description.trim() || undefined,
+            rating,
+            notes: newItem.notes
+              .split('\n')
+              .map((note) => note.trim())
+              .filter(Boolean),
+            tags: listFromInput(newItem.tags),
+            collections: listFromInput(newItem.collections),
+            attributes: {
+              ...selectedDomainItem?.attributes,
+              usePlaceholderCover: newItemUsesPlaceholderCover,
+            },
+          })
         : await application.current.createItem(archive, {
-          title: newItem.title.trim(),
-          category: newItem.category,
-          type: newItem.category.toLowerCase(),
-          status: toArchiveStatus(newItem.status),
-          progress: { current: newItem.status === 'completed' ? 100 : 0, target: 100, unit: 'percent' },
-          description: newItem.description.trim() || undefined,
-          rating,
-          notes: newItem.notes.split('\n').map((note) => note.trim()).filter(Boolean),
-          tags: listFromInput(newItem.tags),
-          collections: listFromInput(newItem.collections),
-          attributes: { usePlaceholderCover: newItemUsesPlaceholderCover },
-        });
+            title: newItem.title.trim(),
+            category: newItem.category,
+            type: newItem.category.toLowerCase(),
+            status: toArchiveStatus(newItem.status),
+            progress: {
+              current: newItem.status === 'completed' ? 100 : 0,
+              target: 100,
+              unit: 'percent',
+            },
+            description: newItem.description.trim() || undefined,
+            rating,
+            notes: newItem.notes
+              .split('\n')
+              .map((note) => note.trim())
+              .filter(Boolean),
+            tags: listFromInput(newItem.tags),
+            collections: listFromInput(newItem.collections),
+            attributes: { usePlaceholderCover: newItemUsesPlaceholderCover },
+          });
       const savedItem = editingItemId ?? next.items.at(-1)?.id ?? null;
       setArchive(next);
       setSelectedId(savedItem);
@@ -453,22 +610,43 @@ export default function AppShellPage() {
       setEditingItemId(null);
       setDrawerOpen(false);
     } catch (error) {
-      setOperationError(error instanceof Error ? error.message : 'Could not save your item');
+      setOperationError(
+        error instanceof Error ? error.message : 'Could not save your item',
+      );
     }
   };
 
   if (storageError) {
-    return <main className="screen-panel"><p className="empty-state" role="alert">Your local archive could not be opened: {storageError}</p></main>;
+    return (
+      <main className="screen-panel">
+        <p className="empty-state" role="alert">
+          Your local archive could not be opened: {storageError}
+        </p>
+      </main>
+    );
   }
 
   if (!archive) {
-    return <main className="screen-panel"><p className="empty-state" aria-live="polite">Loading your local archive…</p></main>;
+    return (
+      <main className="screen-panel">
+        <p className="empty-state" aria-live="polite">
+          Loading your local archive…
+        </p>
+      </main>
+    );
   }
 
   return (
-    <div className="app-shell" aria-label="Open personal tracking application shell">
+    <div
+      className="app-shell"
+      aria-label="Open personal tracking application shell"
+    >
       <aside className="sidebar" aria-label="Navigation sidebar">
-        <a href="#" className="brand wordmark" aria-label="Open personal tracking home">
+        <a
+          href="#"
+          className="brand wordmark"
+          aria-label="Open personal tracking home"
+        >
           <span>open</span>
           <span className="dot">·</span>
           <span>personal</span>
@@ -485,18 +663,38 @@ export default function AppShellPage() {
             onClick={() => setActiveNav('library')}
           >
             <span>
-              <span className="nav-icon"><LibraryBig size={15} aria-hidden="true" /></span>
+              <span className="nav-icon">
+                <LibraryBig size={15} aria-hidden="true" />
+              </span>
               Library
             </span>
             <span className="pill">{items.length}</span>
           </button>
 
-          <button type="button" className={`nav-item ${activeNav === 'discover' ? 'is-active' : ''}`} onClick={() => setActiveNav('discover')}>
-            <span><span className="nav-icon"><Compass size={15} aria-hidden="true" /></span>Discover</span>
+          <button
+            type="button"
+            className={`nav-item ${activeNav === 'discover' ? 'is-active' : ''}`}
+            onClick={() => setActiveNav('discover')}
+          >
+            <span>
+              <span className="nav-icon">
+                <Compass size={15} aria-hidden="true" />
+              </span>
+              Discover
+            </span>
           </button>
 
-          <button type="button" className={`nav-item ${activeNav === 'profile' ? 'is-active' : ''}`} onClick={() => setActiveNav('profile')}>
-            <span><span className="nav-icon"><UserRound size={15} aria-hidden="true" /></span>Profile</span>
+          <button
+            type="button"
+            className={`nav-item ${activeNav === 'profile' ? 'is-active' : ''}`}
+            onClick={() => setActiveNav('profile')}
+          >
+            <span>
+              <span className="nav-icon">
+                <UserRound size={15} aria-hidden="true" />
+              </span>
+              Profile
+            </span>
           </button>
 
           <button
@@ -505,7 +703,9 @@ export default function AppShellPage() {
             onClick={() => setActiveNav('collections')}
           >
             <span>
-              <span className="nav-icon"><FolderKanban size={15} aria-hidden="true" /></span>
+              <span className="nav-icon">
+                <FolderKanban size={15} aria-hidden="true" />
+              </span>
               Collections
             </span>
             <span className="pill">{archive.collections.length}</span>
@@ -517,7 +717,9 @@ export default function AppShellPage() {
             onClick={() => setActiveNav('history')}
           >
             <span>
-              <span className="nav-icon"><History size={15} aria-hidden="true" /></span>
+              <span className="nav-icon">
+                <History size={15} aria-hidden="true" />
+              </span>
               History
             </span>
           </button>
@@ -526,23 +728,41 @@ export default function AppShellPage() {
         <nav className="nav-group" aria-label="Secondary navigation">
           <div className="nav-group-label">Manage</div>
 
-          <button type="button" className="nav-item" onClick={() => setActiveNav('import')}>
+          <button
+            type="button"
+            className="nav-item"
+            onClick={() => setActiveNav('import')}
+          >
             <span>
-              <span className="nav-icon"><ArrowUpFromLine size={15} aria-hidden="true" /></span>
+              <span className="nav-icon">
+                <ArrowUpFromLine size={15} aria-hidden="true" />
+              </span>
               Import
             </span>
           </button>
 
-          <button type="button" className="nav-item" onClick={() => setActiveNav('export')}>
+          <button
+            type="button"
+            className="nav-item"
+            onClick={() => setActiveNav('export')}
+          >
             <span>
-              <span className="nav-icon"><ArrowDownToLine size={15} aria-hidden="true" /></span>
+              <span className="nav-icon">
+                <ArrowDownToLine size={15} aria-hidden="true" />
+              </span>
               Export
             </span>
           </button>
 
-          <button type="button" className="nav-item" onClick={() => setActiveNav('settings')}>
+          <button
+            type="button"
+            className="nav-item"
+            onClick={() => setActiveNav('settings')}
+          >
             <span>
-              <span className="nav-icon"><Settings size={15} aria-hidden="true" /></span>
+              <span className="nav-icon">
+                <Settings size={15} aria-hidden="true" />
+              </span>
               Settings
             </span>
           </button>
@@ -560,7 +780,13 @@ export default function AppShellPage() {
 
       <main className="main-panel">
         <header className="topbar">
-          <h1 className="page-title">{activeNav === 'library' ? (preferences.displayName ? `Hi, ${preferences.displayName}` : 'Library') : NAV_LABEL[activeNav]}</h1>
+          <h1 className="page-title">
+            {activeNav === 'library'
+              ? preferences.displayName
+                ? `Hi, ${preferences.displayName}`
+                : 'Library'
+              : NAV_LABEL[activeNav]}
+          </h1>
 
           <div className="topbar-actions">
             <label className="topbar-search" aria-label="Search your library">
@@ -572,23 +798,39 @@ export default function AppShellPage() {
                 autoComplete="off"
               />
               {query && (
-                <button type="button" className="search-clear-top" onClick={() => setQuery('')} aria-label="Clear search">
+                <button
+                  type="button"
+                  className="search-clear-top"
+                  onClick={() => setQuery('')}
+                  aria-label="Clear search"
+                >
                   &times;
                 </button>
               )}
             </label>
-            <button className="primary-btn" type="button" onClick={openNewItemDrawer}>
+            <button
+              className="primary-btn"
+              type="button"
+              onClick={openNewItemDrawer}
+            >
               <Plus size={14} aria-hidden="true" />
               New item
             </button>
           </div>
         </header>
 
-        {operationError && <p className="empty-state" role="alert">{operationError}</p>}
+        {operationError && (
+          <p className="empty-state" role="alert">
+            {operationError}
+          </p>
+        )}
 
         {isLibrary ? (
           <div className="content" id="panelLibrary">
-            <section className="library-panel" aria-labelledby="library-panel-title">
+            <section
+              className="library-panel"
+              aria-labelledby="library-panel-title"
+            >
               <div className="panel-header">
                 <div className="panel-header-top">
                   <h2 id="library-panel-title" className="panel-title">
@@ -600,7 +842,10 @@ export default function AppShellPage() {
                 </div>
 
                 <div className="panel-toolbar">
-                  <label className="search search-inline" aria-label="Search your library">
+                  <label
+                    className="search search-inline"
+                    aria-label="Search your library"
+                  >
                     <input
                       type="search"
                       value={query}
@@ -609,7 +854,12 @@ export default function AppShellPage() {
                       autoComplete="off"
                     />
                     {query && (
-                      <button type="button" className="search-clear" onClick={() => setQuery('')} aria-label="Clear search">
+                      <button
+                        type="button"
+                        className="search-clear"
+                        onClick={() => setQuery('')}
+                        aria-label="Clear search"
+                      >
                         &times;
                       </button>
                     )}
@@ -617,32 +867,41 @@ export default function AppShellPage() {
                   </label>
 
                   <div className="panel-tools" aria-label="Filter by category">
-                    {['all', 'Book', 'Film', 'Series', 'Game'].map((category) => (
-                      <button
-                        key={category}
-                        type="button"
-                        className={`filter-chip ${activeCategory === category ? 'is-selected' : ''}`}
-                        onClick={() => setActiveCategory(category)}
-                      >
-                        {category === 'all' ? 'All' : category}
-                      </button>
-                    ))}
+                    {['all', 'Book', 'Film', 'Series', 'Game'].map(
+                      (category) => (
+                        <button
+                          key={category}
+                          type="button"
+                          className={`filter-chip ${activeCategory === category ? 'is-selected' : ''}`}
+                          onClick={() => setActiveCategory(category)}
+                        >
+                          {category === 'all' ? 'All' : category}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
               </div>
 
-              <div className="stats-grid" aria-label="Library summary measurements">
+              <div
+                className="stats-grid"
+                aria-label="Library summary measurements"
+              >
                 <div className="stat-card">
                   <span className="stat-label">Total</span>
                   <div className="stat-value">{items.length}</div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">In progress</span>
-                  <div className="stat-value">{items.filter((item) => item.status === 'progress').length}</div>
+                  <div className="stat-value">
+                    {items.filter((item) => item.status === 'progress').length}
+                  </div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">Completed</span>
-                  <div className="stat-value">{items.filter((item) => item.status === 'completed').length}</div>
+                  <div className="stat-value">
+                    {items.filter((item) => item.status === 'completed').length}
+                  </div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">Collections</span>
@@ -658,7 +917,11 @@ export default function AppShellPage() {
                       <span
                         className="up-next-cover"
                         style={{
-                          backgroundImage: coverBackground(item.image, item.usePlaceholderCover, 'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.28))'),
+                          backgroundImage: coverBackground(
+                            item.image,
+                            item.usePlaceholderCover,
+                            'linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.28))',
+                          ),
                           backgroundColor: item.jacket,
                           backgroundSize: 'cover',
                           backgroundPosition: 'center',
@@ -676,16 +939,26 @@ export default function AppShellPage() {
 
               {items.length === 0 ? (
                 <div className="empty-state">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    aria-hidden="true"
+                  >
                     <rect x="4" y="3" width="16" height="18" rx="1.5" />
                     <path d="M8 8h8M8 12h8M8 16h4" />
                   </svg>
                   <h3>Nothing tracked yet</h3>
                   <p>
-                    Add the first thing you're reading, watching, or playing. It stays on this device,
-                    no account needed.
+                    Add the first thing you&apos;re reading, watching, or
+                    playing. It stays on this device, no account needed.
                   </p>
-                  <button type="button" className="primary-btn" onClick={openNewItemDrawer}>
+                  <button
+                    type="button"
+                    className="primary-btn"
+                    onClick={openNewItemDrawer}
+                  >
                     Add your first item
                   </button>
                 </div>
@@ -696,7 +969,9 @@ export default function AppShellPage() {
               ) : (
                 <div className="list" aria-label="Item list">
                   {GROUPS.map((group) => {
-                    const items = visibleItems.filter((item) => bucketOf(item.status) === group.key);
+                    const items = visibleItems.filter(
+                      (item) => bucketOf(item.status) === group.key,
+                    );
                     if (!items.length) return null;
 
                     return (
@@ -723,7 +998,11 @@ export default function AppShellPage() {
                               className="item-cover"
                               aria-hidden="true"
                               style={{
-                                backgroundImage: coverBackground(item.image, item.usePlaceholderCover, 'linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.35))'),
+                                backgroundImage: coverBackground(
+                                  item.image,
+                                  item.usePlaceholderCover,
+                                  'linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.35))',
+                                ),
                                 backgroundColor: item.jacket,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
@@ -736,7 +1015,11 @@ export default function AppShellPage() {
                               <div className="item-head">
                                 <h3 className="item-title">{item.title}</h3>
                                 <span className="tag">{item.category}</span>
-                                <span className={`status-chip status-${item.status}`}>{STATUS_LABEL[item.status]}</span>
+                                <span
+                                  className={`status-chip status-${item.status}`}
+                                >
+                                  {STATUS_LABEL[item.status]}
+                                </span>
                               </div>
                               <div className="item-meta">
                                 <span>{item.creator}</span>
@@ -746,10 +1029,22 @@ export default function AppShellPage() {
                             </div>
 
                             <div className="item-right">
-                              <div className="progress-ring" style={{ ['--value' as string]: getItemProgress(item) }} aria-label={`${Math.round(getItemProgress(item))}% complete`}>
-                                <span>{Math.round(getItemProgress(item))}%</span>
+                              <div
+                                className="progress-ring"
+                                style={{
+                                  ['--value' as string]: getItemProgress(item),
+                                }}
+                                aria-label={`${Math.round(getItemProgress(item))}% complete`}
+                              >
+                                <span>
+                                  {Math.round(getItemProgress(item))}%
+                                </span>
                               </div>
-                              <button type="button" className="mini-btn" onClick={() => setSelectedId(item.id)}>
+                              <button
+                                type="button"
+                                className="mini-btn"
+                                onClick={() => setSelectedId(item.id)}
+                              >
                                 Open
                               </button>
                             </div>
@@ -766,13 +1061,27 @@ export default function AppShellPage() {
               <div className="detail-header">
                 <strong>Details</strong>
                 <div className="detail-actions">
-                  <button type="button" className="mini-btn" onClick={() => setDetailView('expanded')} disabled={!hasSelectedItem}>
+                  <button
+                    type="button"
+                    className="mini-btn"
+                    onClick={() => setDetailView('expanded')}
+                    disabled={!hasSelectedItem}
+                  >
                     Open page
                   </button>
-                  <button type="button" className="mini-btn" onClick={handleEditSelected}>
+                  <button
+                    type="button"
+                    className="mini-btn"
+                    onClick={handleEditSelected}
+                  >
                     Edit
                   </button>
-                  <button type="button" className="mini-btn" onClick={() => void handleDeleteSelected()} disabled={!hasSelectedItem}>
+                  <button
+                    type="button"
+                    className="mini-btn"
+                    onClick={() => void handleDeleteSelected()}
+                    disabled={!hasSelectedItem}
+                  >
                     Delete
                   </button>
                 </div>
@@ -784,7 +1093,11 @@ export default function AppShellPage() {
                     className="detail-cover"
                     aria-hidden="true"
                     style={{
-                      backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(24,27,22,0.08), rgba(24,27,22,0.4))'),
+                      backgroundImage: coverBackground(
+                        selectedItem.image,
+                        selectedItem.usePlaceholderCover,
+                        'linear-gradient(180deg, rgba(24,27,22,0.08), rgba(24,27,22,0.4))',
+                      ),
                       backgroundColor: selectedItem.jacket,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
@@ -802,55 +1115,92 @@ export default function AppShellPage() {
                     </div>
                     <div className="detail-credits">
                       <span>Author: {selectedItem.creator}</span>
-                      <span>Category: {selectedItem.category.toLowerCase()}</span>
+                      <span>
+                        Category: {selectedItem.category.toLowerCase()}
+                      </span>
                       <span>Updated: 2 days ago</span>
                     </div>
                   </div>
                 </div>
 
                 <>
-                    <section className="detail-section" aria-labelledby="description-label">
-                      <h3 id="description-label" className="section-label">
-                        Synopsis
-                      </h3>
-                      <p className="description">{selectedItem.description}</p>
-                    </section>
+                  <section
+                    className="detail-section"
+                    aria-labelledby="description-label"
+                  >
+                    <h3 id="description-label" className="section-label">
+                      Synopsis
+                    </h3>
+                    <p className="description">{selectedItem.description}</p>
+                  </section>
 
-                    <section className="detail-section" aria-labelledby="progress-label">
-                      <h3 id="progress-label" className="section-label">
-                        Progress
-                      </h3>
-                      <div className="progress-stack">
-                        <div className="progress-line" aria-hidden="true">
-                          <span className="progress-bar" style={{ width: `${selectedProgress}%` }} />
-                        </div>
-                        <div className="progress-values">
-                          <span>{selectedProgressLabel}</span>
-                          <span>{selectedProgressPercent}%</span>
-                        </div>
+                  <section
+                    className="detail-section"
+                    aria-labelledby="progress-label"
+                  >
+                    <h3 id="progress-label" className="section-label">
+                      Progress
+                    </h3>
+                    <div className="progress-stack">
+                      <div className="progress-line" aria-hidden="true">
+                        <span
+                          className="progress-bar"
+                          style={{ width: `${selectedProgress}%` }}
+                        />
                       </div>
-                    </section>
-
-                    <section className="detail-section" aria-labelledby="attributes-label">
-                      <h3 id="attributes-label" className="section-label">
-                        Attributes
-                      </h3>
-                      <div className="attribute-list" aria-label="Item attributes">
-                        <span className="attribute">Rating: {selectedItem.rating ?? 'Not rated'}{selectedItem.rating !== undefined ? '★' : ''}</span>
-                        <span className="attribute">Status: {STATUS_LABEL[selectedItem.status]}</span>
-                        <span className="attribute">Format: {selectedItem.meta}</span>
+                      <div className="progress-values">
+                        <span>{selectedProgressLabel}</span>
+                        <span>{selectedProgressPercent}%</span>
                       </div>
-                    </section>
+                    </div>
+                  </section>
 
-                    <section className="detail-section" aria-labelledby="history-label">
-                      <h3 id="history-label" className="section-label">
-                        Recent history
-                      </h3>
-                      <ul className="timeline" aria-label="Recent changes timeline">
-                        {timeline.filter((entry) => entry.itemId === selectedItem.id).slice(0, 3).map((entry) => <li key={entry.id}>{entry.summary}</li>)}
-                        {timeline.every((entry) => entry.itemId !== selectedItem.id) && <li>No changes recorded for this item yet.</li>}
-                      </ul>
-                    </section>
+                  <section
+                    className="detail-section"
+                    aria-labelledby="attributes-label"
+                  >
+                    <h3 id="attributes-label" className="section-label">
+                      Attributes
+                    </h3>
+                    <div
+                      className="attribute-list"
+                      aria-label="Item attributes"
+                    >
+                      <span className="attribute">
+                        Rating: {selectedItem.rating ?? 'Not rated'}
+                        {selectedItem.rating !== undefined ? '★' : ''}
+                      </span>
+                      <span className="attribute">
+                        Status: {STATUS_LABEL[selectedItem.status]}
+                      </span>
+                      <span className="attribute">
+                        Format: {selectedItem.meta}
+                      </span>
+                    </div>
+                  </section>
+
+                  <section
+                    className="detail-section"
+                    aria-labelledby="history-label"
+                  >
+                    <h3 id="history-label" className="section-label">
+                      Recent history
+                    </h3>
+                    <ul
+                      className="timeline"
+                      aria-label="Recent changes timeline"
+                    >
+                      {timeline
+                        .filter((entry) => entry.itemId === selectedItem.id)
+                        .slice(0, 3)
+                        .map((entry) => (
+                          <li key={entry.id}>{entry.summary}</li>
+                        ))}
+                      {timeline.every(
+                        (entry) => entry.itemId !== selectedItem.id,
+                      ) && <li>No changes recorded for this item yet.</li>}
+                    </ul>
+                  </section>
                 </>
               </div>
             </aside>
@@ -863,7 +1213,9 @@ export default function AppShellPage() {
                   <div>
                     <span className="eyebrow">Collections</span>
                     <h2>Curated shelves</h2>
-                    <p>Organize your tracked items by mood, format, and purpose.</p>
+                    <p>
+                      Organize your tracked items by mood, format, and purpose.
+                    </p>
                   </div>
                   <button className="primary-btn" type="button">
                     New collection
@@ -877,12 +1229,24 @@ export default function AppShellPage() {
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Featured</span>
-                    <strong>{archive.collections.filter((collection) => collection.itemIds.length > 0).length}</strong>
+                    <strong>
+                      {
+                        archive.collections.filter(
+                          (collection) => collection.itemIds.length > 0,
+                        ).length
+                      }
+                    </strong>
                     <span>Containing tracked items</span>
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Ready</span>
-                    <strong>{archive.collections.reduce((total, collection) => total + collection.itemIds.length, 0)}</strong>
+                    <strong>
+                      {archive.collections.reduce(
+                        (total, collection) =>
+                          total + collection.itemIds.length,
+                        0,
+                      )}
+                    </strong>
                     <span>Item references in total</span>
                   </div>
                 </div>
@@ -894,15 +1258,48 @@ export default function AppShellPage() {
                 <div className="screen-hero discover-hero">
                   <div>
                     <span className="eyebrow">Discover</span>
-                    <h2>{preferences.displayName ? `Made for ${preferences.displayName}` : 'Make this library yours'}</h2>
-                    <p>{preferences.activities.length ? `Start with ${preferences.activities.join(', ')} and refine what you want to track.` : 'Choose what you enjoy in Settings to make discovery useful.'}</p>
+                    <h2>
+                      {preferences.displayName
+                        ? `Made for ${preferences.displayName}`
+                        : 'Make this library yours'}
+                    </h2>
+                    <p>
+                      {preferences.activities.length
+                        ? `Start with ${preferences.activities.join(', ')} and refine what you want to track.`
+                        : 'Choose what you enjoy in Settings to make discovery useful.'}
+                    </p>
                   </div>
-                  <button className="primary-btn" type="button" onClick={openNewItemDrawer}><Plus size={14} aria-hidden="true" />Add to library</button>
+                  <button
+                    className="primary-btn"
+                    type="button"
+                    onClick={openNewItemDrawer}
+                  >
+                    <Plus size={14} aria-hidden="true" />
+                    Add to library
+                  </button>
                 </div>
                 <div className="screen-grid discovery-grid">
-                  <div className="summary-card"><span className="eyebrow">Watch next</span><strong>{upNextItems.length}</strong><span>Items ready to continue</span></div>
-                  <div className="summary-card"><span className="eyebrow">Your genres</span><strong>{preferences.favoriteGenres.length || '—'}</strong><span>{preferences.favoriteGenres.length ? preferences.favoriteGenres.join(' · ') : 'Set favourites in Settings'}</span></div>
-                  <div className="summary-card"><span className="eyebrow">Local first</span><strong>0</strong><span>External recommendations until a provider is connected</span></div>
+                  <div className="summary-card">
+                    <span className="eyebrow">Watch next</span>
+                    <strong>{upNextItems.length}</strong>
+                    <span>Items ready to continue</span>
+                  </div>
+                  <div className="summary-card">
+                    <span className="eyebrow">Your genres</span>
+                    <strong>{preferences.favoriteGenres.length || '—'}</strong>
+                    <span>
+                      {preferences.favoriteGenres.length
+                        ? preferences.favoriteGenres.join(' · ')
+                        : 'Set favourites in Settings'}
+                    </span>
+                  </div>
+                  <div className="summary-card">
+                    <span className="eyebrow">Local first</span>
+                    <strong>0</strong>
+                    <span>
+                      External recommendations until a provider is connected
+                    </span>
+                  </div>
                 </div>
               </>
             )}
@@ -912,15 +1309,44 @@ export default function AppShellPage() {
                 <div className="screen-hero profile-hero">
                   <div>
                     <span className="eyebrow">Profile</span>
-                    <h2>{preferences.displayName || 'Your personal archive'}</h2>
-                    <p>{preferences.activities.length ? `Tracking ${preferences.activities.join(', ')} locally.` : 'Set your tracking preferences to personalise this space.'}</p>
+                    <h2>
+                      {preferences.displayName || 'Your personal archive'}
+                    </h2>
+                    <p>
+                      {preferences.activities.length
+                        ? `Tracking ${preferences.activities.join(', ')} locally.`
+                        : 'Set your tracking preferences to personalise this space.'}
+                    </p>
                   </div>
-                  <button className="ghost-btn" type="button" onClick={() => setActiveNav('settings')}>Edit preferences</button>
+                  <button
+                    className="ghost-btn"
+                    type="button"
+                    onClick={() => setActiveNav('settings')}
+                  >
+                    Edit preferences
+                  </button>
                 </div>
                 <div className="screen-grid">
-                  <div className="summary-card"><span className="eyebrow">Tracked</span><strong>{items.length}</strong><span>Across your active categories</span></div>
-                  <div className="summary-card"><span className="eyebrow">Finished</span><strong>{items.filter((item) => item.status === 'completed').length}</strong><span>Saved in your history</span></div>
-                  <div className="summary-card"><span className="eyebrow">Language</span><strong>{preferences.locale === 'it' ? 'IT' : 'EN'}</strong><span>Saved with your preferences</span></div>
+                  <div className="summary-card">
+                    <span className="eyebrow">Tracked</span>
+                    <strong>{items.length}</strong>
+                    <span>Across your active categories</span>
+                  </div>
+                  <div className="summary-card">
+                    <span className="eyebrow">Finished</span>
+                    <strong>
+                      {
+                        items.filter((item) => item.status === 'completed')
+                          .length
+                      }
+                    </strong>
+                    <span>Saved in your history</span>
+                  </div>
+                  <div className="summary-card">
+                    <span className="eyebrow">Language</span>
+                    <strong>{preferences.locale === 'it' ? 'IT' : 'EN'}</strong>
+                    <span>Saved with your preferences</span>
+                  </div>
                 </div>
               </>
             )}
@@ -941,8 +1367,12 @@ export default function AppShellPage() {
                   <div className="content-card">
                     <span className="eyebrow">Timeline</span>
                     <ul className="timeline" aria-label="History timeline">
-                      {timeline.map((entry) => <li key={entry.id}>{entry.summary}</li>)}
-                      {timeline.length === 0 && <li>No changes recorded yet.</li>}
+                      {timeline.map((entry) => (
+                        <li key={entry.id}>{entry.summary}</li>
+                      ))}
+                      {timeline.length === 0 && (
+                        <li>No changes recorded yet.</li>
+                      )}
                     </ul>
                   </div>
                   <div className="content-card">
@@ -957,7 +1387,14 @@ export default function AppShellPage() {
                       </div>
                       <div className="mini-row">
                         <div>
-                          <strong>{timeline.filter((entry) => entry.action === 'imported').length} imports</strong>
+                          <strong>
+                            {
+                              timeline.filter(
+                                (entry) => entry.action === 'imported',
+                              ).length
+                            }{' '}
+                            imports
+                          </strong>
                           <br />
                           <small>Last 30 days</small>
                         </div>
@@ -974,7 +1411,9 @@ export default function AppShellPage() {
                   <div>
                     <span className="eyebrow">Export</span>
                     <h2>Share your archive</h2>
-                    <p>Keep everything in a durable, readable format you own.</p>
+                    <p>
+                      Keep everything in a durable, readable format you own.
+                    </p>
                   </div>
                   <button className="primary-btn" type="button">
                     Export now
@@ -1023,7 +1462,11 @@ export default function AppShellPage() {
                         data-theme-option={mode}
                         onClick={() => setThemeMode(mode)}
                       >
-                        {mode === 'auto' ? 'Auto' : mode === 'light' ? 'Light' : 'Dark'}
+                        {mode === 'auto'
+                          ? 'Auto'
+                          : mode === 'light'
+                            ? 'Light'
+                            : 'Dark'}
                       </button>
                     ))}
                   </div>
@@ -1031,9 +1474,21 @@ export default function AppShellPage() {
                     <div>
                       <strong>Language</strong>
                       <br />
-                      <small>Used for your app preferences and future catalog results</small>
+                      <small>
+                        Used for your app preferences and future catalog results
+                      </small>
                     </div>
-                    <select className="setting-select" value={preferences.locale} onChange={(event) => savePreferences({ ...preferences, locale: event.target.value as UserPreferences['locale'] })}>
+                    <select
+                      className="setting-select"
+                      value={preferences.locale}
+                      onChange={(event) =>
+                        savePreferences({
+                          ...preferences,
+                          locale: event.target
+                            .value as UserPreferences['locale'],
+                        })
+                      }
+                    >
                       <option value="en">English</option>
                       <option value="it">Italiano</option>
                     </select>
@@ -1048,7 +1503,9 @@ export default function AppShellPage() {
                       <input
                         type="checkbox"
                         checked={themeMode === 'auto'}
-                        onChange={(event) => setThemeMode(event.target.checked ? 'auto' : 'dark')}
+                        onChange={(event) =>
+                          setThemeMode(event.target.checked ? 'auto' : 'dark')
+                        }
                       />
                       <i />
                     </label>
@@ -1057,13 +1514,20 @@ export default function AppShellPage() {
                     <div>
                       <strong>Placeholder covers</strong>
                       <br />
-                      <small>Use a neutral cover when an item has no artwork</small>
+                      <small>
+                        Use a neutral cover when an item has no artwork
+                      </small>
                     </div>
                     <label className="switch">
                       <input
                         type="checkbox"
                         checked={preferences.placeholderCovers}
-                        onChange={(event) => void savePreferences({ ...preferences, placeholderCovers: event.target.checked })}
+                        onChange={(event) =>
+                          void savePreferences({
+                            ...preferences,
+                            placeholderCovers: event.target.checked,
+                          })
+                        }
                       />
                       <i />
                     </label>
@@ -1085,7 +1549,12 @@ export default function AppShellPage() {
                       <br />
                       <small>See what is coming next</small>
                     </div>
-                    <a className="inline-link" href={ROADMAP_URL} target="_blank" rel="noreferrer noopener">
+                    <a
+                      className="inline-link"
+                      href={ROADMAP_URL}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
                       Open roadmap
                     </a>
                   </div>
@@ -1095,17 +1564,39 @@ export default function AppShellPage() {
                       <br />
                       <small>Share a quick issue with the team</small>
                     </div>
-                    <button type="button" className="mini-btn" onClick={handleReportBug}>
+                    <button
+                      type="button"
+                      className="mini-btn"
+                      onClick={handleReportBug}
+                    >
                       Report
                     </button>
                   </div>
                   <div className="setting-card app-about-card">
                     <span className="eyebrow">About this app</span>
                     <h3>Preview build</h3>
-                    <p>This local-first preview is not a published release yet. Published release notes will appear here once the project ships tagged versions.</p>
+                    <p>
+                      This local-first preview is not a published release yet.
+                      Published release notes will appear here once the project
+                      ships tagged versions.
+                    </p>
                     <div className="app-about-actions">
-                      <a className="inline-link" href={CHANGELOG_URL} target="_blank" rel="noreferrer noopener">Repository changelog</a>
-                      <a className="inline-link" href={ROADMAP_URL} target="_blank" rel="noreferrer noopener">Roadmap</a>
+                      <a
+                        className="inline-link"
+                        href={CHANGELOG_URL}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Repository changelog
+                      </a>
+                      <a
+                        className="inline-link"
+                        href={ROADMAP_URL}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Roadmap
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1136,7 +1627,11 @@ export default function AppShellPage() {
             className={`bottom-nav-item ${activeNav === key ? 'is-active' : ''}`}
             onClick={() => setActiveNav(key)}
           >
-            <Icon size={19} strokeWidth={activeNav === key ? 2.35 : 1.8} aria-hidden="true" />
+            <Icon
+              size={19}
+              strokeWidth={activeNav === key ? 2.35 : 1.8}
+              aria-hidden="true"
+            />
             <span>{label}</span>
           </button>
         ))}
@@ -1144,17 +1639,46 @@ export default function AppShellPage() {
 
       {detailView === 'expanded' && hasSelectedItem && (
         <div className="detail-page-layer" role="presentation">
-          <button className="detail-page-backdrop" type="button" aria-label="Close item detail" onClick={() => setDetailView('summary')} />
-          <article className="detail-page" role="dialog" aria-modal="true" aria-labelledby="detailPageTitle">
+          <button
+            className="detail-page-backdrop"
+            type="button"
+            aria-label="Close item detail"
+            onClick={() => setDetailView('summary')}
+          />
+          <article
+            className="detail-page"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="detailPageTitle"
+          >
             <header className="detail-page-header">
               <div>
-                <span className="eyebrow">Your library / {selectedItem.category}</span>
+                <span className="eyebrow">
+                  Your library / {selectedItem.category}
+                </span>
                 <p>Item details</p>
               </div>
               <div className="detail-actions">
-                <button type="button" className="mini-btn" onClick={handleEditSelected}>Edit item</button>
-                <button type="button" className="mini-btn" onClick={() => void handleDeleteSelected()}>Delete item</button>
-                <button type="button" className="detail-page-close" aria-label="Close item detail" onClick={() => setDetailView('summary')}>
+                <button
+                  type="button"
+                  className="mini-btn"
+                  onClick={handleEditSelected}
+                >
+                  Edit item
+                </button>
+                <button
+                  type="button"
+                  className="mini-btn"
+                  onClick={() => void handleDeleteSelected()}
+                >
+                  Delete item
+                </button>
+                <button
+                  type="button"
+                  className="detail-page-close"
+                  aria-label="Close item detail"
+                  onClick={() => setDetailView('summary')}
+                >
                   <X size={19} aria-hidden="true" />
                 </button>
               </div>
@@ -1166,39 +1690,75 @@ export default function AppShellPage() {
                   className="detail-page-cover"
                   aria-hidden="true"
                   style={{
-                    backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(24,27,22,0.05), rgba(24,27,22,0.46))'),
+                    backgroundImage: coverBackground(
+                      selectedItem.image,
+                      selectedItem.usePlaceholderCover,
+                      'linear-gradient(180deg, rgba(24,27,22,0.05), rgba(24,27,22,0.46))',
+                    ),
                     backgroundColor: selectedItem.jacket,
                   }}
                 />
                 <div className="detail-page-intro">
                   <div className="detail-page-title-row">
                     <h2 id="detailPageTitle">{selectedItem.title}</h2>
-                    <span className={`status-chip status-${selectedItem.status}`}>{STATUS_LABEL[selectedItem.status]}</span>
+                    <span
+                      className={`status-chip status-${selectedItem.status}`}
+                    >
+                      {STATUS_LABEL[selectedItem.status]}
+                    </span>
                   </div>
                   <div className="detail-meta">
                     <span className="tag">{selectedItem.category}</span>
-                    {selectedItem.tags.map((tag) => <span key={tag} className="tag">{tag}</span>)}
+                    {selectedItem.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                  <p className="detail-page-description">{selectedItem.description}</p>
+                  <p className="detail-page-description">
+                    {selectedItem.description}
+                  </p>
                   <dl className="detail-facts">
-                    <div><dt>Creator</dt><dd>{selectedItem.creator}</dd></div>
-                    <div><dt>Format</dt><dd>{selectedItem.meta}</dd></div>
-                    <div><dt>Last updated</dt><dd>2 days ago</dd></div>
+                    <div>
+                      <dt>Creator</dt>
+                      <dd>{selectedItem.creator}</dd>
+                    </div>
+                    <div>
+                      <dt>Format</dt>
+                      <dd>{selectedItem.meta}</dd>
+                    </div>
+                    <div>
+                      <dt>Last updated</dt>
+                      <dd>2 days ago</dd>
+                    </div>
                   </dl>
                 </div>
               </section>
 
               <div className="detail-page-grid">
-                <section className="detail-page-card detail-page-progress" aria-labelledby="detailPageProgress">
+                <section
+                  className="detail-page-card detail-page-progress"
+                  aria-labelledby="detailPageProgress"
+                >
                   <div className="detail-progress-head">
-                    <h3 id="detailPageProgress" className="section-label">Progress</h3>
+                    <h3 id="detailPageProgress" className="section-label">
+                      Progress
+                    </h3>
                     <strong>{selectedProgressPercent}%</strong>
                   </div>
                   {selectedEpisodes.length > 0 ? (
-                    <p className="detail-progress-note">For a series, progress is calculated from completed episodes. A season completes only when every episode in it is marked complete.</p>
+                    <p className="detail-progress-note">
+                      For a series, progress is calculated from completed
+                      episodes. A season completes only when every episode in it
+                      is marked complete.
+                    </p>
                   ) : (
                     <input
-                      aria-label={selectedPageTarget ? 'Adjust current page' : 'Adjust progress percentage'}
+                      aria-label={
+                        selectedPageTarget
+                          ? 'Adjust current page'
+                          : 'Adjust progress percentage'
+                      }
                       className="progress-slider"
                       type="range"
                       min={0}
@@ -1207,54 +1767,131 @@ export default function AppShellPage() {
                       value={selectedPageCurrent ?? selectedProgress}
                       onChange={(event) => {
                         const value = Number(event.target.value);
-                        handleProgressChange(selectedPageTarget ? (value / selectedPageTarget) * 100 : value);
+                        handleProgressChange(
+                          selectedPageTarget
+                            ? (value / selectedPageTarget) * 100
+                            : value,
+                        );
                       }}
                     />
                   )}
-                  <div className="progress-values"><span>{selectedProgressLabel}</span><span>{selectedProgressPercent}% complete</span></div>
+                  <div className="progress-values">
+                    <span>{selectedProgressLabel}</span>
+                    <span>{selectedProgressPercent}% complete</span>
+                  </div>
                 </section>
 
                 {selectedEpisodes.length > 0 && (
-                  <section className="detail-page-card detail-page-seasons" aria-labelledby="detailPageSeasons">
+                  <section
+                    className="detail-page-card detail-page-seasons"
+                    aria-labelledby="detailPageSeasons"
+                  >
                     <div className="detail-seasons-heading">
                       <div>
-                        <h3 id="detailPageSeasons" className="section-label">Seasons and episodes</h3>
-                        <p>Mark an episode complete to update the season and series progress.</p>
+                        <h3 id="detailPageSeasons" className="section-label">
+                          Seasons and episodes
+                        </h3>
+                        <p>
+                          Mark an episode complete to update the season and
+                          series progress.
+                        </p>
                       </div>
-                      <span className="detail-season-total">{selectedSeasons.filter((season) => season.episodes.every((episode) => completedEpisodesByItem[selectedItem.id]?.[`${season.number}-${episode.number}`])).length} / {selectedSeasons.length} seasons complete</span>
+                      <span className="detail-season-total">
+                        {
+                          selectedSeasons.filter((season) =>
+                            season.episodes.every(
+                              (episode) =>
+                                completedEpisodesByItem[selectedItem.id]?.[
+                                  `${season.number}-${episode.number}`
+                                ],
+                            ),
+                          ).length
+                        }{' '}
+                        / {selectedSeasons.length} seasons complete
+                      </span>
                     </div>
                     <div className="season-list">
                       {selectedSeasons.map((season) => {
-                        const completedCount = season.episodes.filter((episode) => completedEpisodesByItem[selectedItem.id]?.[`${season.number}-${episode.number}`]).length;
-                        const isComplete = completedCount === season.episodes.length;
+                        const completedCount = season.episodes.filter(
+                          (episode) =>
+                            completedEpisodesByItem[selectedItem.id]?.[
+                              `${season.number}-${episode.number}`
+                            ],
+                        ).length;
+                        const isComplete =
+                          completedCount === season.episodes.length;
                         return (
-                          <section key={season.number} className={`season-card ${isComplete ? 'is-complete' : ''}`}>
+                          <section
+                            key={season.number}
+                            className={`season-card ${isComplete ? 'is-complete' : ''}`}
+                          >
                             <div className="season-card-head">
                               <div>
                                 <h4>{season.title}</h4>
-                                <span>{completedCount} of {season.episodes.length} episodes complete</span>
+                                <span>
+                                  {completedCount} of {season.episodes.length}{' '}
+                                  episodes complete
+                                </span>
                               </div>
-                              <span className="season-status">{isComplete ? 'Complete' : 'In progress'}</span>
+                              <span className="season-status">
+                                {isComplete ? 'Complete' : 'In progress'}
+                              </span>
                             </div>
                             <div className="episode-list">
                               {season.episodes.map((episode) => {
-                                const isComplete = Boolean(completedEpisodesByItem[selectedItem.id]?.[`${season.number}-${episode.number}`]);
+                                const isComplete = Boolean(
+                                  completedEpisodesByItem[selectedItem.id]?.[
+                                    `${season.number}-${episode.number}`
+                                  ],
+                                );
                                 return (
                                   <div
                                     key={episode.number}
                                     className={`episode-card ${isComplete ? 'is-complete' : ''}`}
                                     style={{
-                                      backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(10,12,15,0.05) 18%, rgba(10,12,15,0.85) 100%)'),
+                                      backgroundImage: coverBackground(
+                                        selectedItem.image,
+                                        selectedItem.usePlaceholderCover,
+                                        'linear-gradient(180deg, rgba(10,12,15,0.05) 18%, rgba(10,12,15,0.85) 100%)',
+                                      ),
                                     }}
                                   >
-                                    <button type="button" className="episode-card-detail" aria-label={`Open ${season.title}, episode ${episode.number}, ${episode.title}`} onClick={() => setSelectedEpisode({ seasonNumber: season.number, episodeNumber: episode.number })}>
+                                    <button
+                                      type="button"
+                                      className="episode-card-detail"
+                                      aria-label={`Open ${season.title}, episode ${episode.number}, ${episode.title}`}
+                                      onClick={() =>
+                                        setSelectedEpisode({
+                                          seasonNumber: season.number,
+                                          episodeNumber: episode.number,
+                                        })
+                                      }
+                                    >
                                       <span className="episode-card-copy">
-                                      <span className="episode-card-code">S{season.number} · E{episode.number}</span>
-                                      <strong>{episode.title}</strong>
-                                      <span>{isComplete ? 'Watched' : 'Mark as watched'}</span>
+                                        <span className="episode-card-code">
+                                          S{season.number} · E{episode.number}
+                                        </span>
+                                        <strong>{episode.title}</strong>
+                                        <span>
+                                          {isComplete
+                                            ? 'Watched'
+                                            : 'Mark as watched'}
+                                        </span>
                                       </span>
                                     </button>
-                                    <button type="button" className="episode-card-state" aria-label={`${isComplete ? 'Mark as unwatched' : 'Mark as watched'}: ${season.title}, episode ${episode.number}`} onClick={() => toggleEpisodeCompletion(season.number, episode.number)}>{isComplete ? '✓' : '+'}</button>
+                                    <button
+                                      type="button"
+                                      className="episode-card-state"
+                                      aria-label={`${isComplete ? 'Mark as unwatched' : 'Mark as watched'}: ${season.title}, episode ${episode.number}`}
+                                      onClick={() =>
+                                        toggleEpisodeCompletion(
+                                          season.number,
+                                          episode.number,
+                                        )
+                                      }
+                                    >
+                                      {isComplete ? '✓' : '+'}
+                                    </button>
                                   </div>
                                 );
                               })}
@@ -1266,30 +1903,65 @@ export default function AppShellPage() {
                   </section>
                 )}
 
-                <section className="detail-page-card" aria-labelledby="detailPageAttributes">
-                  <h3 id="detailPageAttributes" className="section-label">Attributes</h3>
+                <section
+                  className="detail-page-card"
+                  aria-labelledby="detailPageAttributes"
+                >
+                  <h3 id="detailPageAttributes" className="section-label">
+                    Attributes
+                  </h3>
                   <div className="attribute-list">
-                    <span className="attribute">Rating: {selectedItem.rating ?? 'Not rated'}{selectedItem.rating !== undefined ? '★' : ''}</span>
-                    <span className="attribute">Status: {STATUS_LABEL[selectedItem.status]}</span>
-                    <span className="attribute">Progress target: {selectedDomainItem?.progress.target ?? 'Not set'} {selectedDomainItem?.progress.target !== undefined ? selectedDomainItem.progress.unit : ''}</span>
+                    <span className="attribute">
+                      Rating: {selectedItem.rating ?? 'Not rated'}
+                      {selectedItem.rating !== undefined ? '★' : ''}
+                    </span>
+                    <span className="attribute">
+                      Status: {STATUS_LABEL[selectedItem.status]}
+                    </span>
+                    <span className="attribute">
+                      Progress target:{' '}
+                      {selectedDomainItem?.progress.target ?? 'Not set'}{' '}
+                      {selectedDomainItem?.progress.target !== undefined
+                        ? selectedDomainItem.progress.unit
+                        : ''}
+                    </span>
                     <span className="attribute">Local only</span>
                   </div>
                 </section>
 
-                <section className="detail-page-card" aria-labelledby="detailPageNotes">
-                  <h3 id="detailPageNotes" className="section-label">Highlights</h3>
+                <section
+                  className="detail-page-card"
+                  aria-labelledby="detailPageNotes"
+                >
+                  <h3 id="detailPageNotes" className="section-label">
+                    Highlights
+                  </h3>
                   <ul className="detail-page-list">
                     <li>Personal notes are stored locally with this item.</li>
-                    <li>Keep the next action visible without opening another app.</li>
+                    <li>
+                      Keep the next action visible without opening another app.
+                    </li>
                     <li>Your archive remains exportable at any time.</li>
                   </ul>
                 </section>
 
-                <section className="detail-page-card" aria-labelledby="detailPageHistory">
-                  <h3 id="detailPageHistory" className="section-label">Recent history</h3>
+                <section
+                  className="detail-page-card"
+                  aria-labelledby="detailPageHistory"
+                >
+                  <h3 id="detailPageHistory" className="section-label">
+                    Recent history
+                  </h3>
                   <ul className="timeline">
-                    {timeline.filter((entry) => entry.itemId === selectedItem.id).slice(0, 4).map((entry) => <li key={entry.id}>{entry.summary}</li>)}
-                    {timeline.every((entry) => entry.itemId !== selectedItem.id) && <li>No changes recorded for this item yet.</li>}
+                    {timeline
+                      .filter((entry) => entry.itemId === selectedItem.id)
+                      .slice(0, 4)
+                      .map((entry) => (
+                        <li key={entry.id}>{entry.summary}</li>
+                      ))}
+                    {timeline.every(
+                      (entry) => entry.itemId !== selectedItem.id,
+                    ) && <li>No changes recorded for this item yet.</li>}
                   </ul>
                 </section>
               </div>
@@ -1300,14 +1972,31 @@ export default function AppShellPage() {
 
       {detailView === 'expanded' && selectedEpisodeDetail && (
         <div className="episode-detail-layer" role="presentation">
-          <button className="episode-detail-backdrop" type="button" aria-label="Close episode details" onClick={() => setSelectedEpisode(null)} />
-          <article className="episode-detail-modal" role="dialog" aria-modal="true" aria-labelledby="episodeDetailTitle">
+          <button
+            className="episode-detail-backdrop"
+            type="button"
+            aria-label="Close episode details"
+            onClick={() => setSelectedEpisode(null)}
+          />
+          <article
+            className="episode-detail-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="episodeDetailTitle"
+          >
             <header className="episode-detail-header">
               <div>
-                <span className="eyebrow">{selectedItem.title} / {selectedEpisodeDetail.season.title}</span>
+                <span className="eyebrow">
+                  {selectedItem.title} / {selectedEpisodeDetail.season.title}
+                </span>
                 <p>Episode details</p>
               </div>
-              <button type="button" className="detail-page-close" aria-label="Close episode details" onClick={() => setSelectedEpisode(null)}>
+              <button
+                type="button"
+                className="detail-page-close"
+                aria-label="Close episode details"
+                onClick={() => setSelectedEpisode(null)}
+              >
                 <X size={19} aria-hidden="true" />
               </button>
             </header>
@@ -1315,29 +2004,69 @@ export default function AppShellPage() {
               <div
                 className="episode-detail-image"
                 aria-hidden="true"
-                style={{ backgroundImage: coverBackground(selectedItem.image, selectedItem.usePlaceholderCover, 'linear-gradient(180deg, rgba(10,12,15,0.06), rgba(10,12,15,0.7))') }}
+                style={{
+                  backgroundImage: coverBackground(
+                    selectedItem.image,
+                    selectedItem.usePlaceholderCover,
+                    'linear-gradient(180deg, rgba(10,12,15,0.06), rgba(10,12,15,0.7))',
+                  ),
+                }}
               />
               <div className="episode-detail-copy">
-                <span className="episode-detail-code">Season {selectedEpisodeDetail.season.number} · Episode {selectedEpisodeDetail.episode.number}</span>
-                <h2 id="episodeDetailTitle">{selectedEpisodeDetail.episode.title}</h2>
-                <span className={`episode-detail-status ${completedEpisodesByItem[selectedItem.id]?.[`${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`] ? 'is-complete' : ''}`}>
-                  {completedEpisodesByItem[selectedItem.id]?.[`${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`] ? 'Watched' : 'Not watched'}
+                <span className="episode-detail-code">
+                  Season {selectedEpisodeDetail.season.number} · Episode{' '}
+                  {selectedEpisodeDetail.episode.number}
+                </span>
+                <h2 id="episodeDetailTitle">
+                  {selectedEpisodeDetail.episode.title}
+                </h2>
+                <span
+                  className={`episode-detail-status ${completedEpisodesByItem[selectedItem.id]?.[`${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`] ? 'is-complete' : ''}`}
+                >
+                  {completedEpisodesByItem[selectedItem.id]?.[
+                    `${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`
+                  ]
+                    ? 'Watched'
+                    : 'Not watched'}
                 </span>
                 <dl className="episode-detail-facts">
-                  <div><dt>Series</dt><dd>{selectedItem.title}</dd></div>
-                  <div><dt>Season</dt><dd>{selectedEpisodeDetail.season.title}</dd></div>
-                  <div><dt>Episode</dt><dd>{selectedEpisodeDetail.episode.number}</dd></div>
+                  <div>
+                    <dt>Series</dt>
+                    <dd>{selectedItem.title}</dd>
+                  </div>
+                  <div>
+                    <dt>Season</dt>
+                    <dd>{selectedEpisodeDetail.season.title}</dd>
+                  </div>
+                  <div>
+                    <dt>Episode</dt>
+                    <dd>{selectedEpisodeDetail.episode.number}</dd>
+                  </div>
                 </dl>
-                <section className="episode-detail-summary" aria-labelledby="episodeSummaryTitle">
-                  <h3 id="episodeSummaryTitle" className="section-label">Synopsis</h3>
+                <section
+                  className="episode-detail-summary"
+                  aria-labelledby="episodeSummaryTitle"
+                >
+                  <h3 id="episodeSummaryTitle" className="section-label">
+                    Synopsis
+                  </h3>
                   <p>No synopsis has been added for this episode yet.</p>
                 </section>
                 <button
                   type="button"
                   className="primary-btn"
-                  onClick={() => toggleEpisodeCompletion(selectedEpisodeDetail.season.number, selectedEpisodeDetail.episode.number)}
+                  onClick={() =>
+                    toggleEpisodeCompletion(
+                      selectedEpisodeDetail.season.number,
+                      selectedEpisodeDetail.episode.number,
+                    )
+                  }
                 >
-                  {completedEpisodesByItem[selectedItem.id]?.[`${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`] ? 'Mark as unwatched' : 'Mark as watched'}
+                  {completedEpisodesByItem[selectedItem.id]?.[
+                    `${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`
+                  ]
+                    ? 'Mark as unwatched'
+                    : 'Mark as watched'}
                 </button>
               </div>
             </div>
@@ -1349,14 +2078,155 @@ export default function AppShellPage() {
         <div className="onboarding-layer" role="presentation">
           <div className="onboarding-orbit onboarding-orbit-one" />
           <div className="onboarding-orbit onboarding-orbit-two" />
-          <section className="onboarding-card" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
-            <div className="onboarding-progress" aria-label={`Step ${onboardingStep + 1} of 3`}>
-              {[0, 1, 2].map((step) => <span key={step} className={step <= onboardingStep ? 'is-active' : ''} />)}
+          <section
+            className="onboarding-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="onboardingTitle"
+          >
+            <div
+              className="onboarding-progress"
+              aria-label={`Step ${onboardingStep + 1} of 3`}
+            >
+              {[0, 1, 2].map((step) => (
+                <span
+                  key={step}
+                  className={step <= onboardingStep ? 'is-active' : ''}
+                />
+              ))}
             </div>
-            {onboardingStep === 0 && <div className="onboarding-step"><span className="eyebrow">Your archive, your rules</span><h2 id="onboardingTitle">Start with the things that matter to you.</h2><p>No account required. These preferences stay on this device and are included in the archive model for export.</p><label className="onboarding-field">What should we call you?<input autoFocus value={preferences.displayName} onChange={(event) => void savePreferences({ ...preferences, displayName: event.target.value })} onKeyDown={(event) => { if (event.key === 'Enter') { event.preventDefault(); setOnboardingStep(1); } }} placeholder="Your name" maxLength={80} /></label></div>}
-            {onboardingStep === 1 && <div className="onboarding-step"><span className="eyebrow">Choose your worlds</span><h2 id="onboardingTitle">What do you want to track?</h2><p>Choose every category you use. You can change this later.</p><div className="onboarding-option-grid">{ACTIVITY_OPTIONS.map((activity) => { const active = preferences.activities.includes(activity.key); return <button key={activity.key} type="button" className={`onboarding-option ${active ? 'is-selected' : ''}`} aria-pressed={active} onClick={() => void savePreferences({ ...preferences, activities: active ? preferences.activities.filter((entry) => entry !== activity.key) : [...preferences.activities, activity.key] })}>{activity.label}</button>; })}</div></div>}
-            {onboardingStep === 2 && <div className="onboarding-step"><span className="eyebrow">Make discovery useful</span><h2 id="onboardingTitle">Pick a few favourite genres.</h2><p>They will guide local search filters and future optional catalog discovery.</p><div className="onboarding-option-grid genres">{GENRE_OPTIONS.map((genre) => { const active = preferences.favoriteGenres.includes(genre); return <button key={genre} type="button" className={`onboarding-option ${active ? 'is-selected' : ''}`} aria-pressed={active} onClick={() => void savePreferences({ ...preferences, favoriteGenres: active ? preferences.favoriteGenres.filter((entry) => entry !== genre) : [...preferences.favoriteGenres, genre] })}>{genre}</button>; })}</div></div>}
-            <div className="onboarding-actions"><button type="button" className="ghost-btn" onClick={() => onboardingStep > 0 ? setOnboardingStep(onboardingStep - 1) : undefined}>{onboardingStep === 0 ? 'Local-first' : 'Back'}</button><button type="button" className="primary-btn" onClick={() => { if (onboardingStep < 2) { setOnboardingStep(onboardingStep + 1); } else { void savePreferences({ ...preferences, onboardingCompleted: true }); setOnboardingOpen(false); } }}>{onboardingStep === 2 ? 'Open my archive' : 'Continue'}</button></div>
+            {onboardingStep === 0 && (
+              <div className="onboarding-step">
+                <span className="eyebrow">Your archive, your rules</span>
+                <h2 id="onboardingTitle">
+                  Start with the things that matter to you.
+                </h2>
+                <p>
+                  No account required. These preferences stay on this device and
+                  are included in the archive model for export.
+                </p>
+                <label className="onboarding-field">
+                  What should we call you?
+                  <input
+                    autoFocus
+                    value={preferences.displayName}
+                    onChange={(event) =>
+                      void savePreferences({
+                        ...preferences,
+                        displayName: event.target.value,
+                      })
+                    }
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        event.preventDefault();
+                        setOnboardingStep(1);
+                      }
+                    }}
+                    placeholder="Your name"
+                    maxLength={80}
+                  />
+                </label>
+              </div>
+            )}
+            {onboardingStep === 1 && (
+              <div className="onboarding-step">
+                <span className="eyebrow">Choose your worlds</span>
+                <h2 id="onboardingTitle">What do you want to track?</h2>
+                <p>Choose every category you use. You can change this later.</p>
+                <div className="onboarding-option-grid">
+                  {ACTIVITY_OPTIONS.map((activity) => {
+                    const active = preferences.activities.includes(
+                      activity.key,
+                    );
+                    return (
+                      <button
+                        key={activity.key}
+                        type="button"
+                        className={`onboarding-option ${active ? 'is-selected' : ''}`}
+                        aria-pressed={active}
+                        onClick={() =>
+                          void savePreferences({
+                            ...preferences,
+                            activities: active
+                              ? preferences.activities.filter(
+                                  (entry) => entry !== activity.key,
+                                )
+                              : [...preferences.activities, activity.key],
+                          })
+                        }
+                      >
+                        {activity.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            {onboardingStep === 2 && (
+              <div className="onboarding-step">
+                <span className="eyebrow">Make discovery useful</span>
+                <h2 id="onboardingTitle">Pick a few favourite genres.</h2>
+                <p>
+                  They will guide local search filters and future optional
+                  catalog discovery.
+                </p>
+                <div className="onboarding-option-grid genres">
+                  {GENRE_OPTIONS.map((genre) => {
+                    const active = preferences.favoriteGenres.includes(genre);
+                    return (
+                      <button
+                        key={genre}
+                        type="button"
+                        className={`onboarding-option ${active ? 'is-selected' : ''}`}
+                        aria-pressed={active}
+                        onClick={() =>
+                          void savePreferences({
+                            ...preferences,
+                            favoriteGenres: active
+                              ? preferences.favoriteGenres.filter(
+                                  (entry) => entry !== genre,
+                                )
+                              : [...preferences.favoriteGenres, genre],
+                          })
+                        }
+                      >
+                        {genre}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+            <div className="onboarding-actions">
+              <button
+                type="button"
+                className="ghost-btn"
+                onClick={() =>
+                  onboardingStep > 0
+                    ? setOnboardingStep(onboardingStep - 1)
+                    : undefined
+                }
+              >
+                {onboardingStep === 0 ? 'Local-first' : 'Back'}
+              </button>
+              <button
+                type="button"
+                className="primary-btn"
+                onClick={() => {
+                  if (onboardingStep < 2) {
+                    setOnboardingStep(onboardingStep + 1);
+                  } else {
+                    void savePreferences({
+                      ...preferences,
+                      onboardingCompleted: true,
+                    });
+                    setOnboardingOpen(false);
+                  }
+                }}
+              >
+                {onboardingStep === 2 ? 'Open my archive' : 'Continue'}
+              </button>
+            </div>
           </section>
         </div>
       )}
@@ -1364,10 +2234,19 @@ export default function AppShellPage() {
       {drawerOpen && (
         <>
           <div className="drawer-overlay is-open" onClick={closeItemDrawer} />
-          <aside className="add-drawer is-open" role="dialog" aria-modal="true" aria-labelledby="addDrawerTitle">
+          <aside
+            className="add-drawer is-open"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="addDrawerTitle"
+          >
             <div className="add-drawer-head">
               <h3 id="addDrawerTitle">New item</h3>
-              <button className="add-drawer-close" type="button" onClick={closeItemDrawer}>
+              <button
+                className="add-drawer-close"
+                type="button"
+                onClick={closeItemDrawer}
+              >
                 &times;
               </button>
             </div>
@@ -1382,7 +2261,12 @@ export default function AppShellPage() {
                   id="fTitle"
                   type="text"
                   value={newItem.title}
-                  onChange={(event) => setNewItem((state) => ({ ...state, title: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      title: event.target.value,
+                    }))
+                  }
                   placeholder="e.g. Dune"
                 />
               </div>
@@ -1395,7 +2279,12 @@ export default function AppShellPage() {
                   className="field-control"
                   id="fCategory"
                   value={newItem.category}
-                  onChange={(event) => setNewItem((state) => ({ ...state, category: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      category: event.target.value,
+                    }))
+                  }
                 >
                   <option value="Book">Book</option>
                   <option value="Film">Film</option>
@@ -1414,7 +2303,12 @@ export default function AppShellPage() {
                   className="field-control"
                   id="fDescription"
                   value={newItem.description}
-                  onChange={(event) => setNewItem((state) => ({ ...state, description: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      description: event.target.value,
+                    }))
+                  }
                   placeholder="Your private description"
                 />
               </div>
@@ -1431,7 +2325,12 @@ export default function AppShellPage() {
                   max="5"
                   step="0.5"
                   value={newItem.rating}
-                  onChange={(event) => setNewItem((state) => ({ ...state, rating: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      rating: event.target.value,
+                    }))
+                  }
                   placeholder="0–5"
                 />
               </div>
@@ -1445,7 +2344,12 @@ export default function AppShellPage() {
                   id="fTags"
                   type="text"
                   value={newItem.tags}
-                  onChange={(event) => setNewItem((state) => ({ ...state, tags: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      tags: event.target.value,
+                    }))
+                  }
                   placeholder="e.g. science fiction, favourite"
                 />
               </div>
@@ -1459,7 +2363,12 @@ export default function AppShellPage() {
                   id="fCollections"
                   type="text"
                   value={newItem.collections}
-                  onChange={(event) => setNewItem((state) => ({ ...state, collections: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      collections: event.target.value,
+                    }))
+                  }
                   placeholder="e.g. favourites, read later"
                 />
               </div>
@@ -1472,7 +2381,12 @@ export default function AppShellPage() {
                   className="field-control"
                   id="fNotes"
                   value={newItem.notes}
-                  onChange={(event) => setNewItem((state) => ({ ...state, notes: event.target.value }))}
+                  onChange={(event) =>
+                    setNewItem((state) => ({
+                      ...state,
+                      notes: event.target.value,
+                    }))
+                  }
                   placeholder="One note per line"
                 />
               </div>
@@ -1485,7 +2399,9 @@ export default function AppShellPage() {
                       key={status}
                       type="button"
                       className={`filter-chip ${newItem.status === status ? 'is-selected' : ''}`}
-                      onClick={() => setNewItem((state) => ({ ...state, status }))}
+                      onClick={() =>
+                        setNewItem((state) => ({ ...state, status }))
+                      }
                     >
                       {label}
                     </button>
@@ -1493,31 +2409,60 @@ export default function AppShellPage() {
                 </div>
               </div>
 
-              <label className="setting-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: 0 }}>
+              <label
+                className="setting-row"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                  padding: 0,
+                }}
+              >
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.9rem' }}>Add placeholder cover</strong>
-                  <small style={{ color: 'var(--muted)' }}>Uses a neutral cover, never artwork from another item</small>
+                  <strong style={{ display: 'block', fontSize: '0.9rem' }}>
+                    Add placeholder cover
+                  </strong>
+                  <small style={{ color: 'var(--muted)' }}>
+                    Uses a neutral cover, never artwork from another item
+                  </small>
                 </div>
                 <label className="switch" style={{ marginLeft: 'auto' }}>
                   <input
                     type="checkbox"
                     checked={newItemUsesPlaceholderCover}
-                    onChange={(event) => setNewItemUsesPlaceholderCover(event.target.checked)}
+                    onChange={(event) =>
+                      setNewItemUsesPlaceholderCover(event.target.checked)
+                    }
                   />
                   <i />
                 </label>
               </label>
 
-              <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--muted)' }}>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: '0.78rem',
+                  color: 'var(--muted)',
+                }}
+              >
                 Manual entry only in this preview. Catalog search comes later.
               </p>
             </div>
 
             <div className="add-drawer-foot">
-              <button className="ghost-btn" type="button" onClick={closeItemDrawer}>
+              <button
+                className="ghost-btn"
+                type="button"
+                onClick={closeItemDrawer}
+              >
                 Cancel
               </button>
-              <button className="primary-btn" type="button" onClick={handleSaveDrawer}>
+              <button
+                className="primary-btn"
+                type="button"
+                onClick={handleSaveDrawer}
+              >
                 Save item
               </button>
             </div>

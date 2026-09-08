@@ -44,7 +44,9 @@ export const searchItems = (items: Item[], query: string): Item[] => {
       item.tags.join(' '),
       item.collections.join(' '),
       Object.values(item.attributes).join(' '),
-    ].join(' ').toLowerCase();
+    ]
+      .join(' ')
+      .toLowerCase();
 
     return haystack.includes(normalized);
   });
@@ -52,16 +54,26 @@ export const searchItems = (items: Item[], query: string): Item[] => {
 
 export const filterItems = (items: Item[], filters: SearchFilter): Item[] => {
   return items.filter((item) => {
-    if (filters.status && filters.status.length > 0 && !filters.status.includes(item.status)) {
+    if (
+      filters.status &&
+      filters.status.length > 0 &&
+      !filters.status.includes(item.status)
+    ) {
       return false;
     }
 
-    if (filters.category && filters.category.length > 0 && !filters.category.includes(item.category)) {
+    if (
+      filters.category &&
+      filters.category.length > 0 &&
+      !filters.category.includes(item.category)
+    ) {
       return false;
     }
 
     if (filters.collection && filters.collection.length > 0) {
-      const matchesCollection = item.collections.some((collection) => filters.collection!.includes(collection));
+      const matchesCollection = item.collections.some((collection) =>
+        filters.collection!.includes(collection),
+      );
       if (!matchesCollection) {
         return false;
       }
@@ -74,11 +86,17 @@ export const filterItems = (items: Item[], filters: SearchFilter): Item[] => {
       }
     }
 
-    if (typeof filters.ratingMin === 'number' && (item.rating ?? 0) < filters.ratingMin) {
+    if (
+      typeof filters.ratingMin === 'number' &&
+      (item.rating ?? 0) < filters.ratingMin
+    ) {
       return false;
     }
 
-    if (typeof filters.ratingMax === 'number' && (item.rating ?? 0) > filters.ratingMax) {
+    if (
+      typeof filters.ratingMax === 'number' &&
+      (item.rating ?? 0) > filters.ratingMax
+    ) {
       return false;
     }
 
@@ -93,7 +111,10 @@ export const filterItems = (items: Item[], filters: SearchFilter): Item[] => {
   });
 };
 
-export const sortItems = <T extends Item>(items: T[], field: 'updatedAt' | 'createdAt' | 'title'): T[] => {
+export const sortItems = <T extends Item>(
+  items: T[],
+  field: 'updatedAt' | 'createdAt' | 'title',
+): T[] => {
   const sorted = [...items];
 
   sorted.sort((left, right) => {
@@ -108,5 +129,8 @@ export const sortItems = <T extends Item>(items: T[], field: 'updatedAt' | 'crea
 };
 
 export const getHistoryTimeline = (history: HistoryEntry[]): HistoryEntry[] => {
-  return [...history].sort((left, right) => new Date(right.timestamp).getTime() - new Date(left.timestamp).getTime());
+  return [...history].sort(
+    (left, right) =>
+      new Date(right.timestamp).getTime() - new Date(left.timestamp).getTime(),
+  );
 };

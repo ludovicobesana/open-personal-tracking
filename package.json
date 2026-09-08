@@ -2,16 +2,29 @@
   "name": "open-personal-tracking-core",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.22.1"
+  },
   "scripts": {
     "build": "tsc --noEmit",
+    "lint": "eslint src tests --max-warnings=0",
+    "format": "prettier --write .github scripts src tests web/app package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
+    "format:check": "prettier --check .github scripts src tests web/app package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepare": "husky"
   },
   "dependencies": {
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.0",
+    "prettier": "3.5.3",
     "typescript": "^5.6.3",
     "vitest": "^2.1.8"
   }
