@@ -1333,6 +1333,10 @@ section.copy .muted {
   min-height: 720px;
 }
 
+.detail-panel[hidden] {
+  display: none;
+}
+
 .detail-header {
   padding: 18px 18px 14px;
   border-bottom: 1px solid var(--hairline);
