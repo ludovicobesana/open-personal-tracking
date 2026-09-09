@@ -20,24 +20,22 @@ open-personal-tracking
 
 or use another permanent neutral identifier.
 
-## Envelope
+## Current backup shape
 
-Initial conceptual structure:
+Backups currently serialize the complete, versioned `ArchiveSnapshot` directly:
 
 ```json
 {
-	"format": "open-personal-tracking",
-	"formatVersion": 1,
-	"exportedAt": "2026-08-27T00:00:00Z",
-	"data": {
-		"items": [],
-		"trackingEntries": [],
-		"collections": [],
-		"tags": [],
-		"history": []
-	}
+	"schemaVersion": 1,
+	"exportedAt": "2026-08-27T00:00:00.000Z",
+	"items": [],
+	"collections": [],
+	"history": [],
+	"preferences": {}
 }
 ```
+
+Restore rejects backups from a future schema version. It migrates supported legacy snapshots and validates the result before replacing local data.
 
 ## Requirements
 

@@ -59,6 +59,10 @@ Use for:
 
 Use for critical user workflows.
 
+Run the browser suite with `npm run test:e2e`. It uses Chromium and starts the
+web application automatically; install the browser locally with
+`npx playwright install chromium`.
+
 Mandatory foundational scenario:
 
 1. Create an item.

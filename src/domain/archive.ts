@@ -368,7 +368,11 @@ export const migrateArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
     return migrate_v0_to_v1(value);
   }
 
-  return createEmptyArchive();
+  if (version === CURRENT_SCHEMA_VERSION) {
+    throw new Error('Invalid archive snapshot for the current schema version');
+  }
+
+  throw new Error(`Unsupported archive schema version: ${version}`);
 };
 
 export const parseArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
@@ -380,6 +384,22 @@ export const parseArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
   }
 
   return migrateArchiveSnapshot(parsed.data);
+};
+
+/** Migrates and validates an imported or stored snapshot without accepting future schemas. */
+export const restoreArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
+  if (value && typeof value === 'object') {
+    const schemaVersion = (value as Record<string, unknown>).schemaVersion;
+    if (
+      typeof schemaVersion === 'number' &&
+      Number.isInteger(schemaVersion) &&
+      schemaVersion > CURRENT_SCHEMA_VERSION
+    ) {
+      throw new Error(`Unsupported archive schema version: ${schemaVersion}`);
+    }
+  }
+
+  return parseArchiveSnapshot(migrateArchiveSnapshot(value));
 };
 
 export const serializeArchiveSnapshot = (snapshot: ArchiveSnapshot): string =>

@@ -122,7 +122,12 @@ The repository currently contains two local development surfaces:
 npm install
 npm run build
 npm test
+npm run test:e2e
 ```
+
+The end-to-end suite starts the web app and runs the backup-and-restore
+recovery flow in Chromium. Install its browser binary once with
+`npx playwright install chromium` before running it locally.
 
 ### Web app
 
@@ -144,7 +149,7 @@ Everyone is welcome to join, whether you want to triage, pick up an issue, or ju
 
 Early-stage.
 
-The web app currently provides a local UI preview for the main tracking flows. The durable storage, backup/restore flow, and the optional network layer remain under active development; see the [Product Requirements](docs/PRODUCT_REQUIREMENTS.md) and [Roadmap](ROADMAP.md) for the planned scope.
+The web app provides browser-local tracking, complete JSON backup export, and validated JSON restore. The optional network layer remains under active development; see the [Product Requirements](docs/PRODUCT_REQUIREMENTS.md) and [Roadmap](ROADMAP.md) for the planned scope.
 
 The first milestone is intentionally small: prove that a user can create data locally, close the app, reopen it, export everything, delete the local state, restore the backup, and recover the same information.
 

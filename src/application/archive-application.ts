@@ -9,6 +9,10 @@ import {
   type UserPreferences,
 } from '../domain/archive.js';
 import { createHistoryEntry } from '../domain/search.js';
+import {
+  createArchiveBackup,
+  prepareArchiveRestore,
+} from './archive-backup.js';
 
 export interface ArchivePersistence {
   load(): Promise<ArchiveSnapshot | null>;
@@ -94,6 +98,20 @@ export class ArchiveApplication {
 
   async load(): Promise<ArchiveSnapshot> {
     return (await this.persistence.load()) ?? createEmptyArchive();
+  }
+
+  exportBackup(archive: ArchiveSnapshot): string {
+    return createArchiveBackup(archive);
+  }
+
+  prepareRestore(backup: string): ArchiveSnapshot {
+    return prepareArchiveRestore(backup);
+  }
+
+  async restoreBackup(backup: ArchiveSnapshot): Promise<ArchiveSnapshot> {
+    const normalized = parseArchiveSnapshot(backup);
+    await this.persistence.save(normalized);
+    return normalized;
   }
 
   async createItem(

@@ -12,7 +12,7 @@ import {
   UserRound,
   X,
 } from 'lucide-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   createLocalArchiveApplication,
@@ -237,7 +237,9 @@ export default function AppShellPage() {
   const [archive, setArchive] = useState<ArchiveSnapshot | null>(null);
   const [storageError, setStorageError] = useState<string | null>(null);
   const [operationError, setOperationError] = useState<string | null>(null);
+  const [backupStatus, setBackupStatus] = useState<string | null>(null);
   const application = useRef<ArchiveApplication | null>(null);
+  const restoreInput = useRef<HTMLInputElement | null>(null);
   const preferenceSaveQueue = useRef<Promise<void>>(Promise.resolve());
   const preferenceSaveRevision = useRef(0);
 
@@ -520,6 +522,68 @@ export default function AppShellPage() {
     } catch (error) {
       setOperationError(
         error instanceof Error ? error.message : 'Could not update progress',
+      );
+    }
+  };
+
+  const handleExportBackup = () => {
+    if (!archive || !application.current) return;
+
+    try {
+      const backup = application.current.exportBackup(archive);
+      const file = new Blob([backup], { type: 'application/json' });
+      const url = URL.createObjectURL(file);
+      const download = document.createElement('a');
+      download.href = url;
+      download.download = `open-personal-tracking-backup-${archive.exportedAt.slice(0, 10)}.json`;
+      document.body.append(download);
+      download.click();
+      download.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 0);
+      setOperationError(null);
+      setBackupStatus(
+        'Backup downloaded. Keep this file somewhere you control.',
+      );
+    } catch (error) {
+      setOperationError(
+        error instanceof Error
+          ? `Could not export your backup: ${error.message}`
+          : 'Could not export your backup',
+      );
+    }
+  };
+
+  const handleRestoreBackup = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file || !application.current) return;
+
+    try {
+      const prepared = application.current.prepareRestore(await file.text());
+      const itemLabel = prepared.items.length === 1 ? 'item' : 'items';
+      if (
+        !window.confirm(
+          `Restore ${prepared.items.length} ${itemLabel} from “${file.name}”? This replaces the current local archive. Export a backup first if you need to keep the current data.`,
+        )
+      ) {
+        return;
+      }
+
+      const restored = await application.current.restoreBackup(prepared);
+      setArchive(restored);
+      setSelectedId(null);
+      setDetailView('summary');
+      setSelectedEpisode(null);
+      setCompletedEpisodesByItem({});
+      setOperationError(null);
+      setBackupStatus(
+        `Restored ${restored.items.length} ${restored.items.length === 1 ? 'item' : 'items'} from ${file.name}.`,
+      );
+    } catch (error) {
+      setOperationError(
+        error instanceof Error
+          ? `Could not restore this backup. Your current local archive was not changed: ${error.message}`
+          : 'Could not restore this backup. Your current local archive was not changed.',
       );
     }
   };
@@ -1420,15 +1484,26 @@ export default function AppShellPage() {
                       Keep everything in a durable, readable format you own.
                     </p>
                   </div>
-                  <button className="primary-btn" type="button">
+                  <button
+                    className="primary-btn"
+                    type="button"
+                    onClick={handleExportBackup}
+                  >
                     Export now
                   </button>
                 </div>
+                {backupStatus && activeNav === 'export' && (
+                  <p className="empty-state" role="status">
+                    {backupStatus}
+                  </p>
+                )}
                 <div className="screen-grid">
                   <div className="summary-card">
                     <span className="eyebrow">Last export</span>
-                    <strong>—</strong>
-                    <span>No backup exported yet</span>
+                    <strong>On demand</strong>
+                    <span>
+                      Download a complete archive whenever you need one
+                    </span>
                   </div>
                   <div className="summary-card">
                     <span className="eyebrow">Format</span>
@@ -1609,16 +1684,42 @@ export default function AppShellPage() {
             )}
 
             {activeNav === 'import' && (
-              <div className="screen-hero">
-                <div>
-                  <span className="eyebrow">Import</span>
-                  <h2>Bring your archive in</h2>
-                  <p>Import CSV, JSON, or a previous export backup.</p>
+              <>
+                <div className="screen-hero">
+                  <div>
+                    <span className="eyebrow">Restore</span>
+                    <h2>Restore a local backup</h2>
+                    <p>
+                      Choose a JSON backup exported by this app. It is validated
+                      before it can replace your current local archive.
+                    </p>
+                  </div>
+                  <button
+                    className="primary-btn"
+                    type="button"
+                    onClick={() => restoreInput.current?.click()}
+                  >
+                    Select backup
+                  </button>
+                  <input
+                    ref={restoreInput}
+                    type="file"
+                    accept="application/json,.json"
+                    onChange={(event) => void handleRestoreBackup(event)}
+                    hidden
+                  />
                 </div>
-                <button className="primary-btn" type="button">
-                  Select file
-                </button>
-              </div>
+                <p className="empty-state">
+                  Restoring replaces the current archive only after the backup
+                  passes migration and validation. Invalid or unsupported files
+                  leave your current data unchanged.
+                </p>
+                {backupStatus && (
+                  <p className="empty-state" role="status">
+                    {backupStatus}
+                  </p>
+                )}
+              </>
             )}
           </div>
         )}
