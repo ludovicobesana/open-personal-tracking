@@ -28,8 +28,18 @@ import {
 } from '../../../src/domain/archive';
 import { filterItems, getHistoryTimeline } from '../../../src/domain/search';
 
-type Episode = { number: number; title: string };
-type SeriesSeason = { number: number; title: string; episodes: Episode[] };
+type Episode = {
+  id: string;
+  number: number;
+  title: string;
+  completed: boolean;
+};
+type SeriesSeason = {
+  id: string;
+  number: number;
+  title: string;
+  episodes: Episode[];
+};
 type EpisodeSelection = { seasonNumber: number; episodeNumber: number };
 type ItemForm = {
   title: string;
@@ -139,6 +149,32 @@ const stringAttribute = (item: Item, key: string): string | undefined => {
   return typeof value === 'string' ? value : undefined;
 };
 
+const orderedByPosition = <T extends { position?: number }>(items: T[]): T[] =>
+  [...items].sort(
+    (left, right) =>
+      (left.position ?? Number.MAX_SAFE_INTEGER) -
+      (right.position ?? Number.MAX_SAFE_INTEGER),
+  );
+
+const toSeriesSeasons = (item: Item): SeriesSeason[] =>
+  orderedByPosition(item.subunits.filter((unit) => unit.kind === 'season')).map(
+    (season, index) => ({
+      id: season.id,
+      number: season.position ?? index + 1,
+      title: season.title,
+      episodes: orderedByPosition(
+        item.subunits.filter(
+          (unit) => unit.parentId === season.id && unit.kind === 'episode',
+        ),
+      ).map((episode, episodeIndex) => ({
+        id: episode.id,
+        number: episode.position ?? episodeIndex + 1,
+        title: episode.title,
+        completed: episode.completed,
+      })),
+    }),
+  );
+
 const toTrackedItem = (
   item: Item,
   defaultPlaceholderCover: boolean,
@@ -172,6 +208,7 @@ const toTrackedItem = (
     description: item.description ?? '',
     tags: item.tags,
     rating: item.rating,
+    seasons: item.category === 'Series' ? toSeriesSeasons(item) : undefined,
   };
 };
 
@@ -227,9 +264,6 @@ export default function AppShellPage() {
   const [detailView, setDetailView] = useState<'summary' | 'expanded'>(
     'summary',
   );
-  const [completedEpisodesByItem, setCompletedEpisodesByItem] = useState<
-    Record<string, Record<string, boolean>>
-  >({});
   const [selectedEpisode, setSelectedEpisode] =
     useState<EpisodeSelection | null>(null);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
@@ -360,19 +394,7 @@ export default function AppShellPage() {
     };
   }, [themeMode]);
 
-  const getItemProgress = (item: TrackedItem) => {
-    if (item.category !== 'Series' || !item.seasons?.length) {
-      return item.value;
-    }
-
-    const episodes = item.seasons.flatMap((season) =>
-      season.episodes.map((episode) => `${season.number}-${episode.number}`),
-    );
-    const completed = episodes.filter(
-      (key) => completedEpisodesByItem[item.id]?.[key],
-    ).length;
-    return episodes.length > 0 ? (completed / episodes.length) * 100 : 0;
-  };
+  const getItemProgress = (item: TrackedItem) => item.value;
 
   const items = useMemo(
     () =>
@@ -406,10 +428,7 @@ export default function AppShellPage() {
       })()
     : null;
   const selectedCompletedEpisodes = selectedEpisodes.filter(
-    (episode) =>
-      completedEpisodesByItem[selectedItem.id]?.[
-        `${episode.seasonNumber}-${episode.number}`
-      ],
+    (episode) => episode.completed,
   ).length;
   const selectedProgress = getItemProgress(selectedItem);
   const selectedProgressPercent = Math.round(selectedProgress);
@@ -574,7 +593,6 @@ export default function AppShellPage() {
       setSelectedId(null);
       setDetailView('summary');
       setSelectedEpisode(null);
-      setCompletedEpisodesByItem({});
       setOperationError(null);
       setBackupStatus(
         `Restored ${restored.items.length} ${restored.items.length === 1 ? 'item' : 'items'} from ${file.name}.`,
@@ -588,18 +606,24 @@ export default function AppShellPage() {
     }
   };
 
-  const toggleEpisodeCompletion = (
-    seasonNumber: number,
-    episodeNumber: number,
-  ) => {
-    const key = `${seasonNumber}-${episodeNumber}`;
-    setCompletedEpisodesByItem((state) => ({
-      ...state,
-      [selectedItem.id]: {
-        ...state[selectedItem.id],
-        [key]: !state[selectedItem.id]?.[key],
-      },
-    }));
+  const recordEpisodeWatch = async (episodeId: string) => {
+    if (!archive || !application.current || !selectedDomainItem) return;
+
+    try {
+      setArchive(
+        await application.current.watchSubunit(
+          archive,
+          selectedDomainItem.id,
+          episodeId,
+        ),
+      );
+    } catch (error) {
+      setOperationError(
+        error instanceof Error
+          ? error.message
+          : 'Could not record this episode watch',
+      );
+    }
   };
 
   const visibleItems = useMemo(() => {
@@ -1906,10 +1930,7 @@ export default function AppShellPage() {
                         {
                           selectedSeasons.filter((season) =>
                             season.episodes.every(
-                              (episode) =>
-                                completedEpisodesByItem[selectedItem.id]?.[
-                                  `${season.number}-${episode.number}`
-                                ],
+                              (episode) => episode.completed,
                             ),
                           ).length
                         }{' '}
@@ -1919,10 +1940,7 @@ export default function AppShellPage() {
                     <div className="season-list">
                       {selectedSeasons.map((season) => {
                         const completedCount = season.episodes.filter(
-                          (episode) =>
-                            completedEpisodesByItem[selectedItem.id]?.[
-                              `${season.number}-${episode.number}`
-                            ],
+                          (episode) => episode.completed,
                         ).length;
                         const isComplete =
                           completedCount === season.episodes.length;
@@ -1945,11 +1963,7 @@ export default function AppShellPage() {
                             </div>
                             <div className="episode-list">
                               {season.episodes.map((episode) => {
-                                const isComplete = Boolean(
-                                  completedEpisodesByItem[selectedItem.id]?.[
-                                    `${season.number}-${episode.number}`
-                                  ],
-                                );
+                                const isComplete = episode.completed;
                                 return (
                                   <div
                                     key={episode.number}
@@ -1988,15 +2002,12 @@ export default function AppShellPage() {
                                     <button
                                       type="button"
                                       className="episode-card-state"
-                                      aria-label={`${isComplete ? 'Mark as unwatched' : 'Mark as watched'}: ${season.title}, episode ${episode.number}`}
+                                      aria-label={`${isComplete ? 'Rewatch' : 'Mark as watched'}: ${season.title}, episode ${episode.number}`}
                                       onClick={() =>
-                                        toggleEpisodeCompletion(
-                                          season.number,
-                                          episode.number,
-                                        )
+                                        void recordEpisodeWatch(episode.id)
                                       }
                                     >
-                                      {isComplete ? '✓' : '+'}
+                                      {isComplete ? '↻' : '+'}
                                     </button>
                                   </div>
                                 );
@@ -2127,11 +2138,9 @@ export default function AppShellPage() {
                   {selectedEpisodeDetail.episode.title}
                 </h2>
                 <span
-                  className={`episode-detail-status ${completedEpisodesByItem[selectedItem.id]?.[`${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`] ? 'is-complete' : ''}`}
+                  className={`episode-detail-status ${selectedEpisodeDetail.episode.completed ? 'is-complete' : ''}`}
                 >
-                  {completedEpisodesByItem[selectedItem.id]?.[
-                    `${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`
-                  ]
+                  {selectedEpisodeDetail.episode.completed
                     ? 'Watched'
                     : 'Not watched'}
                 </span>
@@ -2162,16 +2171,11 @@ export default function AppShellPage() {
                   type="button"
                   className="primary-btn"
                   onClick={() =>
-                    toggleEpisodeCompletion(
-                      selectedEpisodeDetail.season.number,
-                      selectedEpisodeDetail.episode.number,
-                    )
+                    void recordEpisodeWatch(selectedEpisodeDetail.episode.id)
                   }
                 >
-                  {completedEpisodesByItem[selectedItem.id]?.[
-                    `${selectedEpisodeDetail.season.number}-${selectedEpisodeDetail.episode.number}`
-                  ]
-                    ? 'Mark as unwatched'
+                  {selectedEpisodeDetail.episode.completed
+                    ? 'Rewatch episode'
                     : 'Mark as watched'}
                 </button>
               </div>

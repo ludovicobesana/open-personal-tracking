@@ -214,7 +214,7 @@ describe('archive application', () => {
     expect(() =>
       application.prepareRestore(
         JSON.stringify({
-          schemaVersion: 1,
+          schemaVersion: 2,
           exportedAt: new Date().toISOString(),
           items: [],
         }),
@@ -223,14 +223,14 @@ describe('archive application', () => {
     expect(() =>
       application.prepareRestore(
         JSON.stringify({
-          schemaVersion: 2,
+          schemaVersion: 3,
           exportedAt: new Date().toISOString(),
           items: [],
           collections: [],
           history: [],
         }),
       ),
-    ).toThrow('Unsupported archive schema version: 2');
+    ).toThrow('Unsupported archive schema version: 3');
 
     expect(await application.load()).toEqual(archive);
   });

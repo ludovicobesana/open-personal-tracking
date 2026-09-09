@@ -132,6 +132,11 @@ The core model must not assume that progress is always episode-based.
 
 Series progress must be derived from episodes, not from an unrelated manual percentage. A season is completed only when every episode it contains is completed. Users must be able to open an episode and view its own metadata and tracking state without losing the context of the parent series and season.
 
+The same hierarchy applies to every sequential category. A parent with tracked
+sub-units derives its status and progress from leaf units. Reopening a
+completed parent clears only current-cycle leaf completion; it never removes
+the historical watch records needed to distinguish a later rewatch.
+
 ## Personal notes vs public comments
 
 Private notes belong to open-personal-tracking Core.

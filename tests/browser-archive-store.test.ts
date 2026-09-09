@@ -191,7 +191,7 @@ describe('browser archive storage', () => {
 
     const restored = await createStore(factory).load();
 
-    expect(restored?.schemaVersion).toBe(1);
+    expect(restored?.schemaVersion).toBe(2);
     expect(restored?.items[0]).toMatchObject({
       title: 'Dune',
       category: 'book',
@@ -225,7 +225,7 @@ describe('browser archive storage', () => {
   it('rejects an unsupported stored schema without modifying it', async () => {
     const factory = new TestIndexedDbFactory();
     const unsupported = {
-      schemaVersion: 2,
+      schemaVersion: 3,
       exportedAt: new Date().toISOString(),
       items: [],
       collections: [],
@@ -234,7 +234,7 @@ describe('browser archive storage', () => {
     factory.seed(unsupported);
 
     await expect(createStore(factory).load()).rejects.toThrow(
-      'Unsupported archive schema version: 2',
+      'Unsupported archive schema version: 3',
     );
     expect(factory.rawValue()).toEqual({
       key: BROWSER_ARCHIVE_RECORD_KEY,

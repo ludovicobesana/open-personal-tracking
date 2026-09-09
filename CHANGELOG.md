@@ -8,6 +8,7 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 ### Added
 
+- Persisted parent/sub-unit tracking with derived parent progress, reopening, and independent watch/rewatch history entries.
 - Complete browser-local JSON backup export and restore, with validation and migration before local data is replaced.
 - Automated linting and formatting checks for contributions and pull requests, with staged-file checks before each commit.
 - Series tracking in the app shell, with season and episode views.
