@@ -4,6 +4,7 @@ import { ArchiveApplication } from '../src/application/archive-application.js';
 import { loadLocalArchive } from '../src/application/local-archive-application.js';
 import {
   createEmptyArchive,
+  createItem,
   type ArchiveSnapshot,
 } from '../src/domain/archive.js';
 
@@ -161,5 +162,104 @@ describe('archive application', () => {
       loadLocalArchive(new ArchiveApplication(persistence)),
     ).rejects.toThrow('Storage is unavailable');
     expect(values.has(key)).toBe(true);
+  });
+
+  it('recovers the complete archive from an exported local backup', async () => {
+    const persistence = new MemoryArchivePersistence();
+    const application = new ArchiveApplication(persistence);
+    const created = await application.createItem(await application.load(), {
+      id: 'dune',
+      title: 'Dune',
+      category: 'Book',
+      progress: { current: 184, target: 688, unit: 'pages' },
+      rating: 5,
+      notes: ['Read before the film'],
+      tags: ['science fiction'],
+      collections: ['favorites'],
+      attributes: { creator: 'Frank Herbert' },
+    });
+    const archive = await application.updatePreferences(created, {
+      displayName: 'Ludovico',
+      locale: 'it',
+      activities: ['books'],
+      favoriteGenres: ['Science fiction'],
+      placeholderCovers: false,
+      onboardingCompleted: true,
+    });
+
+    const backup = application.exportBackup(archive);
+    await persistence.clear();
+
+    const restored = await application.restoreBackup(
+      application.prepareRestore(backup),
+    );
+
+    expect(await application.load()).toEqual(restored);
+    expect(restored).toEqual(archive);
+  });
+
+  it('keeps the current archive when a backup is malformed, invalid, or newer than the app', async () => {
+    const persistence = new MemoryArchivePersistence();
+    const application = new ArchiveApplication(persistence);
+    const archive = await application.createItem(await application.load(), {
+      id: 'dune',
+      title: 'Dune',
+      category: 'Book',
+      progress: { current: 0, unit: 'pages' },
+    });
+
+    expect(() => application.prepareRestore('{not JSON')).toThrow(
+      'Backup file is not valid JSON',
+    );
+    expect(() =>
+      application.prepareRestore(
+        JSON.stringify({
+          schemaVersion: 1,
+          exportedAt: new Date().toISOString(),
+          items: [],
+        }),
+      ),
+    ).toThrow('Invalid archive snapshot for the current schema version');
+    expect(() =>
+      application.prepareRestore(
+        JSON.stringify({
+          schemaVersion: 2,
+          exportedAt: new Date().toISOString(),
+          items: [],
+          collections: [],
+          history: [],
+        }),
+      ),
+    ).toThrow('Unsupported archive schema version: 2');
+
+    expect(await application.load()).toEqual(archive);
+  });
+
+  it('keeps the current archive when a validated backup cannot be persisted', async () => {
+    const persistence = new MemoryArchivePersistence();
+    const application = new ArchiveApplication(persistence);
+    const current = await application.createItem(await application.load(), {
+      id: 'dune',
+      title: 'Dune',
+      category: 'Book',
+      progress: { current: 0, unit: 'pages' },
+    });
+    const replacement = createEmptyArchive();
+    replacement.items.push(
+      createItem({
+        id: 'earthsea',
+        title: 'A Wizard of Earthsea',
+        category: 'Book',
+        progress: { current: 0, unit: 'pages' },
+      }),
+    );
+    persistence.save = async () => {
+      throw new Error('Storage is unavailable');
+    };
+
+    await expect(application.restoreBackup(replacement)).rejects.toThrow(
+      'Storage is unavailable',
+    );
+    expect(await application.load()).toEqual(current);
   });
 });

@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import {
   parseArchiveSnapshot,
+  restoreArchiveSnapshot,
   serializeArchiveSnapshot,
   type ArchiveSnapshot,
 } from '../domain/archive.js';
@@ -52,7 +53,7 @@ export const loadArchiveSnapshot = async (
   const raw = await readFile(filePath, 'utf8');
   const parsed = JSON.parse(raw) as unknown;
 
-  return parseArchiveSnapshot(parsed);
+  return restoreArchiveSnapshot(parsed);
 };
 
 export const exportArchiveBackup = async (

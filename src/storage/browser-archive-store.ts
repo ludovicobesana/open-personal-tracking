@@ -1,7 +1,6 @@
 import {
-  CURRENT_SCHEMA_VERSION,
-  migrateArchiveSnapshot,
   parseArchiveSnapshot,
+  restoreArchiveSnapshot,
   type ArchiveSnapshot,
 } from '../domain/archive.js';
 
@@ -57,21 +56,6 @@ const openDatabase = (indexedDB: IDBFactory): Promise<IDBDatabase> =>
       );
   });
 
-const migrateStoredSnapshot = (value: unknown): ArchiveSnapshot => {
-  if (value && typeof value === 'object') {
-    const schemaVersion = (value as Record<string, unknown>).schemaVersion;
-    if (
-      typeof schemaVersion === 'number' &&
-      Number.isInteger(schemaVersion) &&
-      schemaVersion > CURRENT_SCHEMA_VERSION
-    ) {
-      throw new Error(`Unsupported archive schema version: ${schemaVersion}`);
-    }
-  }
-
-  return parseArchiveSnapshot(migrateArchiveSnapshot(value));
-};
-
 const storedSnapshot = (record: unknown): unknown => {
   if (
     !record ||
@@ -117,7 +101,7 @@ export class BrowserArchiveStore {
         | undefined;
       await completed;
 
-      return record ? migrateStoredSnapshot(storedSnapshot(record)) : null;
+      return record ? restoreArchiveSnapshot(storedSnapshot(record)) : null;
     } finally {
       database.close();
     }

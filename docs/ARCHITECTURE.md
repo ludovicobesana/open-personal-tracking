@@ -91,6 +91,8 @@ UI components must not access SQLite directly.
 
 The web adapter follows the same rule: UI components must not access IndexedDB directly. It stores the complete archive behind an application boundary; IndexedDB is not the backup format.
 
+Backup export and restore use the same application boundary. The UI downloads or reads a local JSON file, while `ArchiveApplication` serializes or prepares a complete `ArchiveSnapshot`. A restore is parsed, migrated, and validated before the persistence adapter receives it; invalid and unsupported backups leave the stored archive untouched.
+
 ## Generic item model
 
 Avoid tables and domain logic tied to a single media category.

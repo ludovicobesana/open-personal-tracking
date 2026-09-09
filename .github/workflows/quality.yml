@@ -58,3 +58,9 @@ jobs:
 
       - name: Build web application
         run: npm run build --prefix web
+
+      - name: Install Chromium for end-to-end tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Test backup and restore flow in Chromium
+        run: npm run test:e2e

@@ -7,17 +7,19 @@
   },
   "scripts": {
     "build": "tsc --noEmit",
-    "lint": "eslint src tests --max-warnings=0",
-    "format": "prettier --write .github scripts src tests web/app package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
-    "format:check": "prettier --check .github scripts src tests web/app package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
+    "lint": "eslint src tests e2e playwright.config.ts --max-warnings=0",
+    "format": "prettier --write .github scripts src tests e2e web/app package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts playwright.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
+    "format:check": "prettier --check .github scripts src tests e2e web/app package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts playwright.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "prepare": "husky"
   },
   "dependencies": {
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/node": "^22.10.2",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
