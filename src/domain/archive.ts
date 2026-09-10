@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CURRENT_SCHEMA_VERSION = 1 as const;
+export const CURRENT_SCHEMA_VERSION = 2 as const;
 
 export const StatusSchema = z.enum([
   'planned',
@@ -51,6 +51,30 @@ export const ProgressSchema = z.object({
 });
 export type Progress = z.infer<typeof ProgressSchema>;
 
+export const TrackingUnitKindSchema = z.enum([
+  'season',
+  'episode',
+  'chapter',
+  'unit',
+]);
+export type TrackingUnitKind = z.infer<typeof TrackingUnitKindSchema>;
+
+/**
+ * A unit is part of a hierarchy owned by one item. Only leaf units carry
+ * completion state; container units (for example, seasons) derive it from
+ * their descendants.
+ */
+export const TrackingUnitSchema = z.object({
+  id: z.string().min(1),
+  kind: TrackingUnitKindSchema,
+  title: z.string().trim().min(1),
+  parentId: z.string().min(1).optional(),
+  position: z.number().int().nonnegative().optional(),
+  completed: z.boolean().default(false),
+  watchCount: z.number().int().nonnegative().default(0),
+});
+export type TrackingUnit = z.infer<typeof TrackingUnitSchema>;
+
 export const ItemSchema = z.object({
   id: z.string().min(1),
   type: z.string().min(1),
@@ -68,6 +92,7 @@ export const ItemSchema = z.object({
   attributes: z.record(z.string(), AttributeValueSchema),
   externalIds: z.record(z.string(), z.string()),
   imageUrl: z.string().url().optional(),
+  subunits: z.array(TrackingUnitSchema).default([]),
 });
 export type Item = z.infer<typeof ItemSchema>;
 
@@ -84,19 +109,37 @@ export type Collection = z.infer<typeof CollectionSchema>;
 export const HistoryEntrySchema = z.object({
   id: z.string().min(1),
   itemId: z.string().min(1),
-  action: z.enum(['created', 'updated', 'completed', 'deleted', 'imported']),
+  subunitId: z.string().min(1).optional(),
+  action: z.enum([
+    'created',
+    'updated',
+    'completed',
+    'deleted',
+    'imported',
+    'watched',
+    'rewatched',
+    'reopened',
+  ]),
   timestamp: z.string().datetime(),
   summary: z.string(),
 });
 export type HistoryEntry = z.infer<typeof HistoryEntrySchema>;
 
-export const ArchiveSnapshotSchema = z.object({
-  schemaVersion: z.number().int().nonnegative(),
+const ArchiveSnapshotFieldsSchema = z.object({
   exportedAt: z.string().datetime(),
   items: z.array(ItemSchema),
   collections: z.array(CollectionSchema),
   history: z.array(HistoryEntrySchema),
   preferences: UserPreferencesSchema.default({}),
+});
+
+const ArchiveSnapshotV1Schema = ArchiveSnapshotFieldsSchema.extend({
+  schemaVersion: z.literal(1),
+});
+type ArchiveSnapshotV1 = z.infer<typeof ArchiveSnapshotV1Schema>;
+
+export const ArchiveSnapshotSchema = ArchiveSnapshotFieldsSchema.extend({
+  schemaVersion: z.literal(CURRENT_SCHEMA_VERSION),
 });
 export type ArchiveSnapshot = z.infer<typeof ArchiveSnapshotSchema>;
 
@@ -126,6 +169,7 @@ export type CreateItemInput = {
   attributes?: Record<string, AttributeValue>;
   externalIds?: Record<string, string>;
   imageUrl?: string;
+  subunits?: TrackingUnit[];
 };
 
 export const createEmptyArchive = (): ArchiveSnapshot => ({
@@ -156,6 +200,7 @@ export const createItem = (input: CreateItemInput): Item => {
       attributes: z.record(z.string(), AttributeValueSchema).default({}),
       externalIds: z.record(z.string(), z.string()).default({}),
       imageUrl: z.string().url().optional(),
+      subunits: z.array(TrackingUnitSchema).default([]),
     })
     .parse(input);
 
@@ -182,10 +227,119 @@ export const createItem = (input: CreateItemInput): Item => {
     attributes: parsed.attributes,
     externalIds: parsed.externalIds,
     imageUrl: parsed.imageUrl,
+    subunits: parsed.subunits,
   };
 };
 
-const migrate_v0_to_v1 = (value: unknown): ArchiveSnapshot => {
+const trackingUnitIds = (units: TrackingUnit[]): Set<string> => {
+  const ids = new Set<string>();
+  for (const unit of units) {
+    if (ids.has(unit.id)) {
+      throw new Error(`Tracking units must have unique ids: ${unit.id}`);
+    }
+    ids.add(unit.id);
+  }
+  return ids;
+};
+
+const assertValidTrackingHierarchy = (units: TrackingUnit[]): void => {
+  const ids = trackingUnitIds(units);
+  const childrenByParent = new Map<string, TrackingUnit[]>();
+
+  for (const unit of units) {
+    if (unit.parentId) {
+      if (!ids.has(unit.parentId)) {
+        throw new Error(
+          `Tracking unit ${unit.id} references a missing parent: ${unit.parentId}`,
+        );
+      }
+      if (unit.parentId === unit.id) {
+        throw new Error(`Tracking unit ${unit.id} cannot parent itself`);
+      }
+      const children = childrenByParent.get(unit.parentId) ?? [];
+      children.push(unit);
+      childrenByParent.set(unit.parentId, children);
+    }
+  }
+
+  const visiting = new Set<string>();
+  const visited = new Set<string>();
+  const visit = (unit: TrackingUnit): void => {
+    if (visited.has(unit.id)) return;
+    if (visiting.has(unit.id)) {
+      throw new Error(`Tracking units contain a parent cycle at: ${unit.id}`);
+    }
+
+    visiting.add(unit.id);
+    if (unit.parentId) {
+      const parent = units.find((candidate) => candidate.id === unit.parentId);
+      if (parent) visit(parent);
+    }
+    visiting.delete(unit.id);
+    visited.add(unit.id);
+  };
+
+  for (const unit of units) visit(unit);
+
+  for (const unit of units) {
+    const hasChildren = childrenByParent.has(unit.id);
+    if (hasChildren && (unit.completed || unit.watchCount > 0)) {
+      throw new Error(
+        `Container tracking unit ${unit.id} cannot have completion state`,
+      );
+    }
+    if (unit.completed && unit.watchCount === 0) {
+      throw new Error(
+        `Completed tracking unit ${unit.id} must have at least one watch`,
+      );
+    }
+  }
+};
+
+export const getLeafTrackingUnits = (units: TrackingUnit[]): TrackingUnit[] => {
+  assertValidTrackingHierarchy(units);
+  const parentIds = new Set(
+    units.flatMap((unit) => (unit.parentId ? [unit.parentId] : [])),
+  );
+  return units.filter((unit) => !parentIds.has(unit.id));
+};
+
+/**
+ * Computes canonical parent tracking state from its leaf units. Items without
+ * sub-units retain their manually managed progress and status.
+ */
+export const normalizeItemTracking = (item: Item): Item => {
+  const leaves = getLeafTrackingUnits(item.subunits);
+  if (leaves.length === 0) return item;
+
+  const completedCount = leaves.filter((unit) => unit.completed).length;
+  const hasWatchHistory = leaves.some((unit) => unit.watchCount > 0);
+  const status: ItemStatus =
+    completedCount === leaves.length
+      ? 'completed'
+      : completedCount > 0 || hasWatchHistory
+        ? 'in_progress'
+        : 'planned';
+
+  return {
+    ...item,
+    status,
+    progress: {
+      current: completedCount,
+      target: leaves.length,
+      unit: 'subunits',
+    },
+  };
+};
+
+const normalizeArchiveTracking = (
+  snapshot: ArchiveSnapshot,
+): ArchiveSnapshot => ({
+  ...snapshot,
+  items: snapshot.items.map(normalizeItemTracking),
+});
+
+const migrate_v0_to_v1 = (value: unknown): ArchiveSnapshotV1 => {
   const legacy = LegacyArchiveSchema.parse(value);
   const items = Array.isArray(legacy.items)
     ? legacy.items.map((item) => {
@@ -279,7 +433,7 @@ const migrate_v0_to_v1 = (value: unknown): ArchiveSnapshot => {
     : [];
 
   return {
-    schemaVersion: CURRENT_SCHEMA_VERSION,
+    schemaVersion: 1,
     exportedAt: legacy.exportedAt ?? new Date().toISOString(),
     items,
     collections: Array.isArray(legacy.collections)
@@ -349,12 +503,20 @@ const migrate_v0_to_v1 = (value: unknown): ArchiveSnapshot => {
   };
 };
 
-export const migrateArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
-  const parsed = ArchiveSnapshotSchema.safeParse(value);
-  if (parsed.success) {
-    return parsed.data;
-  }
+const migrate_v1_to_v2 = (value: unknown): ArchiveSnapshot => {
+  const snapshot = ArchiveSnapshotV1Schema.parse(value);
 
+  return {
+    ...snapshot,
+    schemaVersion: CURRENT_SCHEMA_VERSION,
+    items: snapshot.items.map((item) => ({
+      ...item,
+      subunits: item.subunits,
+    })),
+  };
+};
+
+export const migrateArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
   const legacy = LegacyArchiveSchema.safeParse(value);
   if (!legacy.success) {
     throw new Error(
@@ -365,10 +527,16 @@ export const migrateArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
   const version = legacy.data.schemaVersion ?? 0;
 
   if (version === 0) {
-    return migrate_v0_to_v1(value);
+    return migrate_v1_to_v2(migrate_v0_to_v1(value));
+  }
+
+  if (version === 1) {
+    return migrate_v1_to_v2(value);
   }
 
   if (version === CURRENT_SCHEMA_VERSION) {
+    const parsed = ArchiveSnapshotSchema.safeParse(value);
+    if (parsed.success) return parsed.data;
     throw new Error('Invalid archive snapshot for the current schema version');
   }
 
@@ -376,14 +544,16 @@ export const migrateArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
 };
 
 export const parseArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
-  const parsed = ArchiveSnapshotSchema.safeParse(value);
-  if (!parsed.success) {
-    throw new Error(
-      `Invalid archive snapshot: ${JSON.stringify(parsed.error.issues)}`,
-    );
+  try {
+    return normalizeArchiveTracking(migrateArchiveSnapshot(value));
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      throw new Error(
+        `Invalid archive snapshot: ${JSON.stringify(error.issues)}`,
+      );
+    }
+    throw error;
   }
-
-  return migrateArchiveSnapshot(parsed.data);
 };
 
 /** Migrates and validates an imported or stored snapshot without accepting future schemas. */
@@ -399,7 +569,7 @@ export const restoreArchiveSnapshot = (value: unknown): ArchiveSnapshot => {
     }
   }
 
-  return parseArchiveSnapshot(migrateArchiveSnapshot(value));
+  return parseArchiveSnapshot(value);
 };
 
 export const serializeArchiveSnapshot = (snapshot: ArchiveSnapshot): string =>

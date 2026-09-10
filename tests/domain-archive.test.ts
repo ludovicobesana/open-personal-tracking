@@ -127,6 +127,43 @@ describe('domain archive schema', () => {
     expect(migrated.collections[0].name).toBe('Favorites');
   });
 
+  it('migrates schema version 1 archives with manual progress unchanged', () => {
+    const migrated = migrateArchiveSnapshot({
+      schemaVersion: 1,
+      exportedAt: '2024-01-01T00:00:00.000Z',
+      items: [
+        {
+          id: 'dune',
+          type: 'book',
+          title: 'Dune',
+          category: 'Book',
+          status: 'in_progress',
+          progress: { current: 184, target: 688, unit: 'pages' },
+          notes: [],
+          tags: [],
+          collections: [],
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z',
+          attributes: {},
+          externalIds: {},
+        },
+      ],
+      collections: [],
+      history: [],
+    });
+
+    expect(migrated).toMatchObject({
+      schemaVersion: CURRENT_SCHEMA_VERSION,
+      items: [
+        {
+          id: 'dune',
+          progress: { current: 184, target: 688, unit: 'pages' },
+          subunits: [],
+        },
+      ],
+    });
+  });
+
   it('rejects malformed archive snapshots', () => {
     expect(() =>
       parseArchiveSnapshot({

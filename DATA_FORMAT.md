@@ -26,16 +26,39 @@ Backups currently serialize the complete, versioned `ArchiveSnapshot` directly:
 
 ```json
 {
-	"schemaVersion": 1,
-	"exportedAt": "2026-08-27T00:00:00.000Z",
-	"items": [],
-	"collections": [],
-	"history": [],
-	"preferences": {}
+  "schemaVersion": 2,
+  "exportedAt": "2026-08-27T00:00:00.000Z",
+  "items": [],
+  "collections": [],
+  "history": [],
+  "preferences": {}
 }
 ```
 
 Restore rejects backups from a future schema version. It migrates supported legacy snapshots and validates the result before replacing local data.
+
+## Parent and sub-unit tracking
+
+Items may include a `subunits` hierarchy for sequential media. A sub-unit has a
+stable `id`, a `kind` (`season`, `episode`, `chapter`, or `unit`), a title,
+and an optional `parentId`. A season is a container; episodes and chapters are
+normally leaves.
+
+Only leaf sub-units persist current-cycle completion (`completed`) and an
+all-time `watchCount`. Container state is never stored independently. For an
+item with sub-units, the archive derives its parent state as follows:
+
+- `progress.current` is the number of completed leaves;
+- `progress.target` is the total number of leaves;
+- the parent is `completed` only when every leaf is completed;
+- it is `in_progress` after any current or previous watch; otherwise it is
+  `planned`.
+
+Reopening a completed parent clears `completed` on every leaf and sets parent
+progress to zero, but preserves every `watchCount` and history entry. A later
+watch of a previously watched leaf creates a distinct `rewatched` history
+entry. Invalid hierarchies (duplicate IDs, missing parents, cycles, or state on
+container units) are rejected at import and persistence boundaries.
 
 ## Requirements
 

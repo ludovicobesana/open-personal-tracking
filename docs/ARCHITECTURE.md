@@ -93,6 +93,12 @@ The web adapter follows the same rule: UI components must not access IndexedDB d
 
 Backup export and restore use the same application boundary. The UI downloads or reads a local JSON file, while `ArchiveApplication` serializes or prepares a complete `ArchiveSnapshot`. A restore is parsed, migrated, and validated before the persistence adapter receives it; invalid and unsupported backups leave the stored archive untouched.
 
+Parent/sub-unit tracking is also a domain invariant. Items persist a generic
+sub-unit hierarchy while the domain derives parent progress and completion from
+leaf units. `ArchiveApplication` records watches, rewatches, and reopening as
+separate history entries; React must not maintain an independent source of
+episode completion state.
+
 ## Generic item model
 
 Avoid tables and domain logic tied to a single media category.
@@ -101,16 +107,16 @@ Conceptual model:
 
 ```ts
 type Item = {
-	id: string
-	type: string
-	title: string
-	description?: string
-	imageUrl?: string
-	externalIds: Record<string, string>
-	metadata: Record<string, unknown>
-	createdAt: string
-	updatedAt: string
-}
+  id: string;
+  type: string;
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  externalIds: Record<string, string>;
+  metadata: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+};
 ```
 
 Specialized metadata must be normalized at provider boundaries.
@@ -123,10 +129,10 @@ Example:
 
 ```ts
 interface ItemRepository {
-	findById(id: string): Promise<Item | null>
-	findAll(): Promise<Array<Item>>
-	save(item: Item): Promise<void>
-	delete(id: string): Promise<void>
+  findById(id: string): Promise<Item | null>;
+  findAll(): Promise<Array<Item>>;
+  save(item: Item): Promise<void>;
+  delete(id: string): Promise<void>;
 }
 ```
 

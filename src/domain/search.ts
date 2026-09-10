@@ -15,6 +15,7 @@ export type HistoryAction = HistoryEntry['action'];
 export type HistoryEntryInput = {
   id?: string;
   itemId: string;
+  subunitId?: string;
   action: HistoryAction;
   timestamp?: string;
   summary: string;
@@ -23,6 +24,7 @@ export type HistoryEntryInput = {
 export const createHistoryEntry = (input: HistoryEntryInput): HistoryEntry => ({
   id: input.id ?? crypto.randomUUID(),
   itemId: input.itemId,
+  subunitId: input.subunitId,
   action: input.action,
   timestamp: input.timestamp ?? new Date().toISOString(),
   summary: input.summary,

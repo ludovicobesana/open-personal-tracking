@@ -55,7 +55,7 @@ describe('archive storage', () => {
     expect(restored.items[0].title).toBe('Dune');
     expect(restored.items[0].status).toBe('in_progress');
     expect(restored.items[0].attributes).toEqual({ author: 'Frank Herbert' });
-    expect(JSON.parse(readFileSync(filePath, 'utf8')).schemaVersion).toBe(1);
+    expect(JSON.parse(readFileSync(filePath, 'utf8')).schemaVersion).toBe(2);
   });
 
   it('exports a backup file and restores it after clearing local state', async () => {
