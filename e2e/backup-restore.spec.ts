@@ -184,6 +184,9 @@ test('opens and restores local data while offline after its first visit', async 
   try {
     await page.reload();
     await expect(page.getByRole('button', { name: 'New item' })).toBeVisible();
+    await expect(page.getByRole('status')).toHaveText(
+      /You're offline.*Your library, changes, backups, and restores stay available on this device\./,
+    );
     await addItem(page, 'Offline archive item');
     await openItemDetail(page, 'Offline archive item');
     await page
@@ -218,7 +221,7 @@ test('opens and restores local data while offline after its first visit', async 
     await openManagePage(page, 'Import');
     page.once('dialog', (dialog) => dialog.accept());
     await page.locator('input[type="file"]').setInputFiles(backupPath);
-    await expect(page.getByRole('status')).toHaveText(
+    await expect(page.getByText(/^Restored 1 item from /)).toHaveText(
       /^Restored 1 item from open-personal-tracking-backup-.*\.json\.$/,
     );
     await page

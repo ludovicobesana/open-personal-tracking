@@ -27,6 +27,7 @@ import {
   type UserPreferences,
 } from '../../../src/domain/archive';
 import { filterItems, getHistoryTimeline } from '../../../src/domain/search';
+import { ConnectionStatus } from '../connection-status';
 
 type Episode = {
   id: string;
@@ -727,6 +728,7 @@ export default function AppShellPage() {
       className="app-shell"
       aria-label="Open personal tracking application shell"
     >
+      <ConnectionStatus />
       <aside className="sidebar" aria-label="Navigation sidebar">
         <a
           href="#"

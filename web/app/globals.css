@@ -93,6 +93,63 @@ body {
   padding: 0;
 }
 
+.connection-status {
+  position: fixed;
+  z-index: 100;
+  top: max(0.75rem, env(safe-area-inset-top));
+  left: 50%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  width: min(calc(100% - 2rem), 38rem);
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xs);
+  background: var(--surface-strong);
+  box-shadow: var(--panel-shadow);
+  color: var(--ink);
+  transform: translateX(-50%);
+}
+
+.connection-status.is-offline {
+  border-color: color-mix(in srgb, var(--stamp) 60%, var(--hairline));
+}
+
+.connection-status.is-online {
+  border-color: color-mix(in srgb, var(--success) 60%, var(--hairline));
+}
+
+.connection-status svg {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.1rem;
+}
+
+.connection-status.is-offline svg {
+  color: var(--stamp);
+}
+
+.connection-status.is-online svg {
+  color: var(--success);
+}
+
+.connection-status strong,
+.connection-status span {
+  display: block;
+}
+
+.connection-status strong {
+  font-size: 0.9rem;
+}
+
+.connection-status span {
+  margin-top: 0.05rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
 a {
   color: inherit;
 }
