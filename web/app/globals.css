@@ -96,7 +96,6 @@ body {
 .connection-status {
   position: fixed;
   z-index: 100;
-  left: 50%;
   display: flex;
   align-items: flex-start;
   gap: 0.7rem;
@@ -104,33 +103,37 @@ body {
   background: var(--surface-strong);
   box-shadow: var(--panel-shadow);
   color: var(--ink);
-  transform: translateX(-50%);
 }
 
 .connection-status--expanded {
+  right: max(1rem, env(safe-area-inset-right));
   bottom: max(1rem, env(safe-area-inset-bottom));
-  width: min(calc(100% - 2rem), 38rem);
+  width: min(calc(100% - 2rem), 30rem);
   padding: 0.75rem 0.9rem;
   border-radius: var(--radius-xs);
 }
 
 .connection-status--compact {
-  top: 0;
-  border-top: 0;
-  border-radius: 0 0 var(--radius-xs) var(--radius-xs);
+  left: 18px;
+  bottom: 132px;
+  width: calc(260px - 36px);
+  border-radius: 16px;
+  box-shadow: none;
 }
 
 .connection-status--compact button {
   display: inline-flex;
   align-items: center;
+  width: 100%;
   gap: 0.4rem;
   min-height: 2rem;
-  padding: 0.35rem 0.7rem;
+  padding: 0.65rem 0.7rem;
   border: 0;
   background: transparent;
   color: var(--ink);
   font-family: var(--font-mono);
   font-size: 0.7rem;
+  text-align: left;
 }
 
 .connection-status--compact button:focus-visible,
@@ -206,6 +209,25 @@ body {
   color: var(--muted);
   font-size: 0.8rem;
   line-height: 1.4;
+}
+
+@media (max-width: 960px) and (min-width: 901px) {
+  .connection-status--compact {
+    width: calc(220px - 36px);
+  }
+}
+
+@media (max-width: 900px) {
+  .connection-status--expanded {
+    bottom: max(5.5rem, calc(1rem + env(safe-area-inset-bottom)));
+  }
+
+  .connection-status--compact {
+    right: 1rem;
+    bottom: max(5.5rem, calc(1rem + env(safe-area-inset-bottom)));
+    left: auto;
+    width: auto;
+  }
 }
 
 a {
