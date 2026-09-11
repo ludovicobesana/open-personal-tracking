@@ -21,6 +21,10 @@ After the app shell is available offline, local create, edit, search, export,
 and restore operations continue to use that browser-local archive. They do not
 need an account, a provider, telemetry, cloud sync, or a network request.
 
+When the browser is offline, the app displays a dismissible status message. If
+the message is dismissed, a compact top-bar reminder remains available and can
+be opened again; it is cleared when connectivity returns.
+
 ## Limitations
 
 - Offline delivery starts only after a successful online visit and service

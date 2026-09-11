@@ -1,15 +1,19 @@
 'use client';
 
-import { Wifi, WifiOff } from 'lucide-react';
+import { Wifi, WifiOff, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 type ConnectionState = 'offline' | 'online' | null;
 
 const RECONNECTED_MESSAGE_DURATION_MS = 4_000;
+const OFFLINE_MESSAGE_DISMISSED_KEY =
+  'open-personal-tracking.offline-message-dismissed';
 
 /** Announces browser connectivity without changing local archive behavior. */
 export const ConnectionStatus = () => {
   const [connectionState, setConnectionState] = useState<ConnectionState>(null);
+  const [isOfflineMessageDismissed, setIsOfflineMessageDismissed] =
+    useState(false);
 
   useEffect(() => {
     let clearReconnectedMessage: number | undefined;
@@ -18,9 +22,14 @@ export const ConnectionStatus = () => {
       if (clearReconnectedMessage) {
         window.clearTimeout(clearReconnectedMessage);
       }
+      setIsOfflineMessageDismissed(
+        window.sessionStorage.getItem(OFFLINE_MESSAGE_DISMISSED_KEY) === 'true',
+      );
       setConnectionState('offline');
     };
     const showOnline = () => {
+      window.sessionStorage.removeItem(OFFLINE_MESSAGE_DISMISSED_KEY);
+      setIsOfflineMessageDismissed(false);
       setConnectionState('online');
       clearReconnectedMessage = window.setTimeout(
         () => setConnectionState(null),
@@ -41,13 +50,38 @@ export const ConnectionStatus = () => {
     };
   }, []);
 
+  const dismissOfflineMessage = () => {
+    window.sessionStorage.setItem(OFFLINE_MESSAGE_DISMISSED_KEY, 'true');
+    setIsOfflineMessageDismissed(true);
+  };
+
+  const showOfflineMessage = () => {
+    window.sessionStorage.removeItem(OFFLINE_MESSAGE_DISMISSED_KEY);
+    setIsOfflineMessageDismissed(false);
+  };
+
   if (!connectionState) return null;
 
   const isOffline = connectionState === 'offline';
 
+  if (isOffline && isOfflineMessageDismissed) {
+    return (
+      <div className="connection-status connection-status--compact">
+        <button
+          type="button"
+          onClick={showOfflineMessage}
+          aria-label="Show offline details"
+        >
+          <WifiOff aria-hidden="true" />
+          <span>Offline · working locally</span>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`connection-status ${isOffline ? 'is-offline' : 'is-online'}`}
+      className={`connection-status connection-status--expanded ${isOffline ? 'is-offline' : 'is-online'}`}
       role="status"
       aria-live="polite"
     >
@@ -60,6 +94,16 @@ export const ConnectionStatus = () => {
             : 'Your local library was not changed.'}
         </span>
       </div>
+      {isOffline && (
+        <button
+          className="connection-status-dismiss"
+          type="button"
+          onClick={dismissOfflineMessage}
+          aria-label="Dismiss offline message"
+        >
+          <X aria-hidden="true" />
+        </button>
+      )}
     </div>
   );
 };

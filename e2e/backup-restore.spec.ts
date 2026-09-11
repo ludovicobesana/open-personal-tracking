@@ -187,6 +187,11 @@ test('opens and restores local data while offline after its first visit', async 
     await expect(page.getByRole('status')).toHaveText(
       /You're offline.*Your library, changes, backups, and restores stay available on this device\./,
     );
+    await page.getByRole('button', { name: 'Dismiss offline message' }).click();
+    await expect(
+      page.getByRole('button', { name: 'Show offline details' }),
+    ).toBeVisible();
+    await page.getByRole('button', { name: 'Show offline details' }).click();
     await addItem(page, 'Offline archive item');
     await openItemDetail(page, 'Offline archive item');
     await page
