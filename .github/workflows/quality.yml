@@ -63,4 +63,4 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Test backup and restore flow in Chromium
-        run: npm run test:e2e
+        run: npx playwright test

@@ -125,8 +125,8 @@ npm test
 npm run test:e2e
 ```
 
-The end-to-end suite starts the web app and runs the backup-and-restore
-recovery flow in Chromium. Install its browser binary once with
+The end-to-end suite builds the production web app, then runs recovery and
+offline delivery flows in Chromium. Install its browser binary once with
 `npx playwright install chromium` before running it locally.
 
 ### Web app
@@ -149,7 +149,11 @@ Everyone is welcome to join, whether you want to triage, pick up an issue, or ju
 
 Early-stage.
 
-The web app provides browser-local tracking, complete JSON backup export, and validated JSON restore. The optional network layer remains under active development; see the [Product Requirements](docs/PRODUCT_REQUIREMENTS.md) and [Roadmap](ROADMAP.md) for the planned scope.
+The web app provides browser-local tracking, complete JSON backup export,
+validated JSON restore, and offline opening after a successful first visit.
+The optional network layer remains under active development; see the [Product
+Requirements](docs/PRODUCT_REQUIREMENTS.md) and [Roadmap](ROADMAP.md) for the
+planned scope.
 
 The first milestone is intentionally small: prove that a user can create data locally, close the app, reopen it, export everything, delete the local state, restore the backup, and recover the same information.
 

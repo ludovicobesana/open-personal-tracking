@@ -2,6 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
 
+import { OfflineSupport } from './offline-support';
+
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-display' });
 const ibmSans = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -40,7 +42,10 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${ibmSans.variable} ${ibmMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <OfflineSupport />
+        {children}
+      </body>
     </html>
   );
 }

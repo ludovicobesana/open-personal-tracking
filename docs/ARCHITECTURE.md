@@ -99,6 +99,11 @@ leaf units. `ArchiveApplication` records watches, rewatches, and reopening as
 separate history entries; React must not maintain an independent source of
 episode completion state.
 
+The production web app also has a narrowly scoped service worker for offline
+delivery. It caches only the app shell and required same-origin static assets;
+it never caches or mediates the IndexedDB archive, backup files, or user-owned
+state. See [Offline web delivery](OFFLINE.md) for behavior and limitations.
+
 ## Generic item model
 
 Avoid tables and domain logic tied to a single media category.
