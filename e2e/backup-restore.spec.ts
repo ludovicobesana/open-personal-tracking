@@ -245,6 +245,8 @@ test('opens and restores local data while offline after its first visit', async 
       .click();
     await expect(itemInList(page, 'Offline archive item')).toBeVisible();
   } finally {
-    await page.context().setOffline(false);
+    if (!page.isClosed()) {
+      await page.context().setOffline(false);
+    }
   }
 });
