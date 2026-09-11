@@ -4,13 +4,18 @@ import { Wifi, WifiOff, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 type ConnectionState = 'offline' | 'online' | null;
+type ConnectionStatusPlacement = 'desktop' | 'mobile';
 
 const RECONNECTED_MESSAGE_DURATION_MS = 4_000;
 const OFFLINE_MESSAGE_DISMISSED_KEY =
   'open-personal-tracking.offline-message-dismissed';
 
 /** Announces browser connectivity without changing local archive behavior. */
-export const ConnectionStatus = () => {
+export const ConnectionStatus = ({
+  placement,
+}: {
+  placement: ConnectionStatusPlacement;
+}) => {
   const [connectionState, setConnectionState] = useState<ConnectionState>(null);
   const [isOfflineMessageDismissed, setIsOfflineMessageDismissed] =
     useState(false);
@@ -66,7 +71,9 @@ export const ConnectionStatus = () => {
 
   if (isOffline && isOfflineMessageDismissed) {
     return (
-      <div className="connection-status connection-status--compact">
+      <div
+        className={`connection-status connection-status--${placement} connection-status--compact`}
+      >
         <button
           type="button"
           onClick={showOfflineMessage}
@@ -81,7 +88,7 @@ export const ConnectionStatus = () => {
 
   return (
     <div
-      className={`connection-status connection-status--expanded ${isOffline ? 'is-offline' : 'is-online'}`}
+      className={`connection-status connection-status--${placement} connection-status--expanded ${isOffline ? 'is-offline' : 'is-online'}`}
       role="status"
       aria-live="polite"
     >

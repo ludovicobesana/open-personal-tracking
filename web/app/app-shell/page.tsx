@@ -728,7 +728,7 @@ export default function AppShellPage() {
       className="app-shell"
       aria-label="Open personal tracking application shell"
     >
-      <ConnectionStatus />
+      <ConnectionStatus placement="mobile" />
       <aside className="sidebar" aria-label="Navigation sidebar">
         <a
           href="#"
@@ -856,13 +856,16 @@ export default function AppShellPage() {
           </button>
         </nav>
 
-        <div className="sidebar-meta" aria-live="polite">
-          <div className="status-block">
-            <span>Local sync</span>
-            <span className="status-dot" aria-label="Connected locally" />
+        <div className="sidebar-footer">
+          <ConnectionStatus placement="desktop" />
+          <div className="sidebar-meta" aria-live="polite">
+            <div className="status-block">
+              <span>Local sync</span>
+              <span className="status-dot" aria-label="Connected locally" />
+            </div>
+            <strong>Local archive</strong>
+            <div>{items.length} items stored on this device</div>
           </div>
-          <strong>Local archive</strong>
-          <div>{items.length} items stored on this device</div>
         </div>
       </aside>
 

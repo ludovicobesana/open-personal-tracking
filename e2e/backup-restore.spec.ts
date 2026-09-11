@@ -191,6 +191,15 @@ test('opens and restores local data while offline after its first visit', async 
     await expect(
       page.getByRole('button', { name: 'Show offline details' }),
     ).toBeVisible();
+    const [offlineReminderBox, localSyncLabelBox] = await Promise.all([
+      page.getByRole('button', { name: 'Show offline details' }).boundingBox(),
+      page.getByText('Local sync', { exact: true }).boundingBox(),
+    ]);
+    expect(offlineReminderBox).not.toBeNull();
+    expect(localSyncLabelBox).not.toBeNull();
+    expect(
+      offlineReminderBox!.y + offlineReminderBox!.height,
+    ).toBeLessThanOrEqual(localSyncLabelBox!.y);
     await page.getByRole('button', { name: 'Show offline details' }).click();
     await addItem(page, 'Offline archive item');
     await openItemDetail(page, 'Offline archive item');
