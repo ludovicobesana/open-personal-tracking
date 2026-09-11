@@ -68,6 +68,18 @@ const openManagePage = (page: Page, name: 'Export' | 'Import') =>
     .getByRole('button', { name, exact: true })
     .click();
 
+const activateOfflineSupport = async (page: Page): Promise<void> => {
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => navigator.serviceWorker.controller?.state === 'activated',
+      ),
+    )
+    .toBe(true);
+};
+
 test.beforeEach(async ({ page }) => {
   await completeOnboarding(page);
   await page.goto(APP_PATH);
@@ -161,4 +173,80 @@ test('keeps the existing archive when a backup file is invalid', async ({
     .first()
     .click();
   await expect(itemInList(page, 'Existing archive item')).toBeVisible();
+});
+
+test('opens and restores local data while offline after its first visit', async ({
+  page,
+}, testInfo) => {
+  await activateOfflineSupport(page);
+  await page.context().setOffline(true);
+
+  try {
+    await page.reload();
+    await expect(page.getByRole('button', { name: 'New item' })).toBeVisible();
+    await expect(page.getByRole('status')).toHaveText(
+      /You're offline.*Your library, changes, backups, and restores stay available on this device\./,
+    );
+    await page.getByRole('button', { name: 'Dismiss offline message' }).click();
+    await expect(
+      page.getByRole('button', { name: 'Show offline details' }),
+    ).toBeVisible();
+    const [offlineReminderBox, localSyncLabelBox] = await Promise.all([
+      page.getByRole('button', { name: 'Show offline details' }).boundingBox(),
+      page.getByText('Local sync', { exact: true }).boundingBox(),
+    ]);
+    expect(offlineReminderBox).not.toBeNull();
+    expect(localSyncLabelBox).not.toBeNull();
+    expect(
+      offlineReminderBox!.y + offlineReminderBox!.height,
+    ).toBeLessThanOrEqual(localSyncLabelBox!.y);
+    await page.getByRole('button', { name: 'Show offline details' }).click();
+    await addItem(page, 'Offline archive item');
+    await openItemDetail(page, 'Offline archive item');
+    await page
+      .getByRole('complementary', { name: 'Selected item details' })
+      .getByRole('button', { name: 'Edit' })
+      .click();
+    await page
+      .getByRole('dialog', { name: 'New item' })
+      .getByLabel('Description')
+      .fill('Updated without a network connection.');
+    await page
+      .getByRole('dialog', { name: 'New item' })
+      .getByRole('button', { name: 'Save item' })
+      .click();
+    await page
+      .getByLabel('Search your library')
+      .first()
+      .fill('Offline archive item');
+    await expect(itemInList(page, 'Offline archive item')).toBeVisible();
+
+    await openManagePage(page, 'Export');
+    const downloadPromise = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Export now' }).click();
+    const download = await downloadPromise;
+    const backupPath = testInfo.outputPath(download.suggestedFilename());
+    await download.saveAs(backupPath);
+
+    await clearArchive(page);
+    await page.reload();
+    await expect(page.getByText('Nothing tracked yet')).toBeVisible();
+
+    await openManagePage(page, 'Import');
+    page.once('dialog', (dialog) => dialog.accept());
+    await page.locator('input[type="file"]').setInputFiles(backupPath);
+    await expect(page.getByText(/^Restored 1 item from /)).toHaveText(
+      /^Restored 1 item from open-personal-tracking-backup-.*\.json\.$/,
+    );
+    await page
+      .getByRole('navigation', { name: 'Primary navigation' })
+      .getByRole('button', { name: /^Library/ })
+      .first()
+      .click();
+    await expect(itemInList(page, 'Offline archive item')).toBeVisible();
+  } finally {
+    if (!page.isClosed()) {
+      await page.context().setOffline(false);
+    }
+  }
 });
