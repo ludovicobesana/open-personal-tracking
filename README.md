@@ -85,6 +85,7 @@ Series are tracked at episode level. A season is complete only when every episod
 - [Design Principles](DESIGN_PRINCIPLES.md)
 - [Data Format](DATA_FORMAT.md)
 - [Data Ownership and Portability](docs/DATA_OWNERSHIP.md)
+- [TV Time GDPR CSV Import](docs/TV_TIME_IMPORT.md)
 - [Data Governance](DATA_GOVERNANCE.md)
 - [Privacy](PRIVACY.md)
 - [open-personal-tracking Network](docs/NETWORK.md)

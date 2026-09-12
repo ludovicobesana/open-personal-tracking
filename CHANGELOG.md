@@ -14,6 +14,10 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 - Automated linting and formatting checks for contributions and pull requests, with staged-file checks before each commit.
 - Series tracking in the app shell, with season and episode views.
 - Episode-level completion: a season is complete only when all of its episodes are marked watched.
+- Creation and editing of series seasons and episodes, including optional
+  descriptions and image URLs at both levels.
+- A browser-local TV Time GDPR export importer with ZIP support, a safe preview,
+  conflict choices, and documented source limitations.
 - A reusable favicon configuration for the Next.js site and app shell.
 - Browser-local archive persistence for the app shell, including persisted items, preferences, progress, and history.
 

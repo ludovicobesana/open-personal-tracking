@@ -12,6 +12,7 @@ import {
   UserRound,
   X,
 } from 'lucide-react';
+import Image from 'next/image';
 import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -23,25 +24,51 @@ import {
   type ArchiveSnapshot,
   type Item,
   type ItemStatus,
+  type TrackingUnit,
   UserPreferencesSchema,
   type UserPreferences,
 } from '../../../src/domain/archive';
 import { filterItems, getHistoryTimeline } from '../../../src/domain/search';
+import {
+  applyTvTimeImport,
+  extractTvTimeCsvFilesFromZip,
+  previewTvTimeImport,
+  type TvTimeDuplicateResolution,
+  type TvTimeImportPreview,
+} from '../../../src/import/tv-time';
 import { ConnectionStatus } from '../connection-status';
 
 type Episode = {
   id: string;
   number: number;
   title: string;
+  description?: string;
+  imageUrl?: string;
   completed: boolean;
 };
 type SeriesSeason = {
   id: string;
   number: number;
   title: string;
+  description?: string;
+  imageUrl?: string;
   episodes: Episode[];
 };
 type EpisodeSelection = { seasonNumber: number; episodeNumber: number };
+type SeriesDraftEpisode = {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  completed: boolean;
+};
+type SeriesDraftSeason = {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  episodes: SeriesDraftEpisode[];
+};
 type ItemForm = {
   title: string;
   category: string;
@@ -51,6 +78,7 @@ type ItemForm = {
   notes: string;
   tags: string;
   collections: string;
+  seasons: SeriesDraftSeason[];
 };
 type TrackedItem = {
   id: string;
@@ -64,6 +92,8 @@ type TrackedItem = {
   meta: string;
   next: string;
   value: number;
+  progressKind: 'percent' | 'count';
+  progressText: string;
   description: string;
   tags: string[];
   rating?: number;
@@ -163,6 +193,8 @@ const toSeriesSeasons = (item: Item): SeriesSeason[] =>
       id: season.id,
       number: season.position ?? index + 1,
       title: season.title,
+      description: season.description,
+      imageUrl: season.imageUrl,
       episodes: orderedByPosition(
         item.subunits.filter(
           (unit) => unit.parentId === season.id && unit.kind === 'episode',
@@ -171,16 +203,33 @@ const toSeriesSeasons = (item: Item): SeriesSeason[] =>
         id: episode.id,
         number: episode.position ?? episodeIndex + 1,
         title: episode.title,
+        description: episode.description,
+        imageUrl: episode.imageUrl,
         completed: episode.completed,
       })),
     }),
   );
+
+const progressUnitLabel = (item: Item, amount?: number): string => {
+  if (item.progress.unit !== 'subunits') return item.progress.unit;
+
+  const count = amount ?? item.progress.target ?? item.progress.current;
+  if (item.category === 'Series') {
+    return count === 1 ? 'episode' : 'episodes';
+  }
+  return count === 1 ? 'tracked entry' : 'tracked entries';
+};
 
 const toTrackedItem = (
   item: Item,
   defaultPlaceholderCover: boolean,
 ): TrackedItem => {
   const target = item.progress.target;
+  const hasAggregateEpisodeCount =
+    item.category === 'Series' &&
+    item.progress.unit === 'episodes' &&
+    target === undefined &&
+    item.subunits.length === 0;
   const value =
     target && target > 0
       ? Math.min(100, (item.progress.current / target) * 100)
@@ -201,11 +250,21 @@ const toTrackedItem = (
     status,
     meta:
       stringAttribute(item, 'meta') ??
-      (target ? `${target} ${item.progress.unit}` : item.progress.unit),
+      (target
+        ? `${target} ${progressUnitLabel(item, target)}`
+        : progressUnitLabel(item)),
     next:
       stringAttribute(item, 'next') ??
-      (status === 'completed' ? 'Finished' : `${Math.round(value)}% complete`),
+      (hasAggregateEpisodeCount
+        ? `${item.progress.current} episodes watched`
+        : status === 'completed'
+          ? 'Finished'
+          : `${Math.round(value)}% complete`),
     value,
+    progressKind: hasAggregateEpisodeCount ? 'count' : 'percent',
+    progressText: hasAggregateEpisodeCount
+      ? `${item.progress.current} episodes watched`
+      : `${Math.round(value)}% complete`,
     description: item.description ?? '',
     tags: item.tags,
     rating: item.rating,
@@ -225,6 +284,8 @@ const noSelection: TrackedItem = {
   meta: '—',
   next: 'Choose an item from your library',
   value: 0,
+  progressKind: 'percent',
+  progressText: '0% complete',
   description: 'Select an item to see its details.',
   tags: [],
 };
@@ -240,7 +301,49 @@ const emptyItemForm = (): ItemForm => ({
   notes: '',
   tags: '',
   collections: '',
+  seasons: [],
 });
+const draftId = (): string => crypto.randomUUID();
+const emptyEpisodeDraft = (): SeriesDraftEpisode => ({
+  id: draftId(),
+  title: '',
+  description: '',
+  imageUrl: '',
+  completed: false,
+});
+const emptySeasonDraft = (): SeriesDraftSeason => ({
+  id: draftId(),
+  title: '',
+  description: '',
+  imageUrl: '',
+  episodes: [emptyEpisodeDraft()],
+});
+const optionalUrl = (value: string): string | undefined =>
+  value.trim() || undefined;
+const seriesSubunits = (seasons: SeriesDraftSeason[]): TrackingUnit[] =>
+  seasons.flatMap((season, seasonIndex) => [
+    {
+      id: season.id,
+      kind: 'season' as const,
+      title: season.title.trim(),
+      description: season.description.trim() || undefined,
+      imageUrl: optionalUrl(season.imageUrl),
+      position: seasonIndex + 1,
+      completed: false,
+      watchCount: 0,
+    },
+    ...season.episodes.map((episode, episodeIndex) => ({
+      id: episode.id,
+      kind: 'episode' as const,
+      title: episode.title.trim(),
+      description: episode.description.trim() || undefined,
+      imageUrl: optionalUrl(episode.imageUrl),
+      parentId: season.id,
+      position: episodeIndex + 1,
+      completed: episode.completed,
+      watchCount: episode.completed ? 1 : 0,
+    })),
+  ]);
 const listFromInput = (value: string): string[] =>
   Array.from(
     new Set(
@@ -273,8 +376,13 @@ export default function AppShellPage() {
   const [storageError, setStorageError] = useState<string | null>(null);
   const [operationError, setOperationError] = useState<string | null>(null);
   const [backupStatus, setBackupStatus] = useState<string | null>(null);
+  const [tvTimePreview, setTvTimePreview] =
+    useState<TvTimeImportPreview | null>(null);
+  const [tvTimeDuplicateResolution, setTvTimeDuplicateResolution] =
+    useState<TvTimeDuplicateResolution>('skip');
   const application = useRef<ArchiveApplication | null>(null);
   const restoreInput = useRef<HTMLInputElement | null>(null);
+  const tvTimeInput = useRef<HTMLInputElement | null>(null);
   const preferenceSaveQueue = useRef<Promise<void>>(Promise.resolve());
   const preferenceSaveRevision = useRef(0);
 
@@ -441,7 +549,9 @@ export default function AppShellPage() {
     ? `Page ${selectedPageCurrent} of ${selectedPageTarget}`
     : selectedEpisodes.length > 0
       ? `${selectedCompletedEpisodes} of ${selectedEpisodes.length} episodes completed`
-      : selectedItem.next;
+      : selectedItem.progressKind === 'count'
+        ? selectedItem.progressText
+        : selectedItem.next;
 
   useEffect(() => {
     setSelectedId((current) =>
@@ -467,6 +577,21 @@ export default function AppShellPage() {
 
   const handleEditSelected = () => {
     if (!hasSelectedItem) return;
+    const seasons = selectedDomainItem
+      ? toSeriesSeasons(selectedDomainItem).map((season) => ({
+          id: season.id,
+          title: season.title,
+          description: season.description ?? '',
+          imageUrl: season.imageUrl ?? '',
+          episodes: season.episodes.map((episode) => ({
+            id: episode.id,
+            title: episode.title,
+            description: episode.description ?? '',
+            imageUrl: episode.imageUrl ?? '',
+            completed: episode.completed,
+          })),
+        }))
+      : [];
     setNewItem({
       title: selectedItem.title,
       category: selectedItem.category,
@@ -476,6 +601,7 @@ export default function AppShellPage() {
       notes: selectedDomainItem?.notes.join('\n') ?? '',
       tags: selectedItem.tags.join(', '),
       collections: selectedDomainItem?.collections.join(', ') ?? '',
+      seasons,
     });
     setEditingItemId(selectedItem.id);
     setNewItemUsesPlaceholderCover(selectedItem.usePlaceholderCover);
@@ -493,6 +619,79 @@ export default function AppShellPage() {
   const closeItemDrawer = () => {
     setDrawerOpen(false);
     setEditingItemId(null);
+  };
+
+  const updateDraftSeason = (
+    seasonId: string,
+    update: Partial<SeriesDraftSeason>,
+  ) => {
+    setNewItem((state) => ({
+      ...state,
+      seasons: state.seasons.map((season) =>
+        season.id === seasonId ? { ...season, ...update } : season,
+      ),
+    }));
+  };
+
+  const updateDraftEpisode = (
+    seasonId: string,
+    episodeId: string,
+    update: Partial<SeriesDraftEpisode>,
+  ) => {
+    setNewItem((state) => ({
+      ...state,
+      seasons: state.seasons.map((season) =>
+        season.id === seasonId
+          ? {
+              ...season,
+              episodes: season.episodes.map((episode) =>
+                episode.id === episodeId ? { ...episode, ...update } : episode,
+              ),
+            }
+          : season,
+      ),
+    }));
+  };
+
+  const addDraftSeason = () => {
+    setNewItem((state) => ({
+      ...state,
+      seasons: [...state.seasons, emptySeasonDraft()],
+    }));
+  };
+
+  const removeDraftSeason = (seasonId: string) => {
+    setNewItem((state) => ({
+      ...state,
+      seasons: state.seasons.filter((season) => season.id !== seasonId),
+    }));
+  };
+
+  const addDraftEpisode = (seasonId: string) => {
+    setNewItem((state) => ({
+      ...state,
+      seasons: state.seasons.map((season) =>
+        season.id === seasonId
+          ? { ...season, episodes: [...season.episodes, emptyEpisodeDraft()] }
+          : season,
+      ),
+    }));
+  };
+
+  const removeDraftEpisode = (seasonId: string, episodeId: string) => {
+    setNewItem((state) => ({
+      ...state,
+      seasons: state.seasons.map((season) =>
+        season.id === seasonId
+          ? {
+              ...season,
+              episodes: season.episodes.filter(
+                (episode) => episode.id !== episodeId,
+              ),
+            }
+          : season,
+      ),
+    }));
   };
 
   const handleReportBug = () => {
@@ -607,6 +806,70 @@ export default function AppShellPage() {
     }
   };
 
+  const handleTvTimeFiles = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files ?? []);
+    event.target.value = '';
+    if (files.length === 0 || !archive) return;
+
+    try {
+      const preview = previewTvTimeImport(
+        (
+          await Promise.all(
+            files.map(async (file) =>
+              file.name.toLowerCase().endsWith('.zip')
+                ? extractTvTimeCsvFilesFromZip(
+                    new Uint8Array(await file.arrayBuffer()),
+                  )
+                : [{ name: file.name, text: await file.text() }],
+            ),
+          )
+        ).flat(),
+        archive,
+      );
+      setTvTimePreview(preview);
+      setTvTimeDuplicateResolution('skip');
+      setOperationError(null);
+      setBackupStatus(null);
+    } catch (error) {
+      setTvTimePreview(null);
+      setOperationError(
+        error instanceof Error
+          ? `Could not read this TV Time export. Your current local archive was not changed: ${error.message}`
+          : 'Could not read this TV Time export. Your current local archive was not changed.',
+      );
+    }
+  };
+
+  const handleTvTimeImport = async () => {
+    if (!archive || !application.current || !tvTimePreview) return;
+
+    try {
+      const prepared = applyTvTimeImport(
+        archive,
+        tvTimePreview,
+        tvTimeDuplicateResolution,
+      );
+      const restored = await application.current.restoreBackup(prepared);
+      const importedCount =
+        tvTimePreview.items.length -
+        (tvTimeDuplicateResolution === 'skip'
+          ? tvTimePreview.conflicts.length
+          : 0);
+      setArchive(restored);
+      setTvTimePreview(null);
+      setOperationError(null);
+      setBackupStatus(
+        `Imported ${importedCount} ${importedCount === 1 ? 'item' : 'items'} from TV Time locally.`,
+      );
+    } catch (error) {
+      setOperationError(
+        error instanceof Error
+          ? `Could not import TV Time data. Your current local archive was not changed: ${error.message}`
+          : 'Could not import TV Time data. Your current local archive was not changed.',
+      );
+    }
+  };
+
   const recordEpisodeWatch = async (episodeId: string) => {
     if (!archive || !application.current || !selectedDomainItem) return;
 
@@ -649,6 +912,22 @@ export default function AppShellPage() {
       setOperationError('Rating must be a number between 0 and 5');
       return;
     }
+    const hasInvalidSeriesStructure =
+      newItem.category === 'Series' &&
+      newItem.seasons.some(
+        (season) =>
+          !season.title.trim() ||
+          season.episodes.length === 0 ||
+          season.episodes.some((episode) => !episode.title.trim()),
+      );
+    if (hasInvalidSeriesStructure) {
+      setOperationError(
+        'Each season needs a title and at least one titled episode before saving.',
+      );
+      return;
+    }
+    const subunits =
+      newItem.category === 'Series' ? seriesSubunits(newItem.seasons) : [];
 
     try {
       const next = editingItemId
@@ -665,6 +944,7 @@ export default function AppShellPage() {
               .filter(Boolean),
             tags: listFromInput(newItem.tags),
             collections: listFromInput(newItem.collections),
+            subunits,
             attributes: {
               ...selectedDomainItem?.attributes,
               usePlaceholderCover: newItemUsesPlaceholderCover,
@@ -688,6 +968,7 @@ export default function AppShellPage() {
               .filter(Boolean),
             tags: listFromInput(newItem.tags),
             collections: listFromInput(newItem.collections),
+            subunits,
             attributes: { usePlaceholderCover: newItemUsesPlaceholderCover },
           });
       const savedItem = editingItemId ?? next.items.at(-1)?.id ?? null;
@@ -1123,17 +1404,28 @@ export default function AppShellPage() {
                             </div>
 
                             <div className="item-right">
-                              <div
-                                className="progress-ring"
-                                style={{
-                                  ['--value' as string]: getItemProgress(item),
-                                }}
-                                aria-label={`${Math.round(getItemProgress(item))}% complete`}
-                              >
-                                <span>
-                                  {Math.round(getItemProgress(item))}%
+                              {item.progressKind === 'count' ? (
+                                <span
+                                  className="item-progress-count"
+                                  aria-label={item.progressText}
+                                >
+                                  {item.value}
+                                  <small>episodes</small>
                                 </span>
-                              </div>
+                              ) : (
+                                <div
+                                  className="progress-ring"
+                                  style={{
+                                    ['--value' as string]:
+                                      getItemProgress(item),
+                                  }}
+                                  aria-label={item.progressText}
+                                >
+                                  <span>
+                                    {Math.round(getItemProgress(item))}%
+                                  </span>
+                                </div>
+                              )}
                               <button
                                 type="button"
                                 className="mini-btn"
@@ -1239,19 +1531,112 @@ export default function AppShellPage() {
                     <h3 id="progress-label" className="section-label">
                       Progress
                     </h3>
-                    <div className="progress-stack">
-                      <div className="progress-line" aria-hidden="true">
-                        <span
-                          className="progress-bar"
-                          style={{ width: `${selectedProgress}%` }}
-                        />
+                    {selectedItem.progressKind === 'count' ? (
+                      <p className="detail-aggregate-progress">
+                        {selectedProgressLabel}. TV Time did not provide season
+                        or episode rows for this series in the selected export.
+                      </p>
+                    ) : (
+                      <div className="progress-stack">
+                        <div className="progress-line" aria-hidden="true">
+                          <span
+                            className="progress-bar"
+                            style={{ width: `${selectedProgress}%` }}
+                          />
+                        </div>
+                        <div className="progress-values">
+                          <span>{selectedProgressLabel}</span>
+                          <span>{selectedProgressPercent}%</span>
+                        </div>
                       </div>
-                      <div className="progress-values">
-                        <span>{selectedProgressLabel}</span>
-                        <span>{selectedProgressPercent}%</span>
-                      </div>
-                    </div>
+                    )}
                   </section>
+
+                  {selectedItem.category === 'Series' && (
+                    <section
+                      className="detail-section detail-series-overview"
+                      aria-labelledby="series-overview-label"
+                    >
+                      <div className="detail-series-overview-head">
+                        <div>
+                          <h3
+                            id="series-overview-label"
+                            className="section-label"
+                          >
+                            Seasons and episodes
+                          </h3>
+                          <p>
+                            {selectedEpisodes.length > 0
+                              ? `${selectedCompletedEpisodes} of ${selectedEpisodes.length} episodes watched`
+                              : 'No episode structure has been added yet.'}
+                          </p>
+                        </div>
+                        <button
+                          className="mini-btn"
+                          type="button"
+                          onClick={handleEditSelected}
+                        >
+                          Edit episodes
+                        </button>
+                      </div>
+
+                      {selectedSeasons.length > 0 ? (
+                        <div className="detail-season-list">
+                          {selectedSeasons.map((season) => {
+                            const watchedEpisodes = season.episodes.filter(
+                              (episode) => episode.completed,
+                            ).length;
+                            return (
+                              <section
+                                className="detail-season-summary"
+                                key={season.id}
+                              >
+                                <div className="detail-season-summary-head">
+                                  <strong>{season.title}</strong>
+                                  <span>
+                                    {watchedEpisodes}/{season.episodes.length}{' '}
+                                    watched
+                                  </span>
+                                </div>
+                                {season.description && (
+                                  <p>{season.description}</p>
+                                )}
+                                <ul className="detail-episode-list">
+                                  {season.episodes.map((episode) => (
+                                    <li key={episode.id}>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          setDetailView('expanded');
+                                          setSelectedEpisode({
+                                            seasonNumber: season.number,
+                                            episodeNumber: episode.number,
+                                          });
+                                        }}
+                                      >
+                                        <span aria-hidden="true">
+                                          {episode.completed ? '✓' : '○'}
+                                        </span>
+                                        <span>
+                                          E{episode.number} · {episode.title}
+                                        </span>
+                                      </button>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </section>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <p className="detail-series-empty">
+                          {selectedItem.progressKind === 'count'
+                            ? `${selectedItem.progressText} were imported, but TV Time did not include individual season or episode rows for this series.`
+                            : 'Add seasons and episodes in edit mode to track them individually.'}
+                        </p>
+                      )}
+                    </section>
+                  )}
 
                   <section
                     className="detail-section"
@@ -1734,6 +2119,7 @@ export default function AppShellPage() {
                     ref={restoreInput}
                     type="file"
                     accept="application/json,.json"
+                    aria-label="Select an Open Personal Tracking JSON backup"
                     onChange={(event) => void handleRestoreBackup(event)}
                     hidden
                   />
@@ -1747,6 +2133,209 @@ export default function AppShellPage() {
                   <p className="empty-state" role="status">
                     {backupStatus}
                   </p>
+                )}
+                <section
+                  className="content-card tvtime-import-card"
+                  aria-labelledby="tvTimeImportTitle"
+                >
+                  <div className="tvtime-import-head">
+                    <Image
+                      className="tvtime-import-logo"
+                      src="/images/tvtime-logo.png"
+                      alt="TV Time"
+                      width={48}
+                      height={48}
+                    />
+                    <div>
+                      <span className="eyebrow">TV Time import</span>
+                      <h3 id="tvTimeImportTitle">Bring your history home</h3>
+                      <p>
+                        Import a TV Time GDPR export without sharing it with
+                        another service.
+                      </p>
+                    </div>
+                    <span className="tvtime-import-status">
+                      {tvTimePreview ? 'Ready to review' : 'Local only'}
+                    </span>
+                  </div>
+                  <ol className="tvtime-import-steps">
+                    <li>
+                      <strong>1. Choose your export</strong>
+                      <span>
+                        Use the GDPR ZIP file, or its extracted CSV files.
+                      </span>
+                    </li>
+                    <li>
+                      <strong>2. Review safely</strong>
+                      <span>
+                        See supported data, limitations, and duplicates first.
+                      </span>
+                    </li>
+                    <li>
+                      <strong>3. Confirm the import</strong>
+                      <span>
+                        Your current archive stays unchanged until confirmation.
+                      </span>
+                    </li>
+                  </ol>
+                  <div className="tvtime-import-actions">
+                    <button
+                      className="primary-btn"
+                      type="button"
+                      onClick={() => tvTimeInput.current?.click()}
+                    >
+                      Choose TV Time export
+                    </button>
+                    <span>ZIP recommended · CSV also supported</span>
+                  </div>
+                  <input
+                    ref={tvTimeInput}
+                    type="file"
+                    accept="application/zip,.zip,text/csv,.csv"
+                    aria-label="Select TV Time ZIP or CSV files"
+                    multiple
+                    onChange={(event) => void handleTvTimeFiles(event)}
+                    hidden
+                  />
+                  <p className="field-help tvtime-import-help">
+                    Processed only in this browser. Supported source tables are
+                    checked before your archive can change.
+                  </p>
+                </section>
+
+                {tvTimePreview && (
+                  <section
+                    className="content-card tvtime-preview-card"
+                    aria-labelledby="tvTimePreviewTitle"
+                  >
+                    <div className="tvtime-preview-head">
+                      <div>
+                        <span className="eyebrow">Step 2 of 3 · Preview</span>
+                        <h3 id="tvTimePreviewTitle">Review TV Time import</h3>
+                        <p>
+                          Nothing has changed in your archive yet. Confirm only
+                          after reviewing the summary below.
+                        </p>
+                      </div>
+                      <span className="tvtime-preview-safe">
+                        No changes yet
+                      </span>
+                    </div>
+                    <dl className="tvtime-preview-summary">
+                      <div>
+                        <dt>Ready to import</dt>
+                        <dd>
+                          {tvTimePreview.items.length}{' '}
+                          {tvTimePreview.items.length === 1 ? 'item' : 'items'}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Recognised source</dt>
+                        <dd>
+                          {tvTimePreview.files.length}{' '}
+                          {tvTimePreview.files.length === 1 ? 'file' : 'files'}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Episodes found</dt>
+                        <dd>
+                          {tvTimePreview.seriesStructure.episodeCount > 0
+                            ? `${tvTimePreview.seriesStructure.episodeCount} across ${tvTimePreview.seriesStructure.seasonCount} ${tvTimePreview.seriesStructure.seasonCount === 1 ? 'season' : 'seasons'}`
+                            : 'None in selected files'}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Needs attention</dt>
+                        <dd>
+                          {tvTimePreview.conflicts.length +
+                            tvTimePreview.warnings.length}{' '}
+                          notes
+                        </dd>
+                      </div>
+                    </dl>
+                    {tvTimePreview.seriesStructure.episodeCount > 0 && (
+                      <p className="tvtime-preview-structure">
+                        {tvTimePreview.seriesStructure.episodeCount} watched{' '}
+                        {tvTimePreview.seriesStructure.episodeCount === 1
+                          ? 'episode'
+                          : 'episodes'}{' '}
+                        will be added to{' '}
+                        {tvTimePreview.seriesStructure.seriesCount}{' '}
+                        {tvTimePreview.seriesStructure.seriesCount === 1
+                          ? 'series'
+                          : 'series'}
+                        . To add them to a matching series already in your
+                        library, choose “Update their TV Time progress and
+                        status” below.
+                      </p>
+                    )}
+                    {tvTimePreview.conflicts.length > 0 && (
+                      <fieldset className="setting-row">
+                        <legend>Matching local items</legend>
+                        <p>
+                          {tvTimePreview.conflicts.length}{' '}
+                          {tvTimePreview.conflicts.length === 1
+                            ? 'duplicate was'
+                            : 'duplicates were'}{' '}
+                          found. Choose how to handle them before importing.
+                        </p>
+                        <label>
+                          <input
+                            type="radio"
+                            name="tv-time-duplicate-resolution"
+                            checked={tvTimeDuplicateResolution === 'skip'}
+                            onChange={() =>
+                              setTvTimeDuplicateResolution('skip')
+                            }
+                          />{' '}
+                          Skip matching items
+                        </label>
+                        <label>
+                          <input
+                            type="radio"
+                            name="tv-time-duplicate-resolution"
+                            checked={tvTimeDuplicateResolution === 'update'}
+                            onChange={() =>
+                              setTvTimeDuplicateResolution('update')
+                            }
+                          />{' '}
+                          Update their TV Time progress and status, keeping
+                          local notes and collections
+                        </label>
+                      </fieldset>
+                    )}
+                    {tvTimePreview.warnings.length > 0 && (
+                      <section
+                        className="tvtime-preview-notes"
+                        aria-labelledby="tvTimeImportNotes"
+                      >
+                        <h4 id="tvTimeImportNotes">
+                          What will not be imported
+                        </h4>
+                        <ul>
+                          {tvTimePreview.warnings.map((warning) => (
+                            <li key={warning}>{warning}</li>
+                          ))}
+                        </ul>
+                      </section>
+                    )}
+                    <div className="inline-actions">
+                      <button
+                        className="primary-btn"
+                        type="button"
+                        onClick={() => void handleTvTimeImport()}
+                      >
+                        Confirm import
+                      </button>
+                      <button
+                        className="ghost-btn"
+                        type="button"
+                        onClick={() => setTvTimePreview(null)}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </section>
                 )}
               </>
             )}
@@ -1879,9 +2468,19 @@ export default function AppShellPage() {
                     <h3 id="detailPageProgress" className="section-label">
                       Progress
                     </h3>
-                    <strong>{selectedProgressPercent}%</strong>
+                    <strong>
+                      {selectedItem.progressKind === 'count'
+                        ? selectedItem.progressText
+                        : `${selectedProgressPercent}%`}
+                    </strong>
                   </div>
-                  {selectedEpisodes.length > 0 ? (
+                  {selectedItem.progressKind === 'count' ? (
+                    <p className="detail-progress-note">
+                      TV Time supplied only this aggregate watched-episode count
+                      for the series. It did not supply individual season or
+                      episode rows.
+                    </p>
+                  ) : selectedEpisodes.length > 0 ? (
                     <p className="detail-progress-note">
                       For a series, progress is calculated from completed
                       episodes. A season completes only when every episode in it
@@ -1912,7 +2511,9 @@ export default function AppShellPage() {
                   )}
                   <div className="progress-values">
                     <span>{selectedProgressLabel}</span>
-                    <span>{selectedProgressPercent}% complete</span>
+                    {selectedItem.progressKind !== 'count' && (
+                      <span>{selectedProgressPercent}% complete</span>
+                    )}
                   </div>
                 </section>
 
@@ -1957,6 +2558,11 @@ export default function AppShellPage() {
                             <div className="season-card-head">
                               <div>
                                 <h4>{season.title}</h4>
+                                {season.description && (
+                                  <p className="season-card-description">
+                                    {season.description}
+                                  </p>
+                                )}
                                 <span>
                                   {completedCount} of {season.episodes.length}{' '}
                                   episodes complete
@@ -1975,7 +2581,9 @@ export default function AppShellPage() {
                                     className={`episode-card ${isComplete ? 'is-complete' : ''}`}
                                     style={{
                                       backgroundImage: coverBackground(
-                                        selectedItem.image,
+                                        episode.imageUrl ??
+                                          season.imageUrl ??
+                                          selectedItem.image,
                                         selectedItem.usePlaceholderCover,
                                         'linear-gradient(180deg, rgba(10,12,15,0.05) 18%, rgba(10,12,15,0.85) 100%)',
                                       ),
@@ -2044,7 +2652,10 @@ export default function AppShellPage() {
                       Progress target:{' '}
                       {selectedDomainItem?.progress.target ?? 'Not set'}{' '}
                       {selectedDomainItem?.progress.target !== undefined
-                        ? selectedDomainItem.progress.unit
+                        ? progressUnitLabel(
+                            selectedDomainItem,
+                            selectedDomainItem.progress.target,
+                          )
                         : ''}
                     </span>
                     <span className="attribute">Local only</span>
@@ -2128,7 +2739,9 @@ export default function AppShellPage() {
                 aria-hidden="true"
                 style={{
                   backgroundImage: coverBackground(
-                    selectedItem.image,
+                    selectedEpisodeDetail.episode.imageUrl ??
+                      selectedEpisodeDetail.season.imageUrl ??
+                      selectedItem.image,
                     selectedItem.usePlaceholderCover,
                     'linear-gradient(180deg, rgba(10,12,15,0.06), rgba(10,12,15,0.7))',
                   ),
@@ -2170,7 +2783,10 @@ export default function AppShellPage() {
                   <h3 id="episodeSummaryTitle" className="section-label">
                     Synopsis
                   </h3>
-                  <p>No synopsis has been added for this episode yet.</p>
+                  <p>
+                    {selectedEpisodeDetail.episode.description ||
+                      'No synopsis has been added for this episode yet.'}
+                  </p>
                 </section>
                 <button
                   type="button"
@@ -2523,6 +3139,210 @@ export default function AppShellPage() {
                   ))}
                 </div>
               </div>
+
+              {newItem.category === 'Series' && (
+                <section
+                  className="series-editor"
+                  aria-labelledby="seriesEditorTitle"
+                >
+                  <div className="series-editor-head">
+                    <div>
+                      <span className="eyebrow">Series structure</span>
+                      <h4 id="seriesEditorTitle">Seasons and episodes</h4>
+                      <p>
+                        Add the episodes you want to track. Series progress is
+                        calculated from episodes marked as watched.
+                      </p>
+                    </div>
+                    <button
+                      className="ghost-btn"
+                      type="button"
+                      onClick={addDraftSeason}
+                    >
+                      Add season
+                    </button>
+                  </div>
+
+                  {newItem.seasons.length === 0 ? (
+                    <p className="series-editor-empty">
+                      No seasons yet. You can save a series without episode
+                      tracking, or add a season to track its progress.
+                    </p>
+                  ) : (
+                    <div className="series-editor-list">
+                      {newItem.seasons.map((season, seasonIndex) => (
+                        <section
+                          key={season.id}
+                          className="series-draft-season"
+                        >
+                          <div className="series-draft-head">
+                            <h5>Season {seasonIndex + 1}</h5>
+                            <button
+                              className="mini-btn"
+                              type="button"
+                              onClick={() => removeDraftSeason(season.id)}
+                            >
+                              Remove season
+                            </button>
+                          </div>
+                          <label
+                            className="field-label"
+                            htmlFor={`season-title-${season.id}`}
+                          >
+                            Season {seasonIndex + 1} title
+                          </label>
+                          <input
+                            className="field-control"
+                            id={`season-title-${season.id}`}
+                            value={season.title}
+                            onChange={(event) =>
+                              updateDraftSeason(season.id, {
+                                title: event.target.value,
+                              })
+                            }
+                            placeholder={`Season ${seasonIndex + 1}`}
+                          />
+                          <label
+                            className="field-label"
+                            htmlFor={`season-description-${season.id}`}
+                          >
+                            Season {seasonIndex + 1} information
+                          </label>
+                          <textarea
+                            className="field-control"
+                            id={`season-description-${season.id}`}
+                            value={season.description}
+                            onChange={(event) =>
+                              updateDraftSeason(season.id, {
+                                description: event.target.value,
+                              })
+                            }
+                            placeholder="Private notes or a short description"
+                          />
+                          <label
+                            className="field-label"
+                            htmlFor={`season-image-${season.id}`}
+                          >
+                            Season {seasonIndex + 1} image URL
+                          </label>
+                          <input
+                            className="field-control"
+                            id={`season-image-${season.id}`}
+                            type="url"
+                            value={season.imageUrl}
+                            onChange={(event) =>
+                              updateDraftSeason(season.id, {
+                                imageUrl: event.target.value,
+                              })
+                            }
+                            placeholder="https://…"
+                          />
+
+                          <div className="series-draft-episodes">
+                            <div className="series-draft-head">
+                              <h6>Episodes</h6>
+                              <button
+                                className="mini-btn"
+                                type="button"
+                                onClick={() => addDraftEpisode(season.id)}
+                              >
+                                Add episode
+                              </button>
+                            </div>
+                            {season.episodes.map((episode, episodeIndex) => (
+                              <fieldset
+                                key={episode.id}
+                                className="series-draft-episode"
+                              >
+                                <legend>Episode {episodeIndex + 1}</legend>
+                                <label
+                                  className="field-label"
+                                  htmlFor={`episode-title-${episode.id}`}
+                                >
+                                  Episode {episodeIndex + 1} title
+                                </label>
+                                <input
+                                  className="field-control"
+                                  id={`episode-title-${episode.id}`}
+                                  value={episode.title}
+                                  onChange={(event) =>
+                                    updateDraftEpisode(season.id, episode.id, {
+                                      title: event.target.value,
+                                    })
+                                  }
+                                  placeholder="Episode title"
+                                />
+                                <label
+                                  className="field-label"
+                                  htmlFor={`episode-description-${episode.id}`}
+                                >
+                                  Episode {episodeIndex + 1} information
+                                </label>
+                                <textarea
+                                  className="field-control"
+                                  id={`episode-description-${episode.id}`}
+                                  value={episode.description}
+                                  onChange={(event) =>
+                                    updateDraftEpisode(season.id, episode.id, {
+                                      description: event.target.value,
+                                    })
+                                  }
+                                  placeholder="Private notes or a short description"
+                                />
+                                <label
+                                  className="field-label"
+                                  htmlFor={`episode-image-${episode.id}`}
+                                >
+                                  Episode {episodeIndex + 1} image URL
+                                </label>
+                                <input
+                                  className="field-control"
+                                  id={`episode-image-${episode.id}`}
+                                  type="url"
+                                  value={episode.imageUrl}
+                                  onChange={(event) =>
+                                    updateDraftEpisode(season.id, episode.id, {
+                                      imageUrl: event.target.value,
+                                    })
+                                  }
+                                  placeholder="https://…"
+                                />
+                                <div className="series-draft-episode-actions">
+                                  <label>
+                                    <input
+                                      type="checkbox"
+                                      checked={episode.completed}
+                                      onChange={(event) =>
+                                        updateDraftEpisode(
+                                          season.id,
+                                          episode.id,
+                                          {
+                                            completed: event.target.checked,
+                                          },
+                                        )
+                                      }
+                                    />{' '}
+                                    Watched
+                                  </label>
+                                  <button
+                                    className="mini-btn"
+                                    type="button"
+                                    onClick={() =>
+                                      removeDraftEpisode(season.id, episode.id)
+                                    }
+                                  >
+                                    Remove
+                                  </button>
+                                </div>
+                              </fieldset>
+                            ))}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              )}
 
               <label
                 className="setting-row"
