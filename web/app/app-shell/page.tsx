@@ -3,6 +3,8 @@
 import {
   ArrowDownToLine,
   ArrowUpFromLine,
+  CircleAlert,
+  CircleCheck,
   Compass,
   FolderKanban,
   History,
@@ -55,6 +57,11 @@ type SeriesSeason = {
   episodes: Episode[];
 };
 type EpisodeSelection = { seasonNumber: number; episodeNumber: number };
+type ImportFeedback = {
+  kind: 'error' | 'success' | 'warning';
+  message: string;
+  title: string;
+};
 type SeriesDraftEpisode = {
   id: string;
   title: string;
@@ -380,6 +387,8 @@ export default function AppShellPage() {
     useState<TvTimeImportPreview | null>(null);
   const [tvTimeDuplicateResolution, setTvTimeDuplicateResolution] =
     useState<TvTimeDuplicateResolution>('skip');
+  const [tvTimeImportFeedback, setTvTimeImportFeedback] =
+    useState<ImportFeedback | null>(null);
   const application = useRef<ArchiveApplication | null>(null);
   const restoreInput = useRef<HTMLInputElement | null>(null);
   const tvTimeInput = useRef<HTMLInputElement | null>(null);
@@ -830,13 +839,24 @@ export default function AppShellPage() {
       setTvTimeDuplicateResolution('skip');
       setOperationError(null);
       setBackupStatus(null);
+      setTvTimeImportFeedback({
+        kind: preview.warnings.length > 0 ? 'warning' : 'success',
+        title: 'TV Time export ready to review',
+        message:
+          preview.warnings.length > 0
+            ? 'Review the import notes and any matching local items before confirming.'
+            : 'The export was read locally. Review the summary before confirming.',
+      });
     } catch (error) {
       setTvTimePreview(null);
-      setOperationError(
-        error instanceof Error
-          ? `Could not read this TV Time export. Your current local archive was not changed: ${error.message}`
-          : 'Could not read this TV Time export. Your current local archive was not changed.',
-      );
+      setTvTimeImportFeedback({
+        kind: 'error',
+        title: 'TV Time import could not start',
+        message:
+          error instanceof Error
+            ? `Your local archive was not changed: ${error.message}`
+            : 'Your local archive was not changed.',
+      });
     }
   };
 
@@ -858,15 +878,27 @@ export default function AppShellPage() {
       setArchive(restored);
       setTvTimePreview(null);
       setOperationError(null);
-      setBackupStatus(
-        `Imported ${importedCount} ${importedCount === 1 ? 'item' : 'items'} from TV Time locally.`,
-      );
+      setBackupStatus(null);
+      setTvTimeImportFeedback({
+        kind: importedCount > 0 ? 'success' : 'warning',
+        title:
+          importedCount > 0
+            ? 'TV Time import complete'
+            : 'No TV Time items were imported',
+        message:
+          importedCount > 0
+            ? `${importedCount} ${importedCount === 1 ? 'item was' : 'items were'} saved to this device.`
+            : 'Matching items were skipped, so your local archive was not changed.',
+      });
     } catch (error) {
-      setOperationError(
-        error instanceof Error
-          ? `Could not import TV Time data. Your current local archive was not changed: ${error.message}`
-          : 'Could not import TV Time data. Your current local archive was not changed.',
-      );
+      setTvTimeImportFeedback({
+        kind: 'error',
+        title: 'TV Time import failed',
+        message:
+          error instanceof Error
+            ? `Your local archive was not changed: ${error.message}`
+            : 'Your local archive was not changed.',
+      });
     }
   };
 
@@ -1010,6 +1042,31 @@ export default function AppShellPage() {
       aria-label="Open personal tracking application shell"
     >
       <ConnectionStatus placement="mobile" />
+      {tvTimeImportFeedback && (
+        <aside
+          className={`import-feedback import-feedback--${tvTimeImportFeedback.kind}`}
+          role={tvTimeImportFeedback.kind === 'error' ? 'alert' : 'status'}
+          aria-live="polite"
+        >
+          {tvTimeImportFeedback.kind === 'success' ? (
+            <CircleCheck aria-hidden="true" />
+          ) : (
+            <CircleAlert aria-hidden="true" />
+          )}
+          <div>
+            <strong>{tvTimeImportFeedback.title}</strong>
+            <span>{tvTimeImportFeedback.message}</span>
+          </div>
+          <button
+            className="import-feedback-dismiss"
+            type="button"
+            onClick={() => setTvTimeImportFeedback(null)}
+            aria-label="Dismiss TV Time import notification"
+          >
+            <X aria-hidden="true" />
+          </button>
+        </aside>
+      )}
       <aside className="sidebar" aria-label="Navigation sidebar">
         <a
           href="#"
