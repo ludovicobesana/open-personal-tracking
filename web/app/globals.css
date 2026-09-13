@@ -1025,7 +1025,6 @@ section.copy .muted {
   padding: 10px 38px 10px 38px;
 }
 
-.topbar-search::before,
 .search::before {
   content: '⌕';
   position: absolute;
@@ -1049,6 +1048,39 @@ section.copy .muted {
   line-height: 1;
   padding: 4px 6px;
   border-radius: 6px;
+}
+
+.topbar-search input {
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
+.search-submit-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.search-clear-top {
+  right: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.search-submit-top:focus-visible,
+.search-clear-top:focus-visible,
+#library-panel-title:focus-visible {
+  outline: 2px solid var(--brass-strong);
+  outline-offset: 2px;
 }
 
 .search {
