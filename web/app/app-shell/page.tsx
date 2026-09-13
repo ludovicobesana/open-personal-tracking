@@ -39,6 +39,7 @@ import {
   type TvTimeImportPreview,
 } from '../../../src/import/tv-time';
 import { ConnectionStatus } from '../connection-status';
+import { HorizontalCardRow } from '../horizontal-card-row';
 
 type Episode = {
   id: string;
@@ -1389,8 +1390,7 @@ export default function AppShellPage() {
               </div>
 
               <div className="up-next" hidden={upNextItems.length === 0}>
-                <p className="up-next-label">Up next</p>
-                <div className="up-next-track">
+                <HorizontalCardRow label="Up next">
                   {upNextItems.map((item) => (
                     <div key={item.id} className="up-next-card">
                       <span
@@ -1413,7 +1413,7 @@ export default function AppShellPage() {
                       </span>
                     </div>
                   ))}
-                </div>
+                </HorizontalCardRow>
               </div>
 
               {items.length === 0 ? (

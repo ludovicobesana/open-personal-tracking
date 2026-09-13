@@ -30,6 +30,8 @@ Decorative imagery should not add unnecessary screen-reader noise.
 
 Status, progress, rating, and destructive actions must remain operable without drag, hover, or precision pointer input.
 
+The Up next card row provides labelled previous and next buttons when its cards overflow. The buttons move one card at a time and expose disabled boundary states without losing keyboard focus. The row also supports native keyboard, touch, and trackpad scrolling. Button scrolling respects the current reduced-motion preference. Controls update after scrolling, resizing, or filtering; the episode grid is unchanged.
+
 ## Testing
 
 Accessibility checks should be part of design and release testing.
