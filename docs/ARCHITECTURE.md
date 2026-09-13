@@ -189,6 +189,8 @@ A network outage must not block local tracking.
 - Destructive operations should have explicit confirmation.
 - Backups must be versioned.
 - Critical persistence workflows require automated tests.
+- Third-party imports must document their supported source format, mapping,
+  conflict policy, and limitations. See [TV Time GDPR CSV import](TV_TIME_IMPORT.md).
 
 ## Complexity rule
 

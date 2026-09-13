@@ -35,6 +35,7 @@ export type ItemUpdate = Partial<
     | 'progress'
     | 'rating'
     | 'status'
+    | 'subunits'
     | 'tags'
     | 'title'
     | 'type'

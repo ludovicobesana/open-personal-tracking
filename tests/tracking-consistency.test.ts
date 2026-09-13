@@ -36,6 +36,8 @@ const seriesInput = {
       id: 'season-1',
       kind: 'season' as const,
       title: 'Season 1',
+      description: 'The first season.',
+      imageUrl: 'https://example.test/season-1.jpg',
       position: 1,
       completed: false,
       watchCount: 0,
@@ -44,6 +46,8 @@ const seriesInput = {
       id: 's1e1',
       kind: 'episode' as const,
       title: 'Dulcinea',
+      description: 'The first episode.',
+      imageUrl: 'https://example.test/s1e1.jpg',
       parentId: 'season-1',
       position: 1,
       completed: false,
@@ -73,6 +77,20 @@ describe('parent and sub-unit tracking', () => {
       status: 'planned',
       progress: { current: 0, target: 2, unit: 'subunits' },
     });
+    expect(created.items[0].subunits).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 'season-1',
+          description: 'The first season.',
+          imageUrl: 'https://example.test/season-1.jpg',
+        }),
+        expect.objectContaining({
+          id: 's1e1',
+          description: 'The first episode.',
+          imageUrl: 'https://example.test/s1e1.jpg',
+        }),
+      ]),
+    );
 
     const withFirstEpisode = await application.watchSubunit(
       created,

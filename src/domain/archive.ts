@@ -68,6 +68,8 @@ export const TrackingUnitSchema = z.object({
   id: z.string().min(1),
   kind: TrackingUnitKindSchema,
   title: z.string().trim().min(1),
+  description: z.string().trim().min(1).optional(),
+  imageUrl: z.string().url().optional(),
   parentId: z.string().min(1).optional(),
   position: z.number().int().nonnegative().optional(),
   completed: z.boolean().default(false),

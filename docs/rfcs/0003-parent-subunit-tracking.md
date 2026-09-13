@@ -14,9 +14,9 @@ state of the units it contains.
 ## Decision
 
 Each item can persist `subunits`. A unit has a stable ID, kind, title, optional
-parent ID, optional ordering position, current-cycle completion, and an
-all-time watch count. Units can be nested; only leaves may carry completion or
-watch state.
+description, optional image URL, optional parent ID, optional ordering position,
+current-cycle completion, and an all-time watch count. Units can be nested;
+only leaves may carry completion or watch state.
 
 For an item with at least one leaf unit:
 
@@ -53,3 +53,7 @@ container. It normalizes parent status and progress from valid leaves.
 The portable `ArchiveSnapshot` is now schema version 2. Clients should use the
 application operations for watch and reopen actions rather than manually
 setting the parent status of a hierarchical item.
+
+Optional sub-unit descriptions and image URLs are portable user-owned metadata:
+they are preserved in backups and restores. Image URLs are supplied by the
+user; the application does not upload media or request metadata from a provider.

@@ -5,6 +5,44 @@ const ARCHIVE_DATABASE_NAME = 'open-personal-tracking';
 const ONBOARDING_STORAGE_KEY = 'open-personal-tracking.preferences.v1';
 const TITLE = 'Backup recovery fixture';
 
+const storedZip = (entries: Array<{ name: string; text: string }>): Buffer => {
+  let offset = 0;
+  const localEntries: Buffer[] = [];
+  const centralEntries: Buffer[] = [];
+
+  for (const entry of entries) {
+    const name = Buffer.from(entry.name);
+    const content = Buffer.from(entry.text);
+    const local = Buffer.alloc(30);
+    local.writeUInt32LE(0x04034b50, 0);
+    local.writeUInt16LE(20, 4);
+    local.writeUInt32LE(content.length, 18);
+    local.writeUInt32LE(content.length, 22);
+    local.writeUInt16LE(name.length, 26);
+    localEntries.push(Buffer.concat([local, name, content]));
+
+    const central = Buffer.alloc(46);
+    central.writeUInt32LE(0x02014b50, 0);
+    central.writeUInt16LE(20, 4);
+    central.writeUInt16LE(20, 6);
+    central.writeUInt32LE(content.length, 20);
+    central.writeUInt32LE(content.length, 24);
+    central.writeUInt16LE(name.length, 28);
+    central.writeUInt32LE(offset, 42);
+    centralEntries.push(Buffer.concat([central, name]));
+    offset += localEntries.at(-1)!.length;
+  }
+
+  const directory = Buffer.concat(centralEntries);
+  const end = Buffer.alloc(22);
+  end.writeUInt32LE(0x06054b50, 0);
+  end.writeUInt16LE(entries.length, 8);
+  end.writeUInt16LE(entries.length, 10);
+  end.writeUInt32LE(directory.length, 12);
+  end.writeUInt32LE(offset, 16);
+  return Buffer.concat([...localEntries, directory, end]);
+};
+
 const itemInList = (page: Page, title: string) =>
   page
     .getByLabel('Item list')
@@ -121,7 +159,9 @@ test('exports, clears, and restores a complete local archive', async ({
 
   await openManagePage(page, 'Import');
   page.once('dialog', (dialog) => dialog.accept());
-  await page.locator('input[type="file"]').setInputFiles(backupPath!);
+  await page
+    .getByLabel('Select an Open Personal Tracking JSON backup')
+    .setInputFiles(backupPath!);
 
   await expect(page.getByRole('status')).toHaveText(
     /^Restored 1 item from open-personal-tracking-backup-.*\.json\.$/,
@@ -157,11 +197,13 @@ test('keeps the existing archive when a backup file is invalid', async ({
 }) => {
   await addItem(page, 'Existing archive item');
   await openManagePage(page, 'Import');
-  await page.locator('input[type="file"]').setInputFiles({
-    name: 'invalid-backup.json',
-    mimeType: 'application/json',
-    buffer: Buffer.from('{ this is not JSON'),
-  });
+  await page
+    .getByLabel('Select an Open Personal Tracking JSON backup')
+    .setInputFiles({
+      name: 'invalid-backup.json',
+      mimeType: 'application/json',
+      buffer: Buffer.from('{ this is not JSON'),
+    });
 
   await expect(page.getByText('Could not restore this backup')).toContainText(
     'Could not restore this backup. Your current local archive was not changed',
@@ -173,6 +215,99 @@ test('keeps the existing archive when a backup file is invalid', async ({
     .first()
     .click();
   await expect(itemInList(page, 'Existing archive item')).toBeVisible();
+});
+
+test('previews and imports a TV Time GDPR ZIP export locally', async ({
+  page,
+}) => {
+  await openManagePage(page, 'Import');
+  await expect(page.getByAltText('TV Time')).toBeVisible();
+  await page.getByLabel('Select TV Time ZIP or CSV files').setInputFiles({
+    name: 'tv-time-gdpr-export.zip',
+    mimeType: 'application/zip',
+    buffer: storedZip([
+      {
+        name: 'user_tv_show_data.csv',
+        text: 'user_id,tv_show_id,is_followed,is_favorited,nb_episodes_seen,tv_show_name\nuser-1,show-7,1,0,4,TV Time fixture\n',
+      },
+      {
+        name: 'seen_episode_latest.csv',
+        text: 'user_id,episode_id,created_at,tv_show_name,episode_season_number,episode_number\nuser-1,episode-7,2025-01-01T12:00:00.000Z,TV Time fixture,1,4\n',
+      },
+    ]),
+  });
+
+  await expect(
+    page.getByRole('heading', { name: 'Review TV Time import' }),
+  ).toBeVisible();
+  await expect(page.getByText('1 item', { exact: true })).toBeVisible();
+  await expect(page.getByText('1 across 1 season')).toBeVisible();
+  await page
+    .getByRole('button', { name: 'Confirm import and skip matches' })
+    .click();
+  const importFeedback = page.getByRole('status').filter({
+    hasText: 'TV Time import complete',
+  });
+  await expect(importFeedback).toContainText(
+    '1 item was saved to this device.',
+  );
+  await importFeedback
+    .getByRole('button', { name: 'Dismiss TV Time import notification' })
+    .click();
+  await expect(importFeedback).toBeHidden();
+
+  await page
+    .getByRole('navigation', { name: 'Primary navigation' })
+    .getByRole('button', { name: /^Library/ })
+    .first()
+    .click();
+  await expect(itemInList(page, 'TV Time fixture')).toBeVisible();
+  await itemInList(page, 'TV Time fixture').click();
+  await expect(page.getByText('Season 1', { exact: true })).toBeVisible();
+  await expect(page.getByText('E4 · Episode 4')).toBeVisible();
+});
+
+test('creates a series with season and episode details', async ({ page }) => {
+  await page.getByRole('button', { name: 'New item' }).click();
+  const drawer = page.getByRole('dialog', { name: 'New item' });
+  await drawer.getByLabel('Title').fill('Series fixture');
+  await drawer.getByLabel('Category').selectOption('Series');
+  await drawer.getByRole('button', { name: 'Add season' }).click();
+  await drawer.getByLabel('Season 1 title').fill('Season 1');
+  await drawer
+    .getByLabel('Season 1 information')
+    .fill('A private season description.');
+  await drawer
+    .getByLabel('Season 1 image URL')
+    .fill('https://example.test/season-1.jpg');
+  await drawer.getByLabel('Episode 1 title').fill('First episode');
+  await drawer
+    .getByLabel('Episode 1 information')
+    .fill('A private episode description.');
+  await drawer
+    .getByLabel('Episode 1 image URL')
+    .fill('https://example.test/episode-1.jpg');
+  await drawer.getByRole('button', { name: 'Add episode' }).click();
+  await drawer.getByLabel('Episode 2 title').fill('Second episode');
+  await drawer.getByLabel('Watched').first().check();
+  await drawer.getByRole('button', { name: 'Save item' }).click();
+
+  await expect(itemInList(page, 'Series fixture')).toBeVisible();
+  await itemInList(page, 'Series fixture').click();
+  await expect(page.getByText('Season 1', { exact: true })).toBeVisible();
+  await expect(page.getByText('E1 · First episode')).toBeVisible();
+  await page.getByRole('button', { name: 'Open page' }).click();
+  await expect(
+    page
+      .getByRole('dialog', { name: 'Series fixture' })
+      .getByText('A private season description.'),
+  ).toBeVisible();
+  await page
+    .getByRole('button', {
+      name: 'Open Season 1, episode 1, First episode',
+    })
+    .click();
+  await expect(page.getByText('A private episode description.')).toBeVisible();
 });
 
 test('opens and restores local data while offline after its first visit', async ({
@@ -234,7 +369,9 @@ test('opens and restores local data while offline after its first visit', async 
 
     await openManagePage(page, 'Import');
     page.once('dialog', (dialog) => dialog.accept());
-    await page.locator('input[type="file"]').setInputFiles(backupPath);
+    await page
+      .getByLabel('Select an Open Personal Tracking JSON backup')
+      .setInputFiles(backupPath);
     await expect(page.getByText(/^Restored 1 item from /)).toHaveText(
       /^Restored 1 item from open-personal-tracking-backup-.*\.json\.$/,
     );

@@ -105,6 +105,24 @@ body {
   color: var(--ink);
 }
 
+.connection-status.is-dismissing {
+  animation: notification-dismiss 180ms ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes notification-dismiss {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connection-status.is-dismissing {
+    animation-duration: 1ms;
+  }
+}
+
 .connection-status--expanded {
   right: max(1rem, env(safe-area-inset-right));
   bottom: max(1rem, env(safe-area-inset-bottom));
@@ -159,6 +177,10 @@ body {
   border-color: color-mix(in srgb, var(--success) 60%, var(--hairline));
 }
 
+.connection-status.is-warning {
+  border-color: color-mix(in srgb, var(--brass-strong) 60%, var(--hairline));
+}
+
 .connection-status svg {
   flex: 0 0 auto;
   width: 1.15rem;
@@ -179,6 +201,10 @@ body {
 
 .connection-status.is-online svg {
   color: var(--success);
+}
+
+.connection-status.is-warning svg {
+  color: var(--brass-strong);
 }
 
 .connection-status strong,
@@ -1484,6 +1510,29 @@ section.copy .muted {
   z-index: 1;
 }
 
+.item-progress-count {
+  display: grid;
+  min-width: 48px;
+  color: var(--brass-strong);
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.item-progress-count small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.52rem;
+}
+
+.detail-aggregate-progress {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .detail-panel {
   display: flex;
   flex-direction: column;
@@ -1616,6 +1665,78 @@ section.copy .muted {
 .detail-progress-value {
   font-family: var(--font-mono);
   font-size: 0.7rem;
+  color: var(--brass-strong);
+}
+
+.detail-series-overview {
+  display: grid;
+  gap: 12px;
+}
+
+.detail-series-overview-head,
+.detail-season-summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.detail-series-overview-head p,
+.detail-season-summary p,
+.detail-series-empty {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.detail-season-list {
+  display: grid;
+  gap: 9px;
+}
+
+.detail-season-summary {
+  padding: 11px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+}
+
+.detail-season-summary-head strong {
+  font-size: 0.82rem;
+}
+
+.detail-season-summary-head span {
+  color: var(--brass-strong);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+.detail-episode-list {
+  display: grid;
+  gap: 3px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detail-episode-list button {
+  display: flex;
+  width: 100%;
+  gap: 7px;
+  padding: 5px 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font: inherit;
+  font-size: 0.76rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.detail-episode-list button:hover,
+.detail-episode-list button:focus-visible {
   color: var(--brass-strong);
 }
 
@@ -2019,6 +2140,217 @@ section.copy .muted {
   font-size: 1rem;
 }
 
+.tvtime-import-card {
+  display: grid;
+  gap: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brass) 10%, transparent),
+      transparent 44%
+    ),
+    var(--surface);
+}
+
+.tvtime-import-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+}
+
+.tvtime-import-logo {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 18px -12px var(--shadow);
+}
+
+.tvtime-import-head .eyebrow {
+  margin-bottom: 5px;
+}
+
+.tvtime-import-head h3 {
+  margin-bottom: 4px;
+  font-size: 1.12rem;
+}
+
+.tvtime-import-head p,
+.tvtime-import-help {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.tvtime-import-status {
+  padding: 5px 8px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--brass-strong);
+  background: color-mix(in srgb, var(--brass) 9%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tvtime-import-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tvtime-import-steps li {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-strong) 65%, transparent);
+}
+
+.tvtime-import-steps strong {
+  font-size: 0.78rem;
+}
+
+.tvtime-import-steps span,
+.tvtime-import-actions span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.tvtime-import-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.tvtime-import-actions .primary-btn {
+  min-height: 42px;
+}
+
+.tvtime-preview-card {
+  display: grid;
+  gap: 16px;
+}
+
+.tvtime-preview-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tvtime-preview-head h3 {
+  margin-bottom: 4px;
+}
+
+.tvtime-preview-head p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.tvtime-preview-safe {
+  flex: none;
+  padding: 5px 8px;
+  border: 1px solid color-mix(in srgb, var(--success) 55%, var(--hairline));
+  border-radius: 999px;
+  color: var(--success);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  white-space: nowrap;
+}
+
+.tvtime-preview-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.tvtime-preview-summary div,
+.tvtime-preview-notes {
+  padding: 11px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-strong) 65%, transparent);
+}
+
+.tvtime-preview-summary dt {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tvtime-preview-summary dd {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tvtime-preview-structure {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--brass-strong);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--ink);
+  background: var(--surface-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.tvtime-preview-notes h4 {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.tvtime-preview-notes ul {
+  display: grid;
+  gap: 6px;
+  padding-left: 18px;
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  .tvtime-import-head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .tvtime-import-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .tvtime-import-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .tvtime-preview-head {
+    display: grid;
+  }
+
+  .tvtime-preview-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
 .app-about-card {
   display: grid;
   gap: 10px;
@@ -2275,6 +2607,75 @@ section.copy .muted {
   border: 1px solid var(--hairline);
   border-radius: 12px;
   background: var(--surface);
+}
+
+.series-editor {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-strong) 58%, transparent);
+}
+
+.series-editor-head,
+.series-draft-head,
+.series-draft-episode-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.series-editor-head h4,
+.series-draft-head h5,
+.series-draft-head h6 {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.series-editor-head p,
+.series-editor-empty {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.series-editor-list,
+.series-draft-season,
+.series-draft-episodes {
+  display: grid;
+  gap: 12px;
+}
+
+.series-draft-season {
+  padding: 12px;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.series-draft-episode {
+  display: grid;
+  gap: 7px;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+}
+
+.series-draft-episode legend {
+  padding: 0 5px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.series-draft-episode-actions {
+  align-items: center;
+  margin-top: 2px;
+  font-size: 0.8rem;
 }
 
 .add-drawer-foot .primary-btn,
@@ -2535,6 +2936,14 @@ section.copy .muted {
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 0.68rem;
+}
+
+.season-card-description {
+  max-width: 64ch;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
 .season-card.is-complete .season-status {
