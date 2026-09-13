@@ -169,6 +169,12 @@ const CHANGELOG_URL =
   'https://github.com/ludovicobesana/open-personal-tracking/blob/main/CHANGELOG.md';
 const BUG_REPORT_URL =
   'https://github.com/ludovicobesana/open-personal-tracking/issues/new?template=bug_report.md';
+const IMPORT_FEEDBACK_DURATION_MS: Record<ImportFeedback['kind'], number> = {
+  success: 4_000,
+  warning: 8_000,
+  error: 12_000,
+};
+const IMPORT_FEEDBACK_EXIT_DURATION_MS = 180;
 
 const bucketOf = (status: string) =>
   status === 'paused' || status === 'dropped' ? 'archived' : status;
@@ -389,6 +395,9 @@ export default function AppShellPage() {
     useState<TvTimeDuplicateResolution>('skip');
   const [tvTimeImportFeedback, setTvTimeImportFeedback] =
     useState<ImportFeedback | null>(null);
+  const [isTvTimeImportFeedbackExiting, setIsTvTimeImportFeedbackExiting] =
+    useState(false);
+  const [isTvTimeImporting, setIsTvTimeImporting] = useState(false);
   const application = useRef<ArchiveApplication | null>(null);
   const restoreInput = useRef<HTMLInputElement | null>(null);
   const tvTimeInput = useRef<HTMLInputElement | null>(null);
@@ -420,6 +429,35 @@ export default function AppShellPage() {
       isCurrent = false;
     };
   }, []);
+
+  const showTvTimeImportFeedback = (feedback: ImportFeedback) => {
+    setIsTvTimeImportFeedbackExiting(false);
+    setTvTimeImportFeedback(feedback);
+  };
+
+  const dismissTvTimeImportFeedback = () => {
+    setIsTvTimeImportFeedbackExiting(true);
+  };
+
+  useEffect(() => {
+    if (!tvTimeImportFeedback || isTvTimeImporting) return;
+
+    const timeout = window.setTimeout(
+      dismissTvTimeImportFeedback,
+      IMPORT_FEEDBACK_DURATION_MS[tvTimeImportFeedback.kind],
+    );
+    return () => window.clearTimeout(timeout);
+  }, [isTvTimeImporting, tvTimeImportFeedback]);
+
+  useEffect(() => {
+    if (!tvTimeImportFeedback || !isTvTimeImportFeedbackExiting) return;
+
+    const timeout = window.setTimeout(() => {
+      setTvTimeImportFeedback(null);
+      setIsTvTimeImportFeedbackExiting(false);
+    }, IMPORT_FEEDBACK_EXIT_DURATION_MS);
+    return () => window.clearTimeout(timeout);
+  }, [isTvTimeImportFeedbackExiting, tvTimeImportFeedback]);
 
   const preferences = archive?.preferences ?? UserPreferencesSchema.parse({});
   const coverBackground = (
@@ -839,17 +877,11 @@ export default function AppShellPage() {
       setTvTimeDuplicateResolution('skip');
       setOperationError(null);
       setBackupStatus(null);
-      setTvTimeImportFeedback({
-        kind: preview.warnings.length > 0 ? 'warning' : 'success',
-        title: 'TV Time export ready to review',
-        message:
-          preview.warnings.length > 0
-            ? 'Review the import notes and any matching local items before confirming.'
-            : 'The export was read locally. Review the summary before confirming.',
-      });
+      setTvTimeImportFeedback(null);
+      setIsTvTimeImportFeedbackExiting(false);
     } catch (error) {
       setTvTimePreview(null);
-      setTvTimeImportFeedback({
+      showTvTimeImportFeedback({
         kind: 'error',
         title: 'TV Time import could not start',
         message:
@@ -861,8 +893,15 @@ export default function AppShellPage() {
   };
 
   const handleTvTimeImport = async () => {
-    if (!archive || !application.current || !tvTimePreview) return;
+    if (!archive || !application.current || !tvTimePreview || isTvTimeImporting)
+      return;
 
+    setIsTvTimeImporting(true);
+    showTvTimeImportFeedback({
+      kind: 'warning',
+      title: 'Importing TV Time data',
+      message: 'Your archive is being validated before local data is updated.',
+    });
     try {
       const prepared = applyTvTimeImport(
         archive,
@@ -879,7 +918,7 @@ export default function AppShellPage() {
       setTvTimePreview(null);
       setOperationError(null);
       setBackupStatus(null);
-      setTvTimeImportFeedback({
+      showTvTimeImportFeedback({
         kind: importedCount > 0 ? 'success' : 'warning',
         title:
           importedCount > 0
@@ -891,7 +930,7 @@ export default function AppShellPage() {
             : 'Matching items were skipped, so your local archive was not changed.',
       });
     } catch (error) {
-      setTvTimeImportFeedback({
+      showTvTimeImportFeedback({
         kind: 'error',
         title: 'TV Time import failed',
         message:
@@ -899,6 +938,8 @@ export default function AppShellPage() {
             ? `Your local archive was not changed: ${error.message}`
             : 'Your local archive was not changed.',
       });
+    } finally {
+      setIsTvTimeImporting(false);
     }
   };
 
@@ -1044,7 +1085,13 @@ export default function AppShellPage() {
       <ConnectionStatus placement="mobile" />
       {tvTimeImportFeedback && (
         <aside
-          className={`import-feedback import-feedback--${tvTimeImportFeedback.kind}`}
+          className={`connection-status connection-status--expanded ${
+            tvTimeImportFeedback.kind === 'success'
+              ? 'is-online'
+              : tvTimeImportFeedback.kind === 'error'
+                ? 'is-offline'
+                : 'is-warning'
+          } ${isTvTimeImportFeedbackExiting ? 'is-dismissing' : ''}`}
           role={tvTimeImportFeedback.kind === 'error' ? 'alert' : 'status'}
           aria-live="polite"
         >
@@ -1058,9 +1105,9 @@ export default function AppShellPage() {
             <span>{tvTimeImportFeedback.message}</span>
           </div>
           <button
-            className="import-feedback-dismiss"
+            className="connection-status-dismiss"
             type="button"
-            onClick={() => setTvTimeImportFeedback(null)}
+            onClick={dismissTvTimeImportFeedback}
             aria-label="Dismiss TV Time import notification"
           >
             <X aria-hidden="true" />
@@ -2341,9 +2388,15 @@ export default function AppShellPage() {
                             type="radio"
                             name="tv-time-duplicate-resolution"
                             checked={tvTimeDuplicateResolution === 'skip'}
-                            onChange={() =>
-                              setTvTimeDuplicateResolution('skip')
-                            }
+                            onChange={() => {
+                              setTvTimeDuplicateResolution('skip');
+                              showTvTimeImportFeedback({
+                                kind: 'warning',
+                                title: 'Skip matching items selected',
+                                message:
+                                  'Click Confirm import to apply this choice.',
+                              });
+                            }}
                           />{' '}
                           Skip matching items
                         </label>
@@ -2352,9 +2405,15 @@ export default function AppShellPage() {
                             type="radio"
                             name="tv-time-duplicate-resolution"
                             checked={tvTimeDuplicateResolution === 'update'}
-                            onChange={() =>
-                              setTvTimeDuplicateResolution('update')
-                            }
+                            onChange={() => {
+                              setTvTimeDuplicateResolution('update');
+                              showTvTimeImportFeedback({
+                                kind: 'warning',
+                                title: 'Update matching items selected',
+                                message:
+                                  'Click Confirm import to apply this choice.',
+                              });
+                            }}
                           />{' '}
                           Update their TV Time progress and status, keeping
                           local notes and collections
@@ -2381,8 +2440,13 @@ export default function AppShellPage() {
                         className="primary-btn"
                         type="button"
                         onClick={() => void handleTvTimeImport()}
+                        disabled={isTvTimeImporting}
                       >
-                        Confirm import
+                        {isTvTimeImporting
+                          ? 'Importing…'
+                          : tvTimeDuplicateResolution === 'update'
+                            ? 'Confirm import and update matches'
+                            : 'Confirm import and skip matches'}
                       </button>
                       <button
                         className="ghost-btn"

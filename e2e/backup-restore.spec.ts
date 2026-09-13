@@ -242,7 +242,9 @@ test('previews and imports a TV Time GDPR ZIP export locally', async ({
   ).toBeVisible();
   await expect(page.getByText('1 item', { exact: true })).toBeVisible();
   await expect(page.getByText('1 across 1 season')).toBeVisible();
-  await page.getByRole('button', { name: 'Confirm import' }).click();
+  await page
+    .getByRole('button', { name: 'Confirm import and skip matches' })
+    .click();
   const importFeedback = page.getByRole('status').filter({
     hasText: 'TV Time import complete',
   });
