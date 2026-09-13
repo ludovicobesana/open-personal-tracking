@@ -10,6 +10,7 @@ import {
   History,
   LibraryBig,
   Plus,
+  Search,
   Settings,
   UserRound,
   X,
@@ -371,6 +372,7 @@ export default function AppShellPage() {
   const [activeNav, setActiveNav] = useState('library');
   const [activeCategory, setActiveCategory] = useState('all');
   const [query, setQuery] = useState('');
+  const [searchSubmission, setSearchSubmission] = useState(0);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [newItem, setNewItem] = useState<ItemForm>(emptyItemForm);
@@ -401,8 +403,14 @@ export default function AppShellPage() {
   const application = useRef<ArchiveApplication | null>(null);
   const restoreInput = useRef<HTMLInputElement | null>(null);
   const tvTimeInput = useRef<HTMLInputElement | null>(null);
+  const globalSearchInput = useRef<HTMLInputElement | null>(null);
+  const libraryHeading = useRef<HTMLHeadingElement | null>(null);
   const preferenceSaveQueue = useRef<Promise<void>>(Promise.resolve());
   const preferenceSaveRevision = useRef(0);
+
+  useEffect(() => {
+    if (searchSubmission > 0) libraryHeading.current?.focus();
+  }, [searchSubmission]);
 
   useEffect(() => {
     let isCurrent = true;
@@ -1265,25 +1273,47 @@ export default function AppShellPage() {
           </h1>
 
           <div className="topbar-actions">
-            <label className="topbar-search" aria-label="Search your library">
+            <form
+              className="topbar-search"
+              role="search"
+              aria-label="Library search"
+              onSubmit={(event) => {
+                event.preventDefault();
+                setActiveCategory('all');
+                setActiveNav('library');
+                setSearchSubmission((submission) => submission + 1);
+              }}
+            >
               <input
+                ref={globalSearchInput}
+                aria-label="Search your library"
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search items, authors, or tags…"
                 autoComplete="off"
               />
+              <button
+                type="submit"
+                className="search-submit-top"
+                aria-label="Search library"
+              >
+                <Search size={18} aria-hidden="true" />
+              </button>
               {query && (
                 <button
                   type="button"
                   className="search-clear-top"
-                  onClick={() => setQuery('')}
+                  onClick={() => {
+                    setQuery('');
+                    globalSearchInput.current?.focus();
+                  }}
                   aria-label="Clear search"
                 >
                   &times;
                 </button>
               )}
-            </label>
+            </form>
             <button
               className="primary-btn"
               type="button"
@@ -1312,7 +1342,12 @@ export default function AppShellPage() {
             >
               <div className="panel-header">
                 <div className="panel-header-top">
-                  <h2 id="library-panel-title" className="panel-title">
+                  <h2
+                    id="library-panel-title"
+                    className="panel-title"
+                    ref={libraryHeading}
+                    tabIndex={-1}
+                  >
                     Your tracked items
                   </h2>
                   <span className="result-count" aria-live="polite">
@@ -1416,7 +1451,7 @@ export default function AppShellPage() {
                 </div>
               </div>
 
-              {items.length === 0 ? (
+              {items.length === 0 && !query.trim() ? (
                 <div className="empty-state">
                   <svg
                     viewBox="0 0 24 24"
@@ -1442,8 +1477,14 @@ export default function AppShellPage() {
                   </button>
                 </div>
               ) : visibleItems.length === 0 ? (
-                <p className="empty-state" style={{ display: 'block' }}>
-                  No items match your search.
+                <p
+                  className="empty-state"
+                  style={{ display: 'block' }}
+                  role="status"
+                >
+                  {query.trim()
+                    ? `No items match “${query.trim()}”.`
+                    : 'No items match your search.'}
                 </p>
               ) : (
                 <div className="list" aria-label="Item list">
