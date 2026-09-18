@@ -145,6 +145,34 @@ interface ItemRepository {
 
 External catalogs enrich user items but must not define their continued existence.
 
+The provider contract lives in `src/providers/metadata-provider.ts`; application
+use cases live in `src/application/provider-catalog.ts`. Provider adapters are
+replaceable infrastructure concerns. They expose only normalized, provider-
+neutral results to application code, then the application converts reviewed
+metadata into ordinary local item input. React components must not call provider
+SDKs directly.
+
+```text
+External provider
+    ↓
+provider adapter
+    ↓
+provider abstraction
+    ↓
+application service/use case
+    ↓
+local domain/archive
+```
+
+Provider cache data, if introduced later, is disposable external metadata and
+not an authoritative archive. Cache eviction must never delete or corrupt a
+locally created item. See [Provider architecture](PROVIDER_ARCHITECTURE.md) and
+[RFC 0004](rfcs/0004-provider-abstraction.md).
+
+Provider requests and responses are validated at this boundary. Remote image
+references are not assigned to local items automatically: a UI needs an
+explicit user choice before it loads a third-party image.
+
 Potential providers:
 
 - TMDB
