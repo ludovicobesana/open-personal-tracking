@@ -70,3 +70,6 @@ restore, and all offline workflows available.
 See [RFC 0004](rfcs/0004-provider-abstraction.md) for the architecture decision
 and [Issue #7](https://github.com/ludovicobesana/open-personal-tracking/issues/7)
 for its implementation scope.
+
+The concrete [TMDB provider adapter](TMDB_PROVIDER.md) documents its optional
+transport configuration, attribution, image, timeout, and no-cache policy.
