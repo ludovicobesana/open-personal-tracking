@@ -82,6 +82,7 @@ Series are tracked at episode level. A season is complete only when every episod
 - [Vision](VISION.md)
 - [Product Requirements](docs/PRODUCT_REQUIREMENTS.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Provider Architecture](docs/PROVIDER_ARCHITECTURE.md)
 - [Design Principles](DESIGN_PRINCIPLES.md)
 - [Data Format](DATA_FORMAT.md)
 - [Data Ownership and Portability](docs/DATA_OWNERSHIP.md)
