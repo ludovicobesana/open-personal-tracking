@@ -30,6 +30,7 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 ### Fixed
 
+- Global search now opens Library results from every primary screen, with a labelled submit button and query-specific no-results feedback.
 - Item creation and editing now identify missing titles, invalid ratings, and
   incomplete series structure with accessible field feedback while preserving
   the draft and archive when validation fails.
