@@ -25,7 +25,8 @@ describe('IMDb CSV import', () => {
     expect(preview.items.length).toBeGreaterThan(900);
     expect(preview.items[0]).toMatchObject({
       externalIds: { imdb: 'tt9376612' },
-      category: 'Movies',
+      type: 'film',
+      category: 'Film',
       status: 'completed',
       progress: { current: 100, target: 100, unit: 'percent' },
       tags: expect.arrayContaining(['IMDb watchlist', 'Azione', 'Avventura']),
@@ -101,6 +102,8 @@ describe('IMDb CSV import', () => {
     ]);
     expect(applyImdbImport(archive, preview, 'skip').items).toHaveLength(1);
     expect(applyImdbImport(archive, preview, 'update').items[0]).toMatchObject({
+      type: 'film',
+      category: 'Film',
       notes: ['keep this'],
       collections: ['Favourites'],
       attributes: { localOnly: true, imdbListMembership: 'watchlist' },

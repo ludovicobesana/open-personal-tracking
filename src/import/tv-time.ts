@@ -378,6 +378,7 @@ const addFollowedRows = (
 };
 
 const positiveInteger = (value: string | undefined): number | undefined => {
+  if (!value?.trim()) return undefined;
   const parsed = Number(value);
   return Number.isInteger(parsed) && parsed >= 0 ? parsed : undefined;
 };
@@ -444,6 +445,54 @@ const addEpisodeRows = (
   return foundEpisodeStructure;
 };
 
+type TrackingRowKind =
+  | 'watch'
+  | 'watched-marker'
+  | 'rewatch'
+  | 'rewatch-total'
+  | 'other';
+
+/**
+ * Real exports leave per-row watch counts empty: the row kind itself records
+ * the watch. v2 rows carry it in `key`, legacy rows in `type`.
+ */
+const trackingRowKind = (
+  row: CsvRow,
+  format: 'legacy' | 'v2',
+): TrackingRowKind => {
+  if (format === 'v2') {
+    const key = row.key?.trim() ?? '';
+    if (key.startsWith('watch-episode-')) return 'watch';
+    if (key.startsWith('rewatch-episode-')) return 'rewatch';
+    return 'other';
+  }
+  const type = row.type?.trim();
+  if (type === 'watch') return 'watch';
+  if (type === 'last-episode-watched') return 'watched-marker';
+  if (type === 'rewatch') return 'rewatch';
+  if (type === 'rewatch_count') return 'rewatch-total';
+  return 'other';
+};
+
+/**
+ * Derives a watch count from the row kind when the source count is empty.
+ * Rewatch rows are already included in the watch row's `rewatch_count`.
+ */
+const trackingWatchCount = (
+  row: CsvRow,
+  kind: TrackingRowKind,
+  recorded: number,
+): number => {
+  const rewatches = numberValue(row.rewatch_count);
+  if (kind === 'watch') return Math.max(recorded, 1 + rewatches);
+  if (kind === 'watched-marker') return Math.max(recorded, 1);
+  if (kind === 'rewatch') return Math.max(recorded, 1 + Math.max(1, rewatches));
+  if (kind === 'rewatch-total' && rewatches > 0) {
+    return Math.max(recorded, 1 + rewatches);
+  }
+  return recorded;
+};
+
 const addTrackingRows = (
   shows: Map<string, SourceShow>,
   rows: CsvRow[],
@@ -476,10 +525,12 @@ const addTrackingRows = (
         ? row.episode_id || row.ep_id
         : row.episode_id
       )?.trim() || `s${seasonNumber}-e${episodeNumber}`;
-    const watchCount =
+    const recordedWatchCount =
       format === 'v2'
         ? numberValue(row.ep_watch_count)
         : Math.max(numberValue(row.watch_count), numberValue(row.watches));
+    const kind = trackingRowKind(row, format);
+    const watchCount = trackingWatchCount(row, kind, recordedWatchCount);
     addEpisode(show, {
       id: episodeId,
       seasonNumber,
@@ -488,11 +539,15 @@ const addTrackingRows = (
       watchCount,
     });
     foundEpisodeStructure = true;
-    if (watchCount > 1) show.rewatchCount += watchCount - 1;
-    if (watchCount > 0) {
+    const countsRewatches = kind === 'watch' || kind === 'other';
+    if (countsRewatches && watchCount > 1) {
+      show.rewatchCount += watchCount - 1;
+    }
+    const recordsEvent = countsRewatches || kind === 'rewatch';
+    if (recordsEvent && watchCount > 0) {
       show.watchEvents.push({
         timestamp: isoTimestamp(row.created_at ?? row.watch_date),
-        rewatch: watchCount > 1,
+        rewatch: kind === 'rewatch' || (kind === 'other' && watchCount > 1),
       });
     }
   }
@@ -510,10 +565,14 @@ const addMovieRows = (
     const id =
       row.uuid?.trim() || row['type-uuid-n']?.trim() || normalizedTitle(title);
     const current = movies.get(id);
-    const watchCount = Math.max(
-      numberValue(row.movie_watch_count),
-      numberValue(row.watch_count),
-      numberValue(row.watches),
+    const watchCount = trackingWatchCount(
+      row,
+      trackingRowKind(row, 'legacy'),
+      Math.max(
+        numberValue(row.movie_watch_count),
+        numberValue(row.watch_count),
+        numberValue(row.watches),
+      ),
     );
     if (current) {
       current.watchCount = Math.max(current.watchCount, watchCount);
@@ -585,8 +644,8 @@ const toShowItem = (show: SourceShow): Item =>
 const toMovieItem = (movie: SourceMovie): Item =>
   createItem({
     id: sourceItemId('movie', movie.id),
-    type: 'movie',
-    category: 'Movies',
+    type: 'film',
+    category: 'Film',
     title: movie.title,
     status: movie.watchCount > 0 ? 'completed' : 'planned',
     progress: {
@@ -598,11 +657,15 @@ const toMovieItem = (movie: SourceMovie): Item =>
     externalIds: { tvTime: movie.id },
   });
 
+// Earlier imports stored films with the `movie` type.
+const comparableType = (type: string): string =>
+  type === 'movie' ? 'film' : type;
+
 const duplicateFor = (archive: ArchiveSnapshot, item: Item): Item | undefined =>
   archive.items.find(
     (existing) =>
       existing.externalIds.tvTime === item.externalIds.tvTime ||
-      (existing.type === item.type &&
+      (comparableType(existing.type) === comparableType(item.type) &&
         normalizedTitle(existing.title) === normalizedTitle(item.title)),
   );
 
@@ -776,6 +839,10 @@ export const applyTvTimeImport = (
       const existing = items[index];
       items[index] = {
         ...existing,
+        // Earlier imports stored films as movie/Movies, outside the Film filter.
+        ...(existing.type === 'movie' && existing.category === 'Movies'
+          ? { type: sourceItem.type, category: sourceItem.category }
+          : {}),
         status: sourceItem.status,
         progress: sourceItem.progress,
         subunits:

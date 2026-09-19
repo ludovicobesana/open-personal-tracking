@@ -256,6 +256,148 @@ describe('TV Time GDPR CSV import', () => {
     ).toEqual({ current: 1, target: 2, unit: 'subunits' });
   });
 
+  it('treats real v2 watch-episode rows as watched even without a per-episode watch count', () => {
+    const preview = previewTvTimeImport(
+      [
+        file(
+          'tracking-prod-records-v2.csv',
+          [
+            'series_name,key,created_at,s_id,episode_id,season_number,episode_number,s_no,ep_no,ep_watch_count,rewatch_count',
+            'Real Series,user-series-u1,2025-01-01 10:00:00,show-real,,,,,,2,',
+            'Real Series,watch-episode-u1-e1,2025-01-01 10:00:00,show-real,episode-1,1,1,1,1,,0',
+            'Real Series,watch-episode-u1-e2,2025-01-02 10:00:00,show-real,episode-2,1,2,1,2,,1',
+            'Real Series,rewatch-episode-u1-e2-1,2025-02-01 10:00:00,show-real,episode-2,1,2,,,,',
+          ].join('\n'),
+        ),
+      ],
+      createEmptyArchive(),
+    );
+
+    expect(preview.items).toHaveLength(1);
+    expect(preview.items[0].subunits).toEqual([
+      expect.objectContaining({ kind: 'season', title: 'Season 1' }),
+      expect.objectContaining({
+        title: 'Episode 1',
+        completed: true,
+        watchCount: 1,
+      }),
+      expect.objectContaining({
+        title: 'Episode 2',
+        completed: true,
+        watchCount: 2,
+      }),
+    ]);
+    expect(preview.items[0].attributes.tvTimeRewatchCount).toBe(1);
+    expect(preview.watchEvents.map((event) => event.rewatch)).toEqual([
+      false,
+      false,
+      true,
+    ]);
+    expect(
+      applyTvTimeImport(createEmptyArchive(), preview, 'skip').items[0]
+        .progress,
+    ).toEqual({ current: 2, target: 2, unit: 'subunits' });
+  });
+
+  it('reads watches from legacy tracking row types and files movies as Film', () => {
+    const header =
+      'series_name,created_at,uuid,watch_count,type,watches,entity_type,movie_name,rewatch_count,episode_id,episode_number,season_number,series_uuid';
+    const archive = createEmptyArchive();
+    archive.items.push(
+      createItem({
+        id: 'old-import',
+        type: 'movie',
+        category: 'Movies',
+        title: 'Rewatched Film',
+        progress: { current: 0, target: 100, unit: 'percent' },
+        externalIds: { tvTime: 'movie-rewatched' },
+      }),
+    );
+    const preview = previewTvTimeImport(
+      [
+        file(
+          'tracking-prod-records.csv',
+          [
+            header,
+            ',2025-01-01 10:00:00,movie-watched,,follow,,movie,Watched Film,0,,,,',
+            ',2025-01-01 10:00:00,movie-watched,,watch,,movie,Watched Film,0,,,,',
+            ',2025-01-02 10:00:00,movie-rewatched,,watch,,movie,Rewatched Film,1,,,,',
+            ',2025-02-02 10:00:00,movie-rewatched,,rewatch,,movie,Rewatched Film,1,,,,',
+            ',2025-01-03 10:00:00,movie-later,,towatch,,movie,Later Film,,,,,',
+            'Legacy Series,2025-01-04 10:00:00,show-legacy,,watch,,episode,,0,ep-1,1,1,show-legacy',
+            'Legacy Series,2025-01-04 10:00:00,show-legacy,,last-episode-watched,,episode,,,ep-2,2,1,show-legacy',
+          ].join('\n'),
+        ),
+      ],
+      archive,
+    );
+
+    const byTitle = (title: string) =>
+      preview.items.find((item) => item.title === title);
+    expect(byTitle('Watched Film')).toMatchObject({
+      type: 'film',
+      category: 'Film',
+      status: 'completed',
+      attributes: { tvTimeWatchCount: 1 },
+    });
+    expect(byTitle('Rewatched Film')).toMatchObject({
+      status: 'completed',
+      attributes: { tvTimeWatchCount: 2 },
+    });
+    expect(byTitle('Later Film')).toMatchObject({ status: 'planned' });
+    expect(byTitle('Legacy Series')?.subunits).toEqual([
+      expect.objectContaining({ kind: 'season' }),
+      expect.objectContaining({ title: 'Episode 1', completed: true }),
+      expect.objectContaining({ title: 'Episode 2', completed: true }),
+    ]);
+
+    const updated = applyTvTimeImport(archive, preview, 'update').items.find(
+      (item) => item.id === 'old-import',
+    );
+    expect(updated).toMatchObject({
+      type: 'film',
+      category: 'Film',
+      status: 'completed',
+    });
+  });
+
+  it('raises watch counts from legacy rewatch_count rows without double counting', () => {
+    const header =
+      'series_name,created_at,uuid,watch_count,type,watches,entity_type,movie_name,rewatch_count,episode_id,episode_number,season_number,series_uuid';
+    const preview = previewTvTimeImport(
+      [
+        file(
+          'tracking-prod-records.csv',
+          [
+            header,
+            ',2025-03-01 10:00:00,movie-total,,rewatch_count,,movie,Total Film,2,,,,',
+            'Total Series,2025-03-02 10:00:00,show-total,,watch,,episode,,2,ep-1,1,1,show-total',
+            'Total Series,2025-03-02 10:00:00,show-total,,rewatch_count,,episode,,2,ep-1,1,1,show-total',
+          ].join('\n'),
+        ),
+      ],
+      createEmptyArchive(),
+    );
+
+    const byTitle = (title: string) =>
+      preview.items.find((item) => item.title === title);
+    expect(byTitle('Total Film')).toMatchObject({
+      status: 'completed',
+      attributes: { tvTimeWatchCount: 3 },
+    });
+    expect(byTitle('Total Series')).toMatchObject({
+      attributes: { tvTimeRewatchCount: 2 },
+    });
+    expect(byTitle('Total Series')?.subunits).toEqual([
+      expect.objectContaining({ kind: 'season' }),
+      expect.objectContaining({
+        title: 'Episode 1',
+        completed: true,
+        watchCount: 3,
+      }),
+    ]);
+  });
+
   it('surfaces duplicates and requires an explicit resolution before applying', () => {
     const archive = createEmptyArchive();
     archive.items.push(
