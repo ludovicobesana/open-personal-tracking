@@ -15,7 +15,14 @@ import {
   X,
 } from 'lucide-react';
 import Image from 'next/image';
-import { type ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  type ChangeEvent,
+  type FormEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import {
   createLocalArchiveApplication,
@@ -53,6 +60,12 @@ import {
 } from '../../../src/import/imdb';
 import { ConnectionStatus } from '../connection-status';
 import { validateItemForm } from '../../../src/application/item-form-validation';
+import {
+  ProviderError,
+  type ProviderSearchResult,
+} from '../../../src/providers/metadata-provider';
+import type { ProviderDiscoveryReview } from '../../../src/application/provider-discovery';
+import { createConfiguredProviderDiscovery } from './provider-discovery';
 
 type Episode = {
   id: string;
@@ -101,6 +114,7 @@ type ItemForm = {
   collections: string;
   seasons: SeriesDraftSeason[];
 };
+type ProviderSearchState = 'idle' | 'loading' | 'results' | 'empty' | 'error';
 type TrackedItem = {
   id: string;
   title: string;
@@ -471,8 +485,23 @@ export default function AppShellPage() {
   const [validationAttempted, setValidationAttempted] = useState(false);
   const [ratingBadInput, setRatingBadInput] = useState(false);
   const [drawerSaveError, setDrawerSaveError] = useState<string | null>(null);
+  const [providerQuery, setProviderQuery] = useState('');
+  const [providerResults, setProviderResults] = useState<
+    Array<ProviderSearchResult>
+  >([]);
+  const [providerNextCursor, setProviderNextCursor] = useState<string>();
+  const [providerSearchState, setProviderSearchState] =
+    useState<ProviderSearchState>('idle');
+  const [providerError, setProviderError] = useState<ProviderError | null>(
+    null,
+  );
+  const [providerReview, setProviderReview] =
+    useState<ProviderDiscoveryReview | null>(null);
   const ratingInput = useRef<HTMLInputElement>(null);
   const drawerForm = useRef<HTMLFormElement>(null);
+  const providerRequest = useRef<AbortController | null>(null);
+  const providerRequestRevision = useRef(0);
+  const configuredProvider = useMemo(createConfiguredProviderDiscovery, []);
   const drawerErrors = validationAttempted
     ? validateItemForm(newItem, ratingBadInput)
     : {};
@@ -480,6 +509,17 @@ export default function AppShellPage() {
     setValidationAttempted(false);
     setRatingBadInput(false);
     setDrawerSaveError(null);
+  };
+  const resetProviderDiscovery = () => {
+    providerRequest.current?.abort();
+    providerRequest.current = null;
+    providerRequestRevision.current += 1;
+    setProviderQuery('');
+    setProviderResults([]);
+    setProviderNextCursor(undefined);
+    setProviderSearchState('idle');
+    setProviderError(null);
+    setProviderReview(null);
   };
   const fieldErrorProps = (id: string) => ({
     'aria-invalid': drawerErrors[id] ? true : undefined,
@@ -776,6 +816,7 @@ export default function AppShellPage() {
       seasons,
     });
     resetDrawerFeedback();
+    resetProviderDiscovery();
     setEditingItemId(selectedItem.id);
     setNewItemUsesPlaceholderCover(selectedItem.usePlaceholderCover);
     setDetailView('summary');
@@ -784,6 +825,7 @@ export default function AppShellPage() {
 
   const openNewItemDrawer = () => {
     resetDrawerFeedback();
+    resetProviderDiscovery();
     setEditingItemId(null);
     setNewItem(emptyItemForm());
     setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
@@ -792,6 +834,7 @@ export default function AppShellPage() {
 
   const closeItemDrawer = () => {
     resetDrawerFeedback();
+    resetProviderDiscovery();
     setDrawerOpen(false);
     setEditingItemId(null);
   };
@@ -1219,6 +1262,117 @@ export default function AppShellPage() {
     });
   };
 
+  const providerErrorMessage = (error: ProviderError): string => {
+    if (error.kind === 'rate_limited' && error.retryAfterSeconds) {
+      return `Metadata search is temporarily rate limited. Try again in ${error.retryAfterSeconds} seconds, or add the item manually.`;
+    }
+    if (error.kind === 'unauthorized') {
+      return 'Metadata search is not configured. You can still add the item manually.';
+    }
+    if (error.kind === 'timeout') {
+      return 'Metadata search took too long. You can retry or add the item manually.';
+    }
+    return `${error.message}. You can retry or add the item manually.`;
+  };
+
+  const searchProvider = async (
+    event?: FormEvent<HTMLFormElement>,
+    cursor?: string,
+  ) => {
+    event?.preventDefault();
+    const text = providerQuery.trim();
+    if (!text) {
+      setProviderError(
+        new ProviderError(
+          configuredProvider?.id ?? 'provider',
+          'search',
+          'invalid_request',
+          false,
+        ),
+      );
+      setProviderSearchState('error');
+      return;
+    }
+    if (!configuredProvider) {
+      setProviderError(
+        new ProviderError('provider', 'search', 'unauthorized', false),
+      );
+      setProviderSearchState('error');
+      return;
+    }
+
+    providerRequest.current?.abort();
+    const controller = new AbortController();
+    providerRequest.current = controller;
+    const revision = ++providerRequestRevision.current;
+    setProviderSearchState('loading');
+    setProviderError(null);
+    if (!cursor) {
+      setProviderResults([]);
+      setProviderNextCursor(undefined);
+      setProviderReview(null);
+    }
+
+    const outcome = await configuredProvider.discovery.search({
+      text,
+      categories: ['Film', 'Series'],
+      limit: 20,
+      cursor,
+      signal: controller.signal,
+    });
+    if (revision !== providerRequestRevision.current) return;
+    if (!outcome.ok) {
+      if (controller.signal.aborted) return;
+      setProviderError(outcome.error);
+      setProviderSearchState('error');
+      return;
+    }
+
+    setProviderResults((current) =>
+      cursor ? [...current, ...outcome.value.results] : outcome.value.results,
+    );
+    setProviderNextCursor(outcome.value.nextCursor);
+    setProviderSearchState(
+      cursor || outcome.value.results.length > 0 ? 'results' : 'empty',
+    );
+  };
+
+  const reviewProviderResult = async (result: ProviderSearchResult) => {
+    if (!configuredProvider) return;
+    providerRequest.current?.abort();
+    const controller = new AbortController();
+    providerRequest.current = controller;
+    const revision = ++providerRequestRevision.current;
+    setProviderSearchState('loading');
+    setProviderError(null);
+
+    const outcome = await configuredProvider.discovery.getDetails(
+      result.reference,
+      { signal: controller.signal },
+    );
+    if (revision !== providerRequestRevision.current) return;
+    if (!outcome.ok) {
+      if (controller.signal.aborted) return;
+      setProviderError(outcome.error);
+      setProviderSearchState('error');
+      return;
+    }
+    setProviderReview(configuredProvider.discovery.review(outcome.value));
+    setProviderSearchState('results');
+  };
+
+  const useProviderReviewInForm = () => {
+    if (!providerReview) return;
+    setNewItem((current) => ({
+      ...current,
+      title: providerReview.input.title,
+      category: providerReview.input.category,
+      description: providerReview.input.description ?? '',
+    }));
+    setNewItemUsesPlaceholderCover(true);
+    requestAnimationFrame(() => document.getElementById('fTitle')?.focus());
+  };
+
   const handleSaveDrawer = async () => {
     if (!archive || !application.current) return;
     // Number inputs expose incomplete text (for example "e") as an empty
@@ -1265,7 +1419,7 @@ export default function AppShellPage() {
         : await application.current.createItem(archive, {
             title: newItem.title.trim(),
             category: newItem.category,
-            type: newItem.category.toLowerCase(),
+            type: providerReview?.input.type ?? newItem.category.toLowerCase(),
             status: toArchiveStatus(newItem.status),
             progress: {
               current: newItem.status === 'completed' ? 100 : 0,
@@ -1281,12 +1435,17 @@ export default function AppShellPage() {
             tags: listFromInput(newItem.tags),
             collections: listFromInput(newItem.collections),
             subunits,
-            attributes: { usePlaceholderCover: newItemUsesPlaceholderCover },
+            attributes: {
+              ...providerReview?.input.attributes,
+              usePlaceholderCover: newItemUsesPlaceholderCover,
+            },
+            externalIds: providerReview?.input.externalIds,
           });
       const savedItem = editingItemId ?? next.items.at(-1)?.id ?? null;
       setArchive(next);
       setSelectedId(savedItem);
       setNewItem(emptyItemForm());
+      resetProviderDiscovery();
       setEditingItemId(null);
       setDrawerOpen(false);
       resetDrawerFeedback();
@@ -3602,6 +3761,12 @@ export default function AppShellPage() {
             noValidate
             onSubmit={(event) => {
               event.preventDefault();
+              const submitter = (event.nativeEvent as SubmitEvent)
+                .submitter as HTMLButtonElement | null;
+              if (submitter?.name === 'provider-search') {
+                void searchProvider();
+                return;
+              }
               void handleSaveDrawer();
             }}
             onChange={() => setDrawerSaveError(null)}
@@ -3629,6 +3794,143 @@ export default function AppShellPage() {
                     ? 'Please correct the highlighted fields before saving.'
                     : '')}
               </p>
+              {!editingItemId && (
+                <section
+                  className="provider-discovery"
+                  aria-labelledby="providerDiscoveryTitle"
+                >
+                  <div>
+                    <span className="eyebrow">Optional metadata</span>
+                    <h4 id="providerDiscoveryTitle">Find a film or series</h4>
+                    <p>
+                      Search is optional. Review metadata before it fills this
+                      local item form; manual entry always remains available.
+                    </p>
+                  </div>
+                  <div className="provider-search-controls" role="search">
+                    <label className="field-label" htmlFor="provider-query">
+                      Search movies and TV
+                    </label>
+                    <div className="provider-search-row">
+                      <input
+                        className="field-control"
+                        id="provider-query"
+                        type="search"
+                        value={providerQuery}
+                        onChange={(event) =>
+                          setProviderQuery(event.target.value)
+                        }
+                        placeholder="e.g. Dune"
+                        disabled={providerSearchState === 'loading'}
+                      />
+                      <button
+                        className="ghost-btn"
+                        type="submit"
+                        name="provider-search"
+                        disabled={providerSearchState === 'loading'}
+                      >
+                        Search
+                      </button>
+                    </div>
+                  </div>
+                  {providerSearchState === 'loading' && (
+                    <p className="provider-status" role="status">
+                      Searching metadata…
+                    </p>
+                  )}
+                  {providerSearchState === 'empty' && (
+                    <p className="provider-status" role="status">
+                      No films or series matched. You can still add the item
+                      manually.
+                    </p>
+                  )}
+                  {providerSearchState === 'error' && providerError && (
+                    <div className="provider-error" role="alert">
+                      <p>{providerErrorMessage(providerError)}</p>
+                      {providerError.retryable && (
+                        <button
+                          className="ghost-btn"
+                          type="button"
+                          onClick={() => void searchProvider()}
+                        >
+                          Retry search
+                        </button>
+                      )}
+                    </div>
+                  )}
+                  {providerResults.length > 0 && (
+                    <ul
+                      className="provider-results"
+                      aria-label="Metadata results"
+                    >
+                      {providerResults.map((result) => (
+                        <li
+                          key={`${result.reference.providerId}-${result.reference.externalId}`}
+                        >
+                          <button
+                            className="provider-result"
+                            type="button"
+                            onClick={() => void reviewProviderResult(result)}
+                          >
+                            <strong>{result.title}</strong>
+                            <span>
+                              {result.category}
+                              {result.releaseDate
+                                ? ` · ${result.releaseDate}`
+                                : ''}
+                            </span>
+                            {result.description && (
+                              <small>{result.description}</small>
+                            )}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {providerNextCursor && providerSearchState !== 'loading' && (
+                    <button
+                      className="ghost-btn"
+                      type="button"
+                      onClick={() =>
+                        void searchProvider(undefined, providerNextCursor)
+                      }
+                    >
+                      Load more results
+                    </button>
+                  )}
+                  {providerReview && (
+                    <section
+                      className="provider-review"
+                      aria-labelledby="providerReviewTitle"
+                    >
+                      <span className="eyebrow">Review metadata</span>
+                      <h5 id="providerReviewTitle">
+                        {providerReview.input.title}
+                      </h5>
+                      <p>
+                        {providerReview.input.category}
+                        {providerReview.input.description
+                          ? ` · ${providerReview.input.description}`
+                          : ''}
+                      </p>
+                      <p className="provider-attribution">
+                        Source:{' '}
+                        {providerReview.attributions
+                          .map((attribution) => attribution.name)
+                          .join(', ')}
+                        . Remote images are not loaded automatically.
+                      </p>
+                      <button
+                        className="ghost-btn"
+                        type="button"
+                        onClick={useProviderReviewInForm}
+                      >
+                        Use metadata in item form
+                      </button>
+                    </section>
+                  )}
+                </section>
+              )}
               <div>
                 <label className="field-label" htmlFor="fTitle">
                   Title <span aria-hidden="true">(required)</span>

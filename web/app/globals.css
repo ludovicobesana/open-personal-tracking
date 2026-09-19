@@ -2687,6 +2687,77 @@ section.copy .muted {
   background: var(--surface);
 }
 
+.provider-discovery,
+.provider-review {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.9rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xs);
+  background: var(--surface);
+}
+
+.provider-discovery h4,
+.provider-review h5,
+.provider-discovery p,
+.provider-review p {
+  margin: 0;
+}
+
+.provider-discovery > div > p,
+.provider-attribution,
+.provider-status,
+.provider-result span,
+.provider-result small {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.provider-search-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.provider-search-row .field-control {
+  min-width: 0;
+  flex: 1;
+}
+
+.provider-results {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.provider-result {
+  display: grid;
+  width: 100%;
+  gap: 0.2rem;
+  padding: 0.7rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xs);
+  background: var(--surface-strong);
+  color: var(--ink);
+  text-align: left;
+}
+
+.provider-result:hover,
+.provider-result:focus-visible {
+  border-color: var(--brass);
+}
+
+.provider-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding: 0.7rem;
+  border-inline-start: 3px solid var(--stamp);
+  background: color-mix(in srgb, var(--stamp) 12%, var(--surface));
+}
+
 .series-editor {
   display: grid;
   gap: 14px;
