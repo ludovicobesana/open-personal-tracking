@@ -30,6 +30,8 @@ Decorative imagery should not add unnecessary screen-reader noise.
 
 Status, progress, rating, and destructive actions must remain operable without drag, hover, or precision pointer input.
 
+Global search can be submitted with Enter or its labelled search button from any primary screen. A non-empty submission searches all item categories, opens Library, and moves focus to the results heading; an empty submission leaves the current screen and category unchanged. No-results feedback includes the query; clearing global search returns focus to its input and restores the list.
+
 ## Testing
 
 Accessibility checks should be part of design and release testing.
