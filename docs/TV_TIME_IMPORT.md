@@ -28,8 +28,14 @@ Optional supported tables:
 
 - Series title, TV Time show ID, followed/archived flags, and watched-episode
   count are imported when the corresponding columns are present.
-- Movies from tracking records are imported with their title and completed
-  state when a watch count is available.
+- Movies from tracking records are imported as `Film` items with their title
+  and watched state. Legacy `tracking-prod-records.csv` rows leave the count
+  columns empty, so a `watch` row marks the film watched, `rewatch` and
+  `rewatch_count` rows raise its watch count, and films with only `follow` or
+  `towatch` rows are imported as planned. Legacy episode rows follow the same
+  rule (`watch` and `last-episode-watched` mark the episode watched).
+- Updating a duplicate that an earlier version imported as `movie`/`Movies`
+  moves it to the `Film` category so the Film filter finds it.
 - Rewatch totals are retained as an item attribute. Per-event rewatch dates
   cannot be reconstructed from the supported tables.
 - When `watched_on_episode.csv`, `seen_episode_latest.csv`, or
@@ -41,6 +47,13 @@ Optional supported tables:
   parsed for series rows. When their season, episode, and per-episode watch
   fields are available, they supply both watched and unwatched episode
   structure for a series.
+- In current v2 exports, per-episode rows keyed `watch-episode-…` leave
+  `ep_watch_count` empty; each such row is imported as a watched episode, with
+  its `rewatch_count` added to the watch count. Rows keyed
+  `rewatch-episode-…` add a rewatch history event without counting the rewatch
+  twice. The export lists only watched episodes and no total episode count, so
+  a series whose listed episodes are all watched is shown as complete even if
+  further episodes exist.
 - Latest episode-watch and rewatch rows are added to local history when their
   show can be matched. They represent only the event rows present in the
   export, not a complete historical timeline.
