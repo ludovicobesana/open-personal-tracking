@@ -1990,7 +1990,7 @@ section.copy .muted {
 
 .timeline {
   display: grid;
-  gap: 0;
+  gap: 2px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -1998,11 +1998,11 @@ section.copy .muted {
 
 .timeline li {
   position: relative;
-  min-height: 22px;
-  padding: 0 0 14px 24px;
+  min-width: 0;
+  padding: 0 0 16px 25px;
   color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.5;
+  font-size: 0.84rem;
+  line-height: 1.55;
 }
 
 .timeline li:last-child {
@@ -2025,7 +2025,7 @@ section.copy .muted {
   content: '';
   position: absolute;
   top: calc(0.42em + 8px);
-  bottom: -1px;
+  bottom: -2px;
   left: 3.5px;
   width: 1px;
   background: var(--hairline);
@@ -2033,6 +2033,50 @@ section.copy .muted {
 
 .timeline li:last-child::after {
   display: none;
+}
+
+.timeline-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 12px;
+}
+
+.timeline-action {
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.timeline-timestamp {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.timeline-summary {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+}
+
+.timeline--empty li {
+  padding-left: 0;
+}
+
+.timeline--empty li::before,
+.timeline--empty li::after {
+  display: none;
+}
+
+.timeline-description {
+  margin: -2px 0 12px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 .status-chip {
@@ -2452,6 +2496,26 @@ section.copy .muted {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 16px;
+  align-items: start;
+}
+
+.history-summary-card {
+  align-self: start;
+}
+
+.history-full-card {
+  display: grid;
+  gap: 12px;
+}
+
+.history-view-all {
+  justify-self: start;
+  margin-top: 2px;
+}
+
+.history-pagination {
+  justify-content: space-between;
+  margin-top: 4px;
 }
 
 .setting-card .setting-row {
@@ -3372,6 +3436,17 @@ section.copy .muted {
   }
   .item-row {
     grid-template-columns: 54px minmax(0, 1fr);
+  }
+  .timeline-entry {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  .timeline-timestamp {
+    grid-row: 2;
+  }
+  .timeline-summary {
+    grid-column: auto;
+    grid-row: 3;
   }
   .pagination {
     align-items: stretch;

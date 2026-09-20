@@ -24,6 +24,7 @@ import {
 import type { ArchiveApplication } from '../../../src/application/archive-application';
 import {
   type ArchiveSnapshot,
+  type HistoryEntry,
   type Item,
   type ItemStatus,
   type TrackingUnit,
@@ -123,12 +124,21 @@ type TrackedItem = {
   seasons?: SeriesSeason[];
 };
 type LibraryPaginationProps = {
+  ariaLabel?: string;
   className?: string;
   currentPage: number;
   itemLabel?: string;
+  pageSize?: number;
   pageCount: number;
+  showBoundaryControls?: boolean;
   totalItems: number;
   onPageChange: (page: number) => void;
+};
+
+type HistoryTimelineProps = {
+  entries: HistoryEntry[];
+  emptyMessage: string;
+  label: string;
 };
 
 const GROUPS = [
@@ -138,18 +148,74 @@ const GROUPS = [
   { key: 'archived', label: 'Archived' },
 ];
 
+const HISTORY_ACTION_LABEL: Record<HistoryEntry['action'], string> = {
+  created: 'Added',
+  updated: 'Updated',
+  completed: 'Completed',
+  deleted: 'Deleted',
+  imported: 'Imported',
+  watched: 'Watched',
+  rewatched: 'Rewatched',
+  reopened: 'Reopened',
+};
+
+const HISTORY_PREVIEW_SIZE = 6;
+const HISTORY_PAGE_SIZE = 25;
+
+const formatHistoryTimestamp = (timestamp: string): string =>
+  new Intl.DateTimeFormat('en-GB', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(new Date(timestamp));
+
+const HistoryTimeline = ({
+  entries,
+  emptyMessage,
+  label,
+}: HistoryTimelineProps) => (
+  <ol
+    className={`timeline${entries.length === 0 ? ' timeline--empty' : ''}`}
+    aria-label={label}
+  >
+    {entries.map((entry) => (
+      <li key={entry.id}>
+        <div className="timeline-entry">
+          <span className="timeline-action">
+            {HISTORY_ACTION_LABEL[entry.action]}
+          </span>
+          <time className="timeline-timestamp" dateTime={entry.timestamp}>
+            {formatHistoryTimestamp(entry.timestamp)}
+          </time>
+          <p className="timeline-summary">{entry.summary}</p>
+        </div>
+      </li>
+    ))}
+    {entries.length === 0 && <li>{emptyMessage}</li>}
+  </ol>
+);
+
 const LibraryPagination = ({
+  ariaLabel = 'Library pagination',
   className,
   currentPage,
   itemLabel = 'items',
+  pageSize = LIBRARY_PAGE_SIZE,
   pageCount,
+  showBoundaryControls = false,
   totalItems,
   onPageChange,
 }: LibraryPaginationProps) => (
-  <nav
-    className={`pagination ${className ?? ''}`}
-    aria-label="Library pagination"
-  >
+  <nav className={`pagination ${className ?? ''}`} aria-label={ariaLabel}>
+    {showBoundaryControls && (
+      <button
+        type="button"
+        className="mini-btn"
+        onClick={() => onPageChange(1)}
+        disabled={currentPage === 1}
+      >
+        First
+      </button>
+    )}
     <button
       type="button"
       className="mini-btn"
@@ -161,8 +227,7 @@ const LibraryPagination = ({
     <span className="pagination-status" aria-live="polite">
       Page {currentPage} of {pageCount}
       <span className="pagination-range">
-        {getPageRangeLabel(totalItems, currentPage, LIBRARY_PAGE_SIZE)}{' '}
-        {itemLabel}
+        {getPageRangeLabel(totalItems, currentPage, pageSize)} {itemLabel}
       </span>
     </span>
     <button
@@ -173,6 +238,16 @@ const LibraryPagination = ({
     >
       Next
     </button>
+    {showBoundaryControls && (
+      <button
+        type="button"
+        className="mini-btn"
+        onClick={() => onPageChange(pageCount)}
+        disabled={currentPage === pageCount}
+      >
+        Last
+      </button>
+    )}
   </nav>
 );
 
@@ -465,6 +540,8 @@ export default function AppShellPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [query, setQuery] = useState('');
   const [libraryPage, setLibraryPage] = useState(1);
+  const [historyPage, setHistoryPage] = useState(1);
+  const [isViewingFullHistory, setIsViewingFullHistory] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [newItem, setNewItem] = useState<ItemForm>(emptyItemForm);
@@ -1189,6 +1266,17 @@ export default function AppShellPage() {
 
   const upNextItems = continuingItems.slice(0, LIBRARY_PAGE_SIZE);
   const timeline = archive ? getHistoryTimeline(archive.history) : [];
+  const historyPageCount = getPageCount(timeline.length, HISTORY_PAGE_SIZE);
+  const currentHistoryPage = clampPage(
+    historyPage,
+    timeline.length,
+    HISTORY_PAGE_SIZE,
+  );
+  const paginatedHistory = paginate(
+    timeline,
+    currentHistoryPage,
+    HISTORY_PAGE_SIZE,
+  );
   const isLibrary = activeNav === 'library';
 
   useEffect(() => {
@@ -1196,6 +1284,12 @@ export default function AppShellPage() {
       setLibraryPage(currentLibraryPage);
     }
   }, [currentLibraryPage, libraryPage]);
+
+  useEffect(() => {
+    if (historyPage !== currentHistoryPage) {
+      setHistoryPage(currentHistoryPage);
+    }
+  }, [currentHistoryPage, historyPage]);
 
   const updateLibraryQuery = (nextQuery: string) => {
     setQuery(nextQuery);
@@ -2076,20 +2170,13 @@ export default function AppShellPage() {
                       <h3 id="history-label" className="section-label">
                         Recent history
                       </h3>
-                      <ul
-                        className="timeline"
-                        aria-label="Recent changes timeline"
-                      >
-                        {timeline
+                      <HistoryTimeline
+                        entries={timeline
                           .filter((entry) => entry.itemId === selectedItem.id)
-                          .slice(0, 3)
-                          .map((entry) => (
-                            <li key={entry.id}>{entry.summary}</li>
-                          ))}
-                        {timeline.every(
-                          (entry) => entry.itemId !== selectedItem.id,
-                        ) && <li>No changes recorded for this item yet.</li>}
-                      </ul>
+                          .slice(0, 3)}
+                        emptyMessage="No history has been recorded for this item locally."
+                        label="Recent changes for this item, newest first"
+                      />
                     </section>
                   </>
                 </div>
@@ -2251,52 +2338,120 @@ export default function AppShellPage() {
                   <div className="screen-hero">
                     <div>
                       <span className="eyebrow">History</span>
-                      <h2>Recent changes</h2>
-                      <p>Every update stays local and exportable.</p>
+                      <h2>
+                        {isViewingFullHistory
+                          ? 'Full history'
+                          : 'Recent changes'}
+                      </h2>
+                      <p>
+                        {isViewingFullHistory
+                          ? 'Browse every local change, 25 events at a time.'
+                          : 'Your six most recent local changes.'}
+                      </p>
                     </div>
-                    <button className="ghost-btn" type="button">
-                      Export log
-                    </button>
+                    {isViewingFullHistory ? (
+                      <button
+                        className="ghost-btn"
+                        type="button"
+                        onClick={() => setIsViewingFullHistory(false)}
+                      >
+                        Back to recent changes
+                      </button>
+                    ) : (
+                      timeline.length > HISTORY_PREVIEW_SIZE && (
+                        <button
+                          className="ghost-btn"
+                          type="button"
+                          onClick={() => {
+                            setHistoryPage(1);
+                            setIsViewingFullHistory(true);
+                          }}
+                        >
+                          View full history
+                        </button>
+                      )
+                    )}
                   </div>
-                  <div className="layout-warmup">
-                    <div className="content-card">
-                      <span className="eyebrow">Timeline</span>
-                      <ul className="timeline" aria-label="History timeline">
-                        {timeline.map((entry) => (
-                          <li key={entry.id}>{entry.summary}</li>
-                        ))}
-                        {timeline.length === 0 && (
-                          <li>No changes recorded yet.</li>
-                        )}
-                      </ul>
+                  {isViewingFullHistory ? (
+                    <div className="content-card history-full-card">
+                      <span className="eyebrow">All activity</span>
+                      <p className="timeline-description">
+                        Newest changes appear first. This history is stored only
+                        in your local archive.
+                      </p>
+                      <HistoryTimeline
+                        entries={paginatedHistory}
+                        emptyMessage="No local history has been recorded yet. Changes you make here will appear in this timeline."
+                        label="Full history timeline, newest first"
+                      />
+                      {timeline.length > HISTORY_PAGE_SIZE && (
+                        <LibraryPagination
+                          ariaLabel="Full history pagination"
+                          className="history-pagination"
+                          currentPage={currentHistoryPage}
+                          itemLabel="history events"
+                          pageSize={HISTORY_PAGE_SIZE}
+                          pageCount={historyPageCount}
+                          showBoundaryControls
+                          totalItems={timeline.length}
+                          onPageChange={setHistoryPage}
+                        />
+                      )}
                     </div>
-                    <div className="content-card">
-                      <span className="eyebrow">Summary</span>
-                      <div className="list-stack">
-                        <div className="mini-row">
-                          <div>
-                            <strong>{timeline.length} updates</strong>
-                            <br />
-                            <small>This week</small>
+                  ) : (
+                    <div className="layout-warmup">
+                      <div className="content-card">
+                        <span className="eyebrow">Timeline</span>
+                        <p className="timeline-description">
+                          Newest changes appear first. This history is stored
+                          only in your local archive.
+                        </p>
+                        <HistoryTimeline
+                          entries={timeline.slice(0, HISTORY_PREVIEW_SIZE)}
+                          emptyMessage="No local history has been recorded yet. Changes you make here will appear in this timeline."
+                          label="Recent history timeline, newest first"
+                        />
+                        {timeline.length > HISTORY_PREVIEW_SIZE && (
+                          <button
+                            className="mini-btn history-view-all"
+                            type="button"
+                            onClick={() => {
+                              setHistoryPage(1);
+                              setIsViewingFullHistory(true);
+                            }}
+                          >
+                            View all {timeline.length} events
+                          </button>
+                        )}
+                      </div>
+                      <div className="content-card history-summary-card">
+                        <span className="eyebrow">Summary</span>
+                        <div className="list-stack">
+                          <div className="mini-row">
+                            <div>
+                              <strong>{timeline.length} updates</strong>
+                              <br />
+                              <small>In your local archive</small>
+                            </div>
                           </div>
-                        </div>
-                        <div className="mini-row">
-                          <div>
-                            <strong>
-                              {
-                                timeline.filter(
-                                  (entry) => entry.action === 'imported',
-                                ).length
-                              }{' '}
-                              imports
-                            </strong>
-                            <br />
-                            <small>Last 30 days</small>
+                          <div className="mini-row">
+                            <div>
+                              <strong>
+                                {
+                                  timeline.filter(
+                                    (entry) => entry.action === 'imported',
+                                  ).length
+                                }{' '}
+                                imports
+                              </strong>
+                              <br />
+                              <small>Across recorded activity</small>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </>
               )}
 
@@ -3317,17 +3472,13 @@ export default function AppShellPage() {
                   <h3 id="detailPageHistory" className="section-label">
                     Recent history
                   </h3>
-                  <ul className="timeline">
-                    {timeline
+                  <HistoryTimeline
+                    entries={timeline
                       .filter((entry) => entry.itemId === selectedItem.id)
-                      .slice(0, 4)
-                      .map((entry) => (
-                        <li key={entry.id}>{entry.summary}</li>
-                      ))}
-                    {timeline.every(
-                      (entry) => entry.itemId !== selectedItem.id,
-                    ) && <li>No changes recorded for this item yet.</li>}
-                  </ul>
+                      .slice(0, 4)}
+                    emptyMessage="No history has been recorded for this item locally."
+                    label="Recent changes for this item, newest first"
+                  />
                 </section>
               </div>
             </div>
