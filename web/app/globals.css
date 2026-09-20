@@ -1332,7 +1332,7 @@ section.copy .muted {
 }
 
 .up-next-label {
-  margin: 0 0 10px;
+  margin: 0;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.12em;
@@ -1340,17 +1340,47 @@ section.copy .muted {
   color: var(--muted);
 }
 
+.card-row-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.card-row-controls:not([hidden]) {
+  display: flex;
+  gap: 6px;
+}
+
+.card-row-control {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.card-row-control[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.card-row-control:focus-visible,
+.up-next-track:focus-visible {
+  outline: 2px solid var(--brass-strong);
+  outline-offset: 2px;
+}
+
 .up-next-track {
   display: flex;
   gap: 10px;
   overflow-x: auto;
   padding-bottom: 4px;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    black calc(100% - 24px),
-    transparent
-  );
-  mask-image: linear-gradient(90deg, black calc(100% - 24px), transparent);
 }
 
 .up-next-card {

@@ -32,6 +32,8 @@ Status, progress, rating, and destructive actions must remain operable without d
 
 Global search can be submitted with Enter or its labelled search button from any primary screen. A non-empty submission searches all item categories, opens Library, and moves focus to the results heading; an empty submission leaves the current screen and category unchanged. No-results feedback includes the query; clearing global search returns focus to its input and restores the list.
 
+The Up next card row provides labelled previous and next buttons when its cards overflow. The buttons move one card at a time and expose disabled boundary states without losing keyboard focus. The row also supports native keyboard, touch, and trackpad scrolling. Button scrolling respects the current reduced-motion preference. Controls update after scrolling, resizing, or filtering; the episode grid is unchanged.
+
 ## Testing
 
 Accessibility checks should be part of design and release testing.
