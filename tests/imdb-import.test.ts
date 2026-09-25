@@ -10,9 +10,9 @@ const headers =
 const row = (values: string) => `${headers}\n${values}\n`;
 
 describe('IMDb CSV import', () => {
-  it('parses the supplied IMDb export without changing the archive', () => {
+  it('parses the synthetic IMDb fixture without changing the archive', () => {
     const source = readFileSync(
-      resolve('web/public/7e928dc0-f351-4409-a301-9d25e0d64af5.csv'),
+      resolve('tests/fixtures/import/imdb-watchlist.synthetic.csv'),
       'utf8',
     );
     const archive = createEmptyArchive();
@@ -22,14 +22,25 @@ describe('IMDb CSV import', () => {
     );
 
     expect(archive.items).toEqual([]);
-    expect(preview.items.length).toBeGreaterThan(900);
+    expect(preview.items).toHaveLength(3);
     expect(preview.items[0]).toMatchObject({
-      externalIds: { imdb: 'tt9376612' },
-      category: 'Movies',
+      externalIds: { imdb: 'tt0000000001' },
+      type: 'film',
+      category: 'Film',
       status: 'completed',
       progress: { current: 100, target: 100, unit: 'percent' },
-      tags: expect.arrayContaining(['IMDb watchlist', 'Azione', 'Avventura']),
-      description: 'IMDb: https://www.imdb.com/title/tt9376612/',
+      tags: expect.arrayContaining([
+        'IMDb watchlist',
+        'Adventure',
+        'Science Fiction',
+      ]),
+      description:
+        'Synthetic fixture record, with a comma\n\nIMDb: https://example.test/title/tt0000000001/',
+    });
+    expect(preview.items[1]).toMatchObject({
+      externalIds: { imdb: 'tt0000000002' },
+      type: 'series',
+      category: 'Series',
     });
     expect(preview.warnings.join(' ')).toContain('watchlist');
   });
@@ -39,7 +50,7 @@ describe('IMDb CSV import', () => {
       {
         name: 'ratings.csv',
         text: row(
-          '1,tt0111161,2024-01-01,2024-01-02,,Example Film,Original,https://www.imdb.com/title/tt0111161/,Film,9.3,142,1994,"Drama, Crime",3000,1994-10-14,Director,8,2024-01-02',
+          '1,tt0000000101,2024-01-01,2024-01-02,,Example Film,Original,https://example.test/title/tt0000000101/,Film,9.3,142,1994,"Drama, Crime",3000,1994-10-14,Director,8,2024-01-02',
         ),
       },
       createEmptyArchive(),
@@ -50,15 +61,15 @@ describe('IMDb CSV import', () => {
       progress: { current: 100, target: 100, unit: 'percent' },
       rating: 4.65,
       tags: ['IMDb watchlist', 'Drama', 'Crime'],
-      description: 'IMDb: https://www.imdb.com/title/tt0111161/',
-      externalIds: { imdb: 'tt0111161' },
+      description: 'IMDb: https://example.test/title/tt0000000101/',
+      externalIds: { imdb: 'tt0000000101' },
       attributes: {
         imdbListMembership: 'watchlist',
         imdbPosition: 1,
         imdbCreatedAt: '2024-01-01T00:00:00.000Z',
         imdbModifiedAt: '2024-01-02T00:00:00.000Z',
         imdbDateRated: '2024-01-02T00:00:00.000Z',
-        imdbUrl: 'https://www.imdb.com/title/tt0111161/',
+        imdbUrl: 'https://example.test/title/tt0000000101/',
         imdbRating: 9.3,
         imdbYourRating: 8,
         imdbRuntimeMinutes: 142,
@@ -90,7 +101,7 @@ describe('IMDb CSV import', () => {
       {
         name: 'watchlist.csv',
         text: row(
-          '1,tt0111161,2024-01-01,2024-01-01,,Example Film,Original,https://www.imdb.com/title/tt0111161/,Film,9.3,142,1994,Drama,3000,1994-10-14,Director,,',
+          '1,tt0000000101,2024-01-01,2024-01-01,,Example Film,Original,https://example.test/title/tt0000000101/,Film,9.3,142,1994,Drama,3000,1994-10-14,Director,,',
         ),
       },
       archive,
@@ -101,10 +112,12 @@ describe('IMDb CSV import', () => {
     ]);
     expect(applyImdbImport(archive, preview, 'skip').items).toHaveLength(1);
     expect(applyImdbImport(archive, preview, 'update').items[0]).toMatchObject({
+      type: 'film',
+      category: 'Film',
       notes: ['keep this'],
       collections: ['Favourites'],
       attributes: { localOnly: true, imdbListMembership: 'watchlist' },
-      externalIds: { imdb: 'tt0111161' },
+      externalIds: { imdb: 'tt0000000101' },
     });
   });
 

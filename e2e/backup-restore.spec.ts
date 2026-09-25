@@ -314,7 +314,7 @@ test('previews and imports an IMDb CSV export locally', async ({ page }) => {
     'Position,Const,Created,Modified,Description,Title,Original Title,URL,Title Type,IMDb Rating,Runtime (mins),Year,Genres,Num Votes,Release Date,Directors,Your Rating,Date Rated';
   const imdbCsvRows = Array.from({ length: 21 }, (_, index) => {
     const position = index + 1;
-    const imdbId = `tt${String(position).padStart(7, '0')}`;
+    const imdbId = `tt9999999${String(position).padStart(2, '0')}`;
     return [
       position,
       imdbId,
@@ -323,7 +323,7 @@ test('previews and imports an IMDb CSV export locally', async ({ page }) => {
       '',
       `IMDb fixture ${position}`,
       `IMDb fixture ${position}`,
-      `https://www.imdb.com/title/${imdbId}/`,
+      `https://example.test/title/${imdbId}/`,
       'Film',
       '',
       '',
@@ -376,12 +376,12 @@ test('previews and imports an IMDb CSV export locally', async ({ page }) => {
   await itemInList(page, 'IMDb fixture 1').click();
   await expect(
     page.getByRole('link', {
-      name: 'https://www.imdb.com/title/tt0000001/',
+      name: 'https://example.test/title/tt999999901/',
     }),
-  ).toHaveAttribute('href', 'https://www.imdb.com/title/tt0000001/');
+  ).toHaveAttribute('href', 'https://example.test/title/tt999999901/');
   await expect(
     page.getByRole('link', { name: 'Open on IMDb' }).first(),
-  ).toHaveAttribute('href', 'https://www.imdb.com/title/tt0000001/');
+  ).toHaveAttribute('href', 'https://example.test/title/tt999999901/');
   await expect(page.getByText('Genres: Drama')).toBeVisible();
   await page.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(itemInList(page, 'IMDb fixture 21')).toBeVisible();

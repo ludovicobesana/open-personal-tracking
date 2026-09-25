@@ -58,6 +58,9 @@ test('reviews mocked provider metadata before creating a durable local item', as
   await expect(
     drawer.getByRole('heading', { name: 'Star Wars' }),
   ).toBeVisible();
+  await expect(
+    drawer.getByLabel('Use the provider image as this item’s remote cover'),
+  ).not.toBeChecked();
   await drawer
     .getByRole('button', { name: 'Use metadata in item form' })
     .click();
@@ -71,7 +74,7 @@ test('reviews mocked provider metadata before creating a durable local item', as
   await expect(
     page.getByText('Star Wars', { exact: true }).first(),
   ).toBeVisible();
-  await expect(page.locator('img[src*="image.tmdb.org"]')).toHaveCount(0);
+  await expect(page.locator('[style*="image.tmdb.org"]')).toHaveCount(0);
 
   await page.reload();
   await expect(
@@ -90,9 +93,11 @@ test('keeps manual creation available when provider search is unavailable', asyn
 
   await drawer.getByLabel('Search movies and TV').fill('Dune');
   await drawer.getByRole('button', { name: 'Search', exact: true }).click();
-  await expect(drawer.getByRole('alert')).toContainText(
-    'temporarily unavailable',
-  );
+  await expect(
+    drawer
+      .getByRole('region', { name: 'Find a film or series' })
+      .getByRole('alert'),
+  ).toContainText('temporarily unavailable');
 
   await drawer.getByLabel('Title', { exact: true }).fill('Manual Dune');
   await drawer.getByRole('button', { name: 'Save item' }).click();

@@ -27,7 +27,9 @@ IMDb download formats are rejected rather than being guessed.
   `imdbListMembership: watchlist` source attribute. Each comma-separated
   value in `Genres` is also added as an item tag for every imported title.
 - `Const` is preserved as the item `imdb` external ID. Titles marked as TV
-  series are imported as series; other title types are imported as movies.
+  series are imported as series; other title types are imported as `Film`
+  items. Updating a duplicate that an earlier version imported as
+  `movie`/`Movies` moves it to the `Film` category.
 - When present, the source `URL` is appended to the imported item description
   as an IMDb link, after any source description.
 - `IMDb Rating` is converted from IMDb's 0–10 range to the archive's 0–5
@@ -39,7 +41,7 @@ Rated` is retained as source metadata, but does not alter that status.
   are retained as source attributes. `Directors` is also mapped to the
   application's author field. Public catalog fields are not promoted to a
   personal rating or inferred progress.
-- Short-form, video, TV special, and episode rows are retained as movie items;
+- Short-form, video, TV special, and episode rows are retained as `Film` items;
   the export does not contain enough structure to rebuild a series hierarchy.
 
 ## Safety and conflicts

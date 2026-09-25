@@ -62,7 +62,7 @@ const imdbType = (titleType: string): { type: string; category: string } => {
   if (normalized.includes('serie') || normalized.includes('tv series')) {
     return { type: 'series', category: 'Series' };
   }
-  return { type: 'movie', category: 'Movies' };
+  return { type: 'film', category: 'Film' };
 };
 
 const descriptionWithImdbLink = (
@@ -225,11 +225,15 @@ const toItem = (row: CsvRow, rowIndex: number): Item => {
   });
 };
 
+// Earlier imports stored films with the `movie` type.
+const comparableType = (type: string): string =>
+  type === 'movie' ? 'film' : type;
+
 const duplicateFor = (archive: ArchiveSnapshot, item: Item): Item | undefined =>
   archive.items.find(
     (existing) =>
       existing.externalIds.imdb === item.externalIds.imdb ||
-      (existing.type === item.type &&
+      (comparableType(existing.type) === comparableType(item.type) &&
         normalizedTitle(existing.title) === normalizedTitle(item.title)),
   );
 
@@ -302,6 +306,10 @@ export const applyImdbImport = (
       const existing = items[index];
       items[index] = {
         ...existing,
+        // Earlier imports stored films as movie/Movies, outside the Film filter.
+        ...(existing.type === 'movie' && existing.category === 'Movies'
+          ? { type: sourceItem.type, category: sourceItem.category }
+          : {}),
         status: sourceItem.status,
         progress: sourceItem.progress,
         rating: sourceItem.rating ?? existing.rating,
