@@ -31,6 +31,7 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 ### Fixed
 
+- Removed an unverified personal IMDb export from shipped web assets; importer tests now use a documented synthetic fixture.
 - Global search now opens Library results from every primary screen, with a labelled submit button and query-specific no-results feedback.
 - TV Time imports now mark episodes from real `tracking-prod-records-v2.csv` exports as watched instead of unwatched.
 - TV Time imports now mark films and legacy-tracked episodes as watched from the export's row types.

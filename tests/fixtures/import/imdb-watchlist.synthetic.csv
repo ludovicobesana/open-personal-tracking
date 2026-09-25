@@ -1,0 +1,4 @@
+Position,Const,Created,Modified,Description,Title,Original Title,URL,Title Type,IMDb Rating,Runtime (mins),Year,Genres,Num Votes,Release Date,Directors,Your Rating,Date Rated
+1,tt0000000001,2001-01-01,2001-01-02,"Synthetic fixture record, with a comma",Synthetic Feature,Original Synthetic Feature,https://example.test/title/tt0000000001/,Film,8.4,101,2001,"Adventure, Science Fiction",0,2001-01-01,Example Director,7,2001-01-03
+2,tt0000000002,2002-02-01,2002-02-02,,Synthetic Series,Original Synthetic Series,https://example.test/title/tt0000000002/,TV Series,7.5,45,2002,Drama,0,2002-02-01,Example Series Director,,
+3,tt0000000003,2003-03-01,2003-03-01,,Synthetic Short,Original Synthetic Short,https://example.test/title/tt0000000003/,Short,,,,,,,,,
