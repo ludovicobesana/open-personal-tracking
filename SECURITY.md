@@ -29,6 +29,27 @@ For open-personal-tracking, data integrity is part of security.
 
 A bug that corrupts or irreversibly deletes user history should be treated with severity similar to a major security regression.
 
+## Accidental repository data exposure
+
+Potentially personal data committed to the repository is a security and privacy
+incident, even when the data is used as a test fixture. Do not paste its
+contents into issues, pull requests, logs, or replacement fixtures.
+
+When it is discovered, maintainers must:
+
+1. Remove the data from shipped assets and the current repository tree.
+2. Replace any test dependency with a minimal, documented synthetic fixture.
+3. Audit all tracked fixtures for provenance, minimization, and authorization.
+4. Assess the Git history, forks, releases, caches, and mirrors through a
+   private security process before deciding on history rewriting.
+5. Document the decision and follow-up without republishing the exposed data.
+
+The unverified IMDb CSV addressed by [#114](https://github.com/ludovicobesana/open-personal-tracking/issues/114)
+is removed from the current tree by its remediation change. Its earlier commit
+remains reachable through Git history, so historical cleanup is required and
+must be coordinated separately. This repository change deliberately does not
+rewrite shared history.
+
 ## Dependency policy
 
 Avoid unnecessary dependencies.
