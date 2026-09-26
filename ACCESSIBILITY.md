@@ -34,6 +34,11 @@ Global search can be submitted with Enter or its labelled search button from any
 
 The Up next card row provides labelled previous and next buttons when its cards overflow. The buttons move one card at a time and expose disabled boundary states without losing keyboard focus. The row also supports native keyboard, touch, and trackpad scrolling. Button scrolling respects the current reduced-motion preference. Controls update after scrolling, resizing, or filtering; the episode grid is unchanged.
 
+Provider discovery is an optional section of the item dialog. Search, retry,
+cancel, result review, and remote-cover consent use labelled native controls;
+loading, empty, error, and cancellation feedback is announced without exposing
+provider transport details. Manual creation remains available in every state.
+
 ## Testing
 
 Accessibility checks should be part of design and release testing.

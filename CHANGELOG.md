@@ -8,6 +8,9 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 ### Added
 
+- Optional provider-backed film and TV discovery in the item form, with local
+  review, portable attribution, cancellable bounded searches, and explicit
+  consent before a remote cover reference is saved.
 - Accessible previous and next controls for overflowing Up next cards, with keyboard focus and reduced-motion support.
 - Offline delivery for the production web app after its first successful visit, without caching user archive data.
 - Persisted parent/sub-unit tracking with derived parent progress, reopening, and independent watch/rewatch history entries.
