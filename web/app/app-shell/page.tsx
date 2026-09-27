@@ -117,6 +117,25 @@ type ProviderSearchState =
   | 'empty'
   | 'error'
   | 'cancelled';
+type ProviderSearchPanelProps = {
+  query: string;
+  searchState: ProviderSearchState;
+  error: ProviderError | null;
+  results: Array<ProviderSearchResult>;
+  nextCursor?: string;
+  review: ProviderDiscoveryReview | null;
+  showRemoteImages: boolean;
+  useProviderImage: boolean;
+  onQueryChange: (query: string) => void;
+  onSearch: () => void;
+  onCancel: () => void;
+  onRetry: () => void;
+  onLoadMore: () => void;
+  onReview: (result: ProviderSearchResult) => void;
+  onShowRemoteImagesChange: (showImages: boolean) => void;
+  onUseProviderImageChange: (useImage: boolean) => void;
+  onAddToLibrary: () => void;
+};
 type TrackedItem = {
   id: string;
   title: string;
@@ -267,6 +286,256 @@ const LibraryPagination = ({
 );
 
 const getCoverImage = (image?: string): string => image?.trim() ?? '';
+
+const providerErrorMessage = (error: ProviderError): string => {
+  if (error.kind === 'rate_limited' && error.retryAfterSeconds) {
+    return `TMDB search is temporarily rate limited. Try again in ${error.retryAfterSeconds} seconds, or add an item manually.`;
+  }
+  if (error.kind === 'unauthorized') {
+    return 'TMDB is not configured. You can still add an item manually.';
+  }
+  if (error.kind === 'timeout') {
+    return 'TMDB search took too long. You can retry or add an item manually.';
+  }
+  if (error.kind === 'unavailable') {
+    return 'TMDB is temporarily unavailable. You can retry or add an item manually.';
+  }
+  return `${error.message}. You can retry or add an item manually.`;
+};
+
+const providerPosterUrl = (result: ProviderSearchResult): string | undefined =>
+  result.images.find(
+    (image) => image.kind === 'poster' || image.kind === 'cover',
+  )?.url;
+
+const ProviderSearchPanel = ({
+  query,
+  searchState,
+  error,
+  results,
+  nextCursor,
+  review,
+  showRemoteImages,
+  useProviderImage,
+  onQueryChange,
+  onSearch,
+  onCancel,
+  onRetry,
+  onLoadMore,
+  onReview,
+  onShowRemoteImagesChange,
+  onUseProviderImageChange,
+  onAddToLibrary,
+}: ProviderSearchPanelProps) => (
+  <section
+    className="provider-search-panel"
+    aria-labelledby="providerSearchTitle"
+  >
+    <div className="provider-search-intro">
+      <div>
+        <span className="eyebrow">Powered by TMDB</span>
+        <h2 id="providerSearchTitle">Find your next film or series</h2>
+        <p>
+          Search TMDB, review the details, then add only what you choose to your
+          local tracker.
+        </p>
+      </div>
+      <span className="provider-local-note">Your tracker stays local</span>
+    </div>
+
+    <div className="provider-search-controls" role="search">
+      <label className="field-label" htmlFor="provider-query">
+        Search TMDB films and series
+      </label>
+      <div className="provider-search-row">
+        <input
+          className="field-control"
+          id="provider-query"
+          type="search"
+          value={query}
+          onChange={(event) => onQueryChange(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key !== 'Enter') return;
+            event.preventDefault();
+            onSearch();
+          }}
+          placeholder="Try Dune, The Bear, Spirited Away…"
+          autoComplete="off"
+          disabled={searchState === 'loading'}
+        />
+        <button
+          className="primary-btn"
+          type="button"
+          onClick={onSearch}
+          disabled={searchState === 'loading'}
+        >
+          Search TMDB
+        </button>
+      </div>
+    </div>
+
+    <label className="provider-image-choice provider-image-choice--preview">
+      <input
+        type="checkbox"
+        checked={showRemoteImages}
+        onChange={(event) => onShowRemoteImagesChange(event.target.checked)}
+      />
+      <span>Show TMDB poster previews</span>
+      <small>
+        Optional. Poster previews load directly from TMDB only after you enable
+        them.
+      </small>
+    </label>
+
+    {searchState === 'loading' && (
+      <div className="provider-status" role="status">
+        <span>Searching TMDB…</span>
+        <button className="ghost-btn" type="button" onClick={onCancel}>
+          Cancel search
+        </button>
+      </div>
+    )}
+    {searchState === 'cancelled' && (
+      <p className="provider-status" role="status">
+        Search cancelled. You can try another title or add an item manually.
+      </p>
+    )}
+    {searchState === 'empty' && (
+      <p className="provider-status" role="status">
+        No films or series matched. Try a different title, or add an item
+        manually.
+      </p>
+    )}
+    {searchState === 'error' && error && (
+      <div className="provider-error" role="alert">
+        <p>{providerErrorMessage(error)}</p>
+        {error.retryable && (
+          <button className="ghost-btn" type="button" onClick={onRetry}>
+            Retry search
+          </button>
+        )}
+      </div>
+    )}
+
+    {results.length > 0 && (
+      <section aria-labelledby="providerResultsTitle">
+        <div className="provider-results-head">
+          <h3 id="providerResultsTitle">Choose a title to review</h3>
+          <span>{results.length} results</span>
+        </div>
+        <ul className="provider-results" aria-label="TMDB search results">
+          {results.map((result) => {
+            const posterUrl = providerPosterUrl(result);
+            return (
+              <li
+                key={`${result.reference.providerId}-${result.reference.externalId}`}
+              >
+                <button
+                  className="provider-result"
+                  type="button"
+                  onClick={() => onReview(result)}
+                  aria-label={`Review ${result.title}, ${result.category}`}
+                >
+                  <span className="provider-result-poster" aria-hidden="true">
+                    {showRemoteImages && posterUrl ? (
+                      // This intentionally bypasses Next Image optimization:
+                      // the browser fetches the remote poster only after an
+                      // explicit person-controlled consent action.
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={posterUrl}
+                        alt=""
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <span>{result.title.charAt(0)}</span>
+                    )}
+                  </span>
+                  <span className="provider-result-copy">
+                    <strong>{result.title}</strong>
+                    <span>
+                      {result.category}
+                      {result.releaseDate ? ` · ${result.releaseDate}` : ''}
+                    </span>
+                    {result.description && <small>{result.description}</small>}
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    )}
+    {nextCursor && searchState !== 'loading' && (
+      <button className="ghost-btn" type="button" onClick={onLoadMore}>
+        Show more results
+      </button>
+    )}
+    {review && (
+      <section
+        className="provider-review"
+        aria-labelledby="providerReviewTitle"
+      >
+        <span className="eyebrow">Ready to add</span>
+        <h3 id="providerReviewTitle">{review.input.title}</h3>
+        <p>
+          {review.input.category}
+          {review.input.description ? ` · ${review.input.description}` : ''}
+        </p>
+        <p className="provider-attribution">
+          External source: {review.reference.providerId}:{' '}
+          {review.reference.externalId}
+        </p>
+        <ul className="provider-attributions" aria-label="Source attribution">
+          {review.attributions.map((attribution) => (
+            <li
+              key={[
+                attribution.name,
+                attribution.notice,
+                attribution.url,
+                attribution.licenseUrl,
+              ].join('|')}
+            >
+              <strong>{attribution.name}</strong>
+              {attribution.notice ? ` — ${attribution.notice}` : ''}
+              {attribution.url && (
+                <>
+                  {' '}
+                  <a
+                    href={attribution.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Source details
+                  </a>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+        {review.imageReference && (
+          <label className="provider-image-choice">
+            <input
+              type="checkbox"
+              checked={useProviderImage}
+              onChange={(event) =>
+                onUseProviderImageChange(event.target.checked)
+              }
+            />
+            <span>Use the provider image as this item’s remote cover</span>
+            <small>
+              Optional. This saves a remote reference; it is never downloaded or
+              cached by the tracker.
+            </small>
+          </label>
+        )}
+        <button className="primary-btn" type="button" onClick={onAddToLibrary}>
+          Add {review.input.title} to library
+        </button>
+      </section>
+    )}
+  </section>
+);
 
 const STATUS_LABEL: Record<string, string> = {
   planned: 'Planned',
@@ -577,6 +846,7 @@ export default function AppShellPage() {
   const [providerReview, setProviderReview] =
     useState<ProviderDiscoveryReview | null>(null);
   const [useProviderImage, setUseProviderImage] = useState(false);
+  const [showProviderImages, setShowProviderImages] = useState(false);
   const ratingInput = useRef<HTMLInputElement>(null);
   const drawerForm = useRef<HTMLFormElement>(null);
   const providerRequest = useRef<AbortController | null>(null);
@@ -601,6 +871,7 @@ export default function AppShellPage() {
     setProviderError(null);
     setProviderReview(null);
     setUseProviderImage(false);
+    setShowProviderImages(false);
   };
 
   useEffect(
@@ -922,6 +1193,20 @@ export default function AppShellPage() {
     resetProviderDiscovery();
     setEditingItemId(null);
     setNewItem(emptyItemForm());
+    setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
+    setDrawerOpen(true);
+  };
+
+  const openProviderItemDrawer = () => {
+    if (!providerReview) return;
+    resetDrawerFeedback();
+    setEditingItemId(null);
+    setNewItem({
+      ...emptyItemForm(),
+      title: providerReview.input.title,
+      category: providerReview.input.category,
+      description: providerReview.input.description ?? '',
+    });
     setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
     setDrawerOpen(true);
   };
@@ -1373,22 +1658,6 @@ export default function AppShellPage() {
     });
   };
 
-  const providerErrorMessage = (error: ProviderError): string => {
-    if (error.kind === 'rate_limited' && error.retryAfterSeconds) {
-      return `Metadata search is temporarily rate limited. Try again in ${error.retryAfterSeconds} seconds, or add the item manually.`;
-    }
-    if (error.kind === 'unauthorized') {
-      return 'Metadata search is not configured. You can still add the item manually.';
-    }
-    if (error.kind === 'timeout') {
-      return 'Metadata search took too long. You can retry or add the item manually.';
-    }
-    if (error.kind === 'unavailable') {
-      return 'Metadata search is temporarily unavailable. You can retry or add the item manually.';
-    }
-    return `${error.message}. You can retry or add the item manually.`;
-  };
-
   const cancelProviderSearch = () => {
     if (!providerRequest.current) return;
     providerRequest.current.abort();
@@ -1479,18 +1748,6 @@ export default function AppShellPage() {
     setProviderReview(configuredProvider.discovery.review(outcome.value));
     setUseProviderImage(false);
     setProviderSearchState('results');
-  };
-
-  const useProviderReviewInForm = () => {
-    if (!providerReview) return;
-    setNewItem((current) => ({
-      ...current,
-      title: providerReview.input.title,
-      category: providerReview.input.category,
-      description: providerReview.input.description ?? '',
-    }));
-    setNewItemUsesPlaceholderCover(true);
-    requestAnimationFrame(() => document.getElementById('fTitle')?.focus());
   };
 
   const handleSaveDrawer = async () => {
@@ -2458,15 +2715,10 @@ export default function AppShellPage() {
                   <div className="screen-hero discover-hero">
                     <div>
                       <span className="eyebrow">Discover</span>
-                      <h2>
-                        {preferences.displayName
-                          ? `Made for ${preferences.displayName}`
-                          : 'Make this library yours'}
-                      </h2>
+                      <h2>Search films and series to track</h2>
                       <p>
-                        {preferences.activities.length
-                          ? `Start with ${preferences.activities.join(', ')} and refine what you want to track.`
-                          : 'Choose what you enjoy in Settings to make discovery useful.'}
+                        TMDB is optional: nothing is added until you review and
+                        confirm it.
                       </p>
                     </div>
                     <button
@@ -2475,34 +2727,28 @@ export default function AppShellPage() {
                       onClick={openNewItemDrawer}
                     >
                       <Plus size={14} aria-hidden="true" />
-                      Add to library
+                      Add manually
                     </button>
                   </div>
-                  <div className="screen-grid discovery-grid">
-                    <div className="summary-card">
-                      <span className="eyebrow">Watch next</span>
-                      <strong>{upNextItems.length}</strong>
-                      <span>Items ready to continue</span>
-                    </div>
-                    <div className="summary-card">
-                      <span className="eyebrow">Your genres</span>
-                      <strong>
-                        {preferences.favoriteGenres.length || '—'}
-                      </strong>
-                      <span>
-                        {preferences.favoriteGenres.length
-                          ? preferences.favoriteGenres.join(' · ')
-                          : 'Set favourites in Settings'}
-                      </span>
-                    </div>
-                    <div className="summary-card">
-                      <span className="eyebrow">Local first</span>
-                      <strong>0</strong>
-                      <span>
-                        External recommendations until a provider is connected
-                      </span>
-                    </div>
-                  </div>
+                  <ProviderSearchPanel
+                    query={providerQuery}
+                    searchState={providerSearchState}
+                    error={providerError}
+                    results={providerResults}
+                    nextCursor={providerNextCursor}
+                    review={providerReview}
+                    showRemoteImages={showProviderImages}
+                    useProviderImage={useProviderImage}
+                    onQueryChange={setProviderQuery}
+                    onSearch={() => void searchProvider()}
+                    onCancel={cancelProviderSearch}
+                    onRetry={() => void searchProvider()}
+                    onLoadMore={() => void searchProvider(providerNextCursor)}
+                    onReview={(result) => void reviewProviderResult(result)}
+                    onShowRemoteImagesChange={setShowProviderImages}
+                    onUseProviderImageChange={setUseProviderImage}
+                    onAddToLibrary={openProviderItemDrawer}
+                  />
                 </>
               )}
 
@@ -4002,207 +4248,6 @@ export default function AppShellPage() {
                     ? 'Please correct the highlighted fields before saving.'
                     : '')}
               </p>
-              {!editingItemId && (
-                <section
-                  className="provider-discovery"
-                  aria-labelledby="providerDiscoveryTitle"
-                >
-                  <div>
-                    <span className="eyebrow">Optional metadata</span>
-                    <h4 id="providerDiscoveryTitle">Find a film or series</h4>
-                    <p>
-                      Search is optional. Review metadata before it fills this
-                      local item form; manual entry always remains available.
-                    </p>
-                  </div>
-                  <div className="provider-search-controls" role="search">
-                    <label className="field-label" htmlFor="provider-query">
-                      Search movies and TV
-                    </label>
-                    <div className="provider-search-row">
-                      <input
-                        className="field-control"
-                        id="provider-query"
-                        type="search"
-                        value={providerQuery}
-                        onChange={(event) =>
-                          setProviderQuery(event.target.value)
-                        }
-                        onKeyDown={(event) => {
-                          if (event.key !== 'Enter') return;
-                          event.preventDefault();
-                          void searchProvider();
-                        }}
-                        placeholder="e.g. Dune"
-                        disabled={providerSearchState === 'loading'}
-                      />
-                      <button
-                        className="ghost-btn"
-                        type="button"
-                        onClick={() => void searchProvider()}
-                        disabled={providerSearchState === 'loading'}
-                      >
-                        Search
-                      </button>
-                    </div>
-                  </div>
-                  {providerSearchState === 'loading' && (
-                    <div className="provider-status" role="status">
-                      <span>Searching metadata…</span>
-                      <button
-                        className="ghost-btn"
-                        type="button"
-                        onClick={cancelProviderSearch}
-                      >
-                        Cancel search
-                      </button>
-                    </div>
-                  )}
-                  {providerSearchState === 'cancelled' && (
-                    <p className="provider-status" role="status">
-                      Metadata search cancelled. You can search again or add the
-                      item manually.
-                    </p>
-                  )}
-                  {providerSearchState === 'empty' && (
-                    <p className="provider-status" role="status">
-                      No films or series matched. You can still add the item
-                      manually.
-                    </p>
-                  )}
-                  {providerSearchState === 'error' && providerError && (
-                    <div className="provider-error" role="alert">
-                      <p>{providerErrorMessage(providerError)}</p>
-                      {providerError.retryable && (
-                        <button
-                          className="ghost-btn"
-                          type="button"
-                          onClick={() => void searchProvider()}
-                        >
-                          Retry search
-                        </button>
-                      )}
-                    </div>
-                  )}
-                  {providerResults.length > 0 && (
-                    <ul
-                      className="provider-results"
-                      aria-label="Metadata results"
-                    >
-                      {providerResults.map((result) => (
-                        <li
-                          key={`${result.reference.providerId}-${result.reference.externalId}`}
-                        >
-                          <button
-                            className="provider-result"
-                            type="button"
-                            onClick={() => void reviewProviderResult(result)}
-                          >
-                            <strong>{result.title}</strong>
-                            <span>
-                              {result.category}
-                              {result.releaseDate
-                                ? ` · ${result.releaseDate}`
-                                : ''}
-                            </span>
-                            {result.description && (
-                              <small>{result.description}</small>
-                            )}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {providerNextCursor && providerSearchState !== 'loading' && (
-                    <button
-                      className="ghost-btn"
-                      type="button"
-                      onClick={() => void searchProvider(providerNextCursor)}
-                    >
-                      Load more results
-                    </button>
-                  )}
-                  {providerReview && (
-                    <section
-                      className="provider-review"
-                      aria-labelledby="providerReviewTitle"
-                    >
-                      <span className="eyebrow">Review metadata</span>
-                      <h5 id="providerReviewTitle">
-                        {providerReview.input.title}
-                      </h5>
-                      <p>
-                        {providerReview.input.category}
-                        {providerReview.input.description
-                          ? ` · ${providerReview.input.description}`
-                          : ''}
-                      </p>
-                      <p className="provider-attribution">
-                        External source: {providerReview.reference.providerId}:{' '}
-                        {providerReview.reference.externalId}
-                      </p>
-                      <ul
-                        className="provider-attributions"
-                        aria-label="Source attribution"
-                      >
-                        {providerReview.attributions.map((attribution) => (
-                          <li
-                            key={[
-                              attribution.name,
-                              attribution.notice,
-                              attribution.url,
-                              attribution.licenseUrl,
-                            ].join('|')}
-                          >
-                            <strong>{attribution.name}</strong>
-                            {attribution.notice
-                              ? ` — ${attribution.notice}`
-                              : ''}
-                            {attribution.url && (
-                              <>
-                                {' '}
-                                <a
-                                  href={attribution.url}
-                                  target="_blank"
-                                  rel="noreferrer noopener"
-                                >
-                                  Source details
-                                </a>
-                              </>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                      {providerReview.imageReference && (
-                        <label className="provider-image-choice">
-                          <input
-                            type="checkbox"
-                            checked={useProviderImage}
-                            onChange={(event) =>
-                              setUseProviderImage(event.target.checked)
-                            }
-                          />
-                          <span>
-                            Use the provider image as this item’s remote cover
-                          </span>
-                          <small>
-                            Optional. Selecting it stores a remote reference;
-                            your browser will request it when the cover is
-                            shown. It is not downloaded or cached.
-                          </small>
-                        </label>
-                      )}
-                      <button
-                        className="ghost-btn"
-                        type="button"
-                        onClick={useProviderReviewInForm}
-                      >
-                        Use metadata in item form
-                      </button>
-                    </section>
-                  )}
-                </section>
-              )}
               <div>
                 <label className="field-label" htmlFor="fTitle">
                   Title <span aria-hidden="true">(required)</span>
@@ -4635,7 +4680,8 @@ export default function AppShellPage() {
                   color: 'var(--muted)',
                 }}
               >
-                Manual entry only in this preview. Catalog search comes later.
+                Manual entry is always available. To search TMDB first, open
+                Discover from the sidebar.
               </p>
             </div>
 

@@ -49,21 +49,18 @@ test('reviews mocked provider metadata before creating a durable local item', as
   });
 
   await page.goto('/app-shell');
-  await page.getByRole('button', { name: 'New item', exact: true }).click();
-  const drawer = page.getByRole('dialog', { name: 'New item' });
-
-  await drawer.getByLabel('Search movies and TV').fill('Star Wars');
-  await drawer.getByRole('button', { name: 'Search', exact: true }).click();
-  await drawer.getByRole('button', { name: /Star Wars.*Film/ }).click();
-  await expect(
-    drawer.getByRole('heading', { name: 'Star Wars' }),
-  ).toBeVisible();
-  await expect(
-    drawer.getByLabel('Use the provider image as this item’s remote cover'),
-  ).not.toBeChecked();
-  await drawer
-    .getByRole('button', { name: 'Use metadata in item form' })
+  await page
+    .getByRole('button', { name: 'Discover', exact: true })
+    .first()
     .click();
+
+  await page.getByLabel('Search TMDB films and series').fill('Star Wars');
+  await page.getByRole('button', { name: 'Search TMDB', exact: true }).click();
+  await page.getByRole('button', { name: 'Review Star Wars, Film' }).click();
+  await expect(page.getByRole('heading', { name: 'Star Wars' })).toBeVisible();
+  await expect(page.getByLabel('Show TMDB poster previews')).not.toBeChecked();
+  await page.getByRole('button', { name: 'Add Star Wars to library' }).click();
+  const drawer = page.getByRole('dialog', { name: 'New item' });
 
   await expect(drawer.getByLabel('Title', { exact: true })).toHaveValue(
     'Star Wars',
@@ -88,17 +85,21 @@ test('keeps manual creation available when provider search is unavailable', asyn
   await page.route('https://api.themoviedb.org/**', (route) => route.abort());
 
   await page.goto('/app-shell');
-  await page.getByRole('button', { name: 'New item', exact: true }).click();
-  const drawer = page.getByRole('dialog', { name: 'New item' });
+  await page
+    .getByRole('button', { name: 'Discover', exact: true })
+    .first()
+    .click();
 
-  await drawer.getByLabel('Search movies and TV').fill('Dune');
-  await drawer.getByRole('button', { name: 'Search', exact: true }).click();
+  await page.getByLabel('Search TMDB films and series').fill('Dune');
+  await page.getByRole('button', { name: 'Search TMDB', exact: true }).click();
   await expect(
-    drawer
-      .getByRole('region', { name: 'Find a film or series' })
+    page
+      .getByRole('region', { name: 'Find your next film or series' })
       .getByRole('alert'),
   ).toContainText('temporarily unavailable');
 
+  await page.getByRole('button', { name: 'Add manually', exact: true }).click();
+  const drawer = page.getByRole('dialog', { name: 'New item' });
   await drawer.getByLabel('Title', { exact: true }).fill('Manual Dune');
   await drawer.getByRole('button', { name: 'Save item' }).click();
   await expect(drawer).not.toBeVisible();

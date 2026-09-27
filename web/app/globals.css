@@ -2813,30 +2813,59 @@ section.copy .muted {
   background: var(--surface);
 }
 
-.provider-discovery,
+.provider-search-panel,
 .provider-review {
   display: grid;
-  gap: 0.7rem;
-  padding: 0.9rem;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-xs);
-  background: var(--surface);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--brass) 12%, transparent),
+      transparent 36%
+    ),
+    var(--surface);
 }
 
-.provider-discovery h4,
+.provider-search-panel h2,
+.provider-search-panel h3,
 .provider-review h5,
-.provider-discovery p,
+.provider-review h3,
+.provider-search-panel p,
 .provider-review p {
   margin: 0;
 }
 
-.provider-discovery > div > p,
 .provider-attribution,
 .provider-status,
 .provider-result span,
 .provider-result small {
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.provider-search-intro,
+.provider-results-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.provider-search-intro h2 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.provider-local-note {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
 .provider-attributions {
@@ -2869,6 +2898,13 @@ section.copy .muted {
   line-height: 1.45;
 }
 
+.provider-image-choice--preview {
+  padding: 0.7rem;
+  border: 1px dashed var(--hairline);
+  border-radius: var(--radius-xs);
+  background: color-mix(in srgb, var(--surface-strong) 74%, transparent);
+}
+
 .provider-search-row {
   display: flex;
   gap: 0.5rem;
@@ -2881,17 +2917,21 @@ section.copy .muted {
 
 .provider-results {
   display: grid;
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
+  gap: 0.8rem;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
 .provider-result {
-  display: grid;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
   width: 100%;
-  gap: 0.2rem;
-  padding: 0.7rem;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-xs);
   background: var(--surface-strong);
@@ -2902,6 +2942,57 @@ section.copy .muted {
 .provider-result:hover,
 .provider-result:focus-visible {
   border-color: var(--brass);
+  transform: translateY(-2px);
+}
+
+.provider-result-poster {
+  display: grid;
+  aspect-ratio: 2 / 3;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brass) 56%, var(--ink)),
+    var(--ink)
+  );
+  color: var(--surface);
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+}
+
+.provider-result-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.provider-result-copy {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.75rem;
+}
+
+.provider-result-copy strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.provider-result-copy small {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.provider-results-head h3 {
+  font-size: 1rem;
+}
+
+.provider-results-head > span {
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .provider-error {
@@ -2912,6 +3003,24 @@ section.copy .muted {
   padding: 0.7rem;
   border-inline-start: 3px solid var(--stamp);
   background: color-mix(in srgb, var(--stamp) 12%, var(--surface));
+}
+
+@media (max-width: 520px) {
+  .provider-search-intro {
+    display: grid;
+  }
+
+  .provider-search-row {
+    display: grid;
+  }
+
+  .provider-search-row .primary-btn {
+    justify-content: center;
+  }
+
+  .provider-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .series-editor {
