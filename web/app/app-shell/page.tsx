@@ -134,7 +134,7 @@ type ProviderSearchPanelProps = {
   onReview: (result: ProviderSearchResult) => void;
   onShowRemoteImagesChange: (showImages: boolean) => void;
   onUseProviderImageChange: (useImage: boolean) => void;
-  onAddToLibrary: () => void;
+  onAddToLibrary: (review: ProviderDiscoveryReview) => void;
 };
 type TrackedItem = {
   id: string;
@@ -529,7 +529,11 @@ const ProviderSearchPanel = ({
             </small>
           </label>
         )}
-        <button className="primary-btn" type="button" onClick={onAddToLibrary}>
+        <button
+          className="primary-btn"
+          type="button"
+          onClick={() => onAddToLibrary(review)}
+        >
           Add {review.input.title} to library
         </button>
       </section>
@@ -1197,15 +1201,14 @@ export default function AppShellPage() {
     setDrawerOpen(true);
   };
 
-  const openProviderItemDrawer = () => {
-    if (!providerReview) return;
+  const openProviderItemDrawer = (review: ProviderDiscoveryReview) => {
     resetDrawerFeedback();
     setEditingItemId(null);
     setNewItem({
       ...emptyItemForm(),
-      title: providerReview.input.title,
-      category: providerReview.input.category,
-      description: providerReview.input.description ?? '',
+      title: review.input.title,
+      category: review.input.category,
+      description: review.input.description ?? '',
     });
     setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
     setDrawerOpen(true);
@@ -1752,6 +1755,7 @@ export default function AppShellPage() {
 
   const handleSaveDrawer = async () => {
     if (!archive || !application.current) return;
+    const wasAddedFromProvider = !editingItemId && providerReview !== null;
     // Number inputs expose incomplete text (for example "e") as an empty
     // value. Read badInput before treating a blank rating as omitted.
     const badInput = ratingInput.current?.validity.badInput ?? false;
@@ -1825,6 +1829,10 @@ export default function AppShellPage() {
       const savedItem = editingItemId ?? next.items.at(-1)?.id ?? null;
       setArchive(next);
       setSelectedId(savedItem);
+      if (wasAddedFromProvider) {
+        setActiveNav('library');
+        updateLibraryQuery('');
+      }
       setNewItem(emptyItemForm());
       resetProviderDiscovery();
       setEditingItemId(null);

@@ -62,10 +62,8 @@ test('reviews mocked provider metadata before creating a durable local item', as
   await page.getByRole('button', { name: 'Add Star Wars to library' }).click();
   const drawer = page.getByRole('dialog', { name: 'New item' });
 
-  await expect(drawer.getByLabel('Title', { exact: true })).toHaveValue(
-    'Star Wars',
-  );
-  await expect(drawer.getByLabel('Category')).toHaveValue('Film');
+  await expect(drawer.locator('#fTitle')).toHaveValue('Star Wars');
+  await expect(drawer.locator('#fCategory')).toHaveValue('Film');
   await drawer.getByRole('button', { name: 'Save item' }).click();
   await expect(drawer).not.toBeVisible();
   await expect(
