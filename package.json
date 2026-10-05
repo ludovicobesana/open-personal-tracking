@@ -11,6 +11,8 @@
     "format": "prettier --write .github scripts src tests e2e web/app web/public/service-worker.js package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts playwright.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
     "format:check": "prettier --check .github scripts src tests e2e web/app web/public/service-worker.js package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts playwright.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
     "test": "vitest run",
+    "test:performance": "vitest run tests/performance-regression.test.ts",
+    "test:performance:browser": "npm run build --prefix web && playwright test e2e/performance.spec.ts",
     "test:watch": "vitest",
     "test:e2e": "NEXT_PUBLIC_TMDB_READ_ACCESS_TOKEN=test-token npm run build --prefix web && playwright test",
     "prepare": "husky"
