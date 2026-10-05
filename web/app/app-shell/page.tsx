@@ -3118,6 +3118,18 @@ export default function AppShellPage() {
                         Published release notes will appear here once the
                         project ships tagged versions.
                       </p>
+                      <p>
+                        Built with contributions from{' '}
+                        <a
+                          className="inline-link"
+                          href="https://github.com/davidebilardello"
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          Davide Bilardello
+                        </a>
+                        .
+                      </p>
                       <div className="app-about-actions">
                         <a
                           className="inline-link"
