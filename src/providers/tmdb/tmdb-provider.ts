@@ -227,11 +227,8 @@ const providerErrorFromResponse = (
  */
 export class TmdbProvider implements MetadataProvider {
   readonly id = 'tmdb';
-  readonly capabilities: ReadonlySet<ProviderCapability> = new Set([
-    'search',
-    'details',
-    'images',
-  ]);
+  readonly capabilities: ReadonlySet<ProviderCapability> =
+    new Set<ProviderCapability>(['search', 'details', 'images']);
 
   private readonly fetchImplementation: TmdbFetch;
   private readonly apiBaseUrl: URL;

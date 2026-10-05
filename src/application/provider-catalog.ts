@@ -188,7 +188,7 @@ const malformedResponse = (
 export class ProviderCatalog {
   private readonly providers = new Map<string, Provider>();
 
-  constructor(providers: Iterable<Provider>) {
+  constructor(providers: Array<Provider>) {
     for (const provider of providers) {
       if (this.providers.has(provider.id)) {
         throw new Error(`A provider is already registered for ${provider.id}`);
