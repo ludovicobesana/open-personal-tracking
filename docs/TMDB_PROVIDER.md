@@ -14,10 +14,16 @@ sent as a Bearer authorization header. `language` and a positive
 the platform `fetch` implementation.
 
 No credential is read from the domain model, archive, backup, or exported data.
-The project currently has no application-wide provider configuration mechanism,
-so the adapter deliberately does not add one. A future web composition must
-make an explicit product and deployment decision about where the optional TMDB
-credential is configured before it wires this adapter into a UI.
+The web discovery screen reads `NEXT_PUBLIC_TMDB_READ_ACCESS_TOKEN` at build
+time. For local development, copy `web/.env.example` to `web/.env.local` and
+set the TMDB API Read Access Token, then restart the Next.js server. The
+provider remains absent when the variable is empty, so manual creation always
+works.
+
+`NEXT_PUBLIC_` variables are included in the browser bundle. Maintainership
+must therefore confirm that a browser-visible TMDB token, its restrictions,
+the intended deployment, and the applicable TMDB terms are acceptable before
+publishing the feature. Do not put a private server-only secret in this field.
 
 TMDB documents application-level authentication and its API Read Access Token
 in its [authentication documentation](https://developer.themoviedb.org/docs/authentication-application).
