@@ -98,9 +98,10 @@ test('keeps manual creation available when provider search is unavailable', asyn
 
   await page.getByRole('button', { name: 'Add manually', exact: true }).click();
   const drawer = page.getByRole('dialog', { name: 'New item' });
-  await drawer.getByLabel('Title', { exact: true }).fill('Manual Dune');
+  await drawer.getByLabel('Title').fill('Manual Dune');
   await drawer.getByRole('button', { name: 'Save item' }).click();
   await expect(drawer).not.toBeVisible();
+  await page.getByRole('button', { name: /Library/ }).click();
   await expect(
     page.getByText('Manual Dune', { exact: true }).first(),
   ).toBeVisible();
