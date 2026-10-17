@@ -430,6 +430,56 @@ test('creates a series with season and episode details', async ({ page }) => {
   await expect(page.getByText('A private episode description.')).toBeVisible();
 });
 
+test('keeps large episode collections inside the detail page on mobile', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'New item' }).click();
+  const drawer = page.getByRole('dialog', { name: 'New item' });
+  await drawer.getByLabel('Title').fill('Responsive series fixture');
+  await drawer.getByLabel('Category').selectOption('Series');
+  await drawer.getByRole('button', { name: 'Add season' }).click();
+  await drawer.getByLabel('Season 1 title').fill('Season 1');
+
+  for (let episodeNumber = 1; episodeNumber <= 12; episodeNumber += 1) {
+    await drawer
+      .getByLabel(`Episode ${episodeNumber} title`)
+      .fill(`Episode ${episodeNumber}`);
+    if (episodeNumber < 12) {
+      await drawer.getByRole('button', { name: 'Add episode' }).click();
+    }
+  }
+
+  await drawer.getByRole('button', { name: 'Save item' }).click();
+  await expect(itemInList(page, 'Responsive series fixture')).toBeVisible();
+  await itemInList(page, 'Responsive series fixture').click();
+  await page.getByRole('button', { name: 'Open page' }).click();
+
+  await expect(page.locator('.episode-card')).toHaveCount(12);
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const body = document.querySelector('.detail-page-body');
+        const cards = Array.from(
+          document.querySelectorAll<HTMLElement>('.episode-card'),
+        );
+        if (!body || cards.length === 0) return false;
+        const bodyBounds = body.getBoundingClientRect();
+        return (
+          body.scrollWidth <= body.clientWidth + 1 &&
+          cards.every((card) => {
+            const bounds = card.getBoundingClientRect();
+            return (
+              bounds.left >= bodyBounds.left - 1 &&
+              bounds.right <= bodyBounds.right + 1
+            );
+          })
+        );
+      }),
+    )
+    .toBe(true);
+});
+
 test('paginates a large library and reconciles search results', async ({
   page,
 }) => {
