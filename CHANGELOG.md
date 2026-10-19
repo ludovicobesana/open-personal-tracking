@@ -26,6 +26,9 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
   validated mappings for watchlists and ratings, and documented limitations.
 - A reusable favicon configuration for the Next.js site and app shell.
 - Browser-local archive persistence for the app shell, including persisted items, preferences, progress, and history.
+- Browser-local Insights dashboard with completion trends, rating distribution,
+  category summaries, accessible text alternatives, and explicit empty-data
+  handling.
 
 ### Changed
 
