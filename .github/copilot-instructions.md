@@ -67,3 +67,4 @@ App summary: a local-first, user-owned tracker for personal items (books, films,
 - Don't add a mandatory account, license check, or telemetry call to core flows.
 - Don't silently swallow or auto-fix invalid imported data.
 - Don't introduce a new external dependency for something solvable with a small pure function, unless it's a schema/validation library already in use.
+- Protected catalog seed rule: never delete, truncate, reorder destructively, or silently replace records in `data/catalog/**`. Intentional catalog changes require an issue or explicit maintainer request, documented provenance/licensing review, and updated validation fixtures. Catalog records are not user archive data and must never be used as a reason to remove user-owned items.

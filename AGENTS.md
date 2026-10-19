@@ -29,6 +29,11 @@ Run the narrowest relevant verification after a change. Run both the core checks
 - Reuse the CSS variables and component patterns in `web/app/globals.css`; do not introduce isolated hard-coded palettes.
 - Use the existing local image assets. Do not invent provider metadata, episode descriptions, ratings, or release facts.
 - Avoid dependencies unless they solve a concrete need that the existing stack cannot cover.
+- Protected local catalog seeds in `data/catalog/**` are repository fixtures. Do
+  not delete, truncate, reorder destructively, or silently replace their
+  records. Any intentional change requires an issue or explicit maintainer
+  request, documented provenance/licensing review, and updated validation
+  fixtures.
 
 ## Documentation and changelog
 
