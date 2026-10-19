@@ -54,7 +54,9 @@ temp/
 *.crt
 
 # Local app data and databases
-data/
+data/*
+!data/catalog/
+!data/catalog/**
 *.sqlite
 *.sqlite3
 *.db

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "category": "film",
+  "generatedAt": "2026-10-19T00:00:00.000Z",
+  "records": [
+    {
+      "id": "sample-film-001",
+      "title": "Sample Film 01",
+      "category": "Film",
+      "year": 2020,
+      "genres": ["Drama"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-002",
+      "title": "Sample Film 02",
+      "category": "Film",
+      "year": 2021,
+      "genres": ["Comedy"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-003",
+      "title": "Sample Film 03",
+      "category": "Film",
+      "year": 2022,
+      "genres": ["Science Fiction"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-004",
+      "title": "Sample Film 04",
+      "category": "Film",
+      "year": 2023,
+      "genres": ["Animation"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-005",
+      "title": "Sample Film 05",
+      "category": "Film",
+      "year": 2019,
+      "genres": ["Adventure"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-006",
+      "title": "Sample Film 06",
+      "category": "Film",
+      "year": 2018,
+      "genres": ["Documentary"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-007",
+      "title": "Sample Film 07",
+      "category": "Film",
+      "year": 2017,
+      "genres": ["Thriller"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-008",
+      "title": "Sample Film 08",
+      "category": "Film",
+      "year": 2016,
+      "genres": ["Fantasy"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-009",
+      "title": "Sample Film 09",
+      "category": "Film",
+      "year": 2015,
+      "genres": ["Romance"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sample-film-010",
+      "title": "Sample Film 10",
+      "category": "Film",
+      "year": 2014,
+      "genres": ["Action"],
+      "provenance": {
+        "source": "open-personal-tracking illustrative seed",
+        "license": "Project-owned illustrative sample data",
+        "importedAt": "2026-10-19T00:00:00.000Z"
+      },
+      "attributes": {}
+    }
+  ]
+}
