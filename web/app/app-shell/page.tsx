@@ -3,6 +3,7 @@
 import {
   ArrowDownToLine,
   ArrowUpFromLine,
+  BarChart3,
   CircleAlert,
   CircleCheck,
   Compass,
@@ -33,6 +34,10 @@ import {
   type UserPreferences,
 } from '../../../src/domain/archive';
 import { filterItems, getHistoryTimeline } from '../../../src/domain/search';
+import {
+  calculateArchiveInsights,
+  type ArchiveInsights,
+} from '../../../src/domain/insights';
 import {
   clampPage,
   getPageCount,
@@ -227,6 +232,188 @@ const HistoryTimeline = ({
     {entries.length === 0 && <li>{emptyMessage}</li>}
   </ol>
 );
+
+const InsightsDashboard = ({ insights }: { insights: ArchiveInsights }) => {
+  const maxCompletions = Math.max(
+    1,
+    ...insights.trend.map((point) => point.completions),
+  );
+  const maxCategoryTotal = Math.max(
+    1,
+    ...insights.categories.map((category) => category.total),
+  );
+  const ratedItemCount = insights.ratings.reduce(
+    (total, bucket) => total + bucket.count,
+    0,
+  );
+  const hasCompletionEvents = insights.trend.some(
+    (point) => point.completions > 0,
+  );
+
+  return (
+    <div className="insights-dashboard">
+      <div className="screen-hero">
+        <div>
+          <span className="eyebrow">Local insights</span>
+          <h2>See your personal patterns</h2>
+          <p>
+            Calculated on this device from {insights.includedItemCount} items
+            {insights.historyWasLimited
+              ? ' and the latest 10,000 history events.'
+              : ' and your local history.'}
+          </p>
+        </div>
+        <span className="insights-local-note">
+          No analytics or network calls
+        </span>
+      </div>
+
+      {insights.ignoredHistoryCount > 0 && (
+        <p className="insights-notice" role="status">
+          {insights.ignoredHistoryCount} history event
+          {insights.ignoredHistoryCount === 1 ? '' : 's'} could not be placed on
+          the timeline because the timestamp was invalid.
+        </p>
+      )}
+
+      <div className="insights-grid">
+        <section
+          className="content-card insight-card"
+          aria-labelledby="trend-title"
+        >
+          <div className="insight-card-heading">
+            <div>
+              <span className="eyebrow">Completion trend</span>
+              <h3 id="trend-title">Completed activity by month</h3>
+            </div>
+            <span className="insight-card-meta">
+              {insights.includedHistoryCount} events included
+            </span>
+          </div>
+          {!hasCompletionEvents ? (
+            <p className="insights-empty">
+              No valid completion events yet. Mark an item or episode complete
+              to start a local trend.
+            </p>
+          ) : (
+            <div
+              className="insight-bars"
+              role="img"
+              aria-label="Completion trend shown as a six month bar chart"
+            >
+              {insights.trend.map((point) => (
+                <div className="insight-bar-column" key={point.month}>
+                  <span className="insight-bar-value">{point.completions}</span>
+                  <div className="insight-bar-track">
+                    <span
+                      className="insight-bar-fill"
+                      style={{
+                        height: `${(point.completions / maxCompletions) * 100}%`,
+                      }}
+                    />
+                  </div>
+                  <span className="insight-bar-label">{point.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <p className="insight-text-alternative">
+            Text alternative:{' '}
+            {insights.trend
+              .map((point) => `${point.label}: ${point.completions}`)
+              .join('; ')}
+            .
+          </p>
+        </section>
+
+        <section
+          className="content-card insight-card"
+          aria-labelledby="rating-title"
+        >
+          <div className="insight-card-heading">
+            <div>
+              <span className="eyebrow">Ratings</span>
+              <h3 id="rating-title">Your rating distribution</h3>
+            </div>
+            <span className="insight-card-meta">{ratedItemCount} rated</span>
+          </div>
+          {ratedItemCount === 0 ? (
+            <p className="insights-empty">
+              No ratings yet. Add a rating to an item to see your distribution.
+            </p>
+          ) : (
+            <ul
+              className="insight-rating-list"
+              aria-label="Rating distribution"
+            >
+              {insights.ratings.map((bucket) => (
+                <li key={bucket.rating}>
+                  <span>{bucket.rating} stars</span>
+                  <span className="insight-rating-track" aria-hidden="true">
+                    <span
+                      className="insight-rating-fill"
+                      style={{
+                        width: `${(bucket.count / ratedItemCount) * 100}%`,
+                      }}
+                    />
+                  </span>
+                  <strong>{bucket.count}</strong>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="insight-text-alternative">
+            Ratings are rounded to the nearest whole star for this summary.
+          </p>
+        </section>
+
+        <section
+          className="content-card insight-card insight-card--categories"
+          aria-labelledby="category-title"
+        >
+          <div className="insight-card-heading">
+            <div>
+              <span className="eyebrow">Categories</span>
+              <h3 id="category-title">Where your archive is growing</h3>
+            </div>
+          </div>
+          {insights.categories.length === 0 ? (
+            <p className="insights-empty">
+              Your archive has no categories yet. Add or import an item to see
+              category activity.
+            </p>
+          ) : (
+            <ul className="insight-category-list" aria-label="Category summary">
+              {insights.categories.map((category) => (
+                <li key={category.category}>
+                  <div className="insight-category-copy">
+                    <strong>{category.category}</strong>
+                    <span>
+                      {category.total} item{category.total === 1 ? '' : 's'} ·{' '}
+                      {category.completed} completed
+                    </span>
+                  </div>
+                  <span className="insight-category-track" aria-hidden="true">
+                    <span
+                      className="insight-category-fill"
+                      style={{
+                        width: `${(category.total / maxCategoryTotal) * 100}%`,
+                      }}
+                    />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="insight-text-alternative">
+            Categories are ordered by item count. Completion counts use the
+            current local item status.
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+};
 
 const LibraryPagination = ({
   ariaLabel = 'Library pagination',
@@ -552,6 +739,7 @@ const STATUS_LABEL: Record<string, string> = {
 const NAV_LABEL: Record<string, string> = {
   library: 'Library',
   discover: 'Discover',
+  insights: 'Insights',
   profile: 'Profile',
   collections: 'Collections',
   history: 'History',
@@ -563,6 +751,7 @@ const NAV_LABEL: Record<string, string> = {
 const MOBILE_NAV_ITEMS = [
   { key: 'library', label: 'Library', Icon: LibraryBig },
   { key: 'discover', label: 'Discover', Icon: Compass },
+  { key: 'insights', label: 'Insights', Icon: BarChart3 },
   { key: 'profile', label: 'Profile', Icon: UserRound },
   { key: 'settings', label: 'Settings', Icon: Settings },
 ] as const;
@@ -1625,6 +1814,11 @@ export default function AppShellPage() {
     currentHistoryPage,
     HISTORY_PAGE_SIZE,
   );
+  const insights = useMemo(
+    () =>
+      calculateArchiveInsights(archive?.items ?? [], archive?.history ?? []),
+    [archive],
+  );
   const isLibrary = activeNav === 'library';
 
   useEffect(() => {
@@ -1942,6 +2136,19 @@ export default function AppShellPage() {
                 <Compass size={15} aria-hidden="true" />
               </span>
               Discover
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className={`nav-item ${activeNav === 'insights' ? 'is-active' : ''}`}
+            onClick={() => setActiveNav('insights')}
+          >
+            <span>
+              <span className="nav-icon">
+                <BarChart3 size={15} aria-hidden="true" />
+              </span>
+              Insights
             </span>
           </button>
 
@@ -2671,6 +2878,14 @@ export default function AppShellPage() {
             </div>
           ) : (
             <div className="screen-panel">
+              {activeNav === 'insights' && (
+                <>
+                  <h2 id="insights-page-title" className="sr-only">
+                    Local insights dashboard
+                  </h2>
+                  <InsightsDashboard insights={insights} />
+                </>
+              )}
               {activeNav === 'collections' && (
                 <>
                   <div className="screen-hero">
