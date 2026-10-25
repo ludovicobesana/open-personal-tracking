@@ -6,6 +6,7 @@ import {
   parseCatalog,
 } from '../src/catalog/catalog-schema.js';
 import { searchLocalCatalogs } from '../src/catalog/local-catalog.js';
+import { catalogRecordToItemInput } from '../src/catalog/catalog-item-input.js';
 
 const filmCatalog = JSON.parse(
   readFileSync(resolve(process.cwd(), 'data/catalog/film.json'), 'utf8'),
@@ -40,6 +41,23 @@ describe('local film catalog', () => {
     expect(results.map((record) => record.id)).toContain(
       'matrix-trilogy-1999-2003',
     );
+  });
+
+  it('creates a planned archive input only after an explicit catalog add', () => {
+    const record = parseCatalog(filmCatalog).records[0];
+    const input = catalogRecordToItemInput(record, true);
+
+    expect(input).toMatchObject({
+      title: 'Hackers',
+      category: 'Film',
+      status: 'planned',
+      progress: { current: 0, target: 1, unit: 'item' },
+      attributes: {
+        localCatalogId: 'hackers-1995',
+        creator: 'Iain Softley',
+        usePlaceholderCover: true,
+      },
+    });
   });
 
   it('rejects duplicate records with an actionable error', () => {

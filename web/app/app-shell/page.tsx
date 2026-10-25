@@ -80,6 +80,7 @@ import {
   type CatalogRecord,
 } from '../../../src/catalog/catalog-schema';
 import { searchLocalCatalogs } from '../../../src/catalog/local-catalog';
+import { catalogRecordToItemInput } from '../../../src/catalog/catalog-item-input';
 
 type Episode = {
   id: string;
@@ -156,7 +157,10 @@ type ProviderSearchPanelProps = {
 };
 type LocalCatalogPanelProps = {
   catalogs: Catalog[];
+  activeCategory: string;
+  addedRecordIds: Set<string>;
   query: string;
+  onCategoryChange: (category: string) => void;
   onQueryChange: (query: string) => void;
   onAddToLibrary: (record: CatalogRecord) => void;
 };
@@ -770,12 +774,36 @@ const LOCAL_CATALOGS = [
 
 const LocalCatalogPanel = ({
   catalogs,
+  activeCategory,
+  addedRecordIds,
   query,
+  onCategoryChange,
   onQueryChange,
   onAddToLibrary,
 }: LocalCatalogPanelProps) => {
-  const results = searchLocalCatalogs(catalogs, query);
-  const availableCategories = catalogs.map((catalog) => catalog.category);
+  const [visibleResultCount, setVisibleResultCount] = useState(6);
+  const availableCategories = catalogs.map((catalog) => ({
+    id: catalog.category,
+    label: CATALOG_LABELS[catalog.category] ?? catalog.category,
+    count: catalog.records.length,
+  }));
+  const results = searchLocalCatalogs(
+    activeCategory === 'all'
+      ? catalogs
+      : catalogs.filter((catalog) => catalog.category === activeCategory),
+    query,
+  );
+  const visibleResults = results.slice(0, visibleResultCount);
+
+  const updateQuery = (value: string) => {
+    setVisibleResultCount(6);
+    onQueryChange(value);
+  };
+
+  const updateCategory = (category: string) => {
+    setVisibleResultCount(6);
+    onCategoryChange(category);
+  };
 
   return (
     <section
@@ -801,21 +829,44 @@ const LocalCatalogPanel = ({
         id="local-catalog-query"
         type="search"
         value={query}
-        onChange={(event) => onQueryChange(event.target.value)}
+        onChange={(event) => updateQuery(event.target.value)}
         placeholder="Hackers, Wachowski, documentario…"
         autoComplete="off"
       />
-      <p className="provider-status">
-        {availableCategories
-          .map((category) => CATALOG_LABELS[category] ?? category)
-          .join(' · ')}
-      </p>
+      <div
+        className="local-catalog-categories"
+        aria-label="Categorie del catalogo"
+      >
+        <button
+          className={`filter-chip ${activeCategory === 'all' ? 'is-selected' : ''}`}
+          type="button"
+          onClick={() => updateCategory('all')}
+        >
+          Tutte{' '}
+          <span>
+            {catalogs.reduce(
+              (total, catalog) => total + catalog.records.length,
+              0,
+            )}
+          </span>
+        </button>
+        {availableCategories.map((category) => (
+          <button
+            key={category.id}
+            className={`filter-chip ${activeCategory === category.id ? 'is-selected' : ''}`}
+            type="button"
+            onClick={() => updateCategory(category.id)}
+          >
+            {category.label} <span>{category.count}</span>
+          </button>
+        ))}
+      </div>
       {results.length > 0 ? (
         <ul
           className="provider-results"
           aria-label="Risultati del catalogo locale"
         >
-          {results.map((record) => (
+          {visibleResults.map((record) => (
             <li key={record.id}>
               <article className="provider-result local-catalog-result">
                 <div className="provider-result-poster" aria-hidden="true">
@@ -831,33 +882,54 @@ const LocalCatalogPanel = ({
                       record.attributes.synopsis}
                   </small>
                   <span>{record.genres.join(', ')}</span>
-                  <a
-                    href={record.attributes.imdbUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    Scheda IMDb
-                  </a>
-                  <a
-                    href={record.attributes.fanCommunityUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    Community fan
-                  </a>
-                  <a
-                    href={record.attributes.merchandiseUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    Merchandising
-                  </a>
+                  <details className="local-catalog-details">
+                    <summary>Dettagli e link</summary>
+                    <p>
+                      {record.attributes.director && (
+                        <>Regia: {record.attributes.director}. </>
+                      )}
+                      {record.attributes.runtime && (
+                        <>Durata: {record.attributes.runtime}.</>
+                      )}
+                    </p>
+                    {record.attributes.synopsis && (
+                      <p>{record.attributes.synopsis}</p>
+                    )}
+                    <p>
+                      <a
+                        href={record.attributes.imdbUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Scheda IMDb
+                      </a>{' '}
+                      ·{' '}
+                      <a
+                        href={record.attributes.fanCommunityUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Community fan
+                      </a>{' '}
+                      ·{' '}
+                      <a
+                        href={record.attributes.merchandiseUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Merchandising
+                      </a>
+                    </p>
+                  </details>
                   <button
                     className="mini-btn"
                     type="button"
                     onClick={() => onAddToLibrary(record)}
+                    disabled={addedRecordIds.has(record.id)}
                   >
-                    Aggiungi alla libreria
+                    {addedRecordIds.has(record.id)
+                      ? 'Già in libreria'
+                      : 'Aggiungi alla libreria'}
                   </button>
                 </div>
               </article>
@@ -868,6 +940,15 @@ const LocalCatalogPanel = ({
         <p className="provider-status" role="status">
           Nessun risultato nel catalogo locale.
         </p>
+      )}
+      {results.length > visibleResults.length && (
+        <button
+          className="ghost-btn local-catalog-more"
+          type="button"
+          onClick={() => setVisibleResultCount((count) => count + 6)}
+        >
+          Mostra altri {Math.min(6, results.length - visibleResults.length)}
+        </button>
       )}
     </section>
   );
@@ -1177,8 +1258,10 @@ export default function AppShellPage() {
   const [drawerSaveError, setDrawerSaveError] = useState<string | null>(null);
   const [providerQuery, setProviderQuery] = useState('');
   const [localCatalogQuery, setLocalCatalogQuery] = useState('');
-  const [localCatalogRecord, setLocalCatalogRecord] =
-    useState<CatalogRecord | null>(null);
+  const [localCatalogCategory, setLocalCatalogCategory] = useState('film');
+  const [localCatalogFeedback, setLocalCatalogFeedback] = useState<
+    string | null
+  >(null);
   const [providerResults, setProviderResults] = useState<
     Array<ProviderSearchResult>
   >([]);
@@ -1434,6 +1517,15 @@ export default function AppShellPage() {
       ) ?? [],
     [archive, preferences.placeholderCovers],
   );
+  const localCatalogRecordIds = useMemo(
+    () =>
+      new Set(
+        archive?.items
+          .map((item) => item.attributes.localCatalogId)
+          .filter((id): id is string => typeof id === 'string') ?? [],
+      ),
+    [archive],
+  );
   const selectedItem =
     items.find((item) => item.id === selectedId) ?? noSelection;
   const selectedDomainItem =
@@ -1499,7 +1591,6 @@ export default function AppShellPage() {
 
   const handleEditSelected = () => {
     if (!hasSelectedItem) return;
-    setLocalCatalogRecord(null);
     const seasons = selectedDomainItem
       ? toSeriesSeasons(selectedDomainItem).map((season) => ({
           id: season.id,
@@ -1538,7 +1629,6 @@ export default function AppShellPage() {
     resetDrawerFeedback();
     resetProviderDiscovery();
     setEditingItemId(null);
-    setLocalCatalogRecord(null);
     setNewItem(emptyItemForm());
     setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
     setDrawerOpen(true);
@@ -1547,7 +1637,6 @@ export default function AppShellPage() {
   const openProviderItemDrawer = (review: ProviderDiscoveryReview) => {
     resetDrawerFeedback();
     setEditingItemId(null);
-    setLocalCatalogRecord(null);
     setNewItem({
       ...emptyItemForm(),
       title: review.input.title,
@@ -1558,28 +1647,41 @@ export default function AppShellPage() {
     setDrawerOpen(true);
   };
 
-  const openLocalCatalogItemDrawer = (record: CatalogRecord) => {
-    resetDrawerFeedback();
-    resetProviderDiscovery();
-    setEditingItemId(null);
-    setLocalCatalogRecord(record);
-    setNewItem({
-      ...emptyItemForm(),
-      title: record.title,
-      category: record.category,
-      description: record.attributes.synopsis ?? '',
-      tags: record.genres.join(', '),
-    });
-    setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
-    setDrawerOpen(true);
-  };
-
   const closeItemDrawer = () => {
     resetDrawerFeedback();
     resetProviderDiscovery();
     setDrawerOpen(false);
     setEditingItemId(null);
-    setLocalCatalogRecord(null);
+  };
+
+  const addLocalCatalogRecord = async (record: CatalogRecord) => {
+    if (!archive || !application.current) return;
+    const existing = archive.items.find(
+      (item) => item.attributes.localCatalogId === record.id,
+    );
+    if (existing) {
+      setLocalCatalogFeedback(`${record.title} è già nella tua libreria.`);
+      return;
+    }
+
+    try {
+      const next = await application.current.createItem(
+        archive,
+        catalogRecordToItemInput(record, preferences.placeholderCovers),
+      );
+      const added = next.items.at(-1);
+      setArchive(next);
+      setSelectedId(added?.id ?? null);
+      setLocalCatalogFeedback(
+        `${record.title} è stato aggiunto alla libreria.`,
+      );
+    } catch (error) {
+      setOperationError(
+        error instanceof Error
+          ? error.message
+          : 'Non è stato possibile aggiungere questo titolo.',
+      );
+    }
   };
 
   const updateDraftSeason = (
@@ -2122,8 +2224,6 @@ export default function AppShellPage() {
   const handleSaveDrawer = async () => {
     if (!archive || !application.current) return;
     const wasAddedFromProvider = !editingItemId && providerReview !== null;
-    const wasAddedFromLocalCatalog =
-      !editingItemId && localCatalogRecord !== null;
     // Number inputs expose incomplete text (for example "e") as an empty
     // value. Read badInput before treating a blank rating as omitted.
     const badInput = ratingInput.current?.validity.badInput ?? false;
@@ -2185,14 +2285,7 @@ export default function AppShellPage() {
             collections: listFromInput(newItem.collections),
             subunits,
             attributes: {
-              ...localCatalogRecord?.attributes,
               ...providerReview?.input.attributes,
-              ...(localCatalogRecord
-                ? {
-                    creator: localCatalogRecord.attributes.director ?? '—',
-                    imdbGenres: localCatalogRecord.genres.join(', '),
-                  }
-                : {}),
               usePlaceholderCover: newItemUsesPlaceholderCover,
             },
             externalIds: providerReview?.input.externalIds,
@@ -2208,14 +2301,9 @@ export default function AppShellPage() {
         setActiveNav('library');
         updateLibraryQuery('');
       }
-      if (wasAddedFromLocalCatalog) {
-        setActiveNav('library');
-        updateLibraryQuery('');
-      }
       setNewItem(emptyItemForm());
       resetProviderDiscovery();
       setEditingItemId(null);
-      setLocalCatalogRecord(null);
       setDrawerOpen(false);
       resetDrawerFeedback();
     } catch (error) {
@@ -3164,10 +3252,20 @@ export default function AppShellPage() {
                   </div>
                   <LocalCatalogPanel
                     catalogs={LOCAL_CATALOGS}
+                    activeCategory={localCatalogCategory}
+                    addedRecordIds={localCatalogRecordIds}
                     query={localCatalogQuery}
+                    onCategoryChange={setLocalCatalogCategory}
                     onQueryChange={setLocalCatalogQuery}
-                    onAddToLibrary={openLocalCatalogItemDrawer}
+                    onAddToLibrary={(record) =>
+                      void addLocalCatalogRecord(record)
+                    }
                   />
+                  {localCatalogFeedback && (
+                    <p className="local-catalog-feedback" role="status">
+                      {localCatalogFeedback}
+                    </p>
+                  )}
                   <ProviderSearchPanel
                     query={providerQuery}
                     searchState={providerSearchState}

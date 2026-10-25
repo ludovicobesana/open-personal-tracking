@@ -3166,6 +3166,51 @@ section.copy .muted {
   align-content: start;
 }
 
+.local-catalog-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.local-catalog-categories .filter-chip {
+  min-height: 2.25rem;
+}
+
+.local-catalog-categories .filter-chip span {
+  display: inline-grid;
+  min-width: 1.25rem;
+  place-items: center;
+  margin-inline-start: 0.2rem;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.local-catalog-details {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.local-catalog-details summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.local-catalog-details p {
+  margin: 0.45rem 0 0;
+}
+
+.local-catalog-more {
+  justify-self: start;
+}
+
+.local-catalog-feedback {
+  margin: 0.9rem 0 0;
+  color: var(--success);
+}
+
 .local-catalog-result a,
 .detail-external-links a {
   color: var(--brass);

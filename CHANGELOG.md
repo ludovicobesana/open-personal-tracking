@@ -9,8 +9,9 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 ### Added
 
 - An offline Discover catalog with searchable cyber and technology film/series
-  records, IMDb-style metadata, and optional community or merchandise links;
-  selected records are added to the local archive only on explicit action.
+  records, IMDb-style metadata, optional community or merchandise links, and
+  category-based progressive browsing; selected records are added directly to
+  the local archive only on explicit action.
 - Separate local catalog namespaces for video games, podcasts, YouTube videos,
   music, anime, and books, ready to be populated independently.
 - Optional provider-backed film and TV discovery in the Discover screen, with local
