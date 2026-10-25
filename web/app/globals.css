@@ -3158,6 +3158,29 @@ section.copy .muted {
   -webkit-line-clamp: 3;
 }
 
+.local-catalog-result {
+  min-height: 100%;
+}
+
+.local-catalog-result .provider-result-copy {
+  align-content: start;
+}
+
+.local-catalog-result a,
+.detail-external-links a {
+  color: var(--brass);
+  font-size: 0.82rem;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.detail-external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  margin: 0.8rem 0 0;
+}
+
 .provider-results-head h3 {
   font-size: 1rem;
 }

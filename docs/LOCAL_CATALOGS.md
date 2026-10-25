@@ -6,10 +6,16 @@ archive and never contain personal status, progress, ratings, notes, or history.
 
 ## Current seed
 
-[`data/catalog/film.json`](../data/catalog/film.json) is the first catalog. It
-contains ten illustrative film records for development and offline smoke tests.
-The records are intentionally sample data, not a complete film database and not
-claims about external films.
+[`data/catalog/film.json`](../data/catalog/film.json) contains the curated
+offline film and series records currently shown in Discover. The app validates
+and searches these records in-browser before any optional provider search, so
+catalog search works without a network request. Adding a result is explicit:
+only the chosen record becomes part of the user-owned archive.
+
+The other category namespaces are intentionally separate local files:
+`video-games.json`, `podcasts.json`, `youtube-videos.json`, `music.json`,
+`anime.json`, and `books.json`. They are visible in Discover even while
+empty, rather than being hidden inside the film dataset.
 
 Each catalog has:
 
@@ -22,6 +28,10 @@ Each catalog has:
 Catalog records must retain their source and license metadata. External data
 must not be added without verifying its redistribution terms and documenting
 the source.
+
+The current film records use Wikidata-compatible factual metadata and original
+short descriptions. IMDb, community, and merchandise URLs are outbound
+references only: the project does not copy IMDb content or sell merchandise.
 
 ## Protected seed rule
 

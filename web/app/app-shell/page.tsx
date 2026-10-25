@@ -67,6 +67,19 @@ import {
 import type { ProviderDiscoveryReview } from '../../../src/application/provider-discovery';
 import { createConfiguredProviderDiscovery } from './provider-discovery';
 import { HorizontalCardRow } from '../horizontal-card-row';
+import filmCatalog from '../../../data/catalog/film.json';
+import videoGamesCatalog from '../../../data/catalog/video-games.json';
+import podcastsCatalog from '../../../data/catalog/podcasts.json';
+import youtubeVideosCatalog from '../../../data/catalog/youtube-videos.json';
+import musicCatalog from '../../../data/catalog/music.json';
+import animeCatalog from '../../../data/catalog/anime.json';
+import booksCatalog from '../../../data/catalog/books.json';
+import {
+  parseCatalog,
+  type Catalog,
+  type CatalogRecord,
+} from '../../../src/catalog/catalog-schema';
+import { searchLocalCatalogs } from '../../../src/catalog/local-catalog';
 
 type Episode = {
   id: string;
@@ -141,6 +154,12 @@ type ProviderSearchPanelProps = {
   onUseProviderImageChange: (useImage: boolean) => void;
   onAddToLibrary: (review: ProviderDiscoveryReview) => void;
 };
+type LocalCatalogPanelProps = {
+  catalogs: Catalog[];
+  query: string;
+  onQueryChange: (query: string) => void;
+  onAddToLibrary: (record: CatalogRecord) => void;
+};
 type TrackedItem = {
   id: string;
   title: string;
@@ -158,6 +177,8 @@ type TrackedItem = {
   description: string;
   genres: string[];
   imdbUrl?: string;
+  fanCommunityUrl?: string;
+  merchandiseUrl?: string;
   tags: string[];
   rating?: number;
   seasons?: SeriesSeason[];
@@ -728,6 +749,130 @@ const ProviderSearchPanel = ({
   </section>
 );
 
+const CATALOG_LABELS: Record<string, string> = {
+  film: 'Film e serie',
+  'video-games': 'Videogiochi',
+  podcasts: 'Podcast',
+  'youtube-videos': 'Video su YouTube',
+  music: 'Musica',
+  anime: 'Anime',
+  books: 'Libri',
+};
+const LOCAL_CATALOGS = [
+  filmCatalog,
+  videoGamesCatalog,
+  podcastsCatalog,
+  youtubeVideosCatalog,
+  musicCatalog,
+  animeCatalog,
+  booksCatalog,
+].map(parseCatalog);
+
+const LocalCatalogPanel = ({
+  catalogs,
+  query,
+  onQueryChange,
+  onAddToLibrary,
+}: LocalCatalogPanelProps) => {
+  const results = searchLocalCatalogs(catalogs, query);
+  const availableCategories = catalogs.map((catalog) => catalog.category);
+
+  return (
+    <section
+      className="provider-search-panel local-catalog-panel"
+      aria-labelledby="localCatalogTitle"
+    >
+      <div className="provider-search-intro">
+        <div>
+          <span className="eyebrow">Catalogo locale</span>
+          <h2 id="localCatalogTitle">Cerca senza connessione</h2>
+          <p>
+            I risultati sono inclusi nell’app. Aggiungi al tuo archivio solo ciò
+            che scegli.
+          </p>
+        </div>
+        <span className="provider-local-note">Nessuna richiesta esterna</span>
+      </div>
+      <label className="field-label" htmlFor="local-catalog-query">
+        Cerca per titolo, persona, genere, anno o dettaglio
+      </label>
+      <input
+        className="field-control"
+        id="local-catalog-query"
+        type="search"
+        value={query}
+        onChange={(event) => onQueryChange(event.target.value)}
+        placeholder="Hackers, Wachowski, documentario…"
+        autoComplete="off"
+      />
+      <p className="provider-status">
+        {availableCategories
+          .map((category) => CATALOG_LABELS[category] ?? category)
+          .join(' · ')}
+      </p>
+      {results.length > 0 ? (
+        <ul
+          className="provider-results"
+          aria-label="Risultati del catalogo locale"
+        >
+          {results.map((record) => (
+            <li key={record.id}>
+              <article className="provider-result local-catalog-result">
+                <div className="provider-result-poster" aria-hidden="true">
+                  <span>{record.title.charAt(0)}</span>
+                </div>
+                <div className="provider-result-copy">
+                  <strong title={record.title}>{record.title}</strong>
+                  <span>
+                    {record.category} · {record.year ?? '—'}
+                  </span>
+                  <small>
+                    {record.attributes.originalTitle ??
+                      record.attributes.synopsis}
+                  </small>
+                  <span>{record.genres.join(', ')}</span>
+                  <a
+                    href={record.attributes.imdbUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Scheda IMDb
+                  </a>
+                  <a
+                    href={record.attributes.fanCommunityUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Community fan
+                  </a>
+                  <a
+                    href={record.attributes.merchandiseUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    Merchandising
+                  </a>
+                  <button
+                    className="mini-btn"
+                    type="button"
+                    onClick={() => onAddToLibrary(record)}
+                  >
+                    Aggiungi alla libreria
+                  </button>
+                </div>
+              </article>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="provider-status" role="status">
+          Nessun risultato nel catalogo locale.
+        </p>
+      )}
+    </section>
+  );
+};
+
 const STATUS_LABEL: Record<string, string> = {
   planned: 'Planned',
   progress: 'In progress',
@@ -922,6 +1067,8 @@ const toTrackedItem = (
     description: item.description ?? '',
     genres: listAttribute(item, 'imdbGenres'),
     imdbUrl: imdbUrlFor(item),
+    fanCommunityUrl: stringAttribute(item, 'fanCommunityUrl'),
+    merchandiseUrl: stringAttribute(item, 'merchandiseUrl'),
     tags: item.tags,
     rating: item.rating,
     seasons: item.category === 'Series' ? toSeriesSeasons(item) : undefined,
@@ -945,6 +1092,8 @@ const noSelection: TrackedItem = {
   description: 'Select an item to see its details.',
   genres: [],
   imdbUrl: undefined,
+  fanCommunityUrl: undefined,
+  merchandiseUrl: undefined,
   tags: [],
 };
 
@@ -1027,6 +1176,9 @@ export default function AppShellPage() {
   const [ratingBadInput, setRatingBadInput] = useState(false);
   const [drawerSaveError, setDrawerSaveError] = useState<string | null>(null);
   const [providerQuery, setProviderQuery] = useState('');
+  const [localCatalogQuery, setLocalCatalogQuery] = useState('');
+  const [localCatalogRecord, setLocalCatalogRecord] =
+    useState<CatalogRecord | null>(null);
   const [providerResults, setProviderResults] = useState<
     Array<ProviderSearchResult>
   >([]);
@@ -1347,6 +1499,7 @@ export default function AppShellPage() {
 
   const handleEditSelected = () => {
     if (!hasSelectedItem) return;
+    setLocalCatalogRecord(null);
     const seasons = selectedDomainItem
       ? toSeriesSeasons(selectedDomainItem).map((season) => ({
           id: season.id,
@@ -1385,6 +1538,7 @@ export default function AppShellPage() {
     resetDrawerFeedback();
     resetProviderDiscovery();
     setEditingItemId(null);
+    setLocalCatalogRecord(null);
     setNewItem(emptyItemForm());
     setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
     setDrawerOpen(true);
@@ -1393,6 +1547,7 @@ export default function AppShellPage() {
   const openProviderItemDrawer = (review: ProviderDiscoveryReview) => {
     resetDrawerFeedback();
     setEditingItemId(null);
+    setLocalCatalogRecord(null);
     setNewItem({
       ...emptyItemForm(),
       title: review.input.title,
@@ -1403,11 +1558,28 @@ export default function AppShellPage() {
     setDrawerOpen(true);
   };
 
+  const openLocalCatalogItemDrawer = (record: CatalogRecord) => {
+    resetDrawerFeedback();
+    resetProviderDiscovery();
+    setEditingItemId(null);
+    setLocalCatalogRecord(record);
+    setNewItem({
+      ...emptyItemForm(),
+      title: record.title,
+      category: record.category,
+      description: record.attributes.synopsis ?? '',
+      tags: record.genres.join(', '),
+    });
+    setNewItemUsesPlaceholderCover(preferences.placeholderCovers);
+    setDrawerOpen(true);
+  };
+
   const closeItemDrawer = () => {
     resetDrawerFeedback();
     resetProviderDiscovery();
     setDrawerOpen(false);
     setEditingItemId(null);
+    setLocalCatalogRecord(null);
   };
 
   const updateDraftSeason = (
@@ -1950,6 +2122,8 @@ export default function AppShellPage() {
   const handleSaveDrawer = async () => {
     if (!archive || !application.current) return;
     const wasAddedFromProvider = !editingItemId && providerReview !== null;
+    const wasAddedFromLocalCatalog =
+      !editingItemId && localCatalogRecord !== null;
     // Number inputs expose incomplete text (for example "e") as an empty
     // value. Read badInput before treating a blank rating as omitted.
     const badInput = ratingInput.current?.validity.badInput ?? false;
@@ -2011,7 +2185,14 @@ export default function AppShellPage() {
             collections: listFromInput(newItem.collections),
             subunits,
             attributes: {
+              ...localCatalogRecord?.attributes,
               ...providerReview?.input.attributes,
+              ...(localCatalogRecord
+                ? {
+                    creator: localCatalogRecord.attributes.director ?? '—',
+                    imdbGenres: localCatalogRecord.genres.join(', '),
+                  }
+                : {}),
               usePlaceholderCover: newItemUsesPlaceholderCover,
             },
             externalIds: providerReview?.input.externalIds,
@@ -2027,9 +2208,14 @@ export default function AppShellPage() {
         setActiveNav('library');
         updateLibraryQuery('');
       }
+      if (wasAddedFromLocalCatalog) {
+        setActiveNav('library');
+        updateLibraryQuery('');
+      }
       setNewItem(emptyItemForm());
       resetProviderDiscovery();
       setEditingItemId(null);
+      setLocalCatalogRecord(null);
       setDrawerOpen(false);
       resetDrawerFeedback();
     } catch (error) {
@@ -2716,6 +2902,29 @@ export default function AppShellPage() {
                           Open on IMDb
                         </a>
                       )}
+                      {(selectedItem.fanCommunityUrl ||
+                        selectedItem.merchandiseUrl) && (
+                        <p className="detail-external-links">
+                          {selectedItem.fanCommunityUrl && (
+                            <a
+                              href={selectedItem.fanCommunityUrl}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              Community fan
+                            </a>
+                          )}
+                          {selectedItem.merchandiseUrl && (
+                            <a
+                              href={selectedItem.merchandiseUrl}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              Merchandising
+                            </a>
+                          )}
+                        </p>
+                      )}
                     </section>
 
                     <section
@@ -2938,10 +3147,10 @@ export default function AppShellPage() {
                   <div className="screen-hero discover-hero">
                     <div>
                       <span className="eyebrow">Discover</span>
-                      <h2>Search films and series to track</h2>
+                      <h2>Cerca titoli da aggiungere</h2>
                       <p>
-                        TMDB is optional: nothing is added until you review and
-                        confirm it.
+                        Il catalogo locale funziona anche offline. TMDB resta
+                        opzionale e non aggiunge nulla senza conferma.
                       </p>
                     </div>
                     <button
@@ -2953,6 +3162,12 @@ export default function AppShellPage() {
                       Add manually
                     </button>
                   </div>
+                  <LocalCatalogPanel
+                    catalogs={LOCAL_CATALOGS}
+                    query={localCatalogQuery}
+                    onQueryChange={setLocalCatalogQuery}
+                    onAddToLibrary={openLocalCatalogItemDrawer}
+                  />
                   <ProviderSearchPanel
                     query={providerQuery}
                     searchState={providerSearchState}
