@@ -54,6 +54,7 @@ describe('local film catalog', () => {
       progress: { current: 0, target: 1, unit: 'item' },
       attributes: {
         localCatalogId: 'hackers-1995',
+        localCoverPath: '/images/film-covers/hackers-1995-cover.webp',
         creator: 'Iain Softley',
         usePlaceholderCover: true,
       },
