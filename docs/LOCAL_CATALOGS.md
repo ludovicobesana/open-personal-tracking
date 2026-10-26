@@ -33,6 +33,20 @@ The current film records use Wikidata-compatible factual metadata and original
 short descriptions. IMDb, community, and merchandise URLs are outbound
 references only: the project does not copy IMDb content or sell merchandise.
 
+## Local cover assets
+
+Optional local cover paths are served from `web/public/images/film-covers/` and
+are stored in the catalog record's `localCoverPath` attribute. They are copied
+to a user's local archive only as a relative display reference, not as an
+external provider URL, so local catalog use remains offline.
+
+`hackers-1995-cover.webp` was supplied directly by the project maintainer on
+2026-10-26 and converted from the supplied 389×576 JPEG to WebP without
+cropping or editorial changes. It is 39 KB. No independent redistribution
+licence evidence was supplied with the image; confirm permission to distribute
+it before publishing a release that includes this asset, or replace it with a
+properly licensed cover.
+
 ## Protected seed rule
 
 The repository seed catalogs are protected fixtures. AI agents and automated

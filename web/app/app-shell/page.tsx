@@ -870,7 +870,17 @@ const LocalCatalogPanel = ({
             <li key={record.id}>
               <article className="provider-result local-catalog-result">
                 <div className="provider-result-poster" aria-hidden="true">
-                  <span>{record.title.charAt(0)}</span>
+                  {record.attributes.localCoverPath ? (
+                    <Image
+                      src={record.attributes.localCoverPath}
+                      alt=""
+                      width={389}
+                      height={576}
+                      sizes="(max-width: 680px) 50vw, 200px"
+                    />
+                  ) : (
+                    <span>{record.title.charAt(0)}</span>
+                  )}
                 </div>
                 <div className="provider-result-copy">
                   <strong title={record.title}>{record.title}</strong>
@@ -1121,7 +1131,7 @@ const toTrackedItem = (
     title: item.title,
     category: item.category,
     jacket: stringAttribute(item, 'jacket') ?? '#8F6F2E',
-    image: item.imageUrl ?? '',
+    image: item.imageUrl ?? stringAttribute(item, 'localCoverPath') ?? '',
     usePlaceholderCover:
       typeof item.attributes.usePlaceholderCover === 'boolean'
         ? item.attributes.usePlaceholderCover
