@@ -876,7 +876,7 @@ const LocalCatalogPanel = ({
                       alt=""
                       width={389}
                       height={576}
-                      sizes="72px"
+                      sizes="(max-width: 680px) 50vw, 200px"
                     />
                   ) : (
                     <span>{record.title.charAt(0)}</span>
