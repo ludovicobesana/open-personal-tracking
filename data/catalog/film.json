@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 1,
+  "category": "film",
+  "generatedAt": "2026-10-24T00:00:00.000Z",
+  "records": [
+    {
+      "id": "hackers-1995",
+      "title": "Hackers",
+      "category": "Film",
+      "year": 1995,
+      "genres": ["Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Hackers",
+        "director": "Iain Softley",
+        "writers": "Rafael Moreu",
+        "stars": "Jonny Lee Miller, Angelina Jolie, Jesse Bradford",
+        "runtime": "107 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "PG-13",
+        "synopsis": "A gifted teenage hacker and his new friends uncover a corporate plot and race to prove his innocence.",
+        "imdbUrl": "https://www.imdb.com/title/tt0113243/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Hackers%201995&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=hackers%201995%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "the-net-1995",
+      "title": "The Net - Intrappolata nella rete",
+      "category": "Film",
+      "year": 1995,
+      "genres": ["Action", "Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "The Net",
+        "director": "Irwin Winkler",
+        "writers": "John Brancato, Michael Ferris",
+        "stars": "Sandra Bullock, Jeremy Northam, Dennis Miller",
+        "runtime": "114 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "PG-13",
+        "synopsis": "A reclusive analyst is erased from the systems that define her identity after receiving a dangerous program.",
+        "imdbUrl": "https://www.imdb.com/title/tt0113957/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=The%20Net%201995&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=the%20net%201995%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "masterminds-1997",
+      "title": "Masterminds - La guerra dei geni",
+      "category": "Film",
+      "year": 1997,
+      "genres": ["Action", "Crime", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Masterminds",
+        "director": "Roger Christian",
+        "writers": "Floyd Byars",
+        "stars": "Patrick Stewart, Vincent Kartheiser, Brenda Fricker",
+        "runtime": "106 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "PG-13",
+        "synopsis": "A resourceful student counters a former security chief who takes a school hostage through its own systems.",
+        "imdbUrl": "https://www.imdb.com/title/tt0119630/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Masterminds%201997%20film&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=masterminds%201997%20film%20merchandise"
+      }
+    },
+    {
+      "id": "pirates-of-silicon-valley-1999",
+      "title": "I pirati di Silicon Valley",
+      "category": "Film",
+      "year": 1999,
+      "genres": ["Biography", "Drama"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Pirates of Silicon Valley",
+        "director": "Martyn Burke",
+        "writers": "Martyn Burke, Paul Freiberger, Michael Swaine",
+        "stars": "Noah Wyle, Anthony Michael Hall, Joey Slotnick",
+        "runtime": "97 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "TV-14",
+        "synopsis": "A dramatization of the rivalry and ambition that shaped the early personal-computer industry.",
+        "imdbUrl": "https://www.imdb.com/title/tt0168122/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Pirates%20of%20Silicon%20Valley&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=pirates%20of%20silicon%20valley%20merchandise"
+      }
+    },
+    {
+      "id": "matrix-trilogy-1999-2003",
+      "title": "Trilogia di Matrix",
+      "category": "Film",
+      "year": 1999,
+      "genres": ["Action", "Science Fiction"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "The Matrix Trilogy",
+        "director": "Lana Wachowski, Lilly Wachowski",
+        "writers": "Lana Wachowski, Lilly Wachowski",
+        "stars": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss",
+        "runtime": "1999-2003",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "Neo and his allies fight to free humanity from a simulated world controlled by machines across three films.",
+        "imdbUrl": "https://www.imdb.com/title/tt0133093/",
+        "fanCommunityUrl": "https://www.reddit.com/r/matrix/",
+        "merchandiseUrl": "https://shop.warnerbros.com/search?q=matrix"
+      }
+    },
+    {
+      "id": "takedown-2000",
+      "title": "Takedown",
+      "category": "Film",
+      "year": 2000,
+      "genres": ["Biography", "Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Track Down",
+        "director": "Joe Chappelle",
+        "writers": "John Markoff, Tsutomu Shimomura, Howard A. Rodman",
+        "stars": "Skeet Ulrich, Russell Wong, Angela Featherstone",
+        "runtime": "96 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "A dramatization of the pursuit of hacker Kevin Mitnick by security specialist Tsutomu Shimomura.",
+        "imdbUrl": "https://www.imdb.com/title/tt0258273/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Track%20Down%202000%20Mitnick&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=takedown%202000%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "swordfish-2001",
+      "title": "Codice Swordfish",
+      "category": "Film",
+      "year": 2001,
+      "genres": ["Action", "Crime", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Swordfish",
+        "director": "Dominic Sena",
+        "writers": "Skip Woods",
+        "stars": "John Travolta, Hugh Jackman, Halle Berry",
+        "runtime": "99 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "A gifted hacker is pressured into helping steal a hidden government fund.",
+        "imdbUrl": "https://www.imdb.com/title/tt0244244/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Swordfish%202001&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=swordfish%202001%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "antitrust-2001",
+      "title": "S.Y.N.A.P.S.E. - Pericolo in rete",
+      "category": "Film",
+      "year": 2001,
+      "genres": ["Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Antitrust",
+        "director": "Peter Howitt",
+        "writers": "Howard Franklin",
+        "stars": "Ryan Phillippe, Tim Robbins, Rachael Leigh Cook",
+        "runtime": "108 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "PG-13",
+        "synopsis": "A young programmer joins a powerful software company and begins to suspect that its innovation hides deadly theft.",
+        "imdbUrl": "https://www.imdb.com/title/tt0218817/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Antitrust%202001%20film&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=antitrust%202001%20film%20merchandise"
+      }
+    },
+    {
+      "id": "the-net-2-2006",
+      "title": "The Net 2.0",
+      "category": "Film",
+      "year": 2006,
+      "genres": ["Action", "Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "The Net 2.0",
+        "director": "Charles Winkler",
+        "writers": "Rob Cowan",
+        "stars": "Nikki Deloach, Cengiz Bozkurt, Demet Akbag",
+        "runtime": "95 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "A systems analyst working abroad finds her identity replaced by that of a wanted criminal.",
+        "imdbUrl": "https://www.imdb.com/title/tt0449072/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=The%20Net%202.0&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=the%20net%202.0%20merchandise"
+      }
+    },
+    {
+      "id": "firewall-2006",
+      "title": "Firewall - Accesso negato",
+      "category": "Film",
+      "year": 2006,
+      "genres": ["Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Firewall",
+        "director": "Richard Loncraine",
+        "writers": "Joe Forte",
+        "stars": "Harrison Ford, Paul Bettany, Virginia Madsen",
+        "runtime": "105 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "PG-13",
+        "synopsis": "A bank-security specialist is forced to compromise his own defenses to protect his family.",
+        "imdbUrl": "https://www.imdb.com/title/tt0408345/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Firewall%202006&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=firewall%202006%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "wargames-the-dead-code-2008",
+      "title": "Wargames 2 - Il codice della paura",
+      "category": "Film",
+      "year": 2008,
+      "genres": ["Drama", "Science Fiction", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Wargames: The Dead Code",
+        "director": "Stuart Gillard",
+        "writers": "Randall M. Badat, Rob Kerchner",
+        "stars": "Matt Lanter, Amanda Walsh, Chuck Shamata",
+        "runtime": "100 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "PG-13",
+        "synopsis": "A teenager inadvertently triggers a military supercomputer built to identify terrorist threats.",
+        "imdbUrl": "https://www.imdb.com/title/tt0865957/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=WarGames%20The%20Dead%20Code&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=wargames%20the%20dead%20code%20merchandise"
+      }
+    },
+    {
+      "id": "disconnect-2012",
+      "title": "Disconnect",
+      "category": "Film",
+      "year": 2012,
+      "genres": ["Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Disconnect",
+        "director": "Henry Alex Rubin",
+        "writers": "Andrew Stern",
+        "stars": "Jason Bateman, Hope Davis, Frank Grillo",
+        "runtime": "115 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "Interconnected stories show how online contact, fraud, and isolation reshape several families.",
+        "imdbUrl": "https://www.imdb.com/title/tt1437358/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Disconnect%202012&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=disconnect%202012%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "we-are-legion-2012",
+      "title": "Anonymous - L'esercito degli hacktivisti",
+      "category": "Film",
+      "year": 2012,
+      "genres": ["Documentary"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "We Are Legion: The Story of the Hacktivists",
+        "director": "Brian Knappenberger",
+        "writers": "Brian Knappenberger",
+        "stars": "Anonymous participants, journalists and activists",
+        "runtime": "93 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "Not rated",
+        "synopsis": "A documentary about Anonymous, online protest, and the movement's actions in the early 2010s.",
+        "imdbUrl": "https://www.imdb.com/title/tt2177843/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=We%20Are%20Legion%20hacktivists&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=we%20are%20legion%20hacktivists%20merchandise"
+      }
+    },
+    {
+      "id": "red-la-storia-di-redhack-2013",
+      "title": "Red! La storia di Redhack",
+      "category": "Film",
+      "year": 2013,
+      "genres": ["Documentary"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Red! La storia di RedHack",
+        "director": "Tania De Pasquale, Raffaele Brunetti",
+        "writers": "Tania De Pasquale, Raffaele Brunetti",
+        "stars": "RedHack collective",
+        "runtime": "Documentary",
+        "countries": "Italy",
+        "languages": "Italian",
+        "contentRating": "Not rated",
+        "synopsis": "An Italian documentary focused on the RedHack collective and digital activism.",
+        "imdbUrl": "https://www.imdb.com/find/?q=Red%21%20La%20storia%20di%20RedHack&s=tt",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=RedHack%20documentary&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=redhack%20merchandise"
+      }
+    },
+    {
+      "id": "the-fifth-estate-2013",
+      "title": "Il quinto potere",
+      "category": "Film",
+      "year": 2013,
+      "genres": ["Biography", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "The Fifth Estate",
+        "director": "Bill Condon",
+        "writers": "Josh Singer",
+        "stars": "Benedict Cumberbatch, Daniel Brühl, Alicia Vikander",
+        "runtime": "128 min",
+        "countries": "United States, Belgium",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "A dramatization of WikiLeaks and the relationship between Julian Assange and Daniel Domscheit-Berg.",
+        "imdbUrl": "https://www.imdb.com/title/tt1837709/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=The%20Fifth%20Estate%202013&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=the%20fifth%20estate%202013%20merchandise"
+      }
+    },
+    {
+      "id": "citizenfour-2014",
+      "title": "Citizenfour",
+      "category": "Film",
+      "year": 2014,
+      "genres": ["Documentary", "Biography"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Citizenfour",
+        "director": "Laura Poitras",
+        "writers": "Laura Poitras",
+        "stars": "Edward Snowden, Glenn Greenwald, Laura Poitras",
+        "runtime": "114 min",
+        "countries": "United States, Germany",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "Filmmaker Laura Poitras documents Edward Snowden's disclosure of global surveillance programs.",
+        "imdbUrl": "https://www.imdb.com/title/tt4044364/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Citizenfour&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=citizenfour%20documentary%20merchandise"
+      }
+    },
+    {
+      "id": "the-hacker-wars-2014",
+      "title": "The Hacker Wars",
+      "category": "Film",
+      "year": 2014,
+      "genres": ["Documentary", "Crime"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "The Hacker Wars",
+        "director": "Vivien Lesnik Weisman",
+        "writers": "Vivien Lesnik Weisman",
+        "stars": "Andrew Auernheimer, Jeremy Hammond, Barrett Brown",
+        "runtime": "91 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "Not rated",
+        "synopsis": "A documentary about hacktivism, prosecution, and the people caught in conflicts around digital freedom.",
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Hacker%20Wars%202014&s=tt",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=The%20Hacker%20Wars&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=the%20hacker%20wars%20merchandise"
+      }
+    },
+    {
+      "id": "blackhat-2015",
+      "title": "Blackhat",
+      "category": "Film",
+      "year": 2015,
+      "genres": ["Action", "Crime", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Blackhat",
+        "director": "Michael Mann",
+        "writers": "Morgan Davis Foehl, Michael Mann",
+        "stars": "Chris Hemsworth, Tang Wei, Viola Davis",
+        "runtime": "133 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "A convicted hacker is released to help trace a cybercrime network operating across national borders.",
+        "imdbUrl": "https://www.imdb.com/title/tt2717822/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Blackhat%202015&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=blackhat%202015%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "mr-robot-2015",
+      "title": "Mr. Robot",
+      "category": "Series",
+      "year": 2015,
+      "genres": ["Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Mr. Robot",
+        "director": "Sam Esmail",
+        "writers": "Sam Esmail",
+        "stars": "Rami Malek, Christian Slater, Carly Chaikin",
+        "runtime": "2015-2019",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "TV-MA",
+        "synopsis": "A cybersecurity engineer recruited by an underground collective confronts power, identity, and surveillance.",
+        "imdbUrl": "https://www.imdb.com/title/tt4158110/",
+        "fanCommunityUrl": "https://www.reddit.com/r/MrRobot/",
+        "merchandiseUrl": "https://www.etsy.com/search?q=mr%20robot%20official%20merchandise"
+      }
+    },
+    {
+      "id": "snowden-2016",
+      "title": "Snowden",
+      "category": "Film",
+      "year": 2016,
+      "genres": ["Biography", "Crime", "Drama", "Thriller"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Snowden",
+        "director": "Oliver Stone",
+        "writers": "Kieran Fitzgerald, Oliver Stone",
+        "stars": "Joseph Gordon-Levitt, Shailene Woodley, Melissa Leo",
+        "runtime": "134 min",
+        "countries": "United States, Germany",
+        "languages": "English",
+        "contentRating": "R",
+        "synopsis": "A biographical drama about Edward Snowden's work in intelligence and his decision to disclose classified surveillance material.",
+        "imdbUrl": "https://www.imdb.com/title/tt3774114/",
+        "fanCommunityUrl": "https://www.reddit.com/search/?q=Snowden%202016%20film&type=link",
+        "merchandiseUrl": "https://www.etsy.com/search?q=snowden%202016%20movie%20merchandise"
+      }
+    },
+    {
+      "id": "revolution-os-2001",
+      "title": "Revolution OS",
+      "category": "Film",
+      "year": 2001,
+      "genres": ["Documentary"],
+      "provenance": {
+        "source": "Wikidata facts and original catalog metadata",
+        "license": "Wikidata CC0 facts; original editorial descriptions",
+        "importedAt": "2026-10-24T00:00:00.000Z"
+      },
+      "attributes": {
+        "originalTitle": "Revolution OS",
+        "director": "J. T. S. Moore",
+        "writers": "J. T. S. Moore",
+        "stars": "Richard Stallman, Linus Torvalds, Eric S. Raymond",
+        "runtime": "85 min",
+        "countries": "United States",
+        "languages": "English",
+        "contentRating": "Not rated",
+        "synopsis": "A documentary history of the free-software and open-source movements and the people behind them.",
+        "imdbUrl": "https://www.imdb.com/title/tt0308808/",
+        "fanCommunityUrl": "https://www.reddit.com/r/opensource/",
+        "merchandiseUrl": "https://www.fsf.org/resources/merchandise/"
+      }
+    }
+  ]
+}

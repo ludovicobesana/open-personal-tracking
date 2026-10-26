@@ -67,6 +67,20 @@ import {
 import type { ProviderDiscoveryReview } from '../../../src/application/provider-discovery';
 import { createConfiguredProviderDiscovery } from './provider-discovery';
 import { HorizontalCardRow } from '../horizontal-card-row';
+import filmCatalog from '../../../data/catalog/film.json';
+import videoGamesCatalog from '../../../data/catalog/video-games.json';
+import podcastsCatalog from '../../../data/catalog/podcasts.json';
+import youtubeVideosCatalog from '../../../data/catalog/youtube-videos.json';
+import musicCatalog from '../../../data/catalog/music.json';
+import animeCatalog from '../../../data/catalog/anime.json';
+import booksCatalog from '../../../data/catalog/books.json';
+import {
+  parseCatalog,
+  type Catalog,
+  type CatalogRecord,
+} from '../../../src/catalog/catalog-schema';
+import { searchLocalCatalogs } from '../../../src/catalog/local-catalog';
+import { catalogRecordToItemInput } from '../../../src/catalog/catalog-item-input';
 
 type Episode = {
   id: string;
@@ -141,6 +155,15 @@ type ProviderSearchPanelProps = {
   onUseProviderImageChange: (useImage: boolean) => void;
   onAddToLibrary: (review: ProviderDiscoveryReview) => void;
 };
+type LocalCatalogPanelProps = {
+  catalogs: Catalog[];
+  activeCategory: string;
+  addedRecordIds: Set<string>;
+  query: string;
+  onCategoryChange: (category: string) => void;
+  onQueryChange: (query: string) => void;
+  onAddToLibrary: (record: CatalogRecord) => void;
+};
 type TrackedItem = {
   id: string;
   title: string;
@@ -158,6 +181,8 @@ type TrackedItem = {
   description: string;
   genres: string[];
   imdbUrl?: string;
+  fanCommunityUrl?: string;
+  merchandiseUrl?: string;
   tags: string[];
   rating?: number;
   seasons?: SeriesSeason[];
@@ -728,6 +753,207 @@ const ProviderSearchPanel = ({
   </section>
 );
 
+const CATALOG_LABELS: Record<string, string> = {
+  film: 'Film e serie',
+  'video-games': 'Videogiochi',
+  podcasts: 'Podcast',
+  'youtube-videos': 'Video su YouTube',
+  music: 'Musica',
+  anime: 'Anime',
+  books: 'Libri',
+};
+const LOCAL_CATALOGS = [
+  filmCatalog,
+  videoGamesCatalog,
+  podcastsCatalog,
+  youtubeVideosCatalog,
+  musicCatalog,
+  animeCatalog,
+  booksCatalog,
+].map(parseCatalog);
+
+const LocalCatalogPanel = ({
+  catalogs,
+  activeCategory,
+  addedRecordIds,
+  query,
+  onCategoryChange,
+  onQueryChange,
+  onAddToLibrary,
+}: LocalCatalogPanelProps) => {
+  const [visibleResultCount, setVisibleResultCount] = useState(6);
+  const availableCategories = catalogs.map((catalog) => ({
+    id: catalog.category,
+    label: CATALOG_LABELS[catalog.category] ?? catalog.category,
+    count: catalog.records.length,
+  }));
+  const results = searchLocalCatalogs(
+    activeCategory === 'all'
+      ? catalogs
+      : catalogs.filter((catalog) => catalog.category === activeCategory),
+    query,
+  );
+  const visibleResults = results.slice(0, visibleResultCount);
+
+  const updateQuery = (value: string) => {
+    setVisibleResultCount(6);
+    onQueryChange(value);
+  };
+
+  const updateCategory = (category: string) => {
+    setVisibleResultCount(6);
+    onCategoryChange(category);
+  };
+
+  return (
+    <section
+      className="provider-search-panel local-catalog-panel"
+      aria-labelledby="localCatalogTitle"
+    >
+      <div className="provider-search-intro">
+        <div>
+          <span className="eyebrow">Catalogo locale</span>
+          <h2 id="localCatalogTitle">Cerca senza connessione</h2>
+          <p>
+            I risultati sono inclusi nell’app. Aggiungi al tuo archivio solo ciò
+            che scegli.
+          </p>
+        </div>
+        <span className="provider-local-note">Nessuna richiesta esterna</span>
+      </div>
+      <label className="field-label" htmlFor="local-catalog-query">
+        Cerca per titolo, persona, genere, anno o dettaglio
+      </label>
+      <input
+        className="field-control"
+        id="local-catalog-query"
+        type="search"
+        value={query}
+        onChange={(event) => updateQuery(event.target.value)}
+        placeholder="Hackers, Wachowski, documentario…"
+        autoComplete="off"
+      />
+      <div
+        className="local-catalog-categories"
+        aria-label="Categorie del catalogo"
+      >
+        <button
+          className={`filter-chip ${activeCategory === 'all' ? 'is-selected' : ''}`}
+          type="button"
+          onClick={() => updateCategory('all')}
+        >
+          Tutte{' '}
+          <span>
+            {catalogs.reduce(
+              (total, catalog) => total + catalog.records.length,
+              0,
+            )}
+          </span>
+        </button>
+        {availableCategories.map((category) => (
+          <button
+            key={category.id}
+            className={`filter-chip ${activeCategory === category.id ? 'is-selected' : ''}`}
+            type="button"
+            onClick={() => updateCategory(category.id)}
+          >
+            {category.label} <span>{category.count}</span>
+          </button>
+        ))}
+      </div>
+      {results.length > 0 ? (
+        <ul
+          className="provider-results"
+          aria-label="Risultati del catalogo locale"
+        >
+          {visibleResults.map((record) => (
+            <li key={record.id}>
+              <article className="provider-result local-catalog-result">
+                <div className="provider-result-poster" aria-hidden="true">
+                  <span>{record.title.charAt(0)}</span>
+                </div>
+                <div className="provider-result-copy">
+                  <strong title={record.title}>{record.title}</strong>
+                  <span>
+                    {record.category} · {record.year ?? '—'}
+                  </span>
+                  <small>
+                    {record.attributes.originalTitle ??
+                      record.attributes.synopsis}
+                  </small>
+                  <span>{record.genres.join(', ')}</span>
+                  <details className="local-catalog-details">
+                    <summary>Dettagli e link</summary>
+                    <p>
+                      {record.attributes.director && (
+                        <>Regia: {record.attributes.director}. </>
+                      )}
+                      {record.attributes.runtime && (
+                        <>Durata: {record.attributes.runtime}.</>
+                      )}
+                    </p>
+                    {record.attributes.synopsis && (
+                      <p>{record.attributes.synopsis}</p>
+                    )}
+                    <p>
+                      <a
+                        href={record.attributes.imdbUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Scheda IMDb
+                      </a>{' '}
+                      ·{' '}
+                      <a
+                        href={record.attributes.fanCommunityUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Community fan
+                      </a>{' '}
+                      ·{' '}
+                      <a
+                        href={record.attributes.merchandiseUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        Merchandising
+                      </a>
+                    </p>
+                  </details>
+                  <button
+                    className="mini-btn"
+                    type="button"
+                    onClick={() => onAddToLibrary(record)}
+                    disabled={addedRecordIds.has(record.id)}
+                  >
+                    {addedRecordIds.has(record.id)
+                      ? 'Già in libreria'
+                      : 'Aggiungi alla libreria'}
+                  </button>
+                </div>
+              </article>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="provider-status" role="status">
+          Nessun risultato nel catalogo locale.
+        </p>
+      )}
+      {results.length > visibleResults.length && (
+        <button
+          className="ghost-btn local-catalog-more"
+          type="button"
+          onClick={() => setVisibleResultCount((count) => count + 6)}
+        >
+          Mostra altri {Math.min(6, results.length - visibleResults.length)}
+        </button>
+      )}
+    </section>
+  );
+};
+
 const STATUS_LABEL: Record<string, string> = {
   planned: 'Planned',
   progress: 'In progress',
@@ -922,6 +1148,8 @@ const toTrackedItem = (
     description: item.description ?? '',
     genres: listAttribute(item, 'imdbGenres'),
     imdbUrl: imdbUrlFor(item),
+    fanCommunityUrl: stringAttribute(item, 'fanCommunityUrl'),
+    merchandiseUrl: stringAttribute(item, 'merchandiseUrl'),
     tags: item.tags,
     rating: item.rating,
     seasons: item.category === 'Series' ? toSeriesSeasons(item) : undefined,
@@ -945,6 +1173,8 @@ const noSelection: TrackedItem = {
   description: 'Select an item to see its details.',
   genres: [],
   imdbUrl: undefined,
+  fanCommunityUrl: undefined,
+  merchandiseUrl: undefined,
   tags: [],
 };
 
@@ -1027,6 +1257,11 @@ export default function AppShellPage() {
   const [ratingBadInput, setRatingBadInput] = useState(false);
   const [drawerSaveError, setDrawerSaveError] = useState<string | null>(null);
   const [providerQuery, setProviderQuery] = useState('');
+  const [localCatalogQuery, setLocalCatalogQuery] = useState('');
+  const [localCatalogCategory, setLocalCatalogCategory] = useState('film');
+  const [localCatalogFeedback, setLocalCatalogFeedback] = useState<
+    string | null
+  >(null);
   const [providerResults, setProviderResults] = useState<
     Array<ProviderSearchResult>
   >([]);
@@ -1282,6 +1517,15 @@ export default function AppShellPage() {
       ) ?? [],
     [archive, preferences.placeholderCovers],
   );
+  const localCatalogRecordIds = useMemo(
+    () =>
+      new Set(
+        archive?.items
+          .map((item) => item.attributes.localCatalogId)
+          .filter((id): id is string => typeof id === 'string') ?? [],
+      ),
+    [archive],
+  );
   const selectedItem =
     items.find((item) => item.id === selectedId) ?? noSelection;
   const selectedDomainItem =
@@ -1408,6 +1652,36 @@ export default function AppShellPage() {
     resetProviderDiscovery();
     setDrawerOpen(false);
     setEditingItemId(null);
+  };
+
+  const addLocalCatalogRecord = async (record: CatalogRecord) => {
+    if (!archive || !application.current) return;
+    const existing = archive.items.find(
+      (item) => item.attributes.localCatalogId === record.id,
+    );
+    if (existing) {
+      setLocalCatalogFeedback(`${record.title} è già nella tua libreria.`);
+      return;
+    }
+
+    try {
+      const next = await application.current.createItem(
+        archive,
+        catalogRecordToItemInput(record, preferences.placeholderCovers),
+      );
+      const added = next.items.at(-1);
+      setArchive(next);
+      setSelectedId(added?.id ?? null);
+      setLocalCatalogFeedback(
+        `${record.title} è stato aggiunto alla libreria.`,
+      );
+    } catch (error) {
+      setOperationError(
+        error instanceof Error
+          ? error.message
+          : 'Non è stato possibile aggiungere questo titolo.',
+      );
+    }
   };
 
   const updateDraftSeason = (
@@ -2716,6 +2990,29 @@ export default function AppShellPage() {
                           Open on IMDb
                         </a>
                       )}
+                      {(selectedItem.fanCommunityUrl ||
+                        selectedItem.merchandiseUrl) && (
+                        <p className="detail-external-links">
+                          {selectedItem.fanCommunityUrl && (
+                            <a
+                              href={selectedItem.fanCommunityUrl}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              Community fan
+                            </a>
+                          )}
+                          {selectedItem.merchandiseUrl && (
+                            <a
+                              href={selectedItem.merchandiseUrl}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              Merchandising
+                            </a>
+                          )}
+                        </p>
+                      )}
                     </section>
 
                     <section
@@ -2938,10 +3235,10 @@ export default function AppShellPage() {
                   <div className="screen-hero discover-hero">
                     <div>
                       <span className="eyebrow">Discover</span>
-                      <h2>Search films and series to track</h2>
+                      <h2>Cerca titoli da aggiungere</h2>
                       <p>
-                        TMDB is optional: nothing is added until you review and
-                        confirm it.
+                        Il catalogo locale funziona anche offline. TMDB resta
+                        opzionale e non aggiunge nulla senza conferma.
                       </p>
                     </div>
                     <button
@@ -2953,6 +3250,22 @@ export default function AppShellPage() {
                       Add manually
                     </button>
                   </div>
+                  <LocalCatalogPanel
+                    catalogs={LOCAL_CATALOGS}
+                    activeCategory={localCatalogCategory}
+                    addedRecordIds={localCatalogRecordIds}
+                    query={localCatalogQuery}
+                    onCategoryChange={setLocalCatalogCategory}
+                    onQueryChange={setLocalCatalogQuery}
+                    onAddToLibrary={(record) =>
+                      void addLocalCatalogRecord(record)
+                    }
+                  />
+                  {localCatalogFeedback && (
+                    <p className="local-catalog-feedback" role="status">
+                      {localCatalogFeedback}
+                    </p>
+                  )}
                   <ProviderSearchPanel
                     query={providerQuery}
                     searchState={providerSearchState}
