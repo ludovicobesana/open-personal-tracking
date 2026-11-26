@@ -76,11 +76,13 @@ import musicCatalog from '../../../data/catalog/music.json';
 import animeCatalog from '../../../data/catalog/anime.json';
 import booksCatalog from '../../../data/catalog/books.json';
 import {
-  parseCatalog,
   type Catalog,
   type CatalogRecord,
 } from '../../../src/catalog/catalog-schema';
-import { searchLocalCatalogs } from '../../../src/catalog/local-catalog';
+import {
+  loadLocalCatalogs,
+  searchLocalCatalogPage,
+} from '../../../src/catalog/local-catalog';
 import { catalogRecordToItemInput } from '../../../src/catalog/catalog-item-input';
 
 type Episode = {
@@ -764,16 +766,17 @@ const CATALOG_LABELS: Record<string, string> = {
   anime: 'Anime',
   books: 'Libri',
 };
-const LOCAL_CATALOGS = [
-  filmCatalog,
-  seriesCatalog,
-  videoGamesCatalog,
-  podcastsCatalog,
-  youtubeVideosCatalog,
-  musicCatalog,
-  animeCatalog,
-  booksCatalog,
-].map(parseCatalog);
+const { catalogs: LOCAL_CATALOGS, errors: LOCAL_CATALOG_ERRORS } =
+  loadLocalCatalogs({
+    film: filmCatalog,
+    series: seriesCatalog,
+    'video-games': videoGamesCatalog,
+    podcasts: podcastsCatalog,
+    'youtube-videos': youtubeVideosCatalog,
+    music: musicCatalog,
+    anime: animeCatalog,
+    books: booksCatalog,
+  });
 
 const LocalCatalogPanel = ({
   catalogs,
@@ -784,27 +787,27 @@ const LocalCatalogPanel = ({
   onQueryChange,
   onAddToLibrary,
 }: LocalCatalogPanelProps) => {
-  const [visibleResultCount, setVisibleResultCount] = useState(6);
+  const [page, setPage] = useState(1);
   const availableCategories = catalogs.map((catalog) => ({
     id: catalog.category,
     label: CATALOG_LABELS[catalog.category] ?? catalog.category,
     count: catalog.records.length,
   }));
-  const results = searchLocalCatalogs(
+  const results = searchLocalCatalogPage(
     activeCategory === 'all'
       ? catalogs
       : catalogs.filter((catalog) => catalog.category === activeCategory),
     query,
+    page,
   );
-  const visibleResults = results.slice(0, visibleResultCount);
 
   const updateQuery = (value: string) => {
-    setVisibleResultCount(6);
+    setPage(1);
     onQueryChange(value);
   };
 
   const updateCategory = (category: string) => {
-    setVisibleResultCount(6);
+    setPage(1);
     onCategoryChange(category);
   };
 
@@ -864,12 +867,17 @@ const LocalCatalogPanel = ({
           </button>
         ))}
       </div>
-      {results.length > 0 ? (
+      {LOCAL_CATALOG_ERRORS.length > 0 ? (
+        <p role="status">
+          Alcuni cataloghi non sono disponibili. Puoi aggiungere titoli a mano.
+        </p>
+      ) : null}
+      {results.total > 0 ? (
         <ul
           className="provider-results"
           aria-label="Risultati del catalogo locale"
         >
-          {visibleResults.map((record) => (
+          {results.records.map((record) => (
             <li key={record.id}>
               <article className="provider-result local-catalog-result">
                 <div className="provider-result-poster" aria-hidden="true">
@@ -954,15 +962,29 @@ const LocalCatalogPanel = ({
           Nessun risultato nel catalogo locale.
         </p>
       )}
-      {results.length > visibleResults.length && (
-        <button
-          className="ghost-btn local-catalog-more"
-          type="button"
-          onClick={() => setVisibleResultCount((count) => count + 6)}
-        >
-          Mostra altri {Math.min(6, results.length - visibleResults.length)}
-        </button>
-      )}
+      {results.pageCount > 1 ? (
+        <nav className="pagination" aria-label="Pagine del catalogo locale">
+          <button
+            className="mini-btn"
+            type="button"
+            disabled={results.page === 1}
+            onClick={() => setPage(results.page - 1)}
+          >
+            Precedente
+          </button>
+          <span className="pagination-status" aria-live="polite">
+            Pagina {results.page} di {results.pageCount}
+          </span>
+          <button
+            className="mini-btn"
+            type="button"
+            disabled={results.page === results.pageCount}
+            onClick={() => setPage(results.page + 1)}
+          >
+            Successiva
+          </button>
+        </nav>
+      ) : null}
     </section>
   );
 };

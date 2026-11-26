@@ -72,3 +72,13 @@ To refresh, review factual identifiers and licensing, preserve existing IDs,
 update the generation timestamp, run the catalog tests and review the web
 build before publishing. No external provider or secret is required.
 This catalog does not represent Netflix or other streaming availability.
+
+## Offline search
+
+Search matches case- and accent-insensitive text. Exact titles rank before
+title prefixes, title substrings and metadata matches; ties retain catalog
+and seed order. An empty query retains seed order. Discover renders six
+records per page; the core page API rejects page sizes outside 1–50.
+Missing or invalid optional datasets are isolated from valid catalogs and
+manual archive entry. Old datasets remain searchable; there is no automatic
+network refresh. Search never reads or writes personal history.
