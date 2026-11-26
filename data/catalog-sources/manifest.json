@@ -1,0 +1,44 @@
+{
+  "catalogs": [
+    {
+      "category": "film",
+      "seed": "../catalog/film.json",
+      "sources": []
+    },
+    {
+      "category": "series",
+      "seed": "../catalog/series.json",
+      "sources": []
+    },
+    {
+      "category": "books",
+      "seed": "../catalog/books.json",
+      "sources": []
+    },
+    {
+      "category": "video-games",
+      "seed": "../catalog/video-games.json",
+      "sources": []
+    },
+    {
+      "category": "anime",
+      "seed": "../catalog/anime.json",
+      "sources": []
+    },
+    {
+      "category": "music",
+      "seed": "../catalog/music.json",
+      "sources": []
+    },
+    {
+      "category": "podcasts",
+      "seed": "../catalog/podcasts.json",
+      "sources": []
+    },
+    {
+      "category": "youtube-videos",
+      "seed": "../catalog/youtube-videos.json",
+      "sources": []
+    }
+  ]
+}
