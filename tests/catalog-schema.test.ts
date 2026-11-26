@@ -22,8 +22,9 @@ describe('local film catalog', () => {
     expect(new Set(catalog.records.map((record) => record.id)).size).toBe(
       catalog.records.length,
     );
+    const originalRecords = catalog.records.slice(0, 21);
     expect(
-      catalog.records.slice(0, 21).every(
+      originalRecords.every(
         (record) =>
           ['Film', 'Series'].includes(record.category) &&
           record.provenance.source.includes('Wikidata') &&
