@@ -19,3 +19,9 @@ needs a format case that the existing rows cannot express.
 Before adding or changing any import fixture, document its provenance in this
 file and keep only fields required by the test. See `SECURITY.md` for the
 response process if potentially personal repository data is discovered.
+
+## Local catalog fixture
+
+`catalog/v1.synthetic.json` contains one invented book and extension metadata.
+It tests version 1 validation, provenance retention and archive independence.
+All names, IDs and URLs are synthetic; no personal data is included.

@@ -16,7 +16,7 @@ export const catalogRecordToItemInput = (
   progress: { current: 0, target: 1, unit: 'item' },
   description: record.attributes.synopsis,
   notes: [],
-  tags: record.genres,
+  tags: [...record.genres],
   collections: [],
   attributes: {
     ...record.attributes,
