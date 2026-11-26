@@ -8,6 +8,8 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 ### Added
 
+- Expanded offline catalogs to over 100 films, series, books and video games
+  each, preserving the original seed records.
 - An offline Discover catalog with searchable cyber and technology film/series
   records, IMDb-style metadata, optional community or merchandise links, and
   category-based progressive browsing; selected records are added directly to

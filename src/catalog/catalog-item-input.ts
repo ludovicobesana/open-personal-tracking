@@ -22,7 +22,7 @@ export const catalogRecordToItemInput = (
     ...record.attributes,
     localCatalogId: record.id,
     localCatalogCategory: record.category,
-    creator: record.attributes.director ?? '—',
+    creator: record.attributes.director ?? record.attributes.author ?? '—',
     imdbGenres: record.genres.join(', '),
     usePlaceholderCover: placeholderCovers,
   },
