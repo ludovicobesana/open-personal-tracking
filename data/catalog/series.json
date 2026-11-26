@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 1,
+  "category": "series",
+  "generatedAt": "2026-11-26T00:00:00.000Z",
+  "records": [
+    {
+      "id": "breaking-bad-2008",
+      "title": "Breaking Bad",
+      "category": "Series",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "better-call-saul-2015",
+      "title": "Better Call Saul",
+      "category": "Series",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-sopranos-1999",
+      "title": "The Sopranos",
+      "category": "Series",
+      "year": 1999,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-wire-2002",
+      "title": "The Wire",
+      "category": "Series",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "succession-2018",
+      "title": "Succession",
+      "category": "Series",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mad-men-2007",
+      "title": "Mad Men",
+      "category": "Series",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "game-of-thrones-2011",
+      "title": "Game of Thrones",
+      "category": "Series",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "house-of-the-dragon-2022",
+      "title": "House of the Dragon",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "stranger-things-2016",
+      "title": "Stranger Things",
+      "category": "Series",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dark-2017",
+      "title": "Dark",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "black-mirror-2011",
+      "title": "Black Mirror",
+      "category": "Series",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "severance-2022",
+      "title": "Severance",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-bear-2022",
+      "title": "The Bear",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-leftovers-2014",
+      "title": "The Leftovers",
+      "category": "Series",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "lost-2004",
+      "title": "Lost",
+      "category": "Series",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "twin-peaks-1990",
+      "title": "Twin Peaks",
+      "category": "Series",
+      "year": 1990,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-x-files-1993",
+      "title": "The X-Files",
+      "category": "Series",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "buffy-the-vampire-slayer-1997",
+      "title": "Buffy the Vampire Slayer",
+      "category": "Series",
+      "year": 1997,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "angel-1999",
+      "title": "Angel",
+      "category": "Series",
+      "year": 1999,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fringe-2008",
+      "title": "Fringe",
+      "category": "Series",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "westworld-2016",
+      "title": "Westworld",
+      "category": "Series",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "person-of-interest-2011",
+      "title": "Person of Interest",
+      "category": "Series",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-expanse-2015",
+      "title": "The Expanse",
+      "category": "Series",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "battlestar-galactica-2004",
+      "title": "Battlestar Galactica",
+      "category": "Series",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "firefly-2002",
+      "title": "Firefly",
+      "category": "Series",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "doctor-who-2005",
+      "title": "Doctor Who",
+      "category": "Series",
+      "year": 2005,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "torchwood-2006",
+      "title": "Torchwood",
+      "category": "Series",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "star-trek-the-original-series-1966",
+      "title": "Star Trek: The Original Series",
+      "category": "Series",
+      "year": 1966,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "star-trek-the-next-generation-1987",
+      "title": "Star Trek: The Next Generation",
+      "category": "Series",
+      "year": 1987,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "star-trek-deep-space-nine-1993",
+      "title": "Star Trek: Deep Space Nine",
+      "category": "Series",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "star-trek-voyager-1995",
+      "title": "Star Trek: Voyager",
+      "category": "Series",
+      "year": 1995,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "star-trek-discovery-2017",
+      "title": "Star Trek: Discovery",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "star-trek-strange-new-worlds-2022",
+      "title": "Star Trek: Strange New Worlds",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-mandalorian-2019",
+      "title": "The Mandalorian",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "andor-2022",
+      "title": "Andor",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ahsoka-2023",
+      "title": "Ahsoka",
+      "category": "Series",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "obi-wan-kenobi-2022",
+      "title": "Obi-Wan Kenobi",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-last-of-us-2023",
+      "title": "The Last of Us",
+      "category": "Series",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fallout-2024",
+      "title": "Fallout",
+      "category": "Series",
+      "year": 2024,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-walking-dead-2010",
+      "title": "The Walking Dead",
+      "category": "Series",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-boys-2019",
+      "title": "The Boys",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "gen-v-2023",
+      "title": "Gen V",
+      "category": "Series",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "invincible-2021",
+      "title": "Invincible",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "watchmen-2019",
+      "title": "Watchmen",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "loki-2021",
+      "title": "Loki",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "wandavision-2021",
+      "title": "WandaVision",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "daredevil-2015",
+      "title": "Daredevil",
+      "category": "Series",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "jessica-jones-2015",
+      "title": "Jessica Jones",
+      "category": "Series",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-punisher-2017",
+      "title": "The Punisher",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "peaky-blinders-2013",
+      "title": "Peaky Blinders",
+      "category": "Series",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sherlock-2010",
+      "title": "Sherlock",
+      "category": "Series",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "luther-2010",
+      "title": "Luther",
+      "category": "Series",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "broadchurch-2013",
+      "title": "Broadchurch",
+      "category": "Series",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "line-of-duty-2012",
+      "title": "Line of Duty",
+      "category": "Series",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "happy-valley-2014",
+      "title": "Happy Valley",
+      "category": "Series",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fargo-2014",
+      "title": "Fargo",
+      "category": "Series",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "true-detective-2014",
+      "title": "True Detective",
+      "category": "Series",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mindhunter-2017",
+      "title": "Mindhunter",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ozark-2017",
+      "title": "Ozark",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "narcos-2015",
+      "title": "Narcos",
+      "category": "Series",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "narcos-mexico-2018",
+      "title": "Narcos: Mexico",
+      "category": "Series",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "money-heist-2017",
+      "title": "Money Heist",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "squid-game-2021",
+      "title": "Squid Game",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "alice-in-borderland-2020",
+      "title": "Alice in Borderland",
+      "category": "Series",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "kingdom-2019",
+      "title": "Kingdom",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-glory-2022",
+      "title": "The Glory",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-queen-s-gambit-2020",
+      "title": "The Queen's Gambit",
+      "category": "Series",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "chernobyl-2019",
+      "title": "Chernobyl",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "band-of-brothers-2001",
+      "title": "Band of Brothers",
+      "category": "Series",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-pacific-2010",
+      "title": "The Pacific",
+      "category": "Series",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "masters-of-the-air-2024",
+      "title": "Masters of the Air",
+      "category": "Series",
+      "year": 2024,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-crown-2016",
+      "title": "The Crown",
+      "category": "Series",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "downton-abbey-2010",
+      "title": "Downton Abbey",
+      "category": "Series",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-americans-2013",
+      "title": "The Americans",
+      "category": "Series",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "homeland-2011",
+      "title": "Homeland",
+      "category": "Series",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "24-2001",
+      "title": "24",
+      "category": "Series",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "prison-break-2005",
+      "title": "Prison Break",
+      "category": "Series",
+      "year": 2005,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dexter-2006",
+      "title": "Dexter",
+      "category": "Series",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "hannibal-2013",
+      "title": "Hannibal",
+      "category": "Series",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "house-2004",
+      "title": "House",
+      "category": "Series",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-good-doctor-2017",
+      "title": "The Good Doctor",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "grey-s-anatomy-2005",
+      "title": "Grey's Anatomy",
+      "category": "Series",
+      "year": 2005,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "er-1994",
+      "title": "ER",
+      "category": "Series",
+      "year": 1994,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "scrubs-2001",
+      "title": "Scrubs",
+      "category": "Series",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-office-us-2005",
+      "title": "The Office (US)",
+      "category": "Series",
+      "year": 2005,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-office-uk-2001",
+      "title": "The Office (UK)",
+      "category": "Series",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "parks-and-recreation-2009",
+      "title": "Parks and Recreation",
+      "category": "Series",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "brooklyn-nine-nine-2013",
+      "title": "Brooklyn Nine-Nine",
+      "category": "Series",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-good-place-2016",
+      "title": "The Good Place",
+      "category": "Series",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "community-2009",
+      "title": "Community",
+      "category": "Series",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "arrested-development-2003",
+      "title": "Arrested Development",
+      "category": "Series",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "30-rock-2006",
+      "title": "30 Rock",
+      "category": "Series",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ted-lasso-2020",
+      "title": "Ted Lasso",
+      "category": "Series",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "shrinking-2023",
+      "title": "Shrinking",
+      "category": "Series",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fleabag-2016",
+      "title": "Fleabag",
+      "category": "Series",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "killing-eve-2018",
+      "title": "Killing Eve",
+      "category": "Series",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "barry-2018",
+      "title": "Barry",
+      "category": "Series",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "atlanta-2016",
+      "title": "Atlanta",
+      "category": "Series",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-white-lotus-2021",
+      "title": "The White Lotus",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "euphoria-2019",
+      "title": "Euphoria",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sex-education-2019",
+      "title": "Sex Education",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "heartstopper-2022",
+      "title": "Heartstopper",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "young-royals-2021",
+      "title": "Young Royals",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "wednesday-2022",
+      "title": "Wednesday",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-umbrella-academy-2019",
+      "title": "The Umbrella Academy",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-sandman-2022",
+      "title": "The Sandman",
+      "category": "Series",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "good-omens-2019",
+      "title": "Good Omens",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "american-gods-2017",
+      "title": "American Gods",
+      "category": "Series",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-witcher-2019",
+      "title": "The Witcher",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "shadow-and-bone-2021",
+      "title": "Shadow and Bone",
+      "category": "Series",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "his-dark-materials-2019",
+      "title": "His Dark Materials",
+      "category": "Series",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "outlander-2014",
+      "title": "Outlander",
+      "category": "Series",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "vikings-2013",
+      "title": "Vikings",
+      "category": "Series",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-last-kingdom-2015",
+      "title": "The Last Kingdom",
+      "category": "Series",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "rome-2005",
+      "title": "Rome",
+      "category": "Series",
+      "year": 2005,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "spartacus-2010",
+      "title": "Spartacus",
+      "category": "Series",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    }
+  ]
+}

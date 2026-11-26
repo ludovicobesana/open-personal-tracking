@@ -1,6 +1,1645 @@
 {
   "schemaVersion": 1,
   "category": "video-games",
-  "generatedAt": "2026-10-24T00:00:00.000Z",
-  "records": []
+  "generatedAt": "2026-11-26T00:00:00.000Z",
+  "records": [
+    {
+      "id": "the-legend-of-zelda-1986",
+      "title": "The Legend of Zelda",
+      "category": "Video Game",
+      "year": 1986,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "zelda-ii-the-adventure-of-link-1987",
+      "title": "Zelda II: The Adventure of Link",
+      "category": "Video Game",
+      "year": 1987,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-a-link-to-the-past-1991",
+      "title": "The Legend of Zelda: A Link to the Past",
+      "category": "Video Game",
+      "year": 1991,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-link-s-awakening-1993",
+      "title": "The Legend of Zelda: Link's Awakening",
+      "category": "Video Game",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-ocarina-of-time-1998",
+      "title": "The Legend of Zelda: Ocarina of Time",
+      "category": "Video Game",
+      "year": 1998,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-majora-s-mask-2000",
+      "title": "The Legend of Zelda: Majora's Mask",
+      "category": "Video Game",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-the-wind-waker-2002",
+      "title": "The Legend of Zelda: The Wind Waker",
+      "category": "Video Game",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-twilight-princess-2006",
+      "title": "The Legend of Zelda: Twilight Princess",
+      "category": "Video Game",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-skyward-sword-2011",
+      "title": "The Legend of Zelda: Skyward Sword",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-breath-of-the-wild-2017",
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-legend-of-zelda-tears-of-the-kingdom-2023",
+      "title": "The Legend of Zelda: Tears of the Kingdom",
+      "category": "Video Game",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-bros-1985",
+      "title": "Super Mario Bros.",
+      "category": "Video Game",
+      "year": 1985,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-bros-3-1988",
+      "title": "Super Mario Bros. 3",
+      "category": "Video Game",
+      "year": 1988,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-world-1990",
+      "title": "Super Mario World",
+      "category": "Video Game",
+      "year": 1990,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-64-1996",
+      "title": "Super Mario 64",
+      "category": "Video Game",
+      "year": 1996,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-sunshine-2002",
+      "title": "Super Mario Sunshine",
+      "category": "Video Game",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-galaxy-2007",
+      "title": "Super Mario Galaxy",
+      "category": "Video Game",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-galaxy-2-2010",
+      "title": "Super Mario Galaxy 2",
+      "category": "Video Game",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-odyssey-2017",
+      "title": "Super Mario Odyssey",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-bros-wonder-2023",
+      "title": "Super Mario Bros. Wonder",
+      "category": "Video Game",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-mario-rpg-1996",
+      "title": "Super Mario RPG",
+      "category": "Video Game",
+      "year": 1996,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mario-kart-8-deluxe-2017",
+      "title": "Mario Kart 8 Deluxe",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mario-kart-wii-2008",
+      "title": "Mario Kart Wii",
+      "category": "Video Game",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-smash-bros-ultimate-2018",
+      "title": "Super Smash Bros. Ultimate",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "metroid-1986",
+      "title": "Metroid",
+      "category": "Video Game",
+      "year": 1986,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "super-metroid-1994",
+      "title": "Super Metroid",
+      "category": "Video Game",
+      "year": 1994,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "metroid-prime-2002",
+      "title": "Metroid Prime",
+      "category": "Video Game",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "metroid-dread-2021",
+      "title": "Metroid Dread",
+      "category": "Video Game",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "hollow-knight-2017",
+      "title": "Hollow Knight",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "celeste-2018",
+      "title": "Celeste",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dead-cells-2018",
+      "title": "Dead Cells",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "hades-2020",
+      "title": "Hades",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "hades-ii-2025",
+      "title": "Hades II",
+      "category": "Video Game",
+      "year": 2025,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "stardew-valley-2016",
+      "title": "Stardew Valley",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "terraria-2011",
+      "title": "Terraria",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "minecraft-2011",
+      "title": "Minecraft",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "factorio-2020",
+      "title": "Factorio",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "rimworld-2018",
+      "title": "RimWorld",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "slay-the-spire-2019",
+      "title": "Slay the Spire",
+      "category": "Video Game",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "balatro-2024",
+      "title": "Balatro",
+      "category": "Video Game",
+      "year": 2024,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "vampire-survivors-2022",
+      "title": "Vampire Survivors",
+      "category": "Video Game",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "undertale-2015",
+      "title": "Undertale",
+      "category": "Video Game",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "deltarune-2018",
+      "title": "Deltarune",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "disco-elysium-2019",
+      "title": "Disco Elysium",
+      "category": "Video Game",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "outer-wilds-2019",
+      "title": "Outer Wilds",
+      "category": "Video Game",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "return-of-the-obra-dinn-2018",
+      "title": "Return of the Obra Dinn",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-witness-2016",
+      "title": "The Witness",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "portal-2007",
+      "title": "Portal",
+      "category": "Video Game",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "portal-2-2011",
+      "title": "Portal 2",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "half-life-1998",
+      "title": "Half-Life",
+      "category": "Video Game",
+      "year": 1998,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "half-life-2-2004",
+      "title": "Half-Life 2",
+      "category": "Video Game",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "half-life-alyx-2020",
+      "title": "Half-Life: Alyx",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "counter-strike-2000",
+      "title": "Counter-Strike",
+      "category": "Video Game",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "counter-strike-2-2023",
+      "title": "Counter-Strike 2",
+      "category": "Video Game",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "left-4-dead-2-2009",
+      "title": "Left 4 Dead 2",
+      "category": "Video Game",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "team-fortress-2-2007",
+      "title": "Team Fortress 2",
+      "category": "Video Game",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "bioshock-2007",
+      "title": "BioShock",
+      "category": "Video Game",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "bioshock-2-2010",
+      "title": "BioShock 2",
+      "category": "Video Game",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "bioshock-infinite-2013",
+      "title": "BioShock Infinite",
+      "category": "Video Game",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "system-shock-2-1999",
+      "title": "System Shock 2",
+      "category": "Video Game",
+      "year": 1999,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "deus-ex-2000",
+      "title": "Deus Ex",
+      "category": "Video Game",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "deus-ex-human-revolution-2011",
+      "title": "Deus Ex: Human Revolution",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "prey-2017",
+      "title": "Prey",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dishonored-2012",
+      "title": "Dishonored",
+      "category": "Video Game",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dishonored-2-2016",
+      "title": "Dishonored 2",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "deathloop-2021",
+      "title": "Deathloop",
+      "category": "Video Game",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "doom-1993",
+      "title": "DOOM",
+      "category": "Video Game",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "doom-2016-2016",
+      "title": "DOOM (2016)",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "doom-eternal-2020",
+      "title": "DOOM Eternal",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "quake-1996",
+      "title": "Quake",
+      "category": "Video Game",
+      "year": 1996,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "wolfenstein-the-new-order-2014",
+      "title": "Wolfenstein: The New Order",
+      "category": "Video Game",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mass-effect-2007",
+      "title": "Mass Effect",
+      "category": "Video Game",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mass-effect-2-2010",
+      "title": "Mass Effect 2",
+      "category": "Video Game",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mass-effect-3-2012",
+      "title": "Mass Effect 3",
+      "category": "Video Game",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dragon-age-origins-2009",
+      "title": "Dragon Age: Origins",
+      "category": "Video Game",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dragon-age-inquisition-2014",
+      "title": "Dragon Age: Inquisition",
+      "category": "Video Game",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "baldur-s-gate-1998",
+      "title": "Baldur's Gate",
+      "category": "Video Game",
+      "year": 1998,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "baldur-s-gate-ii-shadows-of-amn-2000",
+      "title": "Baldur's Gate II: Shadows of Amn",
+      "category": "Video Game",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "baldur-s-gate-3-2023",
+      "title": "Baldur's Gate 3",
+      "category": "Video Game",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "divinity-original-sin-2-2017",
+      "title": "Divinity: Original Sin 2",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "pillars-of-eternity-2015",
+      "title": "Pillars of Eternity",
+      "category": "Video Game",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-elder-scrolls-iii-morrowind-2002",
+      "title": "The Elder Scrolls III: Morrowind",
+      "category": "Video Game",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-elder-scrolls-iv-oblivion-2006",
+      "title": "The Elder Scrolls IV: Oblivion",
+      "category": "Video Game",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-elder-scrolls-v-skyrim-2011",
+      "title": "The Elder Scrolls V: Skyrim",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fallout-1997",
+      "title": "Fallout",
+      "category": "Video Game",
+      "year": 1997,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fallout-2-1998",
+      "title": "Fallout 2",
+      "category": "Video Game",
+      "year": 1998,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fallout-3-2008",
+      "title": "Fallout 3",
+      "category": "Video Game",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fallout-new-vegas-2010",
+      "title": "Fallout: New Vegas",
+      "category": "Video Game",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fallout-4-2015",
+      "title": "Fallout 4",
+      "category": "Video Game",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-witcher-2007",
+      "title": "The Witcher",
+      "category": "Video Game",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-witcher-2-assassins-of-kings-2011",
+      "title": "The Witcher 2: Assassins of Kings",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-witcher-3-wild-hunt-2015",
+      "title": "The Witcher 3: Wild Hunt",
+      "category": "Video Game",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "cyberpunk-2077-2020",
+      "title": "Cyberpunk 2077",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "red-dead-redemption-2010",
+      "title": "Red Dead Redemption",
+      "category": "Video Game",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "red-dead-redemption-2-2018",
+      "title": "Red Dead Redemption 2",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "grand-theft-auto-vice-city-2002",
+      "title": "Grand Theft Auto: Vice City",
+      "category": "Video Game",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "grand-theft-auto-san-andreas-2004",
+      "title": "Grand Theft Auto: San Andreas",
+      "category": "Video Game",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "grand-theft-auto-iv-2008",
+      "title": "Grand Theft Auto IV",
+      "category": "Video Game",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "grand-theft-auto-v-2013",
+      "title": "Grand Theft Auto V",
+      "category": "Video Game",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "elden-ring-2022",
+      "title": "Elden Ring",
+      "category": "Video Game",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dark-souls-2011",
+      "title": "Dark Souls",
+      "category": "Video Game",
+      "year": 2011,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dark-souls-ii-2014",
+      "title": "Dark Souls II",
+      "category": "Video Game",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dark-souls-iii-2016",
+      "title": "Dark Souls III",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "demon-s-souls-2009",
+      "title": "Demon's Souls",
+      "category": "Video Game",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "bloodborne-2015",
+      "title": "Bloodborne",
+      "category": "Video Game",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "sekiro-shadows-die-twice-2019",
+      "title": "Sekiro: Shadows Die Twice",
+      "category": "Video Game",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "armored-core-vi-fires-of-rubicon-2023",
+      "title": "Armored Core VI: Fires of Rubicon",
+      "category": "Video Game",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ghost-of-tsushima-2020",
+      "title": "Ghost of Tsushima",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-last-of-us-2013",
+      "title": "The Last of Us",
+      "category": "Video Game",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-last-of-us-part-ii-2020",
+      "title": "The Last of Us Part II",
+      "category": "Video Game",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "uncharted-2-among-thieves-2009",
+      "title": "Uncharted 2: Among Thieves",
+      "category": "Video Game",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "uncharted-4-a-thief-s-end-2016",
+      "title": "Uncharted 4: A Thief's End",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "god-of-war-2018-2018",
+      "title": "God of War (2018)",
+      "category": "Video Game",
+      "year": 2018,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "god-of-war-ragnarok-2022",
+      "title": "God of War Ragnarök",
+      "category": "Video Game",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "horizon-zero-dawn-2017",
+      "title": "Horizon Zero Dawn",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "horizon-forbidden-west-2022",
+      "title": "Horizon Forbidden West",
+      "category": "Video Game",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "final-fantasy-vii-1997",
+      "title": "Final Fantasy VII",
+      "category": "Video Game",
+      "year": 1997,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "final-fantasy-ix-2000",
+      "title": "Final Fantasy IX",
+      "category": "Video Game",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "final-fantasy-x-2001",
+      "title": "Final Fantasy X",
+      "category": "Video Game",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "final-fantasy-xiv-2013",
+      "title": "Final Fantasy XIV",
+      "category": "Video Game",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "final-fantasy-xvi-2023",
+      "title": "Final Fantasy XVI",
+      "category": "Video Game",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "persona-3-2006",
+      "title": "Persona 3",
+      "category": "Video Game",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "persona-4-2008",
+      "title": "Persona 4",
+      "category": "Video Game",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "persona-5-2016",
+      "title": "Persona 5",
+      "category": "Video Game",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "nier-automata-2017",
+      "title": "NieR: Automata",
+      "category": "Video Game",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "chrono-trigger-1995",
+      "title": "Chrono Trigger",
+      "category": "Video Game",
+      "year": 1995,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    }
+  ]
 }
