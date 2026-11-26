@@ -56,7 +56,9 @@ The repository seed catalogs are protected fixtures. AI agents and automated
 maintenance must not delete, truncate, reorder destructively, or silently
 replace catalog records. Intentional changes require an issue or explicit
 maintainer request, an explanation of the reason, updated validation fixtures,
-and a review of the relevant license and provenance metadata.
+and a review of the relevant license and provenance metadata. Intentional
+replacements also require a migration or deprecation note explaining the
+old and new IDs and how existing archive items remain usable.
 
 Catalog changes must never remove or mutate user-owned archive data.
 

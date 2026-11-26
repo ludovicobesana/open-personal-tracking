@@ -33,7 +33,8 @@ Run the narrowest relevant verification after a change. Run both the core checks
   not delete, truncate, reorder destructively, or silently replace their
   records. Any intentional change requires an issue or explicit maintainer
   request, documented provenance/licensing review, and updated validation
-  fixtures.
+  fixtures. Intentional replacements also require a migration or deprecation
+  note explaining how existing IDs and user-owned archives remain usable.
 
 ## Documentation and changelog
 
