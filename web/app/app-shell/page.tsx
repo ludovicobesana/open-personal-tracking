@@ -68,6 +68,7 @@ import type { ProviderDiscoveryReview } from '../../../src/application/provider-
 import { createConfiguredProviderDiscovery } from './provider-discovery';
 import { HorizontalCardRow } from '../horizontal-card-row';
 import filmCatalog from '../../../data/catalog/film.json';
+import seriesCatalog from '../../../data/catalog/series.json';
 import videoGamesCatalog from '../../../data/catalog/video-games.json';
 import podcastsCatalog from '../../../data/catalog/podcasts.json';
 import youtubeVideosCatalog from '../../../data/catalog/youtube-videos.json';
@@ -757,6 +758,7 @@ const ProviderSearchPanel = ({
 
 const CATALOG_LABELS: Record<string, string> = {
   film: 'Film e serie',
+  series: 'Serie TV',
   'video-games': 'Videogiochi',
   podcasts: 'Podcast',
   'youtube-videos': 'Video su YouTube',
@@ -767,6 +769,7 @@ const CATALOG_LABELS: Record<string, string> = {
 const { catalogs: LOCAL_CATALOGS, errors: LOCAL_CATALOG_ERRORS } =
   loadLocalCatalogs({
     film: filmCatalog,
+    series: seriesCatalog,
     'video-games': videoGamesCatalog,
     podcasts: podcastsCatalog,
     'youtube-videos': youtubeVideosCatalog,
@@ -893,10 +896,12 @@ const LocalCatalogPanel = ({
                 <div className="provider-result-copy">
                   <strong title={record.title}>{record.title}</strong>
                   <span>
-                    {record.category} · {record.year ?? '—'}
+                    {record.category}
+                    {record.year ? ` · ${record.year}` : ''}
                   </span>
                   <small>
                     {record.attributes.originalTitle ??
+                      record.attributes.author ??
                       record.attributes.synopsis}
                   </small>
                   <span>{record.genres.join(', ')}</span>
@@ -913,31 +918,29 @@ const LocalCatalogPanel = ({
                     {record.attributes.synopsis && (
                       <p>{record.attributes.synopsis}</p>
                     )}
-                    <p>
-                      <a
-                        href={record.attributes.imdbUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                      >
-                        Scheda IMDb
-                      </a>{' '}
-                      ·{' '}
-                      <a
-                        href={record.attributes.fanCommunityUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                      >
-                        Community fan
-                      </a>{' '}
-                      ·{' '}
-                      <a
-                        href={record.attributes.merchandiseUrl}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                      >
-                        Merchandising
-                      </a>
-                    </p>
+                    {[
+                      { url: record.attributes.imdbUrl, label: 'Scheda IMDb' },
+                      {
+                        url: record.attributes.fanCommunityUrl,
+                        label: 'Community fan',
+                      },
+                      {
+                        url: record.attributes.merchandiseUrl,
+                        label: 'Merchandising',
+                      },
+                    ]
+                      .filter((link) => Boolean(link.url))
+                      .map((link) => (
+                        <p key={link.label}>
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                          >
+                            {link.label}
+                          </a>
+                        </p>
+                      ))}
                   </details>
                   <button
                     className="mini-btn"

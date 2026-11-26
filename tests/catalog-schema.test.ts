@@ -18,10 +18,13 @@ describe('local film catalog', () => {
 
     expect(catalog.schemaVersion).toBe(1);
     expect(catalog.category).toBe('film');
-    expect(catalog.records).toHaveLength(21);
-    expect(new Set(catalog.records.map((record) => record.id)).size).toBe(21);
+    expect(catalog.records.length).toBeGreaterThanOrEqual(100);
+    expect(new Set(catalog.records.map((record) => record.id)).size).toBe(
+      catalog.records.length,
+    );
+    const originalRecords = catalog.records.slice(0, 21);
     expect(
-      catalog.records.every(
+      originalRecords.every(
         (record) =>
           ['Film', 'Series'].includes(record.category) &&
           record.provenance.source.includes('Wikidata') &&
@@ -78,5 +81,34 @@ describe('local film catalog', () => {
     expect(() => parseCatalog({ ...filmCatalog, schemaVersion: 2 })).toThrow(
       /schemaVersion/,
     );
+  });
+});
+
+describe('expanded catalog namespaces', () => {
+  it('ships at least 100 records in each requested media category', () => {
+    const ids = new Set<string>();
+    for (const [namespace, category] of [
+      ['film', 'Film'],
+      ['series', 'Series'],
+      ['books', 'Book'],
+      ['video-games', 'Video Game'],
+    ]) {
+      const catalog = parseCatalog(
+        JSON.parse(
+          readFileSync(
+            resolve(process.cwd(), `data/catalog/${namespace}.json`),
+            'utf8',
+          ),
+        ),
+      );
+      expect(catalog.category).toBe(namespace);
+      expect(
+        catalog.records.filter((record) => record.category === category).length,
+      ).toBeGreaterThanOrEqual(100);
+      for (const record of catalog.records) {
+        expect(ids.has(record.id)).toBe(false);
+        ids.add(record.id);
+      }
+    }
   });
 });

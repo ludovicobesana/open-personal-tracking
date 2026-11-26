@@ -12,10 +12,13 @@ and searches these records in-browser before any optional provider search, so
 catalog search works without a network request. Adding a result is explicit:
 only the chosen record becomes part of the user-owned archive.
 
+The expanded series catalog is independently stored in `series.json`.
+The original series record remains in the film seed for compatibility.
+Books and video games now also contain curated records.
+
 The other category namespaces are intentionally separate local files:
 `video-games.json`, `podcasts.json`, `youtube-videos.json`, `music.json`,
-`anime.json`, and `books.json`. They are visible in Discover even while
-empty, rather than being hidden inside the film dataset.
+`anime.json`, and `books.json`. They remain visible in Discover even when empty.
 
 Each catalog has:
 
@@ -56,6 +59,19 @@ maintainer request, an explanation of the reason, updated validation fixtures,
 and a review of the relevant license and provenance metadata.
 
 Catalog changes must never remove or mutate user-owned archive data.
+
+## November 2026 curated expansion
+
+The new entries are manually curated factual identifiers (title and year or
+author). Their original compilation is covered by the repository license;
+no third-party descriptions, ratings, artwork or availability data are copied.
+Each entry carries source, license and timestamp metadata. The existing seed
+records remain unchanged and in their original order.
+
+To refresh, review factual identifiers and licensing, preserve existing IDs,
+update the generation timestamp, run the catalog tests and review the web
+build before publishing. No external provider or secret is required.
+This catalog does not represent Netflix or other streaming availability.
 
 ## Offline search
 

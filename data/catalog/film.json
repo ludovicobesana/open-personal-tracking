@@ -1,14 +1,18 @@
 {
   "schemaVersion": 1,
   "category": "film",
-  "generatedAt": "2026-10-24T00:00:00.000Z",
+  "generatedAt": "2026-11-26T00:00:00.000Z",
   "records": [
     {
       "id": "hackers-1995",
       "title": "Hackers",
       "category": "Film",
       "year": 1995,
-      "genres": ["Crime", "Drama", "Thriller"],
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -35,7 +39,12 @@
       "title": "The Net - Intrappolata nella rete",
       "category": "Film",
       "year": 1995,
-      "genres": ["Action", "Crime", "Drama", "Thriller"],
+      "genres": [
+        "Action",
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -61,7 +70,11 @@
       "title": "Masterminds - La guerra dei geni",
       "category": "Film",
       "year": 1997,
-      "genres": ["Action", "Crime", "Thriller"],
+      "genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -87,7 +100,10 @@
       "title": "I pirati di Silicon Valley",
       "category": "Film",
       "year": 1999,
-      "genres": ["Biography", "Drama"],
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -113,7 +129,10 @@
       "title": "Trilogia di Matrix",
       "category": "Film",
       "year": 1999,
-      "genres": ["Action", "Science Fiction"],
+      "genres": [
+        "Action",
+        "Science Fiction"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -139,7 +158,12 @@
       "title": "Takedown",
       "category": "Film",
       "year": 2000,
-      "genres": ["Biography", "Crime", "Drama", "Thriller"],
+      "genres": [
+        "Biography",
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -165,7 +189,11 @@
       "title": "Codice Swordfish",
       "category": "Film",
       "year": 2001,
-      "genres": ["Action", "Crime", "Thriller"],
+      "genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -191,7 +219,11 @@
       "title": "S.Y.N.A.P.S.E. - Pericolo in rete",
       "category": "Film",
       "year": 2001,
-      "genres": ["Crime", "Drama", "Thriller"],
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -217,7 +249,12 @@
       "title": "The Net 2.0",
       "category": "Film",
       "year": 2006,
-      "genres": ["Action", "Crime", "Drama", "Thriller"],
+      "genres": [
+        "Action",
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -243,7 +280,11 @@
       "title": "Firewall - Accesso negato",
       "category": "Film",
       "year": 2006,
-      "genres": ["Crime", "Drama", "Thriller"],
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -269,7 +310,11 @@
       "title": "Wargames 2 - Il codice della paura",
       "category": "Film",
       "year": 2008,
-      "genres": ["Drama", "Science Fiction", "Thriller"],
+      "genres": [
+        "Drama",
+        "Science Fiction",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -295,7 +340,10 @@
       "title": "Disconnect",
       "category": "Film",
       "year": 2012,
-      "genres": ["Drama", "Thriller"],
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -321,7 +369,9 @@
       "title": "Anonymous - L'esercito degli hacktivisti",
       "category": "Film",
       "year": 2012,
-      "genres": ["Documentary"],
+      "genres": [
+        "Documentary"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -347,7 +397,9 @@
       "title": "Red! La storia di Redhack",
       "category": "Film",
       "year": 2013,
-      "genres": ["Documentary"],
+      "genres": [
+        "Documentary"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -373,7 +425,11 @@
       "title": "Il quinto potere",
       "category": "Film",
       "year": 2013,
-      "genres": ["Biography", "Drama", "Thriller"],
+      "genres": [
+        "Biography",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -399,7 +455,10 @@
       "title": "Citizenfour",
       "category": "Film",
       "year": 2014,
-      "genres": ["Documentary", "Biography"],
+      "genres": [
+        "Documentary",
+        "Biography"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -425,7 +484,10 @@
       "title": "The Hacker Wars",
       "category": "Film",
       "year": 2014,
-      "genres": ["Documentary", "Crime"],
+      "genres": [
+        "Documentary",
+        "Crime"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -451,7 +513,11 @@
       "title": "Blackhat",
       "category": "Film",
       "year": 2015,
-      "genres": ["Action", "Crime", "Thriller"],
+      "genres": [
+        "Action",
+        "Crime",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -477,7 +543,11 @@
       "title": "Mr. Robot",
       "category": "Series",
       "year": 2015,
-      "genres": ["Crime", "Drama", "Thriller"],
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -503,7 +573,12 @@
       "title": "Snowden",
       "category": "Film",
       "year": 2016,
-      "genres": ["Biography", "Crime", "Drama", "Thriller"],
+      "genres": [
+        "Biography",
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -529,7 +604,9 @@
       "title": "Revolution OS",
       "category": "Film",
       "year": 2001,
-      "genres": ["Documentary"],
+      "genres": [
+        "Documentary"
+      ],
       "provenance": {
         "source": "Wikidata facts and original catalog metadata",
         "license": "Wikidata CC0 facts; original editorial descriptions",
@@ -549,6 +626,1605 @@
         "fanCommunityUrl": "https://www.reddit.com/r/opensource/",
         "merchandiseUrl": "https://www.fsf.org/resources/merchandise/"
       }
+    },
+    {
+      "id": "the-godfather-1972",
+      "title": "The Godfather",
+      "category": "Film",
+      "year": 1972,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-godfather-part-ii-1974",
+      "title": "The Godfather Part II",
+      "category": "Film",
+      "year": 1974,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-godfather-part-iii-1990",
+      "title": "The Godfather Part III",
+      "category": "Film",
+      "year": 1990,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "citizen-kane-1941",
+      "title": "Citizen Kane",
+      "category": "Film",
+      "year": 1941,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "casablanca-1942",
+      "title": "Casablanca",
+      "category": "Film",
+      "year": 1942,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "12-angry-men-1957",
+      "title": "12 Angry Men",
+      "category": "Film",
+      "year": 1957,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "seven-samurai-1954",
+      "title": "Seven Samurai",
+      "category": "Film",
+      "year": 1954,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "rashomon-1950",
+      "title": "Rashomon",
+      "category": "Film",
+      "year": 1950,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ikiru-1952",
+      "title": "Ikiru",
+      "category": "Film",
+      "year": 1952,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "tokyo-story-1953",
+      "title": "Tokyo Story",
+      "category": "Film",
+      "year": 1953,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-seventh-seal-1957",
+      "title": "The Seventh Seal",
+      "category": "Film",
+      "year": 1957,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "persona-1966",
+      "title": "Persona",
+      "category": "Film",
+      "year": 1966,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "psycho-1960",
+      "title": "Psycho",
+      "category": "Film",
+      "year": 1960,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "vertigo-1958",
+      "title": "Vertigo",
+      "category": "Film",
+      "year": 1958,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "rear-window-1954",
+      "title": "Rear Window",
+      "category": "Film",
+      "year": 1954,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "north-by-northwest-1959",
+      "title": "North by Northwest",
+      "category": "Film",
+      "year": 1959,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "2001-a-space-odyssey-1968",
+      "title": "2001: A Space Odyssey",
+      "category": "Film",
+      "year": 1968,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "a-clockwork-orange-1971",
+      "title": "A Clockwork Orange",
+      "category": "Film",
+      "year": 1971,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dr-strangelove-1964",
+      "title": "Dr. Strangelove",
+      "category": "Film",
+      "year": 1964,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-shining-1980",
+      "title": "The Shining",
+      "category": "Film",
+      "year": 1980,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "barry-lyndon-1975",
+      "title": "Barry Lyndon",
+      "category": "Film",
+      "year": 1975,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "full-metal-jacket-1987",
+      "title": "Full Metal Jacket",
+      "category": "Film",
+      "year": 1987,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "paths-of-glory-1957",
+      "title": "Paths of Glory",
+      "category": "Film",
+      "year": 1957,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "apocalypse-now-1979",
+      "title": "Apocalypse Now",
+      "category": "Film",
+      "year": 1979,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "taxi-driver-1976",
+      "title": "Taxi Driver",
+      "category": "Film",
+      "year": 1976,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "raging-bull-1980",
+      "title": "Raging Bull",
+      "category": "Film",
+      "year": 1980,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "goodfellas-1990",
+      "title": "Goodfellas",
+      "category": "Film",
+      "year": 1990,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "casino-1995",
+      "title": "Casino",
+      "category": "Film",
+      "year": 1995,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-departed-2006",
+      "title": "The Departed",
+      "category": "Film",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "pulp-fiction-1994",
+      "title": "Pulp Fiction",
+      "category": "Film",
+      "year": 1994,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "reservoir-dogs-1992",
+      "title": "Reservoir Dogs",
+      "category": "Film",
+      "year": 1992,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "django-unchained-2012",
+      "title": "Django Unchained",
+      "category": "Film",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "inglourious-basterds-2009",
+      "title": "Inglourious Basterds",
+      "category": "Film",
+      "year": 2009,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "kill-bill-volume-1-2003",
+      "title": "Kill Bill: Volume 1",
+      "category": "Film",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "kill-bill-volume-2-2004",
+      "title": "Kill Bill: Volume 2",
+      "category": "Film",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "once-upon-a-time-in-hollywood-2019",
+      "title": "Once Upon a Time in Hollywood",
+      "category": "Film",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "fight-club-1999",
+      "title": "Fight Club",
+      "category": "Film",
+      "year": 1999,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "se7en-1995",
+      "title": "Se7en",
+      "category": "Film",
+      "year": 1995,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-social-network-2010",
+      "title": "The Social Network",
+      "category": "Film",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "zodiac-2007",
+      "title": "Zodiac",
+      "category": "Film",
+      "year": 2007,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "gone-girl-2014",
+      "title": "Gone Girl",
+      "category": "Film",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-curious-case-of-benjamin-button-2008",
+      "title": "The Curious Case of Benjamin Button",
+      "category": "Film",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "forrest-gump-1994",
+      "title": "Forrest Gump",
+      "category": "Film",
+      "year": 1994,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "cast-away-2000",
+      "title": "Cast Away",
+      "category": "Film",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "philadelphia-1993",
+      "title": "Philadelphia",
+      "category": "Film",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "saving-private-ryan-1998",
+      "title": "Saving Private Ryan",
+      "category": "Film",
+      "year": 1998,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "schindler-s-list-1993",
+      "title": "Schindler's List",
+      "category": "Film",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "jurassic-park-1993",
+      "title": "Jurassic Park",
+      "category": "Film",
+      "year": 1993,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "jaws-1975",
+      "title": "Jaws",
+      "category": "Film",
+      "year": 1975,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "e-t-the-extra-terrestrial-1982",
+      "title": "E.T. the Extra-Terrestrial",
+      "category": "Film",
+      "year": 1982,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "raiders-of-the-lost-ark-1981",
+      "title": "Raiders of the Lost Ark",
+      "category": "Film",
+      "year": 1981,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "indiana-jones-and-the-last-crusade-1989",
+      "title": "Indiana Jones and the Last Crusade",
+      "category": "Film",
+      "year": 1989,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "back-to-the-future-1985",
+      "title": "Back to the Future",
+      "category": "Film",
+      "year": 1985,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "back-to-the-future-part-ii-1989",
+      "title": "Back to the Future Part II",
+      "category": "Film",
+      "year": 1989,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "back-to-the-future-part-iii-1990",
+      "title": "Back to the Future Part III",
+      "category": "Film",
+      "year": 1990,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "alien-1979",
+      "title": "Alien",
+      "category": "Film",
+      "year": 1979,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "aliens-1986",
+      "title": "Aliens",
+      "category": "Film",
+      "year": 1986,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "blade-runner-1982",
+      "title": "Blade Runner",
+      "category": "Film",
+      "year": 1982,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "blade-runner-2049-2017",
+      "title": "Blade Runner 2049",
+      "category": "Film",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-terminator-1984",
+      "title": "The Terminator",
+      "category": "Film",
+      "year": 1984,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "terminator-2-judgment-day-1991",
+      "title": "Terminator 2: Judgment Day",
+      "category": "Film",
+      "year": 1991,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "robocop-1987",
+      "title": "RoboCop",
+      "category": "Film",
+      "year": 1987,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "total-recall-1990",
+      "title": "Total Recall",
+      "category": "Film",
+      "year": 1990,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-thing-1982",
+      "title": "The Thing",
+      "category": "Film",
+      "year": 1982,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-fly-1986",
+      "title": "The Fly",
+      "category": "Film",
+      "year": 1986,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-truman-show-1998",
+      "title": "The Truman Show",
+      "category": "Film",
+      "year": 1998,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "eternal-sunshine-of-the-spotless-mind-2004",
+      "title": "Eternal Sunshine of the Spotless Mind",
+      "category": "Film",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "her-2013",
+      "title": "Her",
+      "category": "Film",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ex-machina-2014",
+      "title": "Ex Machina",
+      "category": "Film",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "arrival-2016",
+      "title": "Arrival",
+      "category": "Film",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "interstellar-2014",
+      "title": "Interstellar",
+      "category": "Film",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "inception-2010",
+      "title": "Inception",
+      "category": "Film",
+      "year": 2010,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "memento-2000",
+      "title": "Memento",
+      "category": "Film",
+      "year": 2000,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-prestige-2006",
+      "title": "The Prestige",
+      "category": "Film",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-dark-knight-2008",
+      "title": "The Dark Knight",
+      "category": "Film",
+      "year": 2008,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "batman-begins-2005",
+      "title": "Batman Begins",
+      "category": "Film",
+      "year": 2005,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-dark-knight-rises-2012",
+      "title": "The Dark Knight Rises",
+      "category": "Film",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dunkirk-2017",
+      "title": "Dunkirk",
+      "category": "Film",
+      "year": 2017,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "oppenheimer-2023",
+      "title": "Oppenheimer",
+      "category": "Film",
+      "year": 2023,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "tenet-2020",
+      "title": "Tenet",
+      "category": "Film",
+      "year": 2020,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dune-2021",
+      "title": "Dune",
+      "category": "Film",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "dune-part-two-2024",
+      "title": "Dune: Part Two",
+      "category": "Film",
+      "year": 2024,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "mad-max-fury-road-2015",
+      "title": "Mad Max: Fury Road",
+      "category": "Film",
+      "year": 2015,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-road-warrior-1981",
+      "title": "The Road Warrior",
+      "category": "Film",
+      "year": 1981,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-lord-of-the-rings-the-fellowship-of-the-ring-2001",
+      "title": "The Lord of the Rings: The Fellowship of the Ring",
+      "category": "Film",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-lord-of-the-rings-the-two-towers-2002",
+      "title": "The Lord of the Rings: The Two Towers",
+      "category": "Film",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-lord-of-the-rings-the-return-of-the-king-2003",
+      "title": "The Lord of the Rings: The Return of the King",
+      "category": "Film",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-hobbit-an-unexpected-journey-2012",
+      "title": "The Hobbit: An Unexpected Journey",
+      "category": "Film",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "harry-potter-and-the-philosopher-s-stone-2001",
+      "title": "Harry Potter and the Philosopher's Stone",
+      "category": "Film",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "harry-potter-and-the-prisoner-of-azkaban-2004",
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "category": "Film",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "spirited-away-2001",
+      "title": "Spirited Away",
+      "category": "Film",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "princess-mononoke-1997",
+      "title": "Princess Mononoke",
+      "category": "Film",
+      "year": 1997,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "my-neighbor-totoro-1988",
+      "title": "My Neighbor Totoro",
+      "category": "Film",
+      "year": 1988,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "howl-s-moving-castle-2004",
+      "title": "Howl's Moving Castle",
+      "category": "Film",
+      "year": 2004,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "akira-1988",
+      "title": "Akira",
+      "category": "Film",
+      "year": 1988,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "ghost-in-the-shell-1995",
+      "title": "Ghost in the Shell",
+      "category": "Film",
+      "year": 1995,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "your-name-2016",
+      "title": "Your Name",
+      "category": "Film",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "parasite-2019",
+      "title": "Parasite",
+      "category": "Film",
+      "year": 2019,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "memories-of-murder-2003",
+      "title": "Memories of Murder",
+      "category": "Film",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "oldboy-2003",
+      "title": "Oldboy",
+      "category": "Film",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-handmaiden-2016",
+      "title": "The Handmaiden",
+      "category": "Film",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "train-to-busan-2016",
+      "title": "Train to Busan",
+      "category": "Film",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "everything-everywhere-all-at-once-2022",
+      "title": "Everything Everywhere All at Once",
+      "category": "Film",
+      "year": 2022,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-grand-budapest-hotel-2014",
+      "title": "The Grand Budapest Hotel",
+      "category": "Film",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "moonrise-kingdom-2012",
+      "title": "Moonrise Kingdom",
+      "category": "Film",
+      "year": 2012,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-royal-tenenbaums-2001",
+      "title": "The Royal Tenenbaums",
+      "category": "Film",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-french-dispatch-2021",
+      "title": "The French Dispatch",
+      "category": "Film",
+      "year": 2021,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "little-miss-sunshine-2006",
+      "title": "Little Miss Sunshine",
+      "category": "Film",
+      "year": 2006,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "whiplash-2014",
+      "title": "Whiplash",
+      "category": "Film",
+      "year": 2014,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "la-la-land-2016",
+      "title": "La La Land",
+      "category": "Film",
+      "year": 2016,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-pianist-2002",
+      "title": "The Pianist",
+      "category": "Film",
+      "year": 2002,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "amelie-2001",
+      "title": "Amélie",
+      "category": "Film",
+      "year": 2001,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "cinema-paradiso-1988",
+      "title": "Cinema Paradiso",
+      "category": "Film",
+      "year": 1988,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "life-is-beautiful-1997",
+      "title": "Life Is Beautiful",
+      "category": "Film",
+      "year": 1997,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-great-beauty-2013",
+      "title": "The Great Beauty",
+      "category": "Film",
+      "year": 2013,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "bicycle-thieves-1948",
+      "title": "Bicycle Thieves",
+      "category": "Film",
+      "year": 1948,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "81-2-1963",
+      "title": "8½",
+      "category": "Film",
+      "year": 1963,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "la-dolce-vita-1960",
+      "title": "La Dolce Vita",
+      "category": "Film",
+      "year": 1960,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-good-the-bad-and-the-ugly-1966",
+      "title": "The Good, the Bad and the Ugly",
+      "category": "Film",
+      "year": 1966,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "once-upon-a-time-in-the-west-1968",
+      "title": "Once Upon a Time in the West",
+      "category": "Film",
+      "year": 1968,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-matrix-1999",
+      "title": "The Matrix",
+      "category": "Film",
+      "year": 1999,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-matrix-reloaded-2003",
+      "title": "The Matrix Reloaded",
+      "category": "Film",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
+    },
+    {
+      "id": "the-matrix-revolutions-2003",
+      "title": "The Matrix Revolutions",
+      "category": "Film",
+      "year": 2003,
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {}
     }
   ]
 }

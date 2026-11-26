@@ -33,7 +33,8 @@ export function loadLocalCatalogs(inputs: Record<string, unknown>): {
       }
       catalogs.push(catalog);
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'invalid catalog';
+      const message =
+        error instanceof Error ? error.message : 'invalid catalog';
       errors.push(`${category}: ${message}`);
     }
   }
