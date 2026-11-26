@@ -11,9 +11,7 @@
       "title": "Synthetic book",
       "category": "Book",
       "year": 2000,
-      "genres": [
-        "Fiction"
-      ],
+      "genres": ["Fiction"],
       "provenance": {
         "source": "Invented fixture",
         "license": "CC0",
@@ -25,9 +23,7 @@
         "imdbUrl": "https://example.invalid/title",
         "customAttribute": "custom"
       },
-      "aliases": [
-        "Example title"
-      ]
+      "aliases": ["Example title"]
     }
   ]
 }
