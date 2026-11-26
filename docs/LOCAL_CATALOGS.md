@@ -56,3 +56,13 @@ maintainer request, an explanation of the reason, updated validation fixtures,
 and a review of the relevant license and provenance metadata.
 
 Catalog changes must never remove or mutate user-owned archive data.
+
+## Offline search
+
+Search matches case- and accent-insensitive text. Exact titles rank before
+title prefixes, title substrings and metadata matches; ties retain catalog
+and seed order. An empty query retains seed order. Discover renders six
+records per page; the core page API rejects page sizes outside 1–50.
+Missing or invalid optional datasets are isolated from valid catalogs and
+manual archive entry. Old datasets remain searchable; there is no automatic
+network refresh. Search never reads or writes personal history.
