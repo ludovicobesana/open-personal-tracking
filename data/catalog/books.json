@@ -1,6 +1,1631 @@
 {
   "schemaVersion": 1,
   "category": "books",
-  "generatedAt": "2026-10-24T00:00:00.000Z",
-  "records": []
+  "generatedAt": "2026-11-26T00:00:00.000Z",
+  "records": [
+    {
+      "id": "1984",
+      "title": "1984",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George Orwell"
+      }
+    },
+    {
+      "id": "animal-farm",
+      "title": "Animal Farm",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George Orwell"
+      }
+    },
+    {
+      "id": "brave-new-world",
+      "title": "Brave New World",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Aldous Huxley"
+      }
+    },
+    {
+      "id": "fahrenheit-451",
+      "title": "Fahrenheit 451",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ray Bradbury"
+      }
+    },
+    {
+      "id": "the-martian-chronicles",
+      "title": "The Martian Chronicles",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ray Bradbury"
+      }
+    },
+    {
+      "id": "the-illustrated-man",
+      "title": "The Illustrated Man",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ray Bradbury"
+      }
+    },
+    {
+      "id": "dune",
+      "title": "Dune",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Frank Herbert"
+      }
+    },
+    {
+      "id": "dune-messiah",
+      "title": "Dune Messiah",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Frank Herbert"
+      }
+    },
+    {
+      "id": "children-of-dune",
+      "title": "Children of Dune",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Frank Herbert"
+      }
+    },
+    {
+      "id": "foundation",
+      "title": "Foundation",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Isaac Asimov"
+      }
+    },
+    {
+      "id": "foundation-and-empire",
+      "title": "Foundation and Empire",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Isaac Asimov"
+      }
+    },
+    {
+      "id": "second-foundation",
+      "title": "Second Foundation",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Isaac Asimov"
+      }
+    },
+    {
+      "id": "i-robot",
+      "title": "I, Robot",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Isaac Asimov"
+      }
+    },
+    {
+      "id": "the-caves-of-steel",
+      "title": "The Caves of Steel",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Isaac Asimov"
+      }
+    },
+    {
+      "id": "the-left-hand-of-darkness",
+      "title": "The Left Hand of Darkness",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ursula K. Le Guin"
+      }
+    },
+    {
+      "id": "the-dispossessed",
+      "title": "The Dispossessed",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ursula K. Le Guin"
+      }
+    },
+    {
+      "id": "a-wizard-of-earthsea",
+      "title": "A Wizard of Earthsea",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ursula K. Le Guin"
+      }
+    },
+    {
+      "id": "the-tombs-of-atuan",
+      "title": "The Tombs of Atuan",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Ursula K. Le Guin"
+      }
+    },
+    {
+      "id": "neuromancer",
+      "title": "Neuromancer",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "William Gibson"
+      }
+    },
+    {
+      "id": "count-zero",
+      "title": "Count Zero",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "William Gibson"
+      }
+    },
+    {
+      "id": "mona-lisa-overdrive",
+      "title": "Mona Lisa Overdrive",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "William Gibson"
+      }
+    },
+    {
+      "id": "snow-crash",
+      "title": "Snow Crash",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neal Stephenson"
+      }
+    },
+    {
+      "id": "cryptonomicon",
+      "title": "Cryptonomicon",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neal Stephenson"
+      }
+    },
+    {
+      "id": "the-diamond-age",
+      "title": "The Diamond Age",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neal Stephenson"
+      }
+    },
+    {
+      "id": "hyperion",
+      "title": "Hyperion",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Dan Simmons"
+      }
+    },
+    {
+      "id": "the-fall-of-hyperion",
+      "title": "The Fall of Hyperion",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Dan Simmons"
+      }
+    },
+    {
+      "id": "ender-s-game",
+      "title": "Ender's Game",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Orson Scott Card"
+      }
+    },
+    {
+      "id": "speaker-for-the-dead",
+      "title": "Speaker for the Dead",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Orson Scott Card"
+      }
+    },
+    {
+      "id": "the-hitchhiker-s-guide-to-the-galaxy",
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Douglas Adams"
+      }
+    },
+    {
+      "id": "the-restaurant-at-the-end-of-the-universe",
+      "title": "The Restaurant at the End of the Universe",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Douglas Adams"
+      }
+    },
+    {
+      "id": "life-the-universe-and-everything",
+      "title": "Life, the Universe and Everything",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Douglas Adams"
+      }
+    },
+    {
+      "id": "do-androids-dream-of-electric-sheep",
+      "title": "Do Androids Dream of Electric Sheep?",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Philip K. Dick"
+      }
+    },
+    {
+      "id": "the-man-in-the-high-castle",
+      "title": "The Man in the High Castle",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Philip K. Dick"
+      }
+    },
+    {
+      "id": "ubik",
+      "title": "Ubik",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Philip K. Dick"
+      }
+    },
+    {
+      "id": "the-three-body-problem",
+      "title": "The Three-Body Problem",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Liu Cixin"
+      }
+    },
+    {
+      "id": "the-dark-forest",
+      "title": "The Dark Forest",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Liu Cixin"
+      }
+    },
+    {
+      "id": "death-s-end",
+      "title": "Death's End",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Liu Cixin"
+      }
+    },
+    {
+      "id": "project-hail-mary",
+      "title": "Project Hail Mary",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Andy Weir"
+      }
+    },
+    {
+      "id": "the-martian",
+      "title": "The Martian",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Andy Weir"
+      }
+    },
+    {
+      "id": "artemis",
+      "title": "Artemis",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Andy Weir"
+      }
+    },
+    {
+      "id": "the-road",
+      "title": "The Road",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Cormac McCarthy"
+      }
+    },
+    {
+      "id": "blood-meridian",
+      "title": "Blood Meridian",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Cormac McCarthy"
+      }
+    },
+    {
+      "id": "no-country-for-old-men",
+      "title": "No Country for Old Men",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Cormac McCarthy"
+      }
+    },
+    {
+      "id": "the-handmaid-s-tale",
+      "title": "The Handmaid's Tale",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Margaret Atwood"
+      }
+    },
+    {
+      "id": "oryx-and-crake",
+      "title": "Oryx and Crake",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Margaret Atwood"
+      }
+    },
+    {
+      "id": "the-testaments",
+      "title": "The Testaments",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Margaret Atwood"
+      }
+    },
+    {
+      "id": "the-lord-of-the-rings",
+      "title": "The Lord of the Rings",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. R. R. Tolkien"
+      }
+    },
+    {
+      "id": "the-hobbit",
+      "title": "The Hobbit",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. R. R. Tolkien"
+      }
+    },
+    {
+      "id": "the-silmarillion",
+      "title": "The Silmarillion",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. R. R. Tolkien"
+      }
+    },
+    {
+      "id": "the-fellowship-of-the-ring",
+      "title": "The Fellowship of the Ring",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. R. R. Tolkien"
+      }
+    },
+    {
+      "id": "the-two-towers",
+      "title": "The Two Towers",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. R. R. Tolkien"
+      }
+    },
+    {
+      "id": "the-return-of-the-king",
+      "title": "The Return of the King",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. R. R. Tolkien"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-philosopher-s-stone",
+      "title": "Harry Potter and the Philosopher's Stone",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-chamber-of-secrets",
+      "title": "Harry Potter and the Chamber of Secrets",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-prisoner-of-azkaban",
+      "title": "Harry Potter and the Prisoner of Azkaban",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-goblet-of-fire",
+      "title": "Harry Potter and the Goblet of Fire",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-order-of-the-phoenix",
+      "title": "Harry Potter and the Order of the Phoenix",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-half-blood-prince",
+      "title": "Harry Potter and the Half-Blood Prince",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "harry-potter-and-the-deathly-hallows",
+      "title": "Harry Potter and the Deathly Hallows",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. K. Rowling"
+      }
+    },
+    {
+      "id": "the-name-of-the-wind",
+      "title": "The Name of the Wind",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Patrick Rothfuss"
+      }
+    },
+    {
+      "id": "the-wise-man-s-fear",
+      "title": "The Wise Man's Fear",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Patrick Rothfuss"
+      }
+    },
+    {
+      "id": "the-way-of-kings",
+      "title": "The Way of Kings",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "words-of-radiance",
+      "title": "Words of Radiance",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "oathbringer",
+      "title": "Oathbringer",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "rhythm-of-war",
+      "title": "Rhythm of War",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "mistborn-the-final-empire",
+      "title": "Mistborn: The Final Empire",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "the-well-of-ascension",
+      "title": "The Well of Ascension",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "the-hero-of-ages",
+      "title": "The Hero of Ages",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Brandon Sanderson"
+      }
+    },
+    {
+      "id": "the-eye-of-the-world",
+      "title": "The Eye of the World",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Robert Jordan"
+      }
+    },
+    {
+      "id": "the-great-hunt",
+      "title": "The Great Hunt",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Robert Jordan"
+      }
+    },
+    {
+      "id": "the-dragon-reborn",
+      "title": "The Dragon Reborn",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Robert Jordan"
+      }
+    },
+    {
+      "id": "a-game-of-thrones",
+      "title": "A Game of Thrones",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George R. R. Martin"
+      }
+    },
+    {
+      "id": "a-clash-of-kings",
+      "title": "A Clash of Kings",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George R. R. Martin"
+      }
+    },
+    {
+      "id": "a-storm-of-swords",
+      "title": "A Storm of Swords",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George R. R. Martin"
+      }
+    },
+    {
+      "id": "a-feast-for-crows",
+      "title": "A Feast for Crows",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George R. R. Martin"
+      }
+    },
+    {
+      "id": "a-dance-with-dragons",
+      "title": "A Dance with Dragons",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "George R. R. Martin"
+      }
+    },
+    {
+      "id": "good-omens",
+      "title": "Good Omens",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Terry Pratchett and Neil Gaiman"
+      }
+    },
+    {
+      "id": "american-gods",
+      "title": "American Gods",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neil Gaiman"
+      }
+    },
+    {
+      "id": "neverwhere",
+      "title": "Neverwhere",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neil Gaiman"
+      }
+    },
+    {
+      "id": "stardust",
+      "title": "Stardust",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neil Gaiman"
+      }
+    },
+    {
+      "id": "coraline",
+      "title": "Coraline",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Neil Gaiman"
+      }
+    },
+    {
+      "id": "the-colour-of-magic",
+      "title": "The Colour of Magic",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Terry Pratchett"
+      }
+    },
+    {
+      "id": "the-light-fantastic",
+      "title": "The Light Fantastic",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Terry Pratchett"
+      }
+    },
+    {
+      "id": "mort",
+      "title": "Mort",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Terry Pratchett"
+      }
+    },
+    {
+      "id": "guards-guards",
+      "title": "Guards! Guards!",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Terry Pratchett"
+      }
+    },
+    {
+      "id": "the-lion-the-witch-and-the-wardrobe",
+      "title": "The Lion, the Witch and the Wardrobe",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "C. S. Lewis"
+      }
+    },
+    {
+      "id": "prince-caspian",
+      "title": "Prince Caspian",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "C. S. Lewis"
+      }
+    },
+    {
+      "id": "the-voyage-of-the-dawn-treader",
+      "title": "The Voyage of the Dawn Treader",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "C. S. Lewis"
+      }
+    },
+    {
+      "id": "the-little-prince",
+      "title": "The Little Prince",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Antoine de Saint-Exupéry"
+      }
+    },
+    {
+      "id": "alice-s-adventures-in-wonderland",
+      "title": "Alice's Adventures in Wonderland",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Lewis Carroll"
+      }
+    },
+    {
+      "id": "through-the-looking-glass",
+      "title": "Through the Looking-Glass",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Lewis Carroll"
+      }
+    },
+    {
+      "id": "pride-and-prejudice",
+      "title": "Pride and Prejudice",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Jane Austen"
+      }
+    },
+    {
+      "id": "sense-and-sensibility",
+      "title": "Sense and Sensibility",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Jane Austen"
+      }
+    },
+    {
+      "id": "emma",
+      "title": "Emma",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Jane Austen"
+      }
+    },
+    {
+      "id": "jane-eyre",
+      "title": "Jane Eyre",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Charlotte Brontë"
+      }
+    },
+    {
+      "id": "wuthering-heights",
+      "title": "Wuthering Heights",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Emily Brontë"
+      }
+    },
+    {
+      "id": "frankenstein",
+      "title": "Frankenstein",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Mary Shelley"
+      }
+    },
+    {
+      "id": "dracula",
+      "title": "Dracula",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Bram Stoker"
+      }
+    },
+    {
+      "id": "the-picture-of-dorian-gray",
+      "title": "The Picture of Dorian Gray",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Oscar Wilde"
+      }
+    },
+    {
+      "id": "the-great-gatsby",
+      "title": "The Great Gatsby",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "F. Scott Fitzgerald"
+      }
+    },
+    {
+      "id": "to-kill-a-mockingbird",
+      "title": "To Kill a Mockingbird",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Harper Lee"
+      }
+    },
+    {
+      "id": "of-mice-and-men",
+      "title": "Of Mice and Men",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "John Steinbeck"
+      }
+    },
+    {
+      "id": "the-grapes-of-wrath",
+      "title": "The Grapes of Wrath",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "John Steinbeck"
+      }
+    },
+    {
+      "id": "east-of-eden",
+      "title": "East of Eden",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "John Steinbeck"
+      }
+    },
+    {
+      "id": "moby-dick",
+      "title": "Moby-Dick",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Herman Melville"
+      }
+    },
+    {
+      "id": "the-catcher-in-the-rye",
+      "title": "The Catcher in the Rye",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "J. D. Salinger"
+      }
+    },
+    {
+      "id": "lord-of-the-flies",
+      "title": "Lord of the Flies",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "William Golding"
+      }
+    },
+    {
+      "id": "one-hundred-years-of-solitude",
+      "title": "One Hundred Years of Solitude",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Gabriel García Márquez"
+      }
+    },
+    {
+      "id": "love-in-the-time-of-cholera",
+      "title": "Love in the Time of Cholera",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Gabriel García Márquez"
+      }
+    },
+    {
+      "id": "the-name-of-the-rose",
+      "title": "The Name of the Rose",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Umberto Eco"
+      }
+    },
+    {
+      "id": "foucault-s-pendulum",
+      "title": "Foucault's Pendulum",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Umberto Eco"
+      }
+    },
+    {
+      "id": "if-on-a-winter-s-night-a-traveler",
+      "title": "If on a winter's night a traveler",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Italo Calvino"
+      }
+    },
+    {
+      "id": "invisible-cities",
+      "title": "Invisible Cities",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Italo Calvino"
+      }
+    },
+    {
+      "id": "the-baron-in-the-trees",
+      "title": "The Baron in the Trees",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Italo Calvino"
+      }
+    },
+    {
+      "id": "my-brilliant-friend",
+      "title": "My Brilliant Friend",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Elena Ferrante"
+      }
+    },
+    {
+      "id": "the-story-of-a-new-name",
+      "title": "The Story of a New Name",
+      "category": "Book",
+      "genres": [],
+      "provenance": {
+        "source": "Original manual curation of public title and creator/year facts",
+        "license": "Original catalog compilation: AGPL-3.0-or-later; factual identifiers only",
+        "importedAt": "2026-11-26T00:00:00.000Z"
+      },
+      "attributes": {
+        "author": "Elena Ferrante"
+      }
+    }
+  ]
 }
