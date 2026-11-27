@@ -55,7 +55,10 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
       throw new Error('Invalid Wikidata entity or title');
     }
     const year = row.year ? Number(row.year.value) : undefined;
-    if (year !== undefined && (!Number.isInteger(year) || year < 1 || year > 3000)) {
+    if (
+      year !== undefined &&
+      (!Number.isInteger(year) || year < 1 || year > 3000)
+    ) {
       throw new Error(`Invalid year for ${qid}`);
     }
     const existing = groups.get(qid) ?? {
@@ -70,27 +73,42 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
     if (row.imdb && /^tt[0-9]+$/.test(row.imdb.value)) {
       existing.imdb.add(row.imdb.value);
     }
-    if (row.creator?.value.trim()) existing.creators.add(row.creator.value.trim());
+    if (row.creator?.value.trim()) {
+      existing.creators.add(row.creator.value.trim());
+    }
     if (row.genre?.value.trim()) existing.genres.add(row.genre.value.trim());
     groups.set(qid, existing);
   }
   const ids = new Set(seed.records.map((record) => record.id));
-  const knownTitles = new Set(seed.records.map((record) => normalize(record.title)));
+  const knownTitles = new Set(
+    seed.records.map((record) => normalize(record.title)),
+  );
   const knownImdb = new Set(seed.records.map(imdbId).filter(Boolean));
-  const knownEntities = new Set(seed.records.map((record) => record.attributes?.wikidataId).filter(Boolean));
+  const knownEntities = new Set(
+    seed.records.map((record) => record.attributes?.wikidataId).filter(Boolean),
+  );
   const additions = [];
   for (const [qid, group] of [...groups].sort(([a], [b]) => compare(a, b))) {
     const title = [...group.titles].sort(compare)[0];
     const year = [...group.years].sort((a, b) => a - b)[0];
     const imdb = [...group.imdb].sort(compare)[0];
     const id = `wikidata-${namespace}-${qid.toLowerCase()}`;
-    if (ids.has(id) || knownEntities.has(qid) || knownTitles.has(normalize(title)) || (imdb && knownImdb.has(imdb))) continue;
+    if (
+      ids.has(id) ||
+      knownEntities.has(qid) ||
+      knownTitles.has(normalize(title)) ||
+      (imdb && knownImdb.has(imdb))
+    ) {
+      continue;
+    }
     const creators = [...group.creators].sort(compare);
     const attributes = {
       wikidataId: qid,
       wikidataUrl: `https://www.wikidata.org/wiki/${qid}`,
       ...(imdb ? { imdbUrl: `https://www.imdb.com/title/${imdb}/` } : {}),
-      ...(creators.length ? { [namespace === 'books' ? 'author' : 'director']: creators.join(', ') } : {}),
+      ...(creators.length
+        ? { [namespace === 'books' ? 'author' : 'director']: creators.join(', ') }
+        : {}),
     };
     additions.push({
       id,
@@ -121,15 +139,23 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
 
 const [namespace, inputPath, outputDirectory, importedAt] = process.argv.slice(2);
 if (!categories[namespace] || !inputPath || !outputDirectory || !importedAt) {
-  console.error('Usage: npm run catalog:wikidata -- <film|series|books> <sparql.json> <new-output-directory> <ISO timestamp>');
+  console.error(
+    'Usage: npm run catalog:wikidata -- <film|series|books> <sparql.json> <new-output-directory> <ISO timestamp>',
+  );
   process.exitCode = 1;
 } else {
   try {
-    const seed = JSON.parse(readFileSync(resolve('data/catalog', `${namespace}.json`), 'utf8'));
+    const seed = JSON.parse(
+      readFileSync(resolve('data/catalog', `${namespace}.json`), 'utf8'),
+    );
     const raw = JSON.parse(readFileSync(inputPath, 'utf8'));
     const { catalog, added } = appendWikidata(seed, raw, namespace, importedAt);
     mkdirSync(outputDirectory, { recursive: true });
-    writeFileSync(join(outputDirectory, `${namespace}.json`), JSON.stringify(catalog, null, 2) + '\n', { flag: 'wx' });
+    writeFileSync(
+      join(outputDirectory, `${namespace}.json`),
+      JSON.stringify(catalog, null, 2) + '\n',
+      { flag: 'wx' },
+    );
     console.log(`Added ${added} ${namespace} records to review output`);
   } catch (error) {
     console.error(error.message);
