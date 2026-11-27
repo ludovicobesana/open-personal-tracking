@@ -84,3 +84,14 @@ records per page; the core page API rejects page sizes outside 1–50.
 Missing or invalid optional datasets are isolated from valid catalogs and
 manual archive entry. Old datasets remain searchable; there is no automatic
 network refresh. Search never reads or writes personal history.
+
+## Horror and 2026 expansion
+
+The November 27 expansion appends 151 manually curated horror titles and 136 titles from the public 2026 release calendar at
+https://www.firstshowing.net/schedule2026/. Only factual title/year references
+are included, not descriptions, ratings or posters. IMDb links lead to title
+search results, not verified individual IMDb title IDs. Calendar entries use
+2026 as the release-calendar year, which can differ from a festival premiere
+or original production year. A passed calendar date is not confirmation of
+an actual release; December entries are explicitly marked scheduled. This is
+an initial non-exhaustive selection, not a complete global film census.

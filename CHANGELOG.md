@@ -8,6 +8,7 @@ The format follows [Keep a Changelog 2.0.0](https://keepachangelog.com/en/2.0.0/
 
 ### Added
 
+- Expanded the local film catalog with 151 horror films and 136 2026 release-calendar entries.
 - Expanded offline catalogs to over 100 films, series, books and video games
   each, preserving the original seed records.
 - An offline Discover catalog with searchable cyber and technology film/series

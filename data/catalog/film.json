@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "category": "film",
-  "generatedAt": "2026-11-26T00:00:00.000Z",
+  "generatedAt": "2026-11-27T00:00:00.000Z",
   "records": [
     {
       "id": "hackers-1995",
@@ -2225,6 +2225,4885 @@
         "importedAt": "2026-11-26T00:00:00.000Z"
       },
       "attributes": {}
+    },
+    {
+      "id": "nosferatu-1922",
+      "title": "Nosferatu",
+      "category": "Film",
+      "year": 1922,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Nosferatu%201922&s=tt"
+      }
+    },
+    {
+      "id": "the-cabinet-of-dr-caligari-1920",
+      "title": "The Cabinet of Dr. Caligari",
+      "category": "Film",
+      "year": 1920,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Cabinet%20of%20Dr.%20Caligari%201920&s=tt"
+      }
+    },
+    {
+      "id": "dracula-1931",
+      "title": "Dracula",
+      "category": "Film",
+      "year": 1931,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Dracula%201931&s=tt"
+      }
+    },
+    {
+      "id": "frankenstein-1931",
+      "title": "Frankenstein",
+      "category": "Film",
+      "year": 1931,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Frankenstein%201931&s=tt"
+      }
+    },
+    {
+      "id": "bride-of-frankenstein-1935",
+      "title": "Bride of Frankenstein",
+      "category": "Film",
+      "year": 1935,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Bride%20of%20Frankenstein%201935&s=tt"
+      }
+    },
+    {
+      "id": "the-mummy-1932",
+      "title": "The Mummy",
+      "category": "Film",
+      "year": 1932,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Mummy%201932&s=tt"
+      }
+    },
+    {
+      "id": "the-invisible-man-1933",
+      "title": "The Invisible Man",
+      "category": "Film",
+      "year": 1933,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Invisible%20Man%201933&s=tt"
+      }
+    },
+    {
+      "id": "the-wolf-man-1941",
+      "title": "The Wolf Man",
+      "category": "Film",
+      "year": 1941,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Wolf%20Man%201941&s=tt"
+      }
+    },
+    {
+      "id": "cat-people-1942",
+      "title": "Cat People",
+      "category": "Film",
+      "year": 1942,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Cat%20People%201942&s=tt"
+      }
+    },
+    {
+      "id": "i-walked-with-a-zombie-1943",
+      "title": "I Walked with a Zombie",
+      "category": "Film",
+      "year": 1943,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=I%20Walked%20with%20a%20Zombie%201943&s=tt"
+      }
+    },
+    {
+      "id": "dead-of-night-1945",
+      "title": "Dead of Night",
+      "category": "Film",
+      "year": 1945,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Dead%20of%20Night%201945&s=tt"
+      }
+    },
+    {
+      "id": "house-of-wax-1953",
+      "title": "House of Wax",
+      "category": "Film",
+      "year": 1953,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=House%20of%20Wax%201953&s=tt"
+      }
+    },
+    {
+      "id": "creature-from-the-black-lagoon-1954",
+      "title": "Creature from the Black Lagoon",
+      "category": "Film",
+      "year": 1954,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Creature%20from%20the%20Black%20Lagoon%201954&s=tt"
+      }
+    },
+    {
+      "id": "invasion-of-the-body-snatchers-1956",
+      "title": "Invasion of the Body Snatchers",
+      "category": "Film",
+      "year": 1956,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Invasion%20of%20the%20Body%20Snatchers%201956&s=tt"
+      }
+    },
+    {
+      "id": "the-curse-of-frankenstein-1957",
+      "title": "The Curse of Frankenstein",
+      "category": "Film",
+      "year": 1957,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Curse%20of%20Frankenstein%201957&s=tt"
+      }
+    },
+    {
+      "id": "horror-of-dracula-1958",
+      "title": "Horror of Dracula",
+      "category": "Film",
+      "year": 1958,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Horror%20of%20Dracula%201958&s=tt"
+      }
+    },
+    {
+      "id": "the-blob-1958",
+      "title": "The Blob",
+      "category": "Film",
+      "year": 1958,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Blob%201958&s=tt"
+      }
+    },
+    {
+      "id": "house-on-haunted-hill-1959",
+      "title": "House on Haunted Hill",
+      "category": "Film",
+      "year": 1959,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=House%20on%20Haunted%20Hill%201959&s=tt"
+      }
+    },
+    {
+      "id": "eyes-without-a-face-1960",
+      "title": "Eyes Without a Face",
+      "category": "Film",
+      "year": 1960,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Eyes%20Without%20a%20Face%201960&s=tt"
+      }
+    },
+    {
+      "id": "peeping-tom-1960",
+      "title": "Peeping Tom",
+      "category": "Film",
+      "year": 1960,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Peeping%20Tom%201960&s=tt"
+      }
+    },
+    {
+      "id": "black-sunday-1960",
+      "title": "Black Sunday",
+      "category": "Film",
+      "year": 1960,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Black%20Sunday%201960&s=tt"
+      }
+    },
+    {
+      "id": "the-innocents-1961",
+      "title": "The Innocents",
+      "category": "Film",
+      "year": 1961,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Innocents%201961&s=tt"
+      }
+    },
+    {
+      "id": "carnival-of-souls-1962",
+      "title": "Carnival of Souls",
+      "category": "Film",
+      "year": 1962,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Carnival%20of%20Souls%201962&s=tt"
+      }
+    },
+    {
+      "id": "the-haunting-1963",
+      "title": "The Haunting",
+      "category": "Film",
+      "year": 1963,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Haunting%201963&s=tt"
+      }
+    },
+    {
+      "id": "the-birds-1963",
+      "title": "The Birds",
+      "category": "Film",
+      "year": 1963,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Birds%201963&s=tt"
+      }
+    },
+    {
+      "id": "blood-and-black-lace-1964",
+      "title": "Blood and Black Lace",
+      "category": "Film",
+      "year": 1964,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Blood%20and%20Black%20Lace%201964&s=tt"
+      }
+    },
+    {
+      "id": "kwaidan-1964",
+      "title": "Kwaidan",
+      "category": "Film",
+      "year": 1964,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Kwaidan%201964&s=tt"
+      }
+    },
+    {
+      "id": "repulsion-1965",
+      "title": "Repulsion",
+      "category": "Film",
+      "year": 1965,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Repulsion%201965&s=tt"
+      }
+    },
+    {
+      "id": "onibaba-1964",
+      "title": "Onibaba",
+      "category": "Film",
+      "year": 1964,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Onibaba%201964&s=tt"
+      }
+    },
+    {
+      "id": "night-of-the-living-dead-1968",
+      "title": "Night of the Living Dead",
+      "category": "Film",
+      "year": 1968,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Night%20of%20the%20Living%20Dead%201968&s=tt"
+      }
+    },
+    {
+      "id": "rosemary-s-baby-1968",
+      "title": "Rosemary's Baby",
+      "category": "Film",
+      "year": 1968,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Rosemary's%20Baby%201968&s=tt"
+      }
+    },
+    {
+      "id": "the-last-house-on-the-left-1972",
+      "title": "The Last House on the Left",
+      "category": "Film",
+      "year": 1972,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Last%20House%20on%20the%20Left%201972&s=tt"
+      }
+    },
+    {
+      "id": "the-exorcist-1973",
+      "title": "The Exorcist",
+      "category": "Film",
+      "year": 1973,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Exorcist%201973&s=tt"
+      }
+    },
+    {
+      "id": "the-wicker-man-1973",
+      "title": "The Wicker Man",
+      "category": "Film",
+      "year": 1973,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Wicker%20Man%201973&s=tt"
+      }
+    },
+    {
+      "id": "don-t-look-now-1973",
+      "title": "Don't Look Now",
+      "category": "Film",
+      "year": 1973,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Don't%20Look%20Now%201973&s=tt"
+      }
+    },
+    {
+      "id": "the-texas-chain-saw-massacre-1974",
+      "title": "The Texas Chain Saw Massacre",
+      "category": "Film",
+      "year": 1974,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Texas%20Chain%20Saw%20Massacre%201974&s=tt"
+      }
+    },
+    {
+      "id": "black-christmas-1974",
+      "title": "Black Christmas",
+      "category": "Film",
+      "year": 1974,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Black%20Christmas%201974&s=tt"
+      }
+    },
+    {
+      "id": "deep-red-1975",
+      "title": "Deep Red",
+      "category": "Film",
+      "year": 1975,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Deep%20Red%201975&s=tt"
+      }
+    },
+    {
+      "id": "carrie-1976",
+      "title": "Carrie",
+      "category": "Film",
+      "year": 1976,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Carrie%201976&s=tt"
+      }
+    },
+    {
+      "id": "the-omen-1976",
+      "title": "The Omen",
+      "category": "Film",
+      "year": 1976,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Omen%201976&s=tt"
+      }
+    },
+    {
+      "id": "suspiria-1977",
+      "title": "Suspiria",
+      "category": "Film",
+      "year": 1977,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Suspiria%201977&s=tt"
+      }
+    },
+    {
+      "id": "eraserhead-1977",
+      "title": "Eraserhead",
+      "category": "Film",
+      "year": 1977,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Eraserhead%201977&s=tt"
+      }
+    },
+    {
+      "id": "dawn-of-the-dead-1978",
+      "title": "Dawn of the Dead",
+      "category": "Film",
+      "year": 1978,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Dawn%20of%20the%20Dead%201978&s=tt"
+      }
+    },
+    {
+      "id": "halloween-1978",
+      "title": "Halloween",
+      "category": "Film",
+      "year": 1978,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Halloween%201978&s=tt"
+      }
+    },
+    {
+      "id": "phantasm-1979",
+      "title": "Phantasm",
+      "category": "Film",
+      "year": 1979,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Phantasm%201979&s=tt"
+      }
+    },
+    {
+      "id": "the-brood-1979",
+      "title": "The Brood",
+      "category": "Film",
+      "year": 1979,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Brood%201979&s=tt"
+      }
+    },
+    {
+      "id": "the-amityville-horror-1979",
+      "title": "The Amityville Horror",
+      "category": "Film",
+      "year": 1979,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Amityville%20Horror%201979&s=tt"
+      }
+    },
+    {
+      "id": "friday-the-13th-1980",
+      "title": "Friday the 13th",
+      "category": "Film",
+      "year": 1980,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Friday%20the%2013th%201980&s=tt"
+      }
+    },
+    {
+      "id": "the-fog-1980",
+      "title": "The Fog",
+      "category": "Film",
+      "year": 1980,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Fog%201980&s=tt"
+      }
+    },
+    {
+      "id": "inferno-1980",
+      "title": "Inferno",
+      "category": "Film",
+      "year": 1980,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Inferno%201980&s=tt"
+      }
+    },
+    {
+      "id": "maniac-1980",
+      "title": "Maniac",
+      "category": "Film",
+      "year": 1980,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Maniac%201980&s=tt"
+      }
+    },
+    {
+      "id": "the-changeling-1980",
+      "title": "The Changeling",
+      "category": "Film",
+      "year": 1980,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Changeling%201980&s=tt"
+      }
+    },
+    {
+      "id": "an-american-werewolf-in-london-1981",
+      "title": "An American Werewolf in London",
+      "category": "Film",
+      "year": 1981,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=An%20American%20Werewolf%20in%20London%201981&s=tt"
+      }
+    },
+    {
+      "id": "the-evil-dead-1981",
+      "title": "The Evil Dead",
+      "category": "Film",
+      "year": 1981,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Evil%20Dead%201981&s=tt"
+      }
+    },
+    {
+      "id": "the-howling-1981",
+      "title": "The Howling",
+      "category": "Film",
+      "year": 1981,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Howling%201981&s=tt"
+      }
+    },
+    {
+      "id": "possession-1981",
+      "title": "Possession",
+      "category": "Film",
+      "year": 1981,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Possession%201981&s=tt"
+      }
+    },
+    {
+      "id": "my-bloody-valentine-1981",
+      "title": "My Bloody Valentine",
+      "category": "Film",
+      "year": 1981,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=My%20Bloody%20Valentine%201981&s=tt"
+      }
+    },
+    {
+      "id": "poltergeist-1982",
+      "title": "Poltergeist",
+      "category": "Film",
+      "year": 1982,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Poltergeist%201982&s=tt"
+      }
+    },
+    {
+      "id": "creepshow-1982",
+      "title": "Creepshow",
+      "category": "Film",
+      "year": 1982,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Creepshow%201982&s=tt"
+      }
+    },
+    {
+      "id": "videodrome-1983",
+      "title": "Videodrome",
+      "category": "Film",
+      "year": 1983,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Videodrome%201983&s=tt"
+      }
+    },
+    {
+      "id": "christine-1983",
+      "title": "Christine",
+      "category": "Film",
+      "year": 1983,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Christine%201983&s=tt"
+      }
+    },
+    {
+      "id": "cujo-1983",
+      "title": "Cujo",
+      "category": "Film",
+      "year": 1983,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Cujo%201983&s=tt"
+      }
+    },
+    {
+      "id": "a-nightmare-on-elm-street-1984",
+      "title": "A Nightmare on Elm Street",
+      "category": "Film",
+      "year": 1984,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=A%20Nightmare%20on%20Elm%20Street%201984&s=tt"
+      }
+    },
+    {
+      "id": "day-of-the-dead-1985",
+      "title": "Day of the Dead",
+      "category": "Film",
+      "year": 1985,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Day%20of%20the%20Dead%201985&s=tt"
+      }
+    },
+    {
+      "id": "re-animator-1985",
+      "title": "Re-Animator",
+      "category": "Film",
+      "year": 1985,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Re-Animator%201985&s=tt"
+      }
+    },
+    {
+      "id": "fright-night-1985",
+      "title": "Fright Night",
+      "category": "Film",
+      "year": 1985,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Fright%20Night%201985&s=tt"
+      }
+    },
+    {
+      "id": "the-return-of-the-living-dead-1985",
+      "title": "The Return of the Living Dead",
+      "category": "Film",
+      "year": 1985,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Return%20of%20the%20Living%20Dead%201985&s=tt"
+      }
+    },
+    {
+      "id": "the-hitcher-1986",
+      "title": "The Hitcher",
+      "category": "Film",
+      "year": 1986,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Hitcher%201986&s=tt"
+      }
+    },
+    {
+      "id": "from-beyond-1986",
+      "title": "From Beyond",
+      "category": "Film",
+      "year": 1986,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=From%20Beyond%201986&s=tt"
+      }
+    },
+    {
+      "id": "hellraiser-1987",
+      "title": "Hellraiser",
+      "category": "Film",
+      "year": 1987,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hellraiser%201987&s=tt"
+      }
+    },
+    {
+      "id": "evil-dead-ii-1987",
+      "title": "Evil Dead II",
+      "category": "Film",
+      "year": 1987,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Evil%20Dead%20II%201987&s=tt"
+      }
+    },
+    {
+      "id": "the-lost-boys-1987",
+      "title": "The Lost Boys",
+      "category": "Film",
+      "year": 1987,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Lost%20Boys%201987&s=tt"
+      }
+    },
+    {
+      "id": "near-dark-1987",
+      "title": "Near Dark",
+      "category": "Film",
+      "year": 1987,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Near%20Dark%201987&s=tt"
+      }
+    },
+    {
+      "id": "prince-of-darkness-1987",
+      "title": "Prince of Darkness",
+      "category": "Film",
+      "year": 1987,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Prince%20of%20Darkness%201987&s=tt"
+      }
+    },
+    {
+      "id": "child-s-play-1988",
+      "title": "Child's Play",
+      "category": "Film",
+      "year": 1988,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Child's%20Play%201988&s=tt"
+      }
+    },
+    {
+      "id": "the-blob-1988",
+      "title": "The Blob",
+      "category": "Film",
+      "year": 1988,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Blob%201988&s=tt"
+      }
+    },
+    {
+      "id": "pumpkinhead-1988",
+      "title": "Pumpkinhead",
+      "category": "Film",
+      "year": 1988,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pumpkinhead%201988&s=tt"
+      }
+    },
+    {
+      "id": "pet-sematary-1989",
+      "title": "Pet Sematary",
+      "category": "Film",
+      "year": 1989,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pet%20Sematary%201989&s=tt"
+      }
+    },
+    {
+      "id": "society-1989",
+      "title": "Society",
+      "category": "Film",
+      "year": 1989,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Society%201989&s=tt"
+      }
+    },
+    {
+      "id": "jacob-s-ladder-1990",
+      "title": "Jacob's Ladder",
+      "category": "Film",
+      "year": 1990,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Jacob's%20Ladder%201990&s=tt"
+      }
+    },
+    {
+      "id": "misery-1990",
+      "title": "Misery",
+      "category": "Film",
+      "year": 1990,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Misery%201990&s=tt"
+      }
+    },
+    {
+      "id": "candyman-1992",
+      "title": "Candyman",
+      "category": "Film",
+      "year": 1992,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Candyman%201992&s=tt"
+      }
+    },
+    {
+      "id": "bram-stoker-s-dracula-1992",
+      "title": "Bram Stoker's Dracula",
+      "category": "Film",
+      "year": 1992,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Bram%20Stoker's%20Dracula%201992&s=tt"
+      }
+    },
+    {
+      "id": "braindead-1992",
+      "title": "Braindead",
+      "category": "Film",
+      "year": 1992,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Braindead%201992&s=tt"
+      }
+    },
+    {
+      "id": "army-of-darkness-1992",
+      "title": "Army of Darkness",
+      "category": "Film",
+      "year": 1992,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Army%20of%20Darkness%201992&s=tt"
+      }
+    },
+    {
+      "id": "in-the-mouth-of-madness-1994",
+      "title": "In the Mouth of Madness",
+      "category": "Film",
+      "year": 1994,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=In%20the%20Mouth%20of%20Madness%201994&s=tt"
+      }
+    },
+    {
+      "id": "wes-craven-s-new-nightmare-1994",
+      "title": "Wes Craven's New Nightmare",
+      "category": "Film",
+      "year": 1994,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Wes%20Craven's%20New%20Nightmare%201994&s=tt"
+      }
+    },
+    {
+      "id": "scream-1996",
+      "title": "Scream",
+      "category": "Film",
+      "year": 1996,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Scream%201996&s=tt"
+      }
+    },
+    {
+      "id": "event-horizon-1997",
+      "title": "Event Horizon",
+      "category": "Film",
+      "year": 1997,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Event%20Horizon%201997&s=tt"
+      }
+    },
+    {
+      "id": "ring-1998",
+      "title": "Ring",
+      "category": "Film",
+      "year": 1998,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Ring%201998&s=tt"
+      }
+    },
+    {
+      "id": "audition-1999",
+      "title": "Audition",
+      "category": "Film",
+      "year": 1999,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Audition%201999&s=tt"
+      }
+    },
+    {
+      "id": "the-blair-witch-project-1999",
+      "title": "The Blair Witch Project",
+      "category": "Film",
+      "year": 1999,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Blair%20Witch%20Project%201999&s=tt"
+      }
+    },
+    {
+      "id": "the-sixth-sense-1999",
+      "title": "The Sixth Sense",
+      "category": "Film",
+      "year": 1999,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Sixth%20Sense%201999&s=tt"
+      }
+    },
+    {
+      "id": "final-destination-2000",
+      "title": "Final Destination",
+      "category": "Film",
+      "year": 2000,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Final%20Destination%202000&s=tt"
+      }
+    },
+    {
+      "id": "ginger-snaps-2000",
+      "title": "Ginger Snaps",
+      "category": "Film",
+      "year": 2000,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Ginger%20Snaps%202000&s=tt"
+      }
+    },
+    {
+      "id": "the-others-2001",
+      "title": "The Others",
+      "category": "Film",
+      "year": 2001,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Others%202001&s=tt"
+      }
+    },
+    {
+      "id": "pulse-2001",
+      "title": "Pulse",
+      "category": "Film",
+      "year": 2001,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pulse%202001&s=tt"
+      }
+    },
+    {
+      "id": "session-9-2001",
+      "title": "Session 9",
+      "category": "Film",
+      "year": 2001,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Session%209%202001&s=tt"
+      }
+    },
+    {
+      "id": "the-devil-s-backbone-2001",
+      "title": "The Devil's Backbone",
+      "category": "Film",
+      "year": 2001,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Devil's%20Backbone%202001&s=tt"
+      }
+    },
+    {
+      "id": "28-days-later-2002",
+      "title": "28 Days Later",
+      "category": "Film",
+      "year": 2002,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=28%20Days%20Later%202002&s=tt"
+      }
+    },
+    {
+      "id": "the-ring-2002",
+      "title": "The Ring",
+      "category": "Film",
+      "year": 2002,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Ring%202002&s=tt"
+      }
+    },
+    {
+      "id": "ju-on-the-grudge-2002",
+      "title": "Ju-On: The Grudge",
+      "category": "Film",
+      "year": 2002,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Ju-On%3A%20The%20Grudge%202002&s=tt"
+      }
+    },
+    {
+      "id": "a-tale-of-two-sisters-2003",
+      "title": "A Tale of Two Sisters",
+      "category": "Film",
+      "year": 2003,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=A%20Tale%20of%20Two%20Sisters%202003&s=tt"
+      }
+    },
+    {
+      "id": "high-tension-2003",
+      "title": "High Tension",
+      "category": "Film",
+      "year": 2003,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=High%20Tension%202003&s=tt"
+      }
+    },
+    {
+      "id": "saw-2004",
+      "title": "Saw",
+      "category": "Film",
+      "year": 2004,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Saw%202004&s=tt"
+      }
+    },
+    {
+      "id": "shaun-of-the-dead-2004",
+      "title": "Shaun of the Dead",
+      "category": "Film",
+      "year": 2004,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Shaun%20of%20the%20Dead%202004&s=tt"
+      }
+    },
+    {
+      "id": "the-grudge-2004",
+      "title": "The Grudge",
+      "category": "Film",
+      "year": 2004,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Grudge%202004&s=tt"
+      }
+    },
+    {
+      "id": "the-descent-2005",
+      "title": "The Descent",
+      "category": "Film",
+      "year": 2005,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Descent%202005&s=tt"
+      }
+    },
+    {
+      "id": "hostel-2005",
+      "title": "Hostel",
+      "category": "Film",
+      "year": 2005,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hostel%202005&s=tt"
+      }
+    },
+    {
+      "id": "the-hills-have-eyes-2006",
+      "title": "The Hills Have Eyes",
+      "category": "Film",
+      "year": 2006,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Hills%20Have%20Eyes%202006&s=tt"
+      }
+    },
+    {
+      "id": "rec-2007",
+      "title": "REC",
+      "category": "Film",
+      "year": 2007,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=REC%202007&s=tt"
+      }
+    },
+    {
+      "id": "the-orphanage-2007",
+      "title": "The Orphanage",
+      "category": "Film",
+      "year": 2007,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Orphanage%202007&s=tt"
+      }
+    },
+    {
+      "id": "30-days-of-night-2007",
+      "title": "30 Days of Night",
+      "category": "Film",
+      "year": 2007,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=30%20Days%20of%20Night%202007&s=tt"
+      }
+    },
+    {
+      "id": "trick-r-treat-2007",
+      "title": "Trick 'r Treat",
+      "category": "Film",
+      "year": 2007,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Trick%20'r%20Treat%202007&s=tt"
+      }
+    },
+    {
+      "id": "let-the-right-one-in-2008",
+      "title": "Let the Right One In",
+      "category": "Film",
+      "year": 2008,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Let%20the%20Right%20One%20In%202008&s=tt"
+      }
+    },
+    {
+      "id": "martyrs-2008",
+      "title": "Martyrs",
+      "category": "Film",
+      "year": 2008,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Martyrs%202008&s=tt"
+      }
+    },
+    {
+      "id": "lake-mungo-2008",
+      "title": "Lake Mungo",
+      "category": "Film",
+      "year": 2008,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Lake%20Mungo%202008&s=tt"
+      }
+    },
+    {
+      "id": "drag-me-to-hell-2009",
+      "title": "Drag Me to Hell",
+      "category": "Film",
+      "year": 2009,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Drag%20Me%20to%20Hell%202009&s=tt"
+      }
+    },
+    {
+      "id": "the-house-of-the-devil-2009",
+      "title": "The House of the Devil",
+      "category": "Film",
+      "year": 2009,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20House%20of%20the%20Devil%202009&s=tt"
+      }
+    },
+    {
+      "id": "jennifer-s-body-2009",
+      "title": "Jennifer's Body",
+      "category": "Film",
+      "year": 2009,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Jennifer's%20Body%202009&s=tt"
+      }
+    },
+    {
+      "id": "insidious-2010",
+      "title": "Insidious",
+      "category": "Film",
+      "year": 2010,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Insidious%202010&s=tt"
+      }
+    },
+    {
+      "id": "sinister-2012",
+      "title": "Sinister",
+      "category": "Film",
+      "year": 2012,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Sinister%202012&s=tt"
+      }
+    },
+    {
+      "id": "the-cabin-in-the-woods-2011",
+      "title": "The Cabin in the Woods",
+      "category": "Film",
+      "year": 2011,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Cabin%20in%20the%20Woods%202011&s=tt"
+      }
+    },
+    {
+      "id": "the-conjuring-2013",
+      "title": "The Conjuring",
+      "category": "Film",
+      "year": 2013,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Conjuring%202013&s=tt"
+      }
+    },
+    {
+      "id": "the-babadook-2014",
+      "title": "The Babadook",
+      "category": "Film",
+      "year": 2014,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Babadook%202014&s=tt"
+      }
+    },
+    {
+      "id": "it-follows-2014",
+      "title": "It Follows",
+      "category": "Film",
+      "year": 2014,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=It%20Follows%202014&s=tt"
+      }
+    },
+    {
+      "id": "the-witch-2015",
+      "title": "The Witch",
+      "category": "Film",
+      "year": 2015,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Witch%202015&s=tt"
+      }
+    },
+    {
+      "id": "the-wailing-2016",
+      "title": "The Wailing",
+      "category": "Film",
+      "year": 2016,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Wailing%202016&s=tt"
+      }
+    },
+    {
+      "id": "raw-2016",
+      "title": "Raw",
+      "category": "Film",
+      "year": 2016,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Raw%202016&s=tt"
+      }
+    },
+    {
+      "id": "get-out-2017",
+      "title": "Get Out",
+      "category": "Film",
+      "year": 2017,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Get%20Out%202017&s=tt"
+      }
+    },
+    {
+      "id": "it-2017",
+      "title": "It",
+      "category": "Film",
+      "year": 2017,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=It%202017&s=tt"
+      }
+    },
+    {
+      "id": "hereditary-2018",
+      "title": "Hereditary",
+      "category": "Film",
+      "year": 2018,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hereditary%202018&s=tt"
+      }
+    },
+    {
+      "id": "a-quiet-place-2018",
+      "title": "A Quiet Place",
+      "category": "Film",
+      "year": 2018,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=A%20Quiet%20Place%202018&s=tt"
+      }
+    },
+    {
+      "id": "midsommar-2019",
+      "title": "Midsommar",
+      "category": "Film",
+      "year": 2019,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Midsommar%202019&s=tt"
+      }
+    },
+    {
+      "id": "us-2019",
+      "title": "Us",
+      "category": "Film",
+      "year": 2019,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Us%202019&s=tt"
+      }
+    },
+    {
+      "id": "the-lighthouse-2019",
+      "title": "The Lighthouse",
+      "category": "Film",
+      "year": 2019,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Lighthouse%202019&s=tt"
+      }
+    },
+    {
+      "id": "relic-2020",
+      "title": "Relic",
+      "category": "Film",
+      "year": 2020,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Relic%202020&s=tt"
+      }
+    },
+    {
+      "id": "his-house-2020",
+      "title": "His House",
+      "category": "Film",
+      "year": 2020,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=His%20House%202020&s=tt"
+      }
+    },
+    {
+      "id": "malignant-2021",
+      "title": "Malignant",
+      "category": "Film",
+      "year": 2021,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Malignant%202021&s=tt"
+      }
+    },
+    {
+      "id": "titane-2021",
+      "title": "Titane",
+      "category": "Film",
+      "year": 2021,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Titane%202021&s=tt"
+      }
+    },
+    {
+      "id": "x-2022",
+      "title": "X",
+      "category": "Film",
+      "year": 2022,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=X%202022&s=tt"
+      }
+    },
+    {
+      "id": "pearl-2022",
+      "title": "Pearl",
+      "category": "Film",
+      "year": 2022,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pearl%202022&s=tt"
+      }
+    },
+    {
+      "id": "smile-2022",
+      "title": "Smile",
+      "category": "Film",
+      "year": 2022,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Smile%202022&s=tt"
+      }
+    },
+    {
+      "id": "barbarian-2022",
+      "title": "Barbarian",
+      "category": "Film",
+      "year": 2022,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Barbarian%202022&s=tt"
+      }
+    },
+    {
+      "id": "talk-to-me-2022",
+      "title": "Talk to Me",
+      "category": "Film",
+      "year": 2022,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Talk%20to%20Me%202022&s=tt"
+      }
+    },
+    {
+      "id": "when-evil-lurks-2023",
+      "title": "When Evil Lurks",
+      "category": "Film",
+      "year": 2023,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=When%20Evil%20Lurks%202023&s=tt"
+      }
+    },
+    {
+      "id": "late-night-with-the-devil-2023",
+      "title": "Late Night with the Devil",
+      "category": "Film",
+      "year": 2023,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Late%20Night%20with%20the%20Devil%202023&s=tt"
+      }
+    },
+    {
+      "id": "longlegs-2024",
+      "title": "Longlegs",
+      "category": "Film",
+      "year": 2024,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Longlegs%202024&s=tt"
+      }
+    },
+    {
+      "id": "the-substance-2024",
+      "title": "The Substance",
+      "category": "Film",
+      "year": 2024,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Substance%202024&s=tt"
+      }
+    },
+    {
+      "id": "nosferatu-2024",
+      "title": "Nosferatu",
+      "category": "Film",
+      "year": 2024,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Nosferatu%202024&s=tt"
+      }
+    },
+    {
+      "id": "alien-romulus-2024",
+      "title": "Alien: Romulus",
+      "category": "Film",
+      "year": 2024,
+      "genres": [
+        "Horror"
+      ],
+      "provenance": {
+        "source": "Original manual curation of public film facts; IMDb search reference, not a verified title ID",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Alien%3A%20Romulus%202024&s=tt"
+      }
+    },
+    {
+      "id": "greenland-2-migration-2026",
+      "title": "Greenland 2: Migration",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Greenland%202%3A%20Migration%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "primate-2026",
+      "title": "Primate",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Primate%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "people-we-meet-on-vacation-2026",
+      "title": "People We Meet on Vacation",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=People%20We%20Meet%20on%20Vacation%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "28-years-later-the-bone-temple-2026",
+      "title": "28 Years Later: The Bone Temple",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=28%20Years%20Later%3A%20The%20Bone%20Temple%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "charlie-the-wonderdog-2026",
+      "title": "Charlie the Wonderdog",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Charlie%20the%20Wonderdog%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-rip-2026",
+      "title": "The Rip",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Rip%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "mercy-2026",
+      "title": "Mercy",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Mercy%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "return-to-silent-hill-2026",
+      "title": "Return to Silent Hill",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Return%20to%20Silent%20Hill%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-wrecking-crew-2026",
+      "title": "The Wrecking Crew",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Wrecking%20Crew%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "iron-lung-2026",
+      "title": "Iron Lung",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Iron%20Lung%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "send-help-2026",
+      "title": "Send Help",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Send%20Help%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "shelter-2026",
+      "title": "Shelter",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Shelter%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-strangers-chapter-3-2026",
+      "title": "The Strangers: Chapter 3",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Strangers%3A%20Chapter%203%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "solo-mio-2026",
+      "title": "Solo Mio",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Solo%20Mio%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "cold-storage-2026",
+      "title": "Cold Storage",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Cold%20Storage%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "crime-101-2026",
+      "title": "Crime 101",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Crime%20101%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "goat-2026",
+      "title": "GOAT",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=GOAT%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "good-luck-have-fun-don-t-die-2026",
+      "title": "Good Luck, Have Fun, Don't Die",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Good%20Luck%2C%20Have%20Fun%2C%20Don't%20Die%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "wuthering-heights-2026",
+      "title": "Wuthering Heights",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Wuthering%20Heights%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "how-to-make-a-killing-2026",
+      "title": "How to Make a Killing",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=How%20to%20Make%20a%20Killing%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "i-can-only-imagine-2-2026",
+      "title": "I Can Only Imagine 2",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=I%20Can%20Only%20Imagine%202%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "psycho-killer-2026",
+      "title": "Psycho Killer",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Psycho%20Killer%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-bluff-2026",
+      "title": "The Bluff",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Bluff%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "scream-7-2026",
+      "title": "Scream 7",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Scream%207%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "in-the-blink-of-an-eye-2026",
+      "title": "In the Blink of an Eye",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=In%20the%20Blink%20of%20an%20Eye%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-bride-2026",
+      "title": "The Bride!",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Bride!%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "hoppers-2026",
+      "title": "Hoppers",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hoppers%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "protector-2026",
+      "title": "Protector",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Protector%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "peaky-blinders-the-immortal-man-2026",
+      "title": "Peaky Blinders: The Immortal Man",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Peaky%20Blinders%3A%20The%20Immortal%20Man%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "war-machine-2026",
+      "title": "War Machine",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=War%20Machine%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "reminders-of-him-2026",
+      "title": "Reminders of Him",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Reminders%20of%20Him%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "undertone-2026",
+      "title": "Undertone",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Undertone%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "bodycam-2026",
+      "title": "Bodycam",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Bodycam%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "project-hail-mary-2026",
+      "title": "Project Hail Mary",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Project%20Hail%20Mary%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "ready-or-not-2-here-i-come-2026",
+      "title": "Ready or Not 2: Here I Come",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Ready%20or%20Not%202%3A%20Here%20I%20Come%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "pretty-lethal-2026",
+      "title": "Pretty Lethal",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pretty%20Lethal%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "forbidden-fruits-2026",
+      "title": "Forbidden Fruits",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Forbidden%20Fruits%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "they-will-kill-you-2026",
+      "title": "They Will Kill You",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=They%20Will%20Kill%20You%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "mike-nick-nick-alice-2026",
+      "title": "Mike & Nick & Nick & Alice",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Mike%20%26%20Nick%20%26%20Nick%20%26%20Alice%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-super-mario-galaxy-movie-2026",
+      "title": "The Super Mario Galaxy Movie",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Super%20Mario%20Galaxy%20Movie%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-drama-2026",
+      "title": "The Drama",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Drama%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "pizza-movie-2026",
+      "title": "Pizza Movie",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pizza%20Movie%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "faces-of-death-2026",
+      "title": "Faces of Death",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Faces%20of%20Death%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "you-me-tuscany-2026",
+      "title": "You, Me & Tuscany",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=You%2C%20Me%20%26%20Tuscany%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "outcome-2026",
+      "title": "Outcome",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Outcome%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "thrash-2026",
+      "title": "Thrash",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Thrash%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "in-the-grey-2026",
+      "title": "In the Grey",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=In%20the%20Grey%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "is-god-is-2026",
+      "title": "Is God Is",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Is%20God%20Is%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "tom-clancy-s-jack-ryan-ghost-war-2026",
+      "title": "Tom Clancy's Jack Ryan: Ghost War",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Tom%20Clancy's%20Jack%20Ryan%3A%20Ghost%20War%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-death-of-robin-hood-2026",
+      "title": "The Death of Robin Hood",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Death%20of%20Robin%20Hood%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "girls-like-girls-2026",
+      "title": "Girls Like Girls",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Girls%20Like%20Girls%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "toy-story-5-2026",
+      "title": "Toy Story 5",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Toy%20Story%205%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "voicemails-for-isabelle-2026",
+      "title": "Voicemails for Isabelle",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Voicemails%20for%20Isabelle%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "jackass-best-and-last-2026",
+      "title": "Jackass: Best and Last",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Jackass%3A%20Best%20and%20Last%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "supergirl-2026",
+      "title": "Supergirl",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Supergirl%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "minions-monsters-2026",
+      "title": "Minions & Monsters",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Minions%20%26%20Monsters%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "enola-holmes-3-2026",
+      "title": "Enola Holmes 3",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Enola%20Holmes%203%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "young-washington-2026",
+      "title": "Young Washington",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Young%20Washington%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "evil-dead-burn-2026",
+      "title": "Evil Dead Burn",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Evil%20Dead%20Burn%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "moana-2026",
+      "title": "Moana",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Moana%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-odyssey-2026",
+      "title": "The Odyssey",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Odyssey%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "pinocchio-unstrung-2026",
+      "title": "Pinocchio: Unstrung",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Pinocchio%3A%20Unstrung%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "72-hours-2026",
+      "title": "72 Hours",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=72%20Hours%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "avatar-aang-the-last-airbender-2026",
+      "title": "Avatar Aang: The Last Airbender",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Avatar%20Aang%3A%20The%20Last%20Airbender%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-dink-2026",
+      "title": "The Dink",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Dink%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "her-private-hell-2026",
+      "title": "Her Private Hell",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Her%20Private%20Hell%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "spider-man-brand-new-day-2026",
+      "title": "Spider-Man: Brand New Day",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Spider-Man%3A%20Brand%20New%20Day%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "soulm8te-2026",
+      "title": "Soulm8te",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Soulm8te%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "coyote-vs-acme-2026",
+      "title": "Coyote vs. Acme",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Coyote%20vs.%20Acme%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-dog-stars-2026",
+      "title": "The Dog Stars",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Dog%20Stars%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "finding-emily-2026",
+      "title": "Finding Emily",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Finding%20Emily%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-whisper-man-2026",
+      "title": "The Whisper Man",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Whisper%20Man%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "fall-2-deadpoint-2026",
+      "title": "Fall 2: Deadpoint",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Fall%202%3A%20Deadpoint%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-runner-2026",
+      "title": "The Runner",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Runner%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "by-any-means-2026",
+      "title": "By Any Means",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=By%20Any%20Means%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "onslaught-2026",
+      "title": "Onslaught",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Onslaught%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "mayday-2026",
+      "title": "Mayday",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Mayday%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "hope-2026",
+      "title": "Hope",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hope%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "practical-magic-2-2026",
+      "title": "Practical Magic 2",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Practical%20Magic%202%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "resident-evil-2026",
+      "title": "Resident Evil",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Resident%20Evil%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "shaun-the-sheep-the-beast-of-mossy-bottom-2026",
+      "title": "Shaun the Sheep: The Beast of Mossy Bottom",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Shaun%20the%20Sheep%3A%20The%20Beast%20of%20Mossy%20Bottom%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-love-hypothesis-2026",
+      "title": "The Love Hypothesis",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Love%20Hypothesis%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "forgotten-island-2026",
+      "title": "Forgotten Island",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Forgotten%20Island%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "heart-of-the-beast-2026",
+      "title": "Heart of the Beast",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Heart%20of%20the%20Beast%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "primetime-2026",
+      "title": "Primetime",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Primetime%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-stunt-driver-2026",
+      "title": "The Stunt Driver",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Stunt%20Driver%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "unabomber-2026",
+      "title": "Unabomber",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Unabomber%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "digger-2026",
+      "title": "Digger",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Digger%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "verity-2026",
+      "title": "Verity",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Verity%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "other-mommy-2026",
+      "title": "Other Mommy",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Other%20Mommy%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-social-reckoning-2026",
+      "title": "The Social Reckoning",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Social%20Reckoning%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "matchbox-the-movie-2026",
+      "title": "Matchbox: The Movie",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Matchbox%3A%20The%20Movie%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "street-fighter-2026",
+      "title": "Street Fighter",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Street%20Fighter%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "whalefall-2026",
+      "title": "Whalefall",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Whalefall%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "masterplan-2026",
+      "title": "Masterplan",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Masterplan%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "sacrifice-2026",
+      "title": "Sacrifice",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Sacrifice%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "clayface-2026",
+      "title": "Clayface",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Clayface%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "klara-and-the-sun-2026",
+      "title": "Klara and the Sun",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Klara%20and%20the%20Sun%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "wildwood-2026",
+      "title": "Wildwood",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Wildwood%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-only-living-pickpocket-in-new-york-2026",
+      "title": "The Only Living Pickpocket in New York",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Only%20Living%20Pickpocket%20in%20New%20York%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-mongoose-2026",
+      "title": "The Mongoose",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Mongoose%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-mosquito-bowl-2026",
+      "title": "The Mosquito Bowl",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Mosquito%20Bowl%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-cat-in-the-hat-2026",
+      "title": "The Cat in the Hat",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Cat%20in%20the%20Hat%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "godzilla-minus-zero-2026",
+      "title": "Godzilla Minus Zero",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Godzilla%20Minus%20Zero%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "jimmy-2026",
+      "title": "Jimmy",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Jimmy%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "wild-horse-nine-2026",
+      "title": "Wild Horse Nine",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Wild%20Horse%20Nine%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "being-heumann-2026",
+      "title": "Being Heumann",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Being%20Heumann%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "ebenezer-2026",
+      "title": "Ebenezer",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Ebenezer%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "how-to-rob-a-bank-2026",
+      "title": "How to Rob a Bank",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=How%20to%20Rob%20a%20Bank%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "victorian-psycho-2026",
+      "title": "Victorian Psycho",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Victorian%20Psycho%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "i-play-rocky-2026",
+      "title": "I Play Rocky",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=I%20Play%20Rocky%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "paper-tiger-2026",
+      "title": "Paper Tiger",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Paper%20Tiger%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "madden-2026",
+      "title": "Madden",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Madden%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-hunger-games-sunrise-on-the-reaping-2026",
+      "title": "The Hunger Games: Sunrise on the Reaping",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Hunger%20Games%3A%20Sunrise%20on%20the%20Reaping%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "elsinore-2026",
+      "title": "Elsinore",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Elsinore%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "josephine-2026",
+      "title": "Josephine",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Josephine%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "steps-2026",
+      "title": "Steps",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Steps%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "focker-in-law-2026",
+      "title": "Focker In-Law",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Focker%20In-Law%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "hershey-2026",
+      "title": "Hershey",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hershey%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "hexed-2026",
+      "title": "Hexed",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Hexed%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "way-of-the-warrior-kid-2026",
+      "title": "Way of the Warrior Kid",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (release schedule reference; not confirmation of actual opening)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Way%20of%20the%20Warrior%20Kid%202026&s=tt",
+        "releaseStatus": "calendar-date-passed",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-man-with-the-bag-2026",
+      "title": "The Man with the Bag",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Man%20with%20the%20Bag%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "above-the-below-2026",
+      "title": "Above the Below",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Above%20the%20Below%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "behemoth-2026",
+      "title": "Behemoth!",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Behemoth!%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "flavia-girl-detective-2026",
+      "title": "Flavia: Girl Detective",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Flavia%3A%20Girl%20Detective%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "violent-night-2-2026",
+      "title": "Violent Night 2",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Violent%20Night%202%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "ray-gunn-2026",
+      "title": "Ray Gunn",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Ray%20Gunn%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "zero-a-d-the-birth-of-christ-2026",
+      "title": "Zero A.D.: The Birth of Christ",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Zero%20A.D.%3A%20The%20Birth%20of%20Christ%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "bad-day-2026",
+      "title": "Bad Day",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Bad%20Day%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "avengers-doomsday-2026",
+      "title": "Avengers: Doomsday",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Avengers%3A%20Doomsday%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "dune-part-three-2026",
+      "title": "Dune: Part Three",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Dune%3A%20Part%20Three%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "the-angry-birds-movie-3-2026",
+      "title": "The Angry Birds Movie 3",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=The%20Angry%20Birds%20Movie%203%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "jumanji-open-world-2026",
+      "title": "Jumanji: Open World",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Jumanji%3A%20Open%20World%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "mr-irrelevant-2026",
+      "title": "Mr. Irrelevant",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Mr.%20Irrelevant%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "werwulf-2026",
+      "title": "Werwulf",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Werwulf%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
+    },
+    {
+      "id": "artificial-2026",
+      "title": "Artificial",
+      "category": "Film",
+      "year": 2026,
+      "genres": [],
+      "provenance": {
+        "source": "FirstShowing 2026 calendar, https://www.firstshowing.net/schedule2026/ (announced December schedule)",
+        "license": "Original catalog compilation; factual title/year references only",
+        "importedAt": "2026-11-27T00:00:00.000Z"
+      },
+      "attributes": {
+        "imdbUrl": "https://www.imdb.com/find/?q=Artificial%202026&s=tt",
+        "releaseStatus": "scheduled",
+        "releaseYearBasis": "2026 release calendar; original premiere year may differ"
+      }
     }
   ]
 }
