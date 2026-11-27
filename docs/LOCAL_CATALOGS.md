@@ -84,3 +84,12 @@ records per page; the core page API rejects page sizes outside 1–50.
 Missing or invalid optional datasets are isolated from valid catalogs and
 manual archive entry. Old datasets remain searchable; there is no automatic
 network refresh. Search never reads or writes personal history.
+
+## Validation and portability
+
+Version 1 retains unknown catalog, record and provenance extension fields when
+parsed and serialized. Known outbound link attributes must be HTTP(S) URLs
+without embedded credentials; malformed records report the field and reason.
+Catalogs are not included in personal backups. An explicit add copies the
+selected record's metadata into an independent archive item; future catalog
+changes cannot rewrite that item.
