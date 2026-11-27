@@ -48,7 +48,8 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
   const rows = Response.parse(raw).results.bindings;
   const groups = new Map();
   for (const row of rows) {
-    const entityPattern = /^https?:\/\/www\.wikidata\.org\/entity\/(Q[1-9]\d*)$/;
+    const entityPattern =
+      /^https?:\/\/www\.wikidata\.org\/entity\/(Q[1-9]\d*)$/;
     const qid = row.item.value.match(entityPattern)?.[1];
     if (!qid || !row.title.value.trim()) {
       throw new Error('Invalid Wikidata entity or title');
