@@ -95,3 +95,11 @@ search results, not verified individual IMDb title IDs. Calendar entries use
 or original production year. A passed calendar date is not confirmation of
 an actual release; December entries are explicitly marked scheduled. This is
 an initial non-exhaustive selection, not a complete global film census.
+
+## 1998–2025 film expansion
+
+An additional 1128 manually curated films cover every year from 1998
+through 2025. Title and year are factual references, not individually verified
+against a source database. IMDb search URLs are outbound references only;
+no IMDb datasets, artwork, ratings or descriptions were imported. The selection
+is not a complete worldwide census. Existing catalog records remain intact.

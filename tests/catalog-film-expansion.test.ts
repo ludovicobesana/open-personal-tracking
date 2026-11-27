@@ -33,3 +33,17 @@ describe('horror and 2026 expansion', () => {
     );
   });
 });
+
+describe('1998–2025 film expansion', () => {
+  it('covers every year with at least 25 new films', () => {
+    const additions = catalog.records.filter(
+      (record) =>
+        record.provenance.importedAt === '2026-11-27T01:00:00.000Z',
+    );
+    for (let year = 1998; year <= 2025; year++) {
+      const entries = additions.filter((record) => record.year === year);
+      expect(entries.length, String(year)).toBeGreaterThanOrEqual(25);
+      expect(entries.every((record) => record.attributes.imdbUrl)).toBe(true);
+    }
+  });
+});
