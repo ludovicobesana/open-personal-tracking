@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "tsc --noEmit",
+    "catalog:wikidata": "node scripts/import-wikidata.mjs",
     "lint": "eslint src tests e2e playwright.config.ts --max-warnings=0",
     "format": "prettier --write .github scripts src tests e2e web/app web/public/service-worker.js package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts playwright.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",
     "format:check": "prettier --check .github scripts src tests e2e web/app web/public/service-worker.js package.json web/package.json tsconfig.json web/tsconfig.json vitest.config.ts playwright.config.ts web/next.config.mjs .eslintrc.cjs web/.eslintrc.json .prettierrc.json lint-staged.config.mjs",

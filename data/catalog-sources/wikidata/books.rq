@@ -1,0 +1,10 @@
+SELECT ?item ?title ?year ?creator ?genre WHERE {
+  { SELECT DISTINCT ?item WHERE {
+    VALUES ?class { wd:Q7725634 wd:Q571 }
+    ?item wdt:P31 ?class; wdt:P50 ?author.
+  } ORDER BY ?item LIMIT 500 }
+  ?item rdfs:label ?title. FILTER(LANG(?title) = "en")
+  OPTIONAL { ?item wdt:P577 ?date. BIND(YEAR(?date) AS ?year) }
+  OPTIONAL { ?item wdt:P50/rdfs:label ?creator. FILTER(LANG(?creator) = "en") }
+  OPTIONAL { ?item wdt:P136/rdfs:label ?genre. FILTER(LANG(?genre) = "en") }
+}
