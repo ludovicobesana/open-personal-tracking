@@ -48,9 +48,8 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
   const rows = Response.parse(raw).results.bindings;
   const groups = new Map();
   for (const row of rows) {
-    const qid = row.item.value.match(
-      /^https?:\/\/www\.wikidata\.org\/entity\/(Q[1-9]\d*)$/,
-    )?.[1];
+    const entityPattern = /^https?:\/\/www\.wikidata\.org\/entity\/(Q[1-9]\d*)$/;
+    const qid = row.item.value.match(entityPattern)?.[1];
     if (!qid || !row.title.value.trim()) {
       throw new Error('Invalid Wikidata entity or title');
     }
@@ -76,7 +75,9 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
     if (row.creator?.value.trim()) {
       existing.creators.add(row.creator.value.trim());
     }
-    if (row.genre?.value.trim()) existing.genres.add(row.genre.value.trim());
+    if (row.genre?.value.trim()) {
+      existing.genres.add(row.genre.value.trim());
+    }
     groups.set(qid, existing);
   }
   const ids = new Set(seed.records.map((record) => record.id));
@@ -84,9 +85,8 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
     seed.records.map((record) => normalize(record.title)),
   );
   const knownImdb = new Set(seed.records.map(imdbId).filter(Boolean));
-  const knownEntities = new Set(
-    seed.records.map((record) => record.attributes?.wikidataId).filter(Boolean),
-  );
+  const entityIds = seed.records.map((record) => record.attributes?.wikidataId);
+  const knownEntities = new Set(entityIds.filter(Boolean));
   const additions = [];
   for (const [qid, group] of [...groups].sort(([a], [b]) => compare(a, b))) {
     const title = [...group.titles].sort(compare)[0];
@@ -102,13 +102,12 @@ export function appendWikidata(seed, raw, namespace, importedAt) {
       continue;
     }
     const creators = [...group.creators].sort(compare);
+    const creatorKey = namespace === 'books' ? 'author' : 'director';
     const attributes = {
       wikidataId: qid,
       wikidataUrl: `https://www.wikidata.org/wiki/${qid}`,
       ...(imdb ? { imdbUrl: `https://www.imdb.com/title/${imdb}/` } : {}),
-      ...(creators.length
-        ? { [namespace === 'books' ? 'author' : 'director']: creators.join(', ') }
-        : {}),
+      ...(creators.length ? { [creatorKey]: creators.join(', ') } : {}),
     };
     additions.push({
       id,
