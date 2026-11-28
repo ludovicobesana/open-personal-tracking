@@ -94,6 +94,25 @@ Catalogs are not included in personal backups. An explicit add copies the
 selected record's metadata into an independent archive item; future catalog
 changes cannot rewrite that item.
 
+## Horror and 2026 expansion
+
+The November 27 expansion appends 151 manually curated horror titles and 136 titles from the public 2026 release calendar at
+https://www.firstshowing.net/schedule2026/. Only factual title/year references
+are included, not descriptions, ratings or posters. IMDb links lead to title
+search results, not verified individual IMDb title IDs. Calendar entries use
+2026 as the release-calendar year, which can differ from a festival premiere
+or original production year. A passed calendar date is not confirmation of
+an actual release; December entries are explicitly marked scheduled. This is
+an initial non-exhaustive selection, not a complete global film census.
+
+## 1998–2025 film expansion
+
+An additional 1128 manually curated films cover every year from 1998
+through 2025. Title and year are factual references, not individually verified
+against a source database. IMDb search URLs are outbound references only;
+no IMDb datasets, artwork, ratings or descriptions were imported. The selection
+is not a complete worldwide census. Existing catalog records remain intact.
+
 ## Reproducible generation and refresh
 
 Run with Node 22.22.1 and the repository dependencies installed:
