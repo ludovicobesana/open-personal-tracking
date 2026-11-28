@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "category": "books",
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "extensions": {
+    "revision": 1
+  },
+  "records": [
+    {
+      "id": "synthetic-book",
+      "title": "Synthetic book",
+      "category": "Book",
+      "year": 2000,
+      "genres": ["Fiction"],
+      "provenance": {
+        "source": "Invented fixture",
+        "license": "CC0",
+        "importedAt": "2026-01-01T00:00:00.000Z",
+        "sourceId": "synthetic"
+      },
+      "attributes": {
+        "author": "Invented author",
+        "imdbUrl": "https://example.invalid/title",
+        "customAttribute": "custom"
+      },
+      "aliases": ["Example title"]
+    }
+  ]
+}
