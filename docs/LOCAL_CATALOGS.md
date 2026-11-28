@@ -85,6 +85,15 @@ Missing or invalid optional datasets are isolated from valid catalogs and
 manual archive entry. Old datasets remain searchable; there is no automatic
 network refresh. Search never reads or writes personal history.
 
+## Validation and portability
+
+Version 1 retains unknown catalog, record and provenance extension fields when
+parsed and serialized. Known outbound link attributes must be HTTP(S) URLs
+without embedded credentials; malformed records report the field and reason.
+Catalogs are not included in personal backups. An explicit add copies the
+selected record's metadata into an independent archive item; future catalog
+changes cannot rewrite that item.
+
 ## Horror and 2026 expansion
 
 The November 27 expansion appends 151 manually curated horror titles and 136 titles from the public 2026 release calendar at
