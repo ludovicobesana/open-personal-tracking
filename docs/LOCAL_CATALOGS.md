@@ -112,3 +112,40 @@ through 2025. Title and year are factual references, not individually verified
 against a source database. IMDb search URLs are outbound references only;
 no IMDb datasets, artwork, ratings or descriptions were imported. The selection
 is not a complete worldwide census. Existing catalog records remain intact.
+
+## Reproducible generation and refresh
+
+Run with Node 22.22.1 and the repository dependencies installed:
+
+```sh
+npm run catalog:generate -- data/catalog-sources/manifest.json /tmp/opt-catalogs
+```
+
+The checked-in manifest reads the shipped seeds. The output directory is
+explicit and independent of user data; review the generated files before
+committing anything. The command never runs as part of the app build and
+never downloads data. Identical inputs produce identical JSON bytes.
+
+To add an approved source, copy the manifest into a working directory (or
+edit it on a branch), keep the seed paths relative to that manifest, set an
+explicit `generatedAt` timestamp, and append a source entry with
+`format: "curated-rows-v1"`, `path`, `source` (name and URL when applicable),
+`license` and `importedAt`. The file is a JSON array of rows with stable
+explicit slug IDs, title, category, optional year, genres, aliases and string
+attributes. Title and list text are trimmed; aliases remain searchable in
+attributes. Unsupported formats and malformed rows fail with diagnostics.
+Records are appended in source order; duplicate IDs and changes to existing
+output seed records are rejected. No automatic deduplication or ID rewriting
+is performed. Source attribution is mandatory, not evidence of permission.
+
+Before release, confirm redistribution and commercial-use rights per source
+and artwork asset, retain attribution and source URLs where applicable, review
+changes against protected seed records, run the generator twice and compare
+outputs, run `npm test` and the web build, and confirm manual entry and backup
+restore work without a catalog. The legacy Wikidata-derived factual records
+refer to https://www.wikidata.org/ and its CC0 data terms at
+https://www.wikidata.org/wiki/Wikidata:Licensing. The manually curated additions
+are original factual identifiers, not an externally downloaded dataset. IMDb,
+community and shop links do not confer content or artwork rights. Empty datasets
+have no third-party source. Do not publish unverified artwork or scrape provider
+availability catalogs. Review the existing cover permission warning above.
